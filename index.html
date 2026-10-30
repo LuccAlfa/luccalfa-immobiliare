@@ -1,464 +1,336 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <title>Agenzia Immobiliare a Lucca e Pisa | Vendita e Affitto Case – LuccAlfa Immobiliare</title>
-  <meta name="description" content="LuccAlfa Immobiliare: compravendita e affitto di case, ville, rustici e appartamenti a Lucca, Pisa, Versilia e dintorni. Valutazione gratuita, assistenza completa anche per acquirenti stranieri." />
-  <meta name="theme-color" content="#f5f2ec" />
-  <link rel="canonical" href="https://immobiliare.luccalfa.it/" />
-  <link rel="alternate" hreflang="it" href="https://immobiliare.luccalfa.it/" />
-  <link rel="alternate" hreflang="x-default" href="https://immobiliare.luccalfa.it/" />
-
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="LuccAlfa Immobiliare – Case a Lucca, Pisa e dintorni" />
-  <meta property="og:description" content="Compravendita e affitto a Lucca, Pisa e Versilia. Valutazione gratuita e assistenza per acquirenti italiani e stranieri." />
-  <meta property="og:url" content="https://immobiliare.luccalfa.it/" />
-  <meta property="og:image" content="https://immobiliare.luccalfa.it/assets/img/og.jpg" />
-  <meta property="og:locale" content="it_IT" />
-  <meta property="og:locale:alternate" content="en_GB" />
-  <meta property="og:site_name" content="LuccAlfa Immobiliare" />
-  <meta name="twitter:card" content="summary_large_image" />
-
-  <link rel="icon" type="image/svg+xml" href="assets/logo.svg" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
-
-  <!-- ═════ SCHEMA.ORG 1: RealEstateAgent + LocalBusiness ═════
-       TODO: sostituire dominio, telefono, email, indirizzo, coordinate, P.IVA e profili social con i dati reali. -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": ["RealEstateAgent", "LocalBusiness"],
-    "@id": "https://immobiliare.luccalfa.it/#agency",
-    "name": "LuccAlfa Immobiliare",
-    "legalName": "LuccAlfa Srls",
-    "description": "Agenzia immobiliare a Lucca: compravendita e affitto di appartamenti, ville, rustici e casali tra Lucca, Pisa, Versilia e Piana di Lucca. Valutazioni gratuite, consulenza e assistenza per acquirenti italiani e stranieri.",
-    "url": "https://immobiliare.luccalfa.it/",
-    "logo": "https://immobiliare.luccalfa.it/assets/logo.svg",
-    "image": "https://immobiliare.luccalfa.it/assets/img/og.jpg",
-    "telephone": "+39000000000",
-    "email": "info@luccalfa-immobiliare.it",
-    "priceRange": "€€",
-    "foundingDate": "2021",
-    "knowsLanguage": ["it", "en"],
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Via di Villa Altieri",
-      "addressLocality": "Lucca",
-      "postalCode": "55100",
-      "addressRegion": "LU",
-      "addressCountry": "IT"
-    },
-    "geo": { "@type": "GeoCoordinates", "latitude": 43.843, "longitude": 10.508 },
-    "openingHoursSpecification": [{
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
-      "opens": "09:00",
-      "closes": "19:00"
-    }],
-    "areaServed": [
-      { "@type": "City", "name": "Lucca" },
-      { "@type": "City", "name": "Pisa" },
-      { "@type": "City", "name": "Capannori" },
-      { "@type": "City", "name": "Viareggio" },
-      { "@type": "City", "name": "Camaiore" },
-      { "@type": "City", "name": "Pietrasanta" },
-      { "@type": "City", "name": "Altopascio" },
-      { "@type": "City", "name": "Porcari" },
-      { "@type": "City", "name": "Montecarlo" },
-      { "@type": "City", "name": "San Giuliano Terme" },
-      { "@type": "City", "name": "Cascina" },
-      { "@type": "AdministrativeArea", "name": "Provincia di Lucca" },
-      { "@type": "AdministrativeArea", "name": "Provincia di Pisa" }
-    ],
-    "makesOffer": [
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Vendita immobili", "serviceType": "Intermediazione immobiliare", "description": "Valutazione, promozione e vendita di immobili residenziali a Lucca, Pisa e dintorni." } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Ricerca e acquisto casa", "serviceType": "Ricerca immobiliare", "description": "Ricerca personalizzata, visite e assistenza alla trattativa fino al rogito." } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Affitti residenziali e turistici", "serviceType": "Locazione immobiliare", "description": "Intermediazione per locazioni abitative a lungo termine, transitorie e turistiche." } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Valutazione immobiliare gratuita", "serviceType": "Stima immobiliare", "description": "Stima del valore di mercato dell'immobile con sopralluogo." } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Assistenza acquirenti stranieri", "serviceType": "International buyers support", "description": "Supporto in italiano e inglese per chi acquista in Toscana dall'estero." } }
-    ],
-    "sameAs": [
-      "https://www.immobiliare.it/",
-      "https://www.idealista.it/",
-      "https://www.casa.it/",
-      "https://www.gate-away.com/"
-    ],
-    "subjectOf": { "@id": "https://immobiliare.luccalfa.it/#website" }
-  }
-  </script>
-
-  <!-- ═════ SCHEMA.ORG 2: WebSite + WebPage ═════ -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "WebSite",
-        "@id": "https://immobiliare.luccalfa.it/#website",
-        "url": "https://immobiliare.luccalfa.it/",
-        "name": "LuccAlfa Immobiliare",
-        "inLanguage": ["it", "en"],
-        "publisher": { "@id": "https://immobiliare.luccalfa.it/#agency" }
-      },
-      {
-        "@type": "WebPage",
-        "@id": "https://immobiliare.luccalfa.it/#webpage",
-        "url": "https://immobiliare.luccalfa.it/",
-        "name": "Agenzia Immobiliare a Lucca e Pisa – LuccAlfa Immobiliare",
-        "isPartOf": { "@id": "https://immobiliare.luccalfa.it/#website" },
-        "about": { "@id": "https://immobiliare.luccalfa.it/#agency" },
-        "primaryImageOfPage": "https://immobiliare.luccalfa.it/assets/img/og.jpg",
-        "inLanguage": "it"
-      }
-    ]
-  }
-  </script>
-
-  <!-- ═════ SCHEMA.ORG 3: FAQPage (IT + EN, per motori generativi) ═════
-       Le risposte sono identiche al testo visibile nella sezione FAQ. -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      { "@type": "Question", "name": "Quanto vale la mia casa a Lucca? Fate valutazioni gratuite?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Sì. LuccAlfa Immobiliare effettua una valutazione gratuita e senza impegno con sopralluogo. Il valore dipende da zona, stato di manutenzione, superficie, classe energetica e confronto con le vendite recenti comparabili." } },
-      { "@type": "Question", "name": "Quali zone coprite oltre a Lucca?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Operiamo a Lucca (centro storico dentro le Mura e periferia), nella Piana di Lucca (Capannori, Porcari, Altopascio, Montecarlo), a Pisa e nei comuni vicini (San Giuliano Terme, Cascina) e in Versilia (Viareggio, Camaiore, Pietrasanta)." } },
-      { "@type": "Question", "name": "Quali documenti servono per vendere casa?",
-        "acceptedAnswer": { "@type": "Answer", "text": "In genere servono: atto di provenienza, visura e planimetria catastale, attestato di prestazione energetica (APE), documenti di identità, eventuali titoli edilizi e certificazioni degli impianti, oltre al regolamento e ai rendiconti se l'immobile è in condominio. Ti guidiamo nella raccolta." } },
-      { "@type": "Question", "name": "Come funziona l'acquisto di una casa in Italia?",
-        "acceptedAnswer": { "@type": "Answer", "text": "I passaggi tipici sono: ricerca e visite, proposta d'acquisto con caparra, verifiche (urbanistica, catasto, ipoteche), contratto preliminare di compravendita, rogito davanti al notaio con pagamento del saldo e registrazione. Il notaio controlla la regolarità giuridica dell'atto." } },
-      { "@type": "Question", "name": "Quali imposte si pagano acquistando casa?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Dipendono da venditore (privato o impresa), uso (prima o seconda casa) e tipo di immobile: imposta di registro, ipotecaria e catastale se si acquista da privato, IVA se si acquista da impresa, oltre a onorari del notaio e dell'agenzia. Le aliquote cambiano nel tempo, quindi vanno verificate con notaio o commercialista prima dell'acquisto." } },
-      { "@type": "Question", "name": "Un cittadino straniero può comprare casa a Lucca?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Sì. I cittadini UE possono acquistare senza particolari limiti; per i cittadini extra-UE si applica in genere il principio di reciprocità. Serve un codice fiscale italiano, che si può ottenere anche dall'estero, e conviene farsi assistere da un notaio e, se necessario, da un traduttore." } },
-      { "@type": "Question", "name": "Seguite anche gli affitti?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Sì. Seguiamo locazioni abitative a lungo termine, contratti transitori e locazioni turistiche a Lucca e dintorni, dalla selezione degli inquilini alla stesura e registrazione del contratto." } },
-      { "@type": "Question", "name": "Dove pubblicate gli annunci?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Oltre che sul nostro sito, pubblichiamo gli immobili sui principali portali italiani e internazionali, come Immobiliare.it, Idealista, Casa.it e Gate-away.com, per raggiungere sia acquirenti italiani sia stranieri." } },
-      { "@type": "Question", "name": "Qual è la differenza tra vivere dentro le Mura di Lucca e fuori?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Dentro le Mura il centro storico offre vita pedonale, servizi a piedi e immobili d'epoca, con vincoli edilizi e poco parcheggio. Fuori, tra Piana e colline, si trovano più spazi, giardini e box auto, con prezzi al metro quadro generalmente diversi." } },
-      { "@type": "Question", "name": "Do you speak English? Can you help me buy a house in Tuscany from abroad?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Yes. LuccAlfa Immobiliare assists international buyers in English: property search around Lucca, Pisa and Versilia, video tours, help with the Italian tax code, notary coordination and after-sale support. You can also sign through a power of attorney if you cannot travel." } },
-      { "@type": "Question", "name": "How much are the costs when buying property in Italy?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Besides the price, expect registration or VAT taxes depending on the seller, notary fees and agency fees. Rates change over time and depend on whether it is a main or second home, so we recommend confirming the figures with a notary or accountant before making an offer." } }
-    ]
-  }
-  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LuccAlfa Immobiliare · Lucca, Pisa, Versilia</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
+<body>
 
-<body id="top">
-  <div class="progress" id="progress" aria-hidden="true"></div>
-  <div class="ambient" aria-hidden="true"><span class="orb orb--a"></span><span class="orb orb--b"></span></div>
+  <!-- Ambient Light & Glass Filter SVG Sprite -->
+  <div class="ambient" aria-hidden="true">
+    <span class="orb orb--a"></span>
+    <span class="orb orb--b"></span>
+    <span class="orb orb--c"></span>
+  </div>
 
-  <!-- NAV DESKTOP: pillola glass in alto -->
-  <header class="nav" id="nav">
-    <div class="nav__pill glass">
-      <a href="#top" class="nav__brand" aria-label="LuccAlfa Immobiliare – Home">
-        <img src="assets/logo.svg" alt="LuccAlfa" width="40" height="37" />
-        <span>Immobiliare</span>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <clipPath id="fc"><circle cx="12" cy="12" r="12"/></clipPath>
+      <filter id="lg-warp" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB">
+        <feTurbulence type="fractalNoise" baseFrequency="0.012 0.018" numOctaves="3" seed="7" result="n"/>
+        <feGaussianBlur in="n" stdDeviation="5" result="nb"/>
+        <feDisplacementMap in="SourceGraphic" in2="nb" scale="85" xChannelSelector="R" yChannelSelector="G"/>
+      </filter>
+    </defs>
+    <symbol id="flag-it" viewBox="0 0 24 24"><g clip-path="url(#fc)"><rect width="8" height="24" fill="#009246"/><rect x="8" width="8" height="24" fill="#fff"/><rect x="16" width="8" height="24" fill="#ce2b37"/></g></symbol>
+    <symbol id="flag-gb" viewBox="0 0 24 24"><g clip-path="url(#fc)"><rect width="24" height="24" fill="#012169"/><path d="M0 0L24 24M24 0L0 24" stroke="#fff" stroke-width="4.4"/><path d="M0 0L24 24M24 0L0 24" stroke="#c8102e" stroke-width="1.6"/><path d="M12 0V24M0 12H24" stroke="#fff" stroke-width="7"/><path d="M12 0V24M0 12H24" stroke="#c8102e" stroke-width="4"/></g></symbol>
+  </svg>
+
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="#" class="brand">
+        <img src="assets/logo.svg" alt="LuccAlfa Logo" class="brand-logo" width="36" height="36">
+        <span class="brand-name" data-i18n="brand">LuccAlfa Immobiliare</span>
       </a>
-      <nav class="nav__links" aria-label="Menu principale">
-        <a href="#immobili">Immobili</a>
-        <a href="#servizi">Servizi</a>
-        <a href="#zone">Zone</a>
-        <a href="#portali">Portali</a>
-        <a href="#international">English</a>
-        <a href="#faq">FAQ</a>
+      <nav class="nav-links">
+        <a href="#immobili" data-i18n="nav-immobili">Immobili</a>
+        <a href="#servizi" data-i18n="nav-servizi">Servizi</a>
+        <a href="#zone" data-i18n="nav-zone">Zone</a>
+        <a href="#portali" data-i18n="nav-portali">Portali</a>
+        <a href="#faq" data-i18n="nav-faq">FAQ</a>
       </nav>
-      <a href="#contatti" class="btn btn--accent btn--sm">Valutazione gratuita</a>
+      <div class="nav-actions">
+        <button id="lang-toggle" class="lang-switcher" aria-label="Cambia lingua">
+          <svg class="flag-icon" width="20" height="20"><use href="#flag-gb"/></svg>
+          <span class="lang-code">EN</span>
+        </button>
+        <a href="#contatti" class="btn btn--primary" data-i18n="btn-valutazione">Valutazione gratuita</a>
+      </div>
     </div>
   </header>
 
-  <!-- NAV MOBILE: tab bar glass in basso, stile iOS -->
-  <nav class="tabbar glass" aria-label="Navigazione mobile">
-    <a href="#top" data-tab="top" class="is-on"><svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8M5 10v10h5v-6h4v6h5V10"/></svg><span>Home</span></a>
-    <a href="#immobili" data-tab="immobili"><svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h3"/></svg><span>Immobili</span></a>
-    <a href="#servizi" data-tab="servizi"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg><span>Servizi</span></a>
-    <a href="#faq" data-tab="faq"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 115 0c0 1.7-2.5 2-2.5 4M12 17h.01"/></svg><span>FAQ</span></a>
-    <a href="#contatti" data-tab="contatti" class="tabbar__cta"><svg viewBox="0 0 24 24"><path d="M4 5h16v12H8l-4 4z"/></svg><span>Contatti</span></a>
-  </nav>
-
   <main>
-    <!-- HERO -->
-    <section class="hero" id="hero" aria-labelledby="hero-title">
-      <div class="hero__media" data-parallax="0.35" aria-hidden="true">
-        <!-- Carica la foto in assets/img/hero.jpg (consigliato 2400×1500, ≤ 400 KB) -->
-        <img src="assets/img/hero.jpg" alt="" fetchpriority="high" onerror="this.remove()" />
-      </div>
-      <div class="hero__veil" aria-hidden="true"></div>
-
-      <div class="hero__inner">
-        <p class="eyebrow hero__eyebrow">Lucca · Pisa · Versilia</p>
-        <h1 id="hero-title" class="hero__title">
-          <span class="line"><span>La casa giusta,</span></span>
-          <span class="line"><span>nel cuore della <em>Toscana</em>.</span></span>
+    <section class="hero liquid-glass-container">
+      <div class="container hero-content">
+        <div class="hero-badge" data-i18n="hero-badge">Lucca · Pisa · Versilia</div>
+        <h1 class="hero-title">
+          <span data-i18n="hero-title-1">La casa giusta,</span><br>
+          <span class="text-gradient" data-i18n="hero-title-2">senza complicazioni.</span>
         </h1>
-        <p class="hero__sub">Compravendita e affitti con un unico referente. Dalle case dentro le Mura ai casali sulle colline, con assistenza completa in italiano e in inglese.</p>
-        <div class="hero__actions">
-          <a href="#immobili" class="btn btn--dark">Scopri gli immobili</a>
-          <a href="#contatti" class="btn btn--glass">Valuta la tua casa</a>
-        </div>
-      </div>
-
-      <!-- Ricerca rapida: precompila il modulo contatti -->
-      <form class="finder glass" id="finder" aria-label="Ricerca rapida immobili">
-        <label>
-          <span>Cerco</span>
-          <select name="mode">
-            <option>Acquisto</option>
-            <option>Affitto</option>
-            <option>Vendo la mia casa</option>
-          </select>
-        </label>
-        <label>
-          <span>Zona</span>
-          <select name="zone">
-            <option>Lucca centro storico</option>
-            <option>Lucca e colline</option>
-            <option>Piana di Lucca</option>
-            <option>Pisa e dintorni</option>
-            <option>Versilia</option>
-            <option>Altra zona</option>
-          </select>
-        </label>
-        <label>
-          <span>Tipologia</span>
-          <select name="type">
-            <option>Appartamento</option>
-            <option>Villa / villetta</option>
-            <option>Rustico / casale</option>
-            <option>Locale commerciale</option>
-          </select>
-        </label>
-        <button class="btn btn--accent" type="submit">Richiedi proposte</button>
-      </form>
-
-      <a href="#manifesto" class="hero__scroll" aria-label="Scorri">
-        <svg viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
-      </a>
-    </section>
-
-    <!-- MANIFESTO: testo che si illumina con lo scroll -->
-    <section class="manifesto" id="manifesto">
-      <div class="wrap wrap--narrow">
-        <p class="eyebrow">Chi siamo</p>
-        <p class="manifesto__text" data-scrub>
-          Siamo LuccAlfa. Conosciamo Lucca strada per strada e accompagniamo famiglie, investitori e acquirenti stranieri in ogni passaggio: dalla valutazione alla firma dal notaio, con trasparenza, tempi chiari e un solo interlocutore.
+        <p class="hero-desc" data-i18n="hero-desc">
+          Compravendita e affitti con un unico referente. Dalle case dentro le Mura ai casali sulle colline, con assistenza completa in italiano e in inglese.
         </p>
-        <ul class="pillars" aria-label="I nostri punti di forza">
-          <li class="rv"><strong>Trasparenza</strong><span>Costi e passaggi spiegati prima di iniziare.</span></li>
-          <li class="rv rv--d1"><strong>Conoscenza locale</strong><span>Lucca, Piana, Pisa e Versilia.</span></li>
-          <li class="rv rv--d2"><strong>Italiano &amp; English</strong><span>Assistenza anche da remoto.</span></li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- IMMOBILI IN EVIDENZA -->
-    <section class="section" id="immobili" aria-labelledby="immobili-title">
-      <div class="wrap">
-        <header class="section__head rv">
-          <p class="eyebrow">Selezione</p>
-          <h2 id="immobili-title">Immobili in evidenza</h2>
-          <p class="lead">Una selezione dei nostri incarichi. Per l'elenco completo, visita i nostri annunci sui portali o contattaci.</p>
-        </header>
-
-        <div class="chips rv" role="tablist" aria-label="Filtra immobili">
-          <button class="chip is-on" data-filter="all" role="tab" aria-selected="true">Tutti</button>
-          <button class="chip" data-filter="vendita" role="tab" aria-selected="false">Vendita</button>
-          <button class="chip" data-filter="affitto" role="tab" aria-selected="false">Affitto</button>
+        <div class="hero-buttons">
+          <a href="#immobili" class="btn btn--primary btn--lg" data-i18n="hero-cta-1">Scopri gli immobili</a>
+          <a href="#contatti" class="btn btn--glass btn--lg" data-i18n="hero-cta-2">Valuta la tua casa</a>
         </div>
 
-        <!-- Le card sono generate da script.js (array LISTINGS). -->
-        <div class="listings" id="listings" aria-live="polite"></div>
-
-        <p class="note rv">Gli immobili mostrati sono esempi dimostrativi: sostituiscili dall'array <code>LISTINGS</code> in <code>script.js</code>.</p>
-      </div>
-    </section>
-
-    <!-- SERVIZI: bento glass -->
-    <section class="section section--tint" id="servizi" aria-labelledby="servizi-title">
-      <div class="wrap">
-        <header class="section__head rv">
-          <p class="eyebrow">Cosa facciamo</p>
-          <h2 id="servizi-title">Servizi per ogni fase</h2>
-        </header>
-
-        <div class="bento">
-          <article class="tile tile--lg glass rv" data-tilt>
-            <span class="tile__ico"><svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8M5 10v10h14V10M10 20v-6h4v6"/></svg></span>
-            <h3>Vendita</h3>
-            <p>Valutazione, servizio fotografico, promozione sui portali, selezione degli acquirenti e assistenza fino al rogito.</p>
-          </article>
-          <article class="tile glass rv rv--d1" data-tilt>
-            <span class="tile__ico"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M16 16l5 5"/></svg></span>
-            <h3>Acquisto</h3>
-            <p>Ricerca su misura, visite organizzate, verifiche documentali e trattativa.</p>
-          </article>
-          <article class="tile glass rv rv--d2" data-tilt>
-            <span class="tile__ico"><svg viewBox="0 0 24 24"><circle cx="8" cy="12" r="4"/><path d="M12 12h9M18 12v4M15 12v3"/></svg></span>
-            <h3>Affitti</h3>
-            <p>Locazioni a lungo termine, transitorie e turistiche, con contratto e registrazione.</p>
-          </article>
-          <article class="tile glass rv" data-tilt>
-            <span class="tile__ico"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span>
-            <h3>Valutazione gratuita</h3>
-            <p>Stima basata su sopralluogo e vendite comparabili, senza impegno.</p>
-          </article>
-          <article class="tile tile--lg glass rv rv--d1" data-tilt>
-            <span class="tile__ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg></span>
-            <h3>International buyers</h3>
-            <p>Assistenza in inglese per chi compra dall'estero: codice fiscale, notaio, traduzioni, tour video e firma tramite procura.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- COME LAVORIAMO: card sticky 3D -->
-    <section class="section" id="metodo" aria-labelledby="metodo-title">
-      <div class="wrap wrap--narrow">
-        <header class="section__head rv">
-          <p class="eyebrow">Il metodo</p>
-          <h2 id="metodo-title">Quattro passi, nessuna sorpresa</h2>
-        </header>
-        <div class="stack" id="stack">
-          <article class="step glass-solid"><span class="step__n">01</span><div><h3>Ascolto</h3><p>Capiamo obiettivi, budget e tempi con una prima conversazione, di persona, al telefono o in video.</p></div></article>
-          <article class="step glass-solid"><span class="step__n">02</span><div><h3>Selezione</h3><p>Valutiamo l'immobile o selezioniamo le proposte più adatte, verificando subito la documentazione.</p></div></article>
-          <article class="step glass-solid"><span class="step__n">03</span><div><h3>Trattativa</h3><p>Gestiamo visite, proposta e negoziazione, tutelando le due parti con chiarezza.</p></div></article>
-          <article class="step glass-solid"><span class="step__n">04</span><div><h3>Rogito</h3><p>Coordiniamo notaio, banca e consegna chiavi. Restiamo a disposizione anche dopo la firma.</p></div></article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ZONE -->
-    <section class="zones" id="zone" aria-labelledby="zone-title">
-      <div class="zones__marquee" aria-hidden="true">
-        <div class="marquee" data-marquee="-1"><span>Lucca</span><span>Capannori</span><span>Pisa</span><span>Viareggio</span><span>Camaiore</span><span>Lucca</span><span>Capannori</span><span>Pisa</span></div>
-        <div class="marquee marquee--out" data-marquee="1"><span>Porcari</span><span>Altopascio</span><span>Montecarlo</span><span>Cascina</span><span>Pietrasanta</span><span>Porcari</span><span>Altopascio</span></div>
-      </div>
-      <div class="wrap">
-        <header class="section__head rv">
-          <p class="eyebrow">Dove operiamo</p>
-          <h2 id="zone-title">Lucca, Pisa e dintorni</h2>
-        </header>
-        <div class="zone-grid">
-          <article class="zone glass rv" data-tilt><h3>Lucca centro storico</h3><p>Palazzi, appartamenti d'epoca e vita a piedi dentro le Mura.</p></article>
-          <article class="zone glass rv rv--d1" data-tilt><h3>Colline e Piana di Lucca</h3><p>Ville, casali e giardini tra Capannori, Porcari, Altopascio e Montecarlo.</p></article>
-          <article class="zone glass rv rv--d2" data-tilt><h3>Pisa e dintorni</h3><p>Città universitaria e comuni vicini come San Giuliano Terme e Cascina.</p></article>
-          <article class="zone glass rv rv--d3" data-tilt><h3>Versilia</h3><p>Viareggio, Camaiore e Pietrasanta, tra mare e Apuane.</p></article>
-        </div>
-      </div>
-    </section>
-
-    <!-- PORTALI -->
-    <section class="section section--tint" id="portali" aria-labelledby="portali-title">
-      <div class="wrap">
-        <header class="section__head rv">
-          <p class="eyebrow">Visibilità</p>
-          <h2 id="portali-title">Ci trovi sui principali portali</h2>
-          <p class="lead">I nostri annunci raggiungono acquirenti italiani e stranieri. <!-- TODO: sostituire ogni href con l'URL del profilo agenzia reale. --></p>
-        </header>
-        <ul class="portals">
-          <li class="rv"><a class="portal glass" href="https://www.immobiliare.it/" target="_blank" rel="noopener noreferrer"><b>Immobiliare.it</b><small>Italia · il più usato</small><i>↗</i></a></li>
-          <li class="rv rv--d1"><a class="portal glass" href="https://www.idealista.it/" target="_blank" rel="noopener noreferrer"><b>Idealista</b><small>Italia · Spagna · Portogallo</small><i>↗</i></a></li>
-          <li class="rv rv--d2"><a class="portal glass" href="https://www.casa.it/" target="_blank" rel="noopener noreferrer"><b>Casa.it</b><small>Italia</small><i>↗</i></a></li>
-          <li class="rv"><a class="portal glass" href="https://www.gate-away.com/" target="_blank" rel="noopener noreferrer"><b>Gate-away.com</b><small>Acquirenti stranieri</small><i>↗</i></a></li>
-          <li class="rv rv--d1"><a class="portal glass" href="https://www.rightmove.co.uk/overseas/" target="_blank" rel="noopener noreferrer"><b>Rightmove Overseas</b><small>Mercato UK</small><i>↗</i></a></li>
-          <li class="rv rv--d2"><a class="portal glass" href="https://www.green-acres.com/" target="_blank" rel="noopener noreferrer"><b>Green-Acres</b><small>Europa · internazionale</small><i>↗</i></a></li>
-          <li class="rv"><a class="portal glass" href="https://www.properstar.com/" target="_blank" rel="noopener noreferrer"><b>Properstar</b><small>Internazionale</small><i>↗</i></a></li>
-          <li class="rv rv--d1"><a class="portal glass" href="https://www.subito.it/annunci-italia/vendita/immobili/" target="_blank" rel="noopener noreferrer"><b>Subito.it</b><small>Italia · annunci</small><i>↗</i></a></li>
-          <li class="rv rv--d2"><a class="portal glass" href="https://www.wikicasa.it/" target="_blank" rel="noopener noreferrer"><b>Wikicasa</b><small>Italia</small><i>↗</i></a></li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- INTERNATIONAL (EN) -->
-    <section class="intl" id="international" lang="en" aria-labelledby="intl-title">
-      <div class="wrap wrap--narrow rv">
-        <p class="eyebrow">International buyers</p>
-        <h2 id="intl-title">Buying a home in Tuscany, from anywhere.</h2>
-        <p class="lead">We help English-speaking buyers find, evaluate and purchase property around Lucca, Pisa and Versilia: video viewings, Italian tax code, notary coordination, translations and power of attorney if you cannot travel.</p>
-        <ul class="ticks">
-          <li>Dedicated English-speaking contact</li>
-          <li>Local market advice and fair-price guidance</li>
-          <li>Support with notary, bank and utilities</li>
-        </ul>
-        <a href="#contatti" class="btn btn--dark">Talk to us</a>
-      </div>
-    </section>
-
-    <!-- FAQ -->
-    <section class="section" id="faq" aria-labelledby="faq-title">
-      <div class="wrap wrap--narrow">
-        <header class="section__head rv">
-          <p class="eyebrow">Domande frequenti</p>
-          <h2 id="faq-title">Hai dubbi? Ecco le risposte.</h2>
-        </header>
-        <div class="faq rv">
-          <details open><summary>Quanto vale la mia casa a Lucca? Fate valutazioni gratuite?</summary><p>Sì. LuccAlfa Immobiliare effettua una valutazione gratuita e senza impegno con sopralluogo. Il valore dipende da zona, stato di manutenzione, superficie, classe energetica e confronto con le vendite recenti comparabili.</p></details>
-          <details><summary>Quali zone coprite oltre a Lucca?</summary><p>Operiamo a Lucca (centro storico dentro le Mura e periferia), nella Piana di Lucca (Capannori, Porcari, Altopascio, Montecarlo), a Pisa e nei comuni vicini (San Giuliano Terme, Cascina) e in Versilia (Viareggio, Camaiore, Pietrasanta).</p></details>
-          <details><summary>Quali documenti servono per vendere casa?</summary><p>In genere servono: atto di provenienza, visura e planimetria catastale, attestato di prestazione energetica (APE), documenti di identità, eventuali titoli edilizi e certificazioni degli impianti, oltre al regolamento e ai rendiconti se l'immobile è in condominio. Ti guidiamo nella raccolta.</p></details>
-          <details><summary>Come funziona l'acquisto di una casa in Italia?</summary><p>I passaggi tipici sono: ricerca e visite, proposta d'acquisto con caparra, verifiche (urbanistica, catasto, ipoteche), contratto preliminare di compravendita, rogito davanti al notaio con pagamento del saldo e registrazione. Il notaio controlla la regolarità giuridica dell'atto.</p></details>
-          <details><summary>Quali imposte si pagano acquistando casa?</summary><p>Dipendono da venditore (privato o impresa), uso (prima o seconda casa) e tipo di immobile: imposta di registro, ipotecaria e catastale se si acquista da privato, IVA se si acquista da impresa, oltre a onorari del notaio e dell'agenzia. Le aliquote cambiano nel tempo, quindi vanno verificate con notaio o commercialista prima dell'acquisto.</p></details>
-          <details><summary>Un cittadino straniero può comprare casa a Lucca?</summary><p>Sì. I cittadini UE possono acquistare senza particolari limiti; per i cittadini extra-UE si applica in genere il principio di reciprocità. Serve un codice fiscale italiano, che si può ottenere anche dall'estero, e conviene farsi assistere da un notaio e, se necessario, da un traduttore.</p></details>
-          <details><summary>Seguite anche gli affitti?</summary><p>Sì. Seguiamo locazioni abitative a lungo termine, contratti transitori e locazioni turistiche a Lucca e dintorni, dalla selezione degli inquilini alla stesura e registrazione del contratto.</p></details>
-          <details><summary>Dove pubblicate gli annunci?</summary><p>Oltre che sul nostro sito, pubblichiamo gli immobili sui principali portali italiani e internazionali, come Immobiliare.it, Idealista, Casa.it e Gate-away.com, per raggiungere sia acquirenti italiani sia stranieri.</p></details>
-          <details><summary>Qual è la differenza tra vivere dentro le Mura di Lucca e fuori?</summary><p>Dentro le Mura il centro storico offre vita pedonale, servizi a piedi e immobili d'epoca, con vincoli edilizi e poco parcheggio. Fuori, tra Piana e colline, si trovano più spazi, giardini e box auto, con prezzi al metro quadro generalmente diversi.</p></details>
-          <details lang="en"><summary>Do you speak English? Can you help me buy a house in Tuscany from abroad?</summary><p>Yes. LuccAlfa Immobiliare assists international buyers in English: property search around Lucca, Pisa and Versilia, video tours, help with the Italian tax code, notary coordination and after-sale support. You can also sign through a power of attorney if you cannot travel.</p></details>
-          <details lang="en"><summary>How much are the costs when buying property in Italy?</summary><p>Besides the price, expect registration or VAT taxes depending on the seller, notary fees and agency fees. Rates change over time and depend on whether it is a main or second home, so we recommend confirming the figures with a notary or accountant before making an offer.</p></details>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTATTI -->
-    <section class="section contact" id="contatti" aria-labelledby="contact-title">
-      <div class="wrap">
-        <div class="contact__card glass-solid rv">
-          <div class="contact__info">
-            <p class="eyebrow">Contatti</p>
-            <h2 id="contact-title">Parliamone.</h2>
-            <p class="lead">Raccontaci cosa cerchi o che immobile vuoi valutare. Rispondiamo di norma entro un giorno lavorativo.</p>
-            <ul class="contact__list">
-              <!-- TODO: sostituire con recapiti reali dell'agenzia immobiliare -->
-              <li><span>Telefono</span><a href="tel:+39000000000">+39 000 000 0000</a></li>
-              <li><span>Email</span><a href="mailto:info@luccalfa-immobiliare.it">info@luccalfa-immobiliare.it</a></li>
-              <li><span>Sede</span>Lucca (LU) · su appuntamento</li>
-              <li><span>Orari</span>Lun–Sab · 9:00–19:00</li>
-            </ul>
-          </div>
-          <form id="contact-form" class="contact__form" action="#" method="POST" data-endpoint="https://formspree.io/f/YOUR_FORM_ID" novalidate>
-            <div id="form-status" class="form-status" role="status" aria-live="polite"></div>
-            <label>Nome<input id="name" name="name" type="text" autocomplete="name" placeholder="Il tuo nome" required /></label>
-            <label>Email<input id="email" name="_replyto" type="email" autocomplete="email" placeholder="nome@email.it" required /></label>
-            <label>Telefono <small>(facoltativo)</small><input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="+39 …" /></label>
-            <label>Messaggio<textarea id="message" name="message" rows="4" placeholder="Come possiamo aiutarti?" required></textarea></label>
-            <label class="check"><input type="checkbox" name="privacy" required /> <span>Ho letto l'<a href="privacy.html">informativa privacy</a>.</span></label>
-            <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
-            <input type="hidden" name="_subject" value="Richiesta dal sito LuccAlfa Immobiliare" />
-            <button class="btn btn--accent btn--block" type="submit">Invia richiesta</button>
+        <!-- Liquid Glass Form Filter Card -->
+        <div class="search-box liquid-glass">
+          <form id="search-form" class="search-form" onsubmit="return false;">
+            <div class="form-group">
+              <label data-i18n="filter-type">Cerco</label>
+              <select name="contract">
+                <option value="acquisto" data-i18n="opt-acquisto">Acquisto</option>
+                <option value="affitto" data-i18n="opt-affitto">Affitto</option>
+                <option value="vendo" data-i18n="opt-vendo">Vendo la mia casa</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label data-i18n="filter-zone">Zona</label>
+              <select name="zone">
+                <option value="tutte" data-i18n="opt-tutte">Tutte le zone</option>
+                <option value="lucca-centro" data-i18n="opt-lucca-centro">Lucca centro storico</option>
+                <option value="lucca-colline" data-i18n="opt-lucca-colline">Lucca e colline</option>
+                <option value="piana" data-i18n="opt-piana">Piana di Lucca</option>
+                <option value="pisa" data-i18n="opt-pisa">Pisa e dintorni</option>
+                <option value="versilia" data-i18n="opt-versilia">Versilia</option>
+                <option value="altra" data-i18n="opt-altra">Altra zona</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label data-i18n="filter-category">Tipologia</label>
+              <select name="type">
+                <option value="tutte" data-i18n="opt-tutte-cat">Tutte le tipologie</option>
+                <option value="appartamento" data-i18n="opt-appartamento">Appartamento</option>
+                <option value="villa" data-i18n="opt-villa">Villa / villetta</option>
+                <option value="rustico" data-i18n="opt-rustico">Rustico / casale</option>
+                <option value="commerciale" data-i18n="opt-commerciale">Locale commerciale</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn--primary btn--search" data-i18n="btn-search">Richiedi proposte</button>
           </form>
         </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section about">
+      <div class="container grid-2">
+        <div>
+          <h2 class="section-title" data-i18n="about-title">Chi siamo</h2>
+          <p class="section-desc" data-i18n="about-desc">
+            Siamo LuccAlfa. Conosciamo Lucca strada per strada e accompagniamo famiglie, investitori e acquirenti stranieri in ogni passaggio: dalla valutazione alla firma dal notaio, con trasparenza, tempi chiari e un solo interlocutore.
+          </p>
+        </div>
+        <div class="about-cards">
+          <div class="card liquid-glass">
+            <h3 data-i18n="about-card-1-title">Trasparenza</h3>
+            <p data-i18n="about-card-1-desc">Costi e passaggi spiegati prima di iniziare.</p>
+          </div>
+          <div class="card liquid-glass">
+            <h3 data-i18n="about-card-2-title">Conoscenza locale</h3>
+            <p data-i18n="about-card-2-desc">Lucca, Piana, Pisa e Versilia.</p>
+          </div>
+          <div class="card liquid-glass">
+            <h3 data-i18n="about-card-3-title">Italiano & English</h3>
+            <p data-i18n="about-card-3-desc">Assistenza anche da remoto.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Listings Section -->
+    <section id="immobili" class="section listings">
+      <div class="container">
+        <div class="section-header">
+          <span class="sub-title" data-i18n="listings-sub">Selezione</span>
+          <h2 class="section-title" data-i18n="listings-title">Immobili in evidenza</h2>
+          <p class="section-desc" data-i18n="listings-desc">Una selezione dei nostri incarichi. Per l'elenco completo, visita i nostri annunci sui portali o contattaci.</p>
+        </div>
+
+        <div class="filter-tabs">
+          <button class="tab-btn active" data-filter="all" data-i18n="tab-all">Tutti</button>
+          <button class="tab-btn" data-filter="vendita" data-i18n="tab-vendita">Vendita</button>
+          <button class="tab-btn" data-filter="affitto" data-i18n="tab-affitto">Affitto</button>
+        </div>
+
+        <div id="listings-grid" class="listings-grid">
+          <!-- Popolato dinamicamente da script.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="servizi" class="section services">
+      <div class="container">
+        <div class="section-header">
+          <span class="sub-title" data-i18n="services-sub">Cosa facciamo</span>
+          <h2 class="section-title" data-i18n="services-title">Servizi per ogni fase</h2>
+        </div>
+
+        <div class="grid-3">
+          <div class="card liquid-glass service-card">
+            <h3 data-i18n="service-1-title">Vendita</h3>
+            <p data-i18n="service-1-desc">Valutazione, servizio fotografico, promozione sui portali, selezione degli acquirenti e assistenza fino al rogito.</p>
+          </div>
+          <div class="card liquid-glass service-card">
+            <h3 data-i18n="service-2-title">Acquisto</h3>
+            <p data-i18n="service-2-desc">Ricerca su misura, visite organizzate, verifiche documentali e trattativa.</p>
+          </div>
+          <div class="card liquid-glass service-card">
+            <h3 data-i18n="service-3-title">Affitti</h3>
+            <p data-i18n="service-3-desc">Locazioni a lungo termine, transitorie e turistiche, con contratto e registrazione.</p>
+          </div>
+          <div class="card liquid-glass service-card">
+            <h3 data-i18n="service-4-title">Valutazioni</h3>
+            <p data-i18n="service-4-desc">Stima basata su sopralluogo e vendite comparabili, senza impegno.</p>
+          </div>
+          <div class="card liquid-glass service-card">
+            <h3 data-i18n="service-5-title">International buyers</h3>
+            <p data-i18n="service-5-desc">Assistenza in inglese per chi compra dall'estero: codice fiscale, notaio, traduzioni, tour video e firma tramite procura.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Method Section -->
+    <section class="section method">
+      <div class="container">
+        <div class="section-header">
+          <span class="sub-title" data-i18n="method-sub">Il metodo</span>
+          <h2 class="section-title" data-i18n="method-title">Quattro passi, nessuna sorpresa</h2>
+        </div>
+
+        <div class="method-steps grid-4">
+          <div class="step-card liquid-glass">
+            <span class="step-num">01</span>
+            <h3 data-i18n="step-1-title">Ascolto</h3>
+            <p data-i18n="step-1-desc">Capiamo obiettivi, budget e tempi con una prima conversazione, di persona, al telefono o in video.</p>
+          </div>
+          <div class="step-card liquid-glass">
+            <span class="step-num">02</span>
+            <h3 data-i18n="step-2-title">Analisi</h3>
+            <p data-i18n="step-2-desc">Valutiamo l'immobile o selezioniamo le proposte più adatte, verificando subito la documentazione.</p>
+          </div>
+          <div class="step-card liquid-glass">
+            <span class="step-num">03</span>
+            <h3 data-i18n="step-3-title">Trattativa</h3>
+            <p data-i18n="step-3-desc">Gestiamo visite, proposta e negoziazione, tutelando le due parti con chiarezza.</p>
+          </div>
+          <div class="step-card liquid-glass">
+            <span class="step-num">04</span>
+            <h3 data-i18n="step-4-title">Rogito</h3>
+            <p data-i18n="step-4-desc">Coordiniamo notaio, banca e consegna chiavi. Restiamo a disposizione anche dopo la firma.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Zone Section -->
+    <section id="zone" class="section zones">
+      <div class="container">
+        <div class="section-header">
+          <span class="sub-title" data-i18n="zones-sub">Dove operiamo</span>
+          <h2 class="section-title" data-i18n="zones-title">Lucca, Pisa e dintorni</h2>
+        </div>
+
+        <div class="grid-2">
+          <div class="card liquid-glass">
+            <h3 data-i18n="zone-1-title">Lucca centro storico</h3>
+            <p data-i18n="zone-1-desc">Palazzi, appartamenti d'epoca e vita a piedi dentro le Mura.</p>
+          </div>
+          <div class="card liquid-glass">
+            <h3 data-i18n="zone-2-title">Colline e Piana di Lucca</h3>
+            <p data-i18n="zone-2-desc">Ville, casali e giardini tra Capannori, Porcari, Altopascio e Montecarlo.</p>
+          </div>
+          <div class="card liquid-glass">
+            <h3 data-i18n="zone-3-title">Pisa</h3>
+            <p data-i18n="zone-3-desc">Città universitaria e comuni vicini come San Giuliano Terme e Cascina.</p>
+          </div>
+          <div class="card liquid-glass">
+            <h3 data-i18n="zone-4-title">Versilia</h3>
+            <p data-i18n="zone-4-desc">Viareggio, Camaiore e Pietrasanta, tra mare e Apuane.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Portals Section -->
+    <section id="portali" class="section portals">
+      <div class="container">
+        <div class="section-header">
+          <span class="sub-title" data-i18n="portals-sub">Visibilità</span>
+          <h2 class="section-title" data-i18n="portals-title">Ci trovi sui principali portali</h2>
+          <p class="section-desc" data-i18n="portals-desc">I nostri annunci raggiungono acquirenti italiani e stranieri.</p>
+        </div>
+
+        <div class="portals-grid">
+          <a href="#" class="portal-item liquid-glass" target="_blank" rel="noopener"><span>Immobiliare.it</span> <small>Italia · il più usato</small></a>
+          <a href="#" class="portal-item liquid-glass" target="_blank" rel="noopener"><span>Idealista</span> <small>Italia · Spagna · Portogallo</small></a>
+          <a href="#" class="portal-item liquid-glass" target="_blank" rel="noopener"><span>Casa.it</span> <small>Italia</small></a>
+          <a href="#" class="portal-item liquid-glass" target="_blank" rel="noopener"><span>Gate-away.com</span> <small>Acquirenti stranieri</small></a>
+          <a href="#" class="portal-item liquid-glass" target="_blank" rel="noopener"><span>Rightmove Overseas</span> <small>Mercato UK</small></a>
+          <a href="#" class="portal-item liquid-glass" target="_blank" rel="noopener"><span>Green-Acres</span> <small>Europa · internazionale</small></a>
+          <a href="#" class="portal-item liquid-glass" target="_blank" rel="noopener"><span>Properstar</span> <small>Internazionale</small></a>
+          <a href="#" class="portal-item liquid-glass" target="_blank" rel="noopener"><span>Subito.it</span> <small>Italia · annunci</small></a>
+          <a href="#" class="portal-item liquid-glass" target="_blank" rel="noopener"><span>Wikicasa</span> <small>Italia</small></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="section faq">
+      <div class="container">
+        <div class="section-header">
+          <span class="sub-title" data-i18n="faq-sub">Domande frequenti</span>
+          <h2 class="section-title" data-i18n="faq-title">Hai dubbi? Ecco le risposte.</h2>
+        </div>
+
+        <div class="faq-accordion">
+          <details class="faq-item liquid-glass">
+            <summary data-i18n="faq-q1">Quanto vale la mia casa a Lucca? Fate valutazioni gratuite?</summary>
+            <p data-i18n="faq-a1">Sì. LuccAlfa Immobiliare effettua una valutazione gratuita e senza impegno con sopralluogo. Il valore dipende da zona, stato di manutenzione, superficie, classe energetica e confronto con le vendite recenti comparabili.</p>
+          </details>
+          <details class="faq-item liquid-glass">
+            <summary data-i18n="faq-q2">Quali zone coprite oltre a Lucca?</summary>
+            <p data-i18n="faq-a2">Operiamo a Lucca (centro storico dentro le Mura e periferia), nella Piana di Lucca (Capannori, Porcari, Altopascio, Montecarlo), a Pisa e nei comuni vicini (San Giuliano Terme, Cascina) e in Versilia (Viareggio, Camaiore, Pietrasanta).</p>
+          </details>
+          <details class="faq-item liquid-glass">
+            <summary data-i18n="faq-q3">Quali documenti servono per vendere casa?</summary>
+            <p data-i18n="faq-a3">In genere servono: atto di provenienza, visura e planimetria catastale, attestato di prestazione energetica (APE), documenti di identità, eventuali titoli edilizi e certificazioni degli impianti, oltre al regolamento e ai rendiconti se l'immobile è in condominio.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contatti" class="section contact">
+      <div class="container grid-2">
+        <div>
+          <h2 class="section-title" data-i18n="contact-title">Contatti</h2>
+          <p class="section-desc" data-i18n="contact-desc">Siamo pronti ad ascoltare le tue esigenze e trovare la soluzione ideale per te.</p>
+        </div>
+        <form id="contact-form" class="card liquid-glass contact-form" onsubmit="return false;">
+          <div class="form-group">
+            <input type="text" placeholder="Nome e Cognome" required>
+          </div>
+          <div class="form-group">
+            <input type="email" placeholder="Email" required>
+          </div>
+          <div class="form-group">
+            <input type="tel" placeholder="Telefono">
+          </div>
+          <div class="form-group">
+            <textarea placeholder="Come possiamo aiutarti?" rows="4" required></textarea>
+          </div>
+          <button type="submit" class="btn btn--primary" data-i18n="btn-send">Invia messaggio</button>
+        </form>
       </div>
     </section>
   </main>
 
   <footer class="footer">
-    <div class="wrap footer__in">
-      <a href="#top" class="footer__brand"><img src="assets/logo.svg" alt="LuccAlfa" width="56" height="52" /></a>
-      <p>© <span id="year"></span> LuccAlfa Srls · Immobiliare · Lucca</p>
-      <p class="footer__links"><a href="privacy.html">Privacy</a><a href="cookie-policy.html">Cookie</a></p>
+    <div class="container footer-content">
+      <p>&copy; 2026 LuccAlfa Immobiliare. Tutti i diritti riservati.</p>
     </div>
   </footer>
 
-  <a class="wa" href="https://wa.me/39000000000" target="_blank" rel="noopener noreferrer" aria-label="Scrivici su WhatsApp">
-    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 01-11.8 7L4 20l1.1-4A8 8 0 1120 12z"/></svg>
-  </a>
-
-  <script src="script.js" defer></script>
+  <script src="script.js"></script>
 </body>
 </html>
