@@ -26,9 +26,11 @@
   <link rel="stylesheet" href="styles.css" />
 
   <!-- ═════ SCHEMA.ORG: RealEstateAgent + LocalBusiness ═════
-       L'agenzia è un ramo di LuccAlfa Srls (@id https://luccalfa.it/#business, definito su luccalfa.it).
-       I social stanno sulla società madre, così come su luccalfa.it: nessun conflitto tra i due siti.
-       TODO: aggiungere "telephone" quando c'è il numero reale dell'agenzia. -->
+       Entità autonoma: nessun collegamento all'entità di luccalfa.it (giardinaggio e pulizie),
+       così le due attività restano separate per motori di ricerca e assistenti AI.
+       TODO: aggiungere "telephone" quando c'è il numero reale dell'agenzia.
+       TODO: aggiungere "sameAs" con le pagine AGENZIA sui portali (es. immobiliare.it/agenzie-immobiliari/…),
+             mai le home page dei portali, e i social propri dell'agenzia quando esisteranno. -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -37,15 +39,6 @@
     "name": "LuccAlfa Immobiliare",
     "legalName": "LuccAlfa Srls",
     "vatID": "IT07079510488",
-    "parentOrganization": {
-      "@type": "Organization",
-      "@id": "https://luccalfa.it/#business",
-      "name": "LuccAlfa",
-      "legalName": "LuccAlfa Srls",
-      "url": "https://luccalfa.it/",
-      "vatID": "IT07079510488",
-      "sameAs": ["https://www.instagram.com/luccalfa_srl/", "https://www.facebook.com/luccalfa/", "https://www.tiktok.com/@luccalfa"]
-    },
     "contactPoint": { "@type": "ContactPoint", "contactType": "sales", "email": "immobiliare@luccalfa.it", "availableLanguage": ["Italian", "English"], "areaServed": "IT" },
     "description": "Agenzia immobiliare a Lucca: compravendita e affitto di appartamenti, ville, rustici e casali tra Lucca, Pisa, Versilia e Piana di Lucca. Valutazioni gratuite, consulenza e assistenza per acquirenti italiani e stranieri.",
     "url": "https://immobiliare.luccalfa.it/",
@@ -464,7 +457,6 @@
       <p class="footer__claim" data-i18n-html="ft.claim">Fatto a Lucca,<br><em>con le chiavi in mano.</em></p>
       <div class="footer__cols mono">
         <div><span data-i18n="ft.nav">Naviga</span><a href="#immobili" data-i18n="m.2">Immobili</a><a href="#servizi" data-i18n="m.3">Servizi</a><a href="#zone" data-i18n="m.4">Territorio</a><a href="#faq" data-i18n="m.5">Domande</a></div>
-        <div><span>Social</span><a href="https://www.instagram.com/luccalfa_srl/" target="_blank" rel="noopener noreferrer">Instagram</a><a href="https://www.facebook.com/luccalfa/" target="_blank" rel="noopener noreferrer">Facebook</a><a href="https://www.tiktok.com/@luccalfa" target="_blank" rel="noopener noreferrer">TikTok</a></div>
         <div><span data-i18n="ft.legal">Legale</span><a href="privacy.html">Privacy</a><a href="cookie-policy.html">Cookie</a><a href="#top" class="totop" data-i18n="ft.top">Torna su ↑</a></div>
       </div>
     </div>
