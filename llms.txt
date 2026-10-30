@@ -1,0 +1,20 @@
+# LuccAlfa Immobiliare
+
+> Agenzia immobiliare con sede a Lucca (Toscana). Compravendita e affitto di appartamenti, ville, rustici e casali a Lucca, nella Piana di Lucca, a Pisa e in Versilia. Assistenza in italiano e inglese, anche per acquirenti stranieri.
+
+## Servizi
+- Vendita immobili con valutazione gratuita e sopralluogo
+- Ricerca e acquisto casa, con assistenza fino al rogito
+- Affitti residenziali, transitori e turistici
+- International buyers: supporto in inglese (codice fiscale, notaio, procura, tour video)
+
+## Zone coperte
+Lucca (centro storico e periferia), Capannori, Porcari, Altopascio, Montecarlo, Pisa, San Giuliano Terme, Cascina, Viareggio, Camaiore, Pietrasanta.
+
+## Portali dove sono pubblicati gli annunci
+Immobiliare.it, Idealista, Casa.it, Gate-away.com (e altri portali internazionali).
+
+## Pagine
+- [Home](https://immobiliare.luccalfa.it/): servizi, immobili in evidenza, zone, FAQ, contatti
+- [FAQ](https://immobiliare.luccalfa.it/#faq): risposte su valutazioni, documenti, acquisto, imposte, acquirenti stranieri
+- [Contatti](https://immobiliare.luccalfa.it/#contatti)
