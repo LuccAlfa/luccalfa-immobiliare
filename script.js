@@ -214,7 +214,7 @@
     // finché l'endpoint Formspree non è configurato, apre il client email
     if (!endpoint || endpoint.includes("YOUR_FORM_ID")) {
       const body = `${interest}\n\n${data.get("name")} <${data.get("_replyto")}>\nTel: ${data.get("phone") || "-"}\n\n${data.get("message")}`;
-      location.href = `mailto:info@luccalfa-immobiliare.it?subject=${encodeURIComponent(t("subject"))}&body=${encodeURIComponent(body)}`;
+      location.href = `mailto:immobiliare@luccalfa.it?subject=${encodeURIComponent(t("subject"))}&body=${encodeURIComponent(body)}`;
       return;
     }
     const btn = $("button[type=submit]", form); btn.disabled = true;
