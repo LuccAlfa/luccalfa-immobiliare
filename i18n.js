@@ -134,7 +134,7 @@ window.I18N_EN = {
   "f.name": "Name",
   "f.phone": "Phone (optional)",
   "f.msg": "Tell us a bit more",
-  "f.privacy": "I have read the <a href=\"privacy.html\">privacy policy</a>.",
+  "f.privacy": "We use your details only to reply to you, as explained in our <a href=\"privacy.html\">privacy policy</a>.",
   "f.send": "Send request",
 
   "ft.claim": "Made in Lucca,<br><em>keys in hand.</em>",

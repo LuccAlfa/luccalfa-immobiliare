@@ -26,7 +26,9 @@
   <link rel="stylesheet" href="styles.css" />
 
   <!-- ═════ SCHEMA.ORG: RealEstateAgent + LocalBusiness ═════
-       TODO: sostituire telefono, email, indirizzo, coordinate e profili social con i dati reali. -->
+       L'agenzia è un ramo di LuccAlfa Srls (@id https://luccalfa.it/#business, definito su luccalfa.it).
+       I social stanno sulla società madre, così come su luccalfa.it: nessun conflitto tra i due siti.
+       TODO: aggiungere "telephone" quando c'è il numero reale dell'agenzia. -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -34,11 +36,21 @@
     "@id": "https://immobiliare.luccalfa.it/#agency",
     "name": "LuccAlfa Immobiliare",
     "legalName": "LuccAlfa Srls",
+    "vatID": "IT07079510488",
+    "parentOrganization": {
+      "@type": "Organization",
+      "@id": "https://luccalfa.it/#business",
+      "name": "LuccAlfa",
+      "legalName": "LuccAlfa Srls",
+      "url": "https://luccalfa.it/",
+      "vatID": "IT07079510488",
+      "sameAs": ["https://www.instagram.com/luccalfa_srl/", "https://www.facebook.com/luccalfa/", "https://www.tiktok.com/@luccalfa"]
+    },
+    "contactPoint": { "@type": "ContactPoint", "contactType": "sales", "email": "immobiliare@luccalfa.it", "availableLanguage": ["Italian", "English"], "areaServed": "IT" },
     "description": "Agenzia immobiliare a Lucca: compravendita e affitto di appartamenti, ville, rustici e casali tra Lucca, Pisa, Versilia e Piana di Lucca. Valutazioni gratuite, consulenza e assistenza per acquirenti italiani e stranieri.",
     "url": "https://immobiliare.luccalfa.it/",
     "logo": "https://immobiliare.luccalfa.it/assets/logo.svg",
     "image": "https://immobiliare.luccalfa.it/assets/img/og.jpg",
-    "telephone": "+39000000000",
     "email": "immobiliare@luccalfa.it",
     "priceRange": "€€",
     "foundingDate": "2021",
@@ -59,8 +71,7 @@
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Affitti residenziali e turistici", "serviceType": "Locazione immobiliare" } },
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Valutazione immobiliare gratuita", "serviceType": "Stima immobiliare" } },
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Assistenza acquirenti stranieri", "serviceType": "International buyers support" } }
-    ],
-    "sameAs": ["https://www.immobiliare.it/", "https://www.idealista.it/", "https://www.casa.it/", "https://www.gate-away.com/"]
+    ]
   }
   </script>
   <script type="application/ld+json">
@@ -68,7 +79,7 @@
     "@context": "https://schema.org",
     "@graph": [
       { "@type": "WebSite", "@id": "https://immobiliare.luccalfa.it/#website", "url": "https://immobiliare.luccalfa.it/", "name": "LuccAlfa Immobiliare", "inLanguage": ["it", "en"], "publisher": { "@id": "https://immobiliare.luccalfa.it/#agency" } },
-      { "@type": "WebPage", "@id": "https://immobiliare.luccalfa.it/#webpage", "url": "https://immobiliare.luccalfa.it/", "name": "Agenzia Immobiliare a Lucca e Pisa – LuccAlfa Immobiliare", "isPartOf": { "@id": "https://immobiliare.luccalfa.it/#website" }, "about": { "@id": "https://immobiliare.luccalfa.it/#agency" }, "inLanguage": "it" }
+      { "@type": "WebPage", "@id": "https://immobiliare.luccalfa.it/#webpage", "url": "https://immobiliare.luccalfa.it/", "name": "Agenzia Immobiliare a Lucca e Pisa – LuccAlfa Immobiliare", "isPartOf": { "@id": "https://immobiliare.luccalfa.it/#website" }, "about": { "@id": "https://immobiliare.luccalfa.it/#agency" }, "inLanguage": "it", "dateModified": "2026-10-31" }
     ]
   }
   </script>
@@ -437,7 +448,7 @@
             <div class="field"><input id="email" name="_replyto" type="email" autocomplete="email" placeholder=" " required /><label for="email">Email</label></div>
             <div class="field"><input id="phone" name="phone" type="tel" autocomplete="tel" placeholder=" " /><label for="phone" data-i18n="f.phone">Telefono (facoltativo)</label></div>
             <div class="field"><textarea id="message" name="message" rows="3" placeholder=" " required></textarea><label for="message" data-i18n="f.msg">Raccontaci qualcosa in più</label></div>
-            <label class="check"><input type="checkbox" name="privacy" required /> <span data-i18n-html="f.privacy">Ho letto l'<a href="privacy.html">informativa privacy</a>.</span></label>
+            <p class="form-note" data-i18n-html="f.privacy">Usiamo i tuoi dati solo per risponderti, come spiegato nell'<a href="privacy.html">informativa privacy</a>.</p>
             <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
             <input type="hidden" name="_subject" value="Richiesta dal sito LuccAlfa Immobiliare" />
             <div id="form-status" class="form-status" role="status" aria-live="polite"></div>
@@ -453,12 +464,13 @@
       <p class="footer__claim" data-i18n-html="ft.claim">Fatto a Lucca,<br><em>con le chiavi in mano.</em></p>
       <div class="footer__cols mono">
         <div><span data-i18n="ft.nav">Naviga</span><a href="#immobili" data-i18n="m.2">Immobili</a><a href="#servizi" data-i18n="m.3">Servizi</a><a href="#zone" data-i18n="m.4">Territorio</a><a href="#faq" data-i18n="m.5">Domande</a></div>
+        <div><span>Social</span><a href="https://www.instagram.com/luccalfa_srl/" target="_blank" rel="noopener noreferrer">Instagram</a><a href="https://www.facebook.com/luccalfa/" target="_blank" rel="noopener noreferrer">Facebook</a><a href="https://www.tiktok.com/@luccalfa" target="_blank" rel="noopener noreferrer">TikTok</a></div>
         <div><span data-i18n="ft.legal">Legale</span><a href="privacy.html">Privacy</a><a href="cookie-policy.html">Cookie</a><a href="#top" class="totop" data-i18n="ft.top">Torna su ↑</a></div>
       </div>
     </div>
     <div class="footer__word" aria-hidden="true"><span>LuccAlfa</span></div>
     <div class="wrap footer__bottom mono">
-      <span>© <span id="year"></span> LuccAlfa Srls · Immobiliare · Lucca</span>
+      <span>© <span id="year"></span> LuccAlfa Srls · P.IVA 07079510488 · Lucca</span>
       <span>43.843°N — 10.508°E</span>
     </div>
   </footer>

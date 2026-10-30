@@ -16,5 +16,9 @@ User-agent: PerplexityBot
 Allow: /
 User-agent: Google-Extended
 Allow: /
+User-agent: Applebot-Extended
+Allow: /
+User-agent: Bingbot
+Allow: /
 
 Sitemap: https://immobiliare.luccalfa.it/sitemap.xml
