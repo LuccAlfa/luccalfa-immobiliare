@@ -164,7 +164,7 @@ html.menu-open .nav__logo { opacity: 0; visibility: hidden; transition: opacity 
 html.menu-open .menu__links a { transform: none; transition: transform .9s cubic-bezier(0.22, 1, 0.36, 1); }
 html.menu-open .menu__links li:nth-child(1) a { transition-delay: .4s; } html.menu-open .menu__links li:nth-child(2) a { transition-delay: .45s; }
 html.menu-open .menu__links li:nth-child(3) a { transition-delay: .5s; } html.menu-open .menu__links li:nth-child(4) a { transition-delay: .55s; }
-html.menu-open .menu__links li:nth-child(5) a { transition-delay: .6s; } html.menu-open .menu__links li:nth-child(6) a { transition-delay: .65s; }
+html.menu-open .menu__links li:nth-child(5) a { transition-delay: .6s; }
 /* al passaggio la parola sale e lascia il posto alla sua copia arancio; arriva la freccia; le altre voci si spengono */
 .menu__text { display: block; text-shadow: 0 1.15em 0 var(--accent); transition: transform .75s cubic-bezier(0.16, 1, 0.3, 1); } /* taste-skill-ignore: la copia della parola, non un'ombra */
 .menu__arrow { flex: none; width: .82em; height: .82em; overflow: hidden; }
