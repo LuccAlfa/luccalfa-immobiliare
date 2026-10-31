@@ -107,12 +107,15 @@
   const nav = $("#nav"), hero = $(".intro"), wa = $("#wa");
   let lastY = scrollY, ticking = false;
   const onScroll = () => {
-    const y = scrollY, past = y > (hero ? hero.offsetHeight - 80 : 40);
+    const y = scrollY, d = y - lastY, past = y > (hero ? hero.offsetHeight - 80 : 40);
     nav.classList.toggle("is-solid", y > 40);
-    nav.classList.toggle("is-away", past && y > lastY + 4 && !menuOpen);
-    if (y < lastY - 4 || !past) nav.classList.remove("is-away");
+    if (y < 120 || menuOpen) nav.classList.remove("is-away");
+    else if (d > 6) nav.classList.add("is-away");
+    else if (d < -6) nav.classList.remove("is-away");
     if (wa) wa.classList.toggle("is-on", past);
-    lastY = y; ticking = false;
+    if (Math.abs(d) > 6 || y < 120) lastY = y;
+    ticking = false;
+    try { autoLots(); } catch (e) { /* elenco non ancora pronto */ }
   };
   addEventListener("scroll", () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
   onScroll();
@@ -161,6 +164,19 @@
     lots.forEach((li) => li.classList.toggle("is-hidden", f !== "all" && li.dataset.type !== f));
     if (active && active.classList.contains("is-hidden")) activate(lots.find((li) => !li.classList.contains("is-hidden")));
   }));
+
+  let touchedAt = 0;
+  lots.forEach((li) => li.addEventListener("pointerenter", () => { touchedAt = performance.now(); }));
+  const lotsSec = $(".lots");
+  function autoLots() {
+    if (!lotsSec || !fine || innerWidth < 900 || reduce || performance.now() - touchedAt < 2500) return;
+    const r = lotsSec.getBoundingClientRect(), span = r.height - innerHeight;
+    if (span < innerHeight * 0.5 || r.top > 0 || r.bottom < innerHeight) return;
+    const vis = lots.filter((li) => !li.classList.contains("is-hidden"));
+    const i = Math.min(vis.length - 1, Math.floor(clampN(-r.top / span, 0, 0.999) * vis.length));
+    activate(vis[i]);
+  }
+  function clampN(v, a, b) { return Math.min(b, Math.max(a, v)); }
 
   /* ═════ MODULO ═════ */
   const picks = { mode: "buy", zone: "centro" };
@@ -220,8 +236,8 @@
     if (stage && leaves && scene && getComputedStyle(stage).position === "sticky") {
       const W = stage.clientWidth, H = stage.clientHeight;
       const sw = scene.offsetWidth, sh = scene.offsetHeight;
-      const hw = sw * 0.22865, hh = sh * 0.28103;
-      const cx = scene.offsetLeft + sw * 0.49531, cy = scene.offsetTop + sh * 0.61018;
+      const hw = sw * 0.105238, hh = sh * 0.244821;
+      const cx = scene.offsetLeft + sw * 0.511905, cy = scene.offsetTop + sh * 0.570179;
       const s = Math.max(cx / hw, (W - cx) / hw, cy / hh, (H - cy) / hh) * 1.1;
       stage.style.setProperty("--s-end", s.toFixed(3));
     }
@@ -244,6 +260,20 @@
     document.head.append(tag);
   }
   document.addEventListener("click", (e) => {
+    const top = e.target.closest('a[href="#top"]');
+    if (top && !reduce && scrollY > innerHeight) {
+      e.preventDefault();
+      const curtain = $("#curtain"), label = $("#curtainLabel");
+      const io = "cubic-bezier(0.77, 0, 0.175, 1)";
+      label.textContent = "LuccAlfa";
+      curtain.style.transformOrigin = "50% 100%";
+      curtain.animate([{ transform: "scaleY(0)" }, { transform: "scaleY(1)" }], { duration: 620, easing: io, fill: "forwards" }).finished
+        .then(() => label.animate([{ opacity: 0, transform: "translateY(20%)" }, { opacity: 1, transform: "none" }], { duration: 300, easing: "ease-out", fill: "forwards" }).finished)
+        .then(() => { if (lenis) lenis.scrollTo(0, { immediate: true, force: true }); else window.scrollTo(0, 0); curtain.style.transformOrigin = "50% 0%"; })
+        .then(() => label.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 220, delay: 160, easing: "ease-out", fill: "forwards" }).finished)
+        .then(() => curtain.animate([{ transform: "scaleY(1)" }, { transform: "scaleY(0)" }], { duration: 760, easing: io, fill: "forwards" }));
+      return;
+    }
     const a = e.target.closest('a[href^="#"]'); if (!a || !lenis) return;
     const id = a.getAttribute("href"); const target = id === "#top" ? 0 : $(id);
     if (target == null) return;

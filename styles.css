@@ -86,7 +86,7 @@ figcaption { font-size: var(--step-small); color: var(--muted); margin-top: 10px
 .nav {
   position: fixed; inset: 0 0 auto; z-index: 50; height: var(--nav-h);
   display: flex; align-items: center; gap: 32px; padding: 0 var(--m);
-  transition: background-color .35s var(--ease), transform .4s var(--ease);
+  transition: background-color .5s var(--ease), transform .8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .nav.is-solid { background: var(--bg); }
 .nav.is-away { transform: translateY(-100%); }
@@ -103,7 +103,11 @@ figcaption { font-size: var(--step-small); color: var(--muted); margin-top: 10px
 .burger { display: none; min-height: 44px; padding: 0 4px; font-weight: 500; }
 
 /* ═════ INTRO: un'unica scena dal cielo fino dentro casa ═════
-   Versione statica (senza animazioni legate allo scorrimento): hero, portone ad arco, sala. */
+   Statica (senza animazioni legate allo scorrimento): hero, poi portone, poi sala.
+   Animata: cielo → tetti → l'omino viene portato e cade → la città si inclina come un
+   modellino → picchiata → la strada si apre dal punto dove è atterrato → portone → sala. */
+@property --reveal { syntax: "<length>"; inherits: false; initial-value: 0px; }
+
 .intro { position: relative; z-index: 0; }
 .intro__stage { position: relative; display: grid; }
 .intro__aerial { grid-area: 1 / 1; position: relative; height: 100vh; height: 100svh; min-height: 560px; overflow: hidden; background: var(--surface); } /* taste-skill-ignore */
@@ -113,18 +117,18 @@ figcaption { font-size: var(--step-small); color: var(--muted); margin-top: 10px
 .hero__title { font-size: var(--step-display); line-height: 0.9; letter-spacing: -0.03em; }
 .hero__sub { margin: 32px auto 0; max-width: 40ch; font-size: var(--step-body); font-weight: 500; }
 .hero__cta { display: none; }
-.intro__pin, .intro__wall { display: none; }
-.intro__street { padding: var(--sec) var(--m) 48px; display: grid; justify-items: center; }
-.intro__scene { position: relative; width: min(100%, calc(70svh * 0.66946)); aspect-ratio: 1920 / 2868; overflow: hidden; border-radius: 50vw 50vw 0 0; }
-.door__facade { position: relative; z-index: 2; width: 100%; height: 100%; object-fit: cover; }
-.intro__scene > picture { position: absolute; inset: 0; z-index: 2; }
-.door__leaves { position: absolute; inset: 0; z-index: 1; perspective: 1100px; }
-.door__leaf { position: absolute; top: 32.566%; height: 56.904%; overflow: hidden; backface-visibility: hidden; }
-.door__leaf picture, .door__leaf img { width: 100%; height: 100%; object-fit: cover; }
-.door__leaf--l { z-index: 2; left: 26.042%; width: 24.323%; transform-origin: 0 50%; }
-.door__leaf--r { z-index: 1; left: 49.844%; width: 23.177%; transform-origin: 100% 50%; }
-.intro__room { padding: 0 var(--m); }
-.intro__room img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; }
+.peg { display: none; }
+.intro__street { padding: var(--sec) 0 0; display: grid; }
+.intro__scene { position: relative; width: 100%; aspect-ratio: 3 / 2; }
+.intro__scene > picture { position: absolute; inset: 0; z-index: 3; }
+.door__facade { width: 100%; height: 100%; object-fit: cover; }
+.door__jamb { position: absolute; z-index: 2; left: 40.6667%; top: 32.5357%; width: 21.0476%; height: 48.9643%; border-radius: 50% 50% 0 0 / 28.7% 28.7% 0 0; box-shadow: inset 0 0 2.2vw rgba(16,19,15,.6), inset 0 0 .5vw rgba(16,19,15,.7); pointer-events: none; } /* taste-skill-ignore */
+.door__leaves { position: absolute; inset: 0; z-index: 1; perspective: 1400px; }
+.door__leaf { position: absolute; top: 32.3214%; height: 49.4643%; backface-visibility: hidden; }
+.door__leaf picture, .door__leaf img { width: 100%; height: 100%; }
+.door__leaf--l { z-index: 2; left: 40.4762%; width: 10.4048%; transform-origin: 0 50%; }
+.door__leaf--r { z-index: 1; left: 50.6429%; width: 11.2619%; transform-origin: 100% 50%; }
+.intro__room { display: none; }
 .intro__after { padding: 48px var(--m) var(--sec); max-width: 760px; }
 .door__title { font-size: var(--step-head); }
 .door__p { margin-top: 20px; max-width: 44ch; font-size: var(--step-lead); line-height: 1.3; }
@@ -138,100 +142,83 @@ figcaption { font-size: var(--step-small); color: var(--muted); margin-top: 10px
 
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {
-    .intro { height: 820vh; view-timeline-name: --intro; }
+    .intro { height: 900vh; view-timeline-name: --intro; }
     .intro__stage {
-      --sh: 100cqh; --sw: calc(var(--sh) * 0.66946);
-      --cx: calc(50cqw - var(--sw) * 0.00469); --cy: calc(var(--sh) * 0.61018);
-      --hw: calc(var(--sw) * 0.22865); --hh: calc(var(--sh) * 0.28103);
+      /* il portone copre lo schermo (foto 3:2) e resta centrato finché si può */
+      --sw: max(100cqw, 150cqh); --sh: calc(var(--sw) / 1.5);
+      --sl: clamp(calc(100cqw - var(--sw)), calc(50cqw - var(--sw) * 0.511905), 0px);
+      --st: clamp(calc(100cqh - var(--sh)), calc(50cqh - var(--sh) * 0.570179), 0px);
+      --cx: calc(var(--sl) + var(--sw) * 0.511905); --cy: calc(var(--st) + var(--sh) * 0.570179);
+      --hw: calc(var(--sw) * 0.105238); --hh: calc(var(--sh) * 0.244821); --ry: calc(var(--sh) * 0.140714);
       position: sticky; top: 0; height: 100vh; height: 100svh; display: block; overflow: hidden; /* taste-skill-ignore */
-      container-type: size; perspective: 1400px; background: var(--surface); }
-    .intro__stage::after { content: ""; position: absolute; inset: 0; z-index: 6; background: var(--ink); pointer-events: none;
+      container-type: size; perspective: 1500px; background: #e8dcc6; }
+    .intro__stage::after { content: ""; position: absolute; inset: 0; z-index: 8; background: var(--ink); pointer-events: none;
       animation: dim linear both; animation-timeline: --intro; animation-range: contain 0% contain 100%; }
 
-    /* 1 · il cielo e i tetti */
-    .intro__aerial { position: absolute; inset: 0; z-index: 3; height: auto; min-height: 0; transform-origin: 50% 58%;
-      animation: aerial-dive linear both; animation-timeline: --intro; animation-range: contain 0% contain 100%; }
+    /* 1 · cielo e tetti, poi la città si inclina come un plastico e ci si tuffa */
+    .intro__aerial { position: absolute; inset: 0; z-index: 3; height: auto; min-height: 0; transform-origin: 66% 31%;
+      animation: aerial linear both; animation-timeline: --intro; animation-range: contain 0% contain 100%; }
     .hero__pic img { height: 150%; object-position: 50% 0; transform-origin: 50% 100%;
       animation: hero-pan linear both; animation-timeline: --intro; animation-range: contain 0% contain 100%; }
     .hero__copy { position: absolute; inset: 0 0 auto; }
-    .hero__title { animation: hero-out linear both; animation-timeline: --intro; animation-range: contain 2% contain 13%; }
-    .hero__sub { animation: hero-out linear both; animation-timeline: --intro; animation-range: contain 3% contain 12%; }
-    .hero__cta { animation: hero-out linear both; animation-timeline: --intro; animation-range: contain 1% contain 8%; }
+    .hero__title { animation: hero-out linear both; animation-timeline: --intro; animation-range: contain 1.5% contain 11%; }
+    .hero__sub { animation: hero-out linear both; animation-timeline: --intro; animation-range: contain 2.5% contain 10%; }
+    .hero__cta { animation: hero-out linear both; animation-timeline: --intro; animation-range: contain 1% contain 7%; }
 
-    /* 2 · il segnaposto cade sulla città */
-    .intro__pin { display: block; position: absolute; z-index: 4; left: 50%; top: 58%; width: 72px; height: 95px; margin: -95px 0 0 -36px;
-      animation: pin-drop linear both; animation-timeline: --intro; animation-range: contain 0% contain 100%; }
-    .intro__marker { position: relative; z-index: 2; width: 100%; height: 100%; overflow: visible; }
-    .intro__marker path:first-child { fill: var(--accent); }
-    .intro__arch { fill: none; stroke: var(--paper); stroke-width: 5; stroke-linecap: round; }
-    .intro__shadow { position: absolute; left: 50%; bottom: -6px; width: 34px; height: 10px; margin-left: -17px; border-radius: 50%; background: rgba(16,19,15,.35);
-      animation: pin-shadow linear both; animation-timeline: --intro; animation-range: contain 0% contain 100%; }
-    .intro__pulse { position: absolute; left: 50%; bottom: -14px; width: 64px; height: 26px; margin-left: -32px; border-radius: 50%; border: 2px solid var(--accent);
-      animation: pulse 1.6s var(--ease) infinite; }
+    /* 2 · l'omino (mosso da intro.js) */
+    .peg { display: block; position: absolute; z-index: 6; left: 0; top: 0; width: clamp(64px, 9vh, 96px); pointer-events: none; opacity: 0; will-change: transform, opacity; }
 
-    /* 3 · la strada: la vista si raddrizza davanti al portone */
-    .intro__street { position: absolute; inset: 0; z-index: 2; padding: 0; display: block; transform-origin: 50% 58%;
+    /* 3 · la strada si apre dal punto d'atterraggio, la vista si raddrizza */
+    .intro__street { position: absolute; inset: 0; z-index: 2; padding: 0; display: block; transform-origin: 66% 31%;
+      -webkit-mask-image: radial-gradient(circle at 66% 31%, #000 var(--reveal), transparent calc(var(--reveal) + 14vmax)); /* taste-skill-ignore */
+      mask-image: radial-gradient(circle at 66% 31%, #000 var(--reveal), transparent calc(var(--reveal) + 14vmax)); /* taste-skill-ignore */
       animation: street-in linear both; animation-timeline: --intro; animation-range: contain 0% contain 100%; }
-    .intro__wall { display: block; position: absolute; inset: 0; z-index: 0; transform-origin: var(--cx) var(--cy);
-      animation: door-zoom linear both; animation-timeline: --intro; animation-range: contain 0% contain 100%; }
-    .intro__wall picture, .intro__wall img { width: 100%; height: 100%; object-fit: cover; }
-    .intro__scene { position: absolute; z-index: 2; top: 0; left: calc(50cqw - var(--sw) / 2); width: var(--sw); height: var(--sh); aspect-ratio: auto; border-radius: 0; overflow: visible;
-      transform-origin: 49.531% 61.018%; will-change: transform;
-      -webkit-mask-image: linear-gradient(to right, transparent, #000 13%, #000 87%, transparent); mask-image: linear-gradient(to right, transparent, #000 13%, #000 87%, transparent); /* taste-skill-ignore */
+    .intro__scene { position: absolute; z-index: 2; left: var(--sl); top: var(--st); width: var(--sw); height: var(--sh); aspect-ratio: auto;
+      transform-origin: 51.1905% 57.0179%; will-change: transform;
       animation: door-zoom linear both; animation-timeline: --intro; animation-range: contain 0% contain 100%; }
     .door__leaf--l { animation: leaf-l linear both; animation-timeline: --intro; animation-range: contain 0% contain 100%; }
     .door__leaf--r { animation: leaf-r linear both; animation-timeline: --intro; animation-range: contain 0% contain 100%; }
 
     /* 4 · dentro casa */
-    .intro__room { position: absolute; inset: 0; z-index: 1; padding: 0; overflow: hidden; pointer-events: none;
+    .intro__room { display: block; position: absolute; inset: 0; z-index: 1; overflow: hidden; pointer-events: none;
       animation: door-hole linear both; animation-timeline: --intro; animation-range: contain 0% contain 100%; }
-    .intro__room picture, .intro__room img { width: 100%; height: 100%; aspect-ratio: auto; }
+    .intro__room picture, .intro__room img { width: 100%; height: 100%; object-fit: cover; }
     .intro__room img { animation: door-room linear both; animation-timeline: --intro; animation-range: contain 0% contain 100%; }
-    .intro__after { position: absolute; z-index: 7; left: 0; bottom: 0; max-width: none; width: min(860px, 66vw);
+    .intro__after { position: absolute; z-index: 9; left: 0; bottom: 0; max-width: none; width: min(860px, 66vw);
       padding: 26svh var(--m) 9svh; color: var(--paper);
       background: radial-gradient(120% 100% at 0% 100%, rgba(16,19,15,.78), rgba(16,19,15,.38) 55%, rgba(16,19,15,0) 80%); /* taste-skill-ignore */
       animation: door-after linear both; animation-timeline: --intro; animation-range: contain 0% contain 100%; }
   }
 }
-@keyframes hero-pan { 0%, 2% { transform: translateY(0) scale(1.06); } 30%, 100% { transform: translateY(-33.4%) scale(1.32); } }
+@keyframes hero-pan { 0%, 2% { transform: translateY(0) scale(1.06); } 24%, 100% { transform: translateY(-33.4%) scale(1.32); } }
 @keyframes hero-out { to { opacity: 0; transform: translateY(-14vh); } }
-@keyframes aerial-dive {
-  0%, 33% { transform: none; filter: blur(0); opacity: 1; }
-  44% { transform: scale(3.4); filter: blur(5px); opacity: 1; }
-  47%, 100% { transform: scale(3.8); filter: blur(8px); opacity: 0; }
+@keyframes aerial {
+  0%, 38% { transform: none; filter: blur(0); opacity: 1; }
+  48% { transform: rotateX(34deg) rotateZ(-8deg) scale(1.95); filter: blur(0); opacity: 1; }
+  55% { transform: rotateX(48deg) rotateZ(-13deg) scale(4); filter: blur(4px); opacity: 1; }
+  58%, 100% { transform: rotateX(52deg) rotateZ(-14deg) scale(5.5); filter: blur(8px); opacity: 0; }
 }
-@keyframes pin-drop {
-  0%, 21% { transform: translateY(-75svh); opacity: 0; }
-  22% { opacity: 1; }
-  27% { transform: translateY(0) scale(1.08, .86); }
-  29% { transform: translateY(-14%) scale(.96, 1.05); }
-  31%, 36% { transform: none; opacity: 1; }
-  40%, 100% { transform: scale(.3); opacity: 0; }
-}
-@keyframes pin-shadow { 0%, 22% { transform: scale(.2); opacity: 0; } 27%, 36% { transform: none; opacity: 1; } 40%, 100% { opacity: 0; } }
-@keyframes pulse { from { transform: scale(.4); opacity: .9; } to { transform: scale(1.6); opacity: 0; } }
 @keyframes street-in {
-  0%, 34% { clip-path: circle(0% at 50% 58%); transform: translateY(12%) rotateX(56deg) scale(.6); }
-  46%, 100% { clip-path: circle(150% at 50% 58%); transform: none; }
+  0%, 49% { --reveal: 0px; transform: scale(1.45) rotateX(22deg) translateY(-4%); }
+  59%, 100% { --reveal: 150vmax; transform: none; }
 }
-/* lo zoom nel vano e il ritaglio della sala seguono la stessa scala */
+/* zoom nel vano e ritaglio ad arco della sala seguono la stessa scala */
 @keyframes door-zoom {
-  0%, 52% { transform: scale(1); }
-  66% { transform: scale(1.08); }
-  80%, 100% { transform: scale(var(--s-end, 7)); }
+  0%, 62% { transform: scale(1); }
+  72% { transform: scale(1.08); }
+  86%, 100% { transform: scale(var(--s-end, 7)); }
 }
 @keyframes door-hole {
-  0%, 47% { opacity: 0; clip-path: inset(calc(var(--cy) - var(--hh)) calc(100cqw - var(--cx) - var(--hw)) calc(100cqh - var(--cy) - var(--hh)) calc(var(--cx) - var(--hw))); }
-  48%, 52% { opacity: 1; clip-path: inset(calc(var(--cy) - var(--hh)) calc(100cqw - var(--cx) - var(--hw)) calc(100cqh - var(--cy) - var(--hh)) calc(var(--cx) - var(--hw))); }
-  66% { opacity: 1; clip-path: inset(calc(var(--cy) - var(--hh) * 1.08) calc(100cqw - var(--cx) - var(--hw) * 1.08) calc(100cqh - var(--cy) - var(--hh) * 1.08) calc(var(--cx) - var(--hw) * 1.08)); }
-  80%, 100% { opacity: 1; clip-path: inset(calc(var(--cy) - var(--hh) * var(--s-end, 7)) calc(100cqw - var(--cx) - var(--hw) * var(--s-end, 7)) calc(100cqh - var(--cy) - var(--hh) * var(--s-end, 7)) calc(var(--cx) - var(--hw) * var(--s-end, 7))); }
+  0%, 59% { opacity: 0; clip-path: inset(calc(var(--cy) - var(--hh)) calc(100cqw - var(--cx) - var(--hw)) calc(100cqh - var(--cy) - var(--hh)) calc(var(--cx) - var(--hw)) round var(--hw) var(--hw) 0 0 / var(--ry) var(--ry) 0 0); }
+  60%, 62% { opacity: 1; clip-path: inset(calc(var(--cy) - var(--hh)) calc(100cqw - var(--cx) - var(--hw)) calc(100cqh - var(--cy) - var(--hh)) calc(var(--cx) - var(--hw)) round var(--hw) var(--hw) 0 0 / var(--ry) var(--ry) 0 0); }
+  72% { opacity: 1; clip-path: inset(calc(var(--cy) - var(--hh) * 1.08) calc(100cqw - var(--cx) - var(--hw) * 1.08) calc(100cqh - var(--cy) - var(--hh) * 1.08) calc(var(--cx) - var(--hw) * 1.08) round calc(var(--hw) * 1.08) calc(var(--hw) * 1.08) 0 0 / calc(var(--ry) * 1.08) calc(var(--ry) * 1.08) 0 0); }
+  86%, 100% { opacity: 1; clip-path: inset(calc(var(--cy) - var(--hh) * var(--s-end, 7)) calc(100cqw - var(--cx) - var(--hw) * var(--s-end, 7)) calc(100cqh - var(--cy) - var(--hh) * var(--s-end, 7)) calc(var(--cx) - var(--hw) * var(--s-end, 7)) round calc(var(--hw) * var(--s-end, 7)) calc(var(--hw) * var(--s-end, 7)) 0 0 / calc(var(--ry) * var(--s-end, 7)) calc(var(--ry) * var(--s-end, 7)) 0 0); }
 }
-@keyframes gap-off { 0%, 52% { opacity: 1; } 55%, 100% { opacity: 0; } }
-@keyframes leaf-l { 0%, 53% { transform: rotateY(0); opacity: 1; } 66%, 70% { transform: rotateY(84deg); opacity: 1; } 76%, 100% { transform: rotateY(88deg); opacity: 0; } }
-@keyframes leaf-r { 0%, 53% { transform: rotateY(0); opacity: 1; } 66%, 70% { transform: rotateY(-84deg); opacity: 1; } 76%, 100% { transform: rotateY(-88deg); opacity: 0; } }
-@keyframes door-room { 0%, 66% { transform: scale(1.28); } 86%, 100% { transform: scale(1); } }
-@keyframes door-after { 0%, 76% { opacity: 0; transform: translateY(6vh); } 82%, 90% { opacity: 1; transform: none; } 94%, 100% { opacity: 0; transform: translateY(-4vh); } }
-@keyframes dim { 0%, 95% { opacity: 0; } 100% { opacity: .45; } }
+@keyframes leaf-l { 0%, 62% { transform: rotateY(0); opacity: 1; } 74%, 78% { transform: rotateY(82deg); opacity: 1; } 83%, 100% { transform: rotateY(88deg); opacity: 0; } }
+@keyframes leaf-r { 0%, 62% { transform: rotateY(0); opacity: 1; } 74%, 78% { transform: rotateY(-82deg); opacity: 1; } 83%, 100% { transform: rotateY(-88deg); opacity: 0; } }
+@keyframes door-room { 0%, 72% { transform: scale(1.22); } 90%, 100% { transform: scale(1); } }
+@keyframes door-after { 0%, 85% { opacity: 0; transform: translateY(6vh); } 89%, 92% { opacity: 1; transform: none; } 95%, 100% { opacity: 0; transform: translateY(-4vh); } }
+@keyframes dim { 0%, 96% { opacity: 0; } 100% { opacity: .45; } }
 @keyframes sheet { from { border-radius: 28px 28px 0 0; } to { border-radius: 0; } }
 
 /* ═════ CHI SIAMO: l'arco si apre sulla Torre Guinigi ═════ */
@@ -239,7 +226,7 @@ figcaption { font-size: var(--step-small); color: var(--muted); margin-top: 10px
 .about__stage { display: grid; gap: 40px; }
 .about__title { font-size: var(--step-display); line-height: 0.94; letter-spacing: -0.03em; }
 .about__body { display: grid; gap: 24px; }
-.about__lead { font-family: var(--display); font-weight: 700; font-size: var(--step-lead); line-height: 1.3; letter-spacing: -0.01em; max-width: 26ch; }
+.about__lead { font-family: var(--display); font-weight: 700; font-size: var(--step-lead); line-height: 1.3; letter-spacing: -0.01em; max-width: 30ch; }
 .about__text { max-width: 52ch; }
 .about__frame { overflow: hidden; }
 .about__big .about__frame { border-radius: 50vw 50vw 0 0; }
@@ -258,15 +245,15 @@ figcaption { font-size: var(--step-small); color: var(--muted); margin-top: 10px
   @media (min-width: 900px) and (prefers-reduced-motion: no-preference) {
     .about { height: 300vh; padding: 0; view-timeline-name: --about; }
     .about__stage { position: sticky; top: 0; height: 100vh; height: 100svh; /* taste-skill-ignore */
-      grid-template-columns: repeat(12, 1fr); grid-template-rows: auto 1fr; column-gap: var(--gap); row-gap: 0;
+      grid-template-columns: repeat(12, 1fr); grid-template-rows: auto auto 1fr; column-gap: var(--gap); row-gap: 0;
       padding: calc(var(--nav-h) + 4svh) var(--m) 7svh; }
-    .about__title { grid-column: 1 / 8; grid-row: 1; z-index: 2; font-size: var(--step-head); line-height: 0.98; animation: rise-in linear both; animation-timeline: --about; animation-range: contain 0% contain 14%; }
-    .about__body { grid-column: 1 / 6; grid-row: 2; align-self: end; z-index: 2; }
-    .about__big { grid-column: 8 / 13; grid-row: 1 / 3; align-self: stretch; position: relative; }
+    .about__title { grid-column: 1 / 8; grid-row: 1; z-index: 2; font-size: clamp(2.6rem, 1rem + 5.4vw, 6.5rem); line-height: 0.95; animation: rise-in linear both; animation-timeline: --about; animation-range: contain 0% contain 14%; }
+    .about__body { grid-column: 1 / 7; grid-row: 2; align-self: start; z-index: 2; margin-top: 6svh; }
+    .about__big { grid-column: 8 / 13; grid-row: 1 / 4; align-self: stretch; position: relative; }
     .about__big .about__frame { position: absolute; inset: 0; animation: arch-open-big linear both; animation-timeline: --about; animation-range: contain 0% contain 46%; }
     .about__big picture, .about__big img { height: 100%; aspect-ratio: auto; }
     .about__big img { animation: settle-in linear both; animation-timeline: --about; animation-range: contain 0% contain 60%; }
-    .about__small { grid-column: 6 / 9; grid-row: 2; align-self: end; width: auto; z-index: 3; margin-bottom: -1svh;
+    .about__small { grid-column: 4 / 9; grid-row: 3; align-self: end; width: auto; z-index: 3;
       animation: slide-in-big linear both; animation-timeline: --about; animation-range: contain 40% contain 78%; }
     .about__small img { animation: none; }
     .about__text { animation: rise-in linear both; animation-timeline: --about; animation-range: contain 50% contain 62%; }
@@ -373,7 +360,7 @@ figcaption { font-size: var(--step-small); color: var(--muted); margin-top: 10px
 
 /* ═════ METODO: carte che si impilano ═════ */
 .steps { position: relative; z-index: 1; }
-.steps__list { timeline-scope: --c2, --c3, --c4, --c5; }
+main { timeline-scope: --c2, --c3, --c4, --c5, --c6; }
 .step { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; color: var(--paper); transform-origin: 50% 0; } /* taste-skill-ignore */
 .step + .step { border-radius: 28px 28px 0 0; }
 .step::after { content: ""; position: absolute; inset: 0; z-index: 3; background: #000; opacity: 0; pointer-events: none; }
@@ -384,7 +371,8 @@ figcaption { font-size: var(--step-small); color: var(--muted); margin-top: 10px
 .step__img { object-fit: cover; filter: brightness(0.7); }
 .step__word { position: absolute; inset: 0; z-index: 2; display: grid; place-items: center; }
 .step__word h3 { font-size: var(--step-display); line-height: 0.85; letter-spacing: -0.03em; }
-.step__p { position: absolute; z-index: 2; left: var(--m); bottom: 48px; max-width: 40ch; font-weight: 500; }
+.step__p { position: absolute; z-index: 2; left: var(--m); bottom: 56px; max-width: 34ch; font-family: var(--display); font-weight: 700; font-size: var(--step-lead); line-height: 1.25; }
+.step:not(.step--intro)::before { content: ""; position: absolute; inset: 45% 0 0; z-index: 1; background: linear-gradient(to top, rgba(16,19,15,.72), rgba(16,19,15,0)); pointer-events: none; } /* taste-skill-ignore */
 
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {
@@ -401,6 +389,10 @@ figcaption { font-size: var(--step-small); color: var(--muted); margin-top: 10px
     .step:nth-child(2)::after { animation: card-dim linear both; animation-timeline: --c3; animation-range: entry 0% entry 100%; }
     .step:nth-child(3)::after { animation: card-dim linear both; animation-timeline: --c4; animation-range: entry 0% entry 100%; }
     .step:nth-child(4)::after { animation: card-dim linear both; animation-timeline: --c5; animation-range: entry 0% entry 100%; }
+    .step:nth-child(5) { animation: card-back linear both; animation-timeline: --c6; animation-range: entry 0% entry 100%; }
+    .step:nth-child(5)::after { animation: card-dim linear both; animation-timeline: --c6; animation-range: entry 0% entry 100%; }
+    .steps__list { padding-bottom: 100vh; }
+    .zones { position: relative; z-index: 2; margin-top: -100vh; background: var(--bg); border-radius: 28px 28px 0 0; view-timeline-name: --c6; }
     /* la parola sale mentre la sua carta arriva */
     .step:nth-child(2) .step__word h3 { animation: word-up linear both; animation-timeline: --c2; animation-range: entry 30% entry 100%; }
     .step:nth-child(3) .step__word h3 { animation: word-up linear both; animation-timeline: --c3; animation-range: entry 30% entry 100%; }
@@ -540,6 +532,43 @@ figcaption { font-size: var(--step-small); color: var(--muted); margin-top: 10px
 }
 @keyframes panel-up { from { transform: translateY(10vh); } to { transform: none; } }
 
+/* ═════ IMMOBILI: su computer la sezione si ferma e gli annunci scorrono da soli ═════ */
+@supports (animation-timeline: view()) {
+  @media (min-width: 900px) and (prefers-reduced-motion: no-preference) {
+    .lots { min-height: 320vh; }
+    .lots__col { position: sticky; top: calc(var(--nav-h) + 4svh); }
+    .lots__title { animation: rise-in linear both; animation-timeline: view(); animation-range: entry 0% entry 80%; }
+    .lot { animation: row-in linear both; animation-timeline: view(); animation-range: entry 0% entry 100%; }
+    .lots__media { animation: media-in linear both; animation-timeline: view(); animation-range: entry 0% entry 90%; }
+  }
+}
+@keyframes row-in { from { opacity: 0; transform: translateX(-6vw); } to { opacity: 1; transform: none; } }
+@keyframes media-in { from { clip-path: inset(18% 12% 18% 12%); transform: scale(.94); } to { clip-path: inset(0 0 0 0); transform: none; } }
+
+/* ═════ DOMANDE, CONTATTI E FOOTER: anche qui tutto si muove ═════ */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .faq__facts li, .acc details, .faq__actions { animation: slide-right linear both; animation-timeline: view(); animation-range: entry 0% entry 100%; }
+    .faq__media { animation: media-in linear both; animation-timeline: view(); animation-range: entry 0% cover 40%; }
+    .faq__media picture + picture { animation: drop-in linear both; animation-timeline: view(); animation-range: entry 20% cover 45%; }
+    .contact__bg { animation: zoom-out linear both; animation-timeline: view(); animation-range: entry 0% cover 60%; }
+    .card { animation: card-in linear both; animation-timeline: view(); animation-range: entry 0% cover 40%; }
+    .postcard { animation: postcard-in linear both; animation-timeline: view(); animation-range: entry 0% cover 45%; }
+    .postcard__addr picture { animation: stamp-in linear both; animation-timeline: view(); animation-range: entry 30% cover 50%; }
+    .footer__word { animation: word-rise linear both; animation-timeline: view(); animation-range: entry 0% cover 60%; }
+  }
+}
+@keyframes slide-right { from { transform: translateX(-6vw); } to { transform: none; } }
+@keyframes drop-in { from { opacity: 0; transform: translateY(-12vh) rotate(-6deg); } to { opacity: 1; transform: none; } }
+@keyframes zoom-out { from { transform: scale(1.3); } to { transform: none; } }
+@keyframes card-in { from { opacity: 0; transform: translateX(12vw); } to { opacity: 1; transform: none; } }
+@keyframes postcard-in { from { transform: translateY(18vh) rotate(-3deg) scale(.94); } to { transform: none; } }
+@keyframes stamp-in { from { opacity: 0; transform: translate(30px, -40px) rotate(18deg) scale(1.4); } to { opacity: 1; transform: none; } }
+@keyframes word-rise { from { transform: translateY(45%); } to { transform: none; } }
+.peg__ring { opacity: 0; transform-box: fill-box; transform-origin: center; }
+.peg__ring.is-on { animation: ring 1.6s var(--ease) both; }
+@keyframes ring { 0% { opacity: .95; transform: scale(.2); } 100% { opacity: 0; transform: scale(1.9); } }
+
 /* ═════ TENDA PER IL CAMBIO LINGUA ═════ */
 .curtain { position: fixed; inset: 0; z-index: 200; background: var(--accent); color: var(--accent-ink); display: grid; place-items: center;
   transform: scaleY(0); transform-origin: 50% 100%; pointer-events: none; }
@@ -550,10 +579,7 @@ html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto !important; }
 .lenis.lenis-stopped { overflow: hidden; }
 
-@media (max-width: 899px) {
-  @keyframes aerial-dive { 0%, 33% { transform: none; opacity: 1; } 44% { transform: scale(3.4); opacity: 1; } 47%, 100% { transform: scale(3.8); opacity: 0; } }
-}
-@supports (animation-timeline: view()) { @media (max-width: 899px) and (prefers-reduced-motion: no-preference) { .intro { height: 720vh; } } }
+
 
 /* ═════ TABLET ═════ */
 @media (max-width: 1100px) {

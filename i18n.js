@@ -22,7 +22,7 @@ window.I18N_EN = {
   "hero.cta": "See the properties",
 
   "door.title": "Every home begins<br>with a door.",
-  "door.alt": "Piazza dell'Anfiteatro in Lucca seen from beneath an archway, bicycles leaning on the wall",
+  "door.alt": "The façade of a historic palazzo with a carved stone portal and an arched wooden front door",
   "door.alt2": "A bright, spacious room with bookcases on the walls, a chandelier and a large window in the middle",
   "door.big": "We walk you<br>to the other side.",
   "door.p": "We walk you to the other side, with clear timelines, costs explained upfront and no surprises.",
@@ -172,7 +172,7 @@ window.I18N_EN = {
   "ft.privacy": "Privacy",
   "ft.cookie": "Cookies",
   "ft.top": "Back to top",
-  "ft.credits": "Photos: Unsplash and Pexels; Lecciona dunes by DimiTalen (CC0), front door by Thomas Quine (CC BY 2.0, Wikimedia Commons); room by Lawrence Chismorie (Unsplash).",
+  "ft.credits": "Photos: Unsplash and Pexels; Lecciona dunes by DimiTalen (CC0), front door by Ayşenur Yavuz and room by Lawrence Chismorie (Unsplash).",
   "wa": "Message us on WhatsApp"
 };
 
