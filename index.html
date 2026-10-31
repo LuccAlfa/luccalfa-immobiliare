@@ -26,7 +26,7 @@
   <link rel="preload" href="assets/fonts/switzer-400.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" as="image" href="assets/img/tetti-lucca-p-720.avif" type="image/avif" media="(max-width: 699px)" />
   <link rel="preload" as="image" imagesrcset="assets/img/tetti-lucca-1280.avif 1280w, assets/img/tetti-lucca-1920.avif 1920w, assets/img/tetti-lucca-2560.avif 2560w" imagesizes="100vw" type="image/avif" media="(min-width: 700px)" />
-  <link rel="stylesheet" href="styles.css?v=15" />
+  <link rel="stylesheet" href="styles.css?v=17" />
 
   <!-- ═════ SCHEMA.ORG: RealEstateAgent + LocalBusiness ═════
        Entità autonoma: nessun collegamento all'entità di luccalfa.it (giardinaggio e pulizie),
@@ -104,27 +104,36 @@
   <div class="curtain" id="curtain" aria-hidden="true"><span class="curtain__label" id="curtainLabel">English</span></div>
   <a class="skip" href="#main" data-i18n="skip">Vai al contenuto</a>
 
-  <!-- NAV: logo, quattro voci, lingua, un'azione -->
+  <!-- NAV: logo e nome; a destra lingua, valutazione e Menu (menu a tutto schermo) -->
   <header class="nav" id="nav">
     <a href="#top" class="nav__logo" aria-label="LuccAlfa Immobiliare – Home">
-      <img src="assets/logo.svg" alt="LuccAlfa" width="58" height="53" />
+      <img src="assets/logo.svg" alt="" width="58" height="53" />
+      <span class="nav__word">LuccAlfa <span>Immobiliare</span></span>
     </a>
-    <nav class="nav__links" id="menu" aria-label="Menu principale" data-i18n-aria="nav.aria">
-      <a href="#immobili" data-i18n="m.list">Immobili</a>
-      <a href="#servizi" data-i18n="m.srv">Servizi</a>
-      <a href="#zone" data-i18n="m.zon">Zone</a>
-      <a href="#faq" data-i18n="m.faq">Domande</a>
-      <a href="#contatti" class="nav__menu-only" data-i18n="m.con">Contatti</a>
-    </nav>
     <div class="nav__right">
       <div class="lang" role="group" aria-label="Lingua / Language">
         <button type="button" data-lang="it" aria-pressed="true" lang="it">IT</button>
         <button type="button" data-lang="en" aria-pressed="false" lang="en">EN</button>
       </div>
       <a class="btn btn--accent nav__cta" href="#contatti" data-i18n="nav.cta">Valutazione gratuita</a>
-      <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="menu"><span data-i18n="nav.menu">Menu</span></button>
+      <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="menu"><span data-i18n="nav.menu">Menu</span><i class="burger__icon" aria-hidden="true"></i></button>
     </div>
   </header>
+  <div class="menu" id="menu">
+    <nav class="menu__links" aria-label="Menu principale" data-i18n-aria="nav.aria">
+      <a href="#immobili" data-i18n="m.list">Immobili</a>
+      <a href="#servizi" data-i18n="m.srv">Servizi</a>
+      <a href="#zone" data-i18n="m.zon">Zone</a>
+      <a href="#faq" data-i18n="m.faq">Domande</a>
+      <a href="#contatti" data-i18n="m.con">Contatti</a>
+    </nav>
+    <figure class="menu__pic" aria-hidden="true"><picture><source type="image/avif" srcset="assets/img/loggia-anfiteatro-480.avif 480w, assets/img/loggia-anfiteatro-800.avif 800w, assets/img/loggia-anfiteatro-1280.avif 1280w, assets/img/loggia-anfiteatro-1537.avif 1537w" sizes="40vw" /><img src="assets/img/loggia-anfiteatro-1280.webp" srcset="assets/img/loggia-anfiteatro-480.webp 480w, assets/img/loggia-anfiteatro-800.webp 800w, assets/img/loggia-anfiteatro-1280.webp 1280w, assets/img/loggia-anfiteatro-1537.webp 1537w" sizes="40vw" width="1537" height="1023" alt="" loading="lazy" decoding="async" /></picture></figure>
+    <div class="menu__foot">
+      <a href="mailto:immobiliare@luccalfa.it">immobiliare@luccalfa.it</a>
+      <a href="tel:+39000000000">+39 000 000 0000</a>
+      <span data-i18n="con.hoursS">Lun–sab, 9–19</span>
+    </div>
+  </div>
 
   <main id="main">
     <!-- ═══ INTRO: un'unica scena. Il cielo, i tetti, l'omino portato e lasciato cadere,
@@ -153,20 +162,20 @@
           </picture>
         </div>
         <div class="peg" id="peg" aria-hidden="true">
-          <svg viewBox="-30 -8 120 150" overflow="visible">
+          <svg viewBox="-30 -8 120 124" overflow="visible">
             <defs>
-              <linearGradient id="pegSkin" x1="0" x2="1"><stop offset="0" stop-color="#ffb25c"/><stop offset=".45" stop-color="#f68622"/><stop offset="1" stop-color="#b85712"/></linearGradient>
-              <radialGradient id="pegHead" cx=".35" cy=".3" r=".75"><stop offset="0" stop-color="#ffc07a"/><stop offset=".55" stop-color="#f68622"/><stop offset="1" stop-color="#b85712"/></radialGradient>
+              <linearGradient id="pegSkin" x1="0" y1="0" x2="1" y2=".3"><stop offset="0" stop-color="#ffbf73"/><stop offset=".5" stop-color="#f68622"/><stop offset="1" stop-color="#a94e10"/></linearGradient>
+              <radialGradient id="pegHead" cx=".34" cy=".3" r=".8"><stop offset="0" stop-color="#ffd09a"/><stop offset=".5" stop-color="#f68622"/><stop offset="1" stop-color="#a94e10"/></radialGradient>
             </defs>
-            <ellipse class="peg__shadow" cx="30" cy="132" rx="16" ry="4" fill="rgba(16,19,15,.35)"/>
-            <ellipse class="peg__ring" cx="30" cy="132" rx="26" ry="8" fill="none" stroke="#f68622" stroke-width="3"/>
+            <ellipse class="peg__shadow" cx="30" cy="100" rx="18" ry="4.5" fill="rgba(40,24,10,.38)"/>
+            <ellipse class="peg__ring" cx="30" cy="100" rx="28" ry="8" fill="none" stroke="#f68622" stroke-width="3"/>
             <g class="peg__body">
-              <g class="peg__leg peg__leg--l"><rect x="19" y="64" width="10" height="44" rx="5" fill="url(#pegSkin)"/></g>
-              <g class="peg__leg peg__leg--r"><rect x="31" y="64" width="10" height="44" rx="5" fill="url(#pegSkin)"/></g>
-              <g class="peg__arm peg__arm--l"><rect x="8" y="30" width="9" height="36" rx="4.5" fill="url(#pegSkin)"/></g>
-              <g class="peg__arm peg__arm--r"><rect x="43" y="30" width="9" height="36" rx="4.5" fill="url(#pegSkin)"/></g>
-              <rect x="16" y="26" width="28" height="44" rx="12" fill="url(#pegSkin)"/>
-              <circle cx="30" cy="13" r="12" fill="url(#pegHead)"/>
+              <g class="peg__leg peg__leg--l"><rect x="16" y="52" width="13" height="44" rx="6.5" fill="url(#pegSkin)"/></g>
+              <g class="peg__leg peg__leg--r"><rect x="31" y="52" width="13" height="44" rx="6.5" fill="url(#pegSkin)"/></g>
+              <g class="peg__arm peg__arm--l"><rect x="3" y="26" width="13" height="34" rx="6.5" fill="url(#pegSkin)"/></g>
+              <g class="peg__arm peg__arm--r"><rect x="44" y="26" width="13" height="34" rx="6.5" fill="url(#pegSkin)"/></g>
+              <rect x="8" y="20" width="44" height="46" rx="20" fill="url(#pegSkin)"/>
+              <circle cx="30" cy="14" r="14.5" fill="url(#pegHead)"/>
             </g>
           </svg>
         </div>
@@ -280,11 +289,11 @@
         </div>
         <div class="srv__viewport">
         <ul class="srv__track">
-          <li class="srv__item srv__item--a"><picture><source type="image/avif" srcset="assets/img/borgo-colline-480.avif 480w, assets/img/borgo-colline-800.avif 800w, assets/img/borgo-colline-1280.avif 1280w, assets/img/borgo-colline-1920.avif 1920w" sizes="(min-width: 900px) 30vw, 78vw" /><img src="assets/img/borgo-colline-1280.webp" srcset="assets/img/borgo-colline-480.webp 480w, assets/img/borgo-colline-800.webp 800w, assets/img/borgo-colline-1280.webp 1280w, assets/img/borgo-colline-1920.webp 1920w" sizes="(min-width: 900px) 30vw, 78vw" width="4020" height="6024" alt="Un borgo di case in pietra tra i boschi delle colline lucchesi" data-i18n-alt="srv.alt1" loading="lazy" decoding="async" /></picture><h3 data-i18n="srv.1t">Vendita</h3><p data-i18n="srv.1d">Valutazione, servizio fotografico, promozione sui portali, selezione degli acquirenti e assistenza fino al rogito.</p></li>
-          <li class="srv__item srv__item--b"><picture><source type="image/avif" srcset="assets/img/villa-torre-480.avif 480w, assets/img/villa-torre-800.avif 800w, assets/img/villa-torre-1280.avif 1280w, assets/img/villa-torre-1920.avif 1920w" sizes="(min-width: 900px) 40vw, 78vw" /><img src="assets/img/villa-torre-1280.webp" srcset="assets/img/villa-torre-480.webp 480w, assets/img/villa-torre-800.webp 800w, assets/img/villa-torre-1280.webp 1280w, assets/img/villa-torre-1920.webp 1920w" sizes="(min-width: 900px) 40vw, 78vw" width="4020" height="6024" alt="Una casa con persiane verdi tra i pini, con una torre di Lucca dietro" data-i18n-alt="srv.alt2" loading="lazy" decoding="async" /></picture><h3 data-i18n="srv.2t">Acquisto</h3><p data-i18n="srv.2d">Ricerca su misura, visite organizzate, verifiche documentali e trattativa al tuo fianco.</p></li>
-          <li class="srv__item srv__item--c"><picture><source type="image/avif" srcset="assets/img/duomo-san-martino-480.avif 480w, assets/img/duomo-san-martino-800.avif 800w, assets/img/duomo-san-martino-1280.avif 1280w, assets/img/duomo-san-martino-1920.avif 1920w" sizes="(min-width: 900px) 28vw, 78vw" /><img src="assets/img/duomo-san-martino-1280.webp" srcset="assets/img/duomo-san-martino-480.webp 480w, assets/img/duomo-san-martino-800.webp 800w, assets/img/duomo-san-martino-1280.webp 1280w, assets/img/duomo-san-martino-1920.webp 1920w" sizes="(min-width: 900px) 28vw, 78vw" width="3456" height="4608" alt="Il Duomo di San Martino a Lucca visto da un vicolo" data-i18n-alt="srv.alt3" loading="lazy" decoding="async" /></picture><h3 data-i18n="srv.3t">Affitti</h3><p data-i18n="srv.3d">Locazioni a lungo termine, transitorie e turistiche, con selezione degli inquilini, contratto e registrazione.</p></li>
-          <li class="srv__item srv__item--a"><picture><source type="image/avif" srcset="assets/img/muro-casale-480.avif 480w, assets/img/muro-casale-800.avif 800w, assets/img/muro-casale-1280.avif 1280w, assets/img/muro-casale-1920.avif 1920w" sizes="(min-width: 900px) 30vw, 78vw" /><img src="assets/img/muro-casale-1280.webp" srcset="assets/img/muro-casale-480.webp 480w, assets/img/muro-casale-800.webp 800w, assets/img/muro-casale-1280.webp 1280w, assets/img/muro-casale-1920.webp 1920w" sizes="(min-width: 900px) 30vw, 78vw" width="3934" height="5901" alt="Il muro in pietra di un casale toscano con una finestra verde e il tetto in coppi" data-i18n-alt="srv.alt4" loading="lazy" decoding="async" /></picture><h3 data-i18n="srv.4t">Valutazione gratuita</h3><p data-i18n="srv.4d">Una stima onesta, basata su sopralluogo e vendite comparabili. Senza impegno.</p></li>
-          <li class="srv__item srv__item--b"><picture><source type="image/avif" srcset="assets/img/finestra-lucca-480.avif 480w, assets/img/finestra-lucca-800.avif 800w, assets/img/finestra-lucca-1280.avif 1280w, assets/img/finestra-lucca-1920.avif 1920w" sizes="(min-width: 900px) 40vw, 78vw" /><img src="assets/img/finestra-lucca-1280.webp" srcset="assets/img/finestra-lucca-480.webp 480w, assets/img/finestra-lucca-800.webp 800w, assets/img/finestra-lucca-1280.webp 1280w, assets/img/finestra-lucca-1920.webp 1920w" sizes="(min-width: 900px) 40vw, 78vw" width="6024" height="4020" alt="Lucca vista attraverso le sbarre di una finestra, con le torri e le Apuane" data-i18n-alt="srv.alt5" loading="lazy" decoding="async" /></picture><h3 data-i18n="srv.5t">Dall'estero</h3><p data-i18n="srv.5d">Per chi compra da lontano: video tour, codice fiscale, notaio, traduzioni e firma tramite procura.</p></li>
+          <li class="srv__item srv__item--a"><picture><source type="image/avif" srcset="assets/img/borgo-colline-480.avif 480w, assets/img/borgo-colline-800.avif 800w, assets/img/borgo-colline-1280.avif 1280w, assets/img/borgo-colline-1920.avif 1920w" sizes="(min-width: 900px) 30vw, 78vw" /><img src="assets/img/borgo-colline-1280.webp" srcset="assets/img/borgo-colline-480.webp 480w, assets/img/borgo-colline-800.webp 800w, assets/img/borgo-colline-1280.webp 1280w, assets/img/borgo-colline-1920.webp 1920w" sizes="(min-width: 900px) 30vw, 78vw" width="4020" height="6024" alt="Un borgo di case in pietra tra i boschi delle colline lucchesi" data-i18n-alt="srv.alt1" decoding="async" /></picture><h3 data-i18n="srv.1t">Vendita</h3><p data-i18n="srv.1d">Valutazione, servizio fotografico, promozione sui portali, selezione degli acquirenti e assistenza fino al rogito.</p></li>
+          <li class="srv__item srv__item--b"><picture><source type="image/avif" srcset="assets/img/villa-torre-480.avif 480w, assets/img/villa-torre-800.avif 800w, assets/img/villa-torre-1280.avif 1280w, assets/img/villa-torre-1920.avif 1920w" sizes="(min-width: 900px) 40vw, 78vw" /><img src="assets/img/villa-torre-1280.webp" srcset="assets/img/villa-torre-480.webp 480w, assets/img/villa-torre-800.webp 800w, assets/img/villa-torre-1280.webp 1280w, assets/img/villa-torre-1920.webp 1920w" sizes="(min-width: 900px) 40vw, 78vw" width="4020" height="6024" alt="Una casa con persiane verdi tra i pini, con una torre di Lucca dietro" data-i18n-alt="srv.alt2" decoding="async" /></picture><h3 data-i18n="srv.2t">Acquisto</h3><p data-i18n="srv.2d">Ricerca su misura, visite organizzate, verifiche documentali e trattativa al tuo fianco.</p></li>
+          <li class="srv__item srv__item--c"><picture><source type="image/avif" srcset="assets/img/duomo-san-martino-480.avif 480w, assets/img/duomo-san-martino-800.avif 800w, assets/img/duomo-san-martino-1280.avif 1280w, assets/img/duomo-san-martino-1920.avif 1920w" sizes="(min-width: 900px) 28vw, 78vw" /><img src="assets/img/duomo-san-martino-1280.webp" srcset="assets/img/duomo-san-martino-480.webp 480w, assets/img/duomo-san-martino-800.webp 800w, assets/img/duomo-san-martino-1280.webp 1280w, assets/img/duomo-san-martino-1920.webp 1920w" sizes="(min-width: 900px) 28vw, 78vw" width="3456" height="4608" alt="Il Duomo di San Martino a Lucca visto da un vicolo" data-i18n-alt="srv.alt3" decoding="async" /></picture><h3 data-i18n="srv.3t">Affitti</h3><p data-i18n="srv.3d">Locazioni a lungo termine, transitorie e turistiche, con selezione degli inquilini, contratto e registrazione.</p></li>
+          <li class="srv__item srv__item--a"><picture><source type="image/avif" srcset="assets/img/muro-casale-480.avif 480w, assets/img/muro-casale-800.avif 800w, assets/img/muro-casale-1280.avif 1280w, assets/img/muro-casale-1920.avif 1920w" sizes="(min-width: 900px) 30vw, 78vw" /><img src="assets/img/muro-casale-1280.webp" srcset="assets/img/muro-casale-480.webp 480w, assets/img/muro-casale-800.webp 800w, assets/img/muro-casale-1280.webp 1280w, assets/img/muro-casale-1920.webp 1920w" sizes="(min-width: 900px) 30vw, 78vw" width="3934" height="5901" alt="Il muro in pietra di un casale toscano con una finestra verde e il tetto in coppi" data-i18n-alt="srv.alt4" decoding="async" /></picture><h3 data-i18n="srv.4t">Valutazione gratuita</h3><p data-i18n="srv.4d">Una stima onesta, basata su sopralluogo e vendite comparabili. Senza impegno.</p></li>
+          <li class="srv__item srv__item--b"><picture><source type="image/avif" srcset="assets/img/finestra-lucca-480.avif 480w, assets/img/finestra-lucca-800.avif 800w, assets/img/finestra-lucca-1280.avif 1280w, assets/img/finestra-lucca-1920.avif 1920w" sizes="(min-width: 900px) 40vw, 78vw" /><img src="assets/img/finestra-lucca-1280.webp" srcset="assets/img/finestra-lucca-480.webp 480w, assets/img/finestra-lucca-800.webp 800w, assets/img/finestra-lucca-1280.webp 1280w, assets/img/finestra-lucca-1920.webp 1920w" sizes="(min-width: 900px) 40vw, 78vw" width="6024" height="4020" alt="Lucca vista attraverso le sbarre di una finestra, con le torri e le Apuane" data-i18n-alt="srv.alt5" decoding="async" /></picture><h3 data-i18n="srv.5t">Dall'estero</h3><p data-i18n="srv.5d">Per chi compra da lontano: video tour, codice fiscale, notaio, traduzioni e firma tramite procura.</p></li>
         </ul>
         </div>
       </div>
@@ -346,13 +355,19 @@
 
     <!-- ═══ FAQ: domande accanto a una foto alta ═══ -->
     <section class="faq" id="faq" aria-labelledby="faq-title">
-      <div class="faq__col">
+      <div class="faq__head">
         <h2 class="faq__title" id="faq-title" data-words data-i18n="faq.title">Hai dei dubbi? Bene.</h2>
+        <p class="faq__lead" data-i18n="faq.lead">Comprare, vendere o affittare casa solleva domande. Queste sono quelle che sentiamo più spesso.</p>
         <ul class="faq__facts">
           <li><b data-i18n="con.office">Sede</b> <span data-i18n="con.officeV">Lucca, su appuntamento</span></li>
           <li><b data-i18n="con.hours">Orari</b> <span data-i18n="con.hoursV">Lunedì–sabato, 9:00–19:00</span></li>
           <li><b data-i18n="con.langs">Lingue</b> <span data-i18n="con.langsV">Italiano e inglese</span></li>
         </ul>
+        <div class="faq__actions">
+          <a class="btn btn--accent" href="#contatti" data-i18n="faq.cta">Fai la tua domanda</a>
+          <a class="link" href="tel:+39000000000" data-i18n="faq.call">Oppure chiamaci</a>
+        </div>
+      </div>
         <div class="acc">
           <details><summary data-i18n="q1">Quanto vale la mia casa a Lucca? Fate valutazioni gratuite?</summary><p data-i18n="a1">Sì. LuccAlfa Immobiliare effettua una valutazione gratuita e senza impegno con sopralluogo. Il valore dipende da zona, stato di manutenzione, superficie, classe energetica e confronto con le vendite recenti comparabili.</p></details>
           <details><summary data-i18n="q2">Quali zone coprite oltre a Lucca?</summary><p data-i18n="a2">Operiamo a Lucca (centro storico dentro le Mura e periferia), nella Piana di Lucca (Capannori, Porcari, Altopascio, Montecarlo), a Pisa e nei comuni vicini (San Giuliano Terme, Cascina) e in Versilia (Viareggio, Camaiore, Pietrasanta).</p></details>
@@ -365,15 +380,6 @@
           <details><summary data-i18n="q9">Dove pubblicate gli annunci?</summary><p data-i18n="a9">Oltre che sul nostro sito, pubblichiamo gli immobili sui principali portali italiani e internazionali, come Immobiliare.it, Idealista, Casa.it e Gate-away.com, per raggiungere sia acquirenti italiani sia stranieri.</p></details>
           <details><summary data-i18n="q10">Qual è la differenza tra vivere dentro le Mura di Lucca e fuori?</summary><p data-i18n="a10">Dentro le Mura il centro storico offre vita pedonale, servizi a piedi e immobili d'epoca, con vincoli edilizi e poco parcheggio. Fuori, tra Piana e colline, si trovano più spazi, giardini e box auto, con prezzi al metro quadro generalmente diversi.</p></details>
         </div>
-        <div class="faq__actions">
-          <a class="btn btn--accent" href="#contatti" data-i18n="faq.cta">Fai la tua domanda</a>
-          <a class="link" href="tel:+39000000000" data-i18n="faq.call">Oppure chiamaci</a>
-        </div>
-      </div>
-      <div class="faq__media" aria-hidden="true">
-        <picture><source type="image/avif" srcset="assets/img/porta-borghi-480.avif 480w, assets/img/porta-borghi-800.avif 800w, assets/img/porta-borghi-1280.avif 1280w, assets/img/porta-borghi-1920.avif 1920w" sizes="(min-width: 900px) 44vw, 100vw" /><img src="assets/img/porta-borghi-1280.webp" srcset="assets/img/porta-borghi-480.webp 480w, assets/img/porta-borghi-800.webp 800w, assets/img/porta-borghi-1280.webp 1280w, assets/img/porta-borghi-1920.webp 1920w" sizes="(min-width: 900px) 44vw, 100vw" width="4020" height="6024" alt="" class="faq__tall" loading="lazy" decoding="async" /></picture>
-        <picture><source type="image/avif" srcset="assets/img/fosso-lucca-480.avif 480w, assets/img/fosso-lucca-800.avif 800w, assets/img/fosso-lucca-1280.avif 1280w, assets/img/fosso-lucca-1920.avif 1920w" sizes="(min-width: 900px) 15vw, 38vw" /><img src="assets/img/fosso-lucca-1280.webp" srcset="assets/img/fosso-lucca-480.webp 480w, assets/img/fosso-lucca-800.webp 800w, assets/img/fosso-lucca-1280.webp 1280w, assets/img/fosso-lucca-1920.webp 1920w" sizes="(min-width: 900px) 15vw, 38vw" width="3456" height="4608" alt="" class="faq__sq" loading="lazy" decoding="async" /></picture>
-      </div>
     </section>
 
     <!-- ═══ CONTATTI: la scheda sulla foto ═══ -->
@@ -455,8 +461,8 @@
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 01-11.8 7L4 20l1.1-4A8 8 0 1120 12z"/></svg>
   </a>
 
-  <script src="i18n.js?v=15" defer></script>
-  <script src="script.js?v=15" defer></script>
-  <script src="intro.js?v=15" defer></script>
+  <script src="i18n.js?v=17" defer></script>
+  <script src="script.js?v=17" defer></script>
+  <script src="intro.js?v=17" defer></script>
 </body>
 </html>

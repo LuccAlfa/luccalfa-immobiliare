@@ -95,10 +95,10 @@
     document.body.classList.toggle("menu-open", open);
     burger.setAttribute("aria-expanded", String(open));
     burger.firstElementChild.textContent = open ? t("menuClose") : t("menuOpen");
-    if (mqPhone.matches) menu.inert = !open;
+    menu.inert = !open;
+    if (lenis) open ? lenis.stop() : lenis.start();
   };
-  const syncMenu = () => { menu.inert = mqPhone.matches && !menuOpen; if (!mqPhone.matches && menuOpen) setMenu(false); };
-  syncMenu(); mqPhone.addEventListener("change", syncMenu);
+  menu.inert = true;
   burger.addEventListener("click", () => setMenu(!menuOpen));
   menu.addEventListener("click", (e) => { if (e.target.closest("a")) setMenu(false); });
   addEventListener("keydown", (e) => { if (e.key === "Escape" && menuOpen) { setMenu(false); burger.focus(); } });
@@ -115,7 +115,6 @@
     if (wa) wa.classList.toggle("is-on", past);
     if (Math.abs(d) > 6 || y < 120) lastY = y;
     ticking = false;
-    try { autoLots(); } catch (e) { /* elenco non ancora pronto */ }
   };
   addEventListener("scroll", () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
   onScroll();
@@ -149,7 +148,7 @@
       if (!on) f.classList.remove("is-on", "is-anim");
     });
     const fig = figs.find((f) => f.dataset.lot === li.dataset.lot);
-    if (fig) { fig.classList.remove("is-anim"); void fig.offsetWidth; fig.classList.add("is-on", "is-anim"); }
+    if (fig) fig.classList.add("is-on");
   };
   const fine = matchMedia("(hover: hover) and (pointer: fine)").matches;
   lots.forEach((li) => {
@@ -165,18 +164,21 @@
     if (active && active.classList.contains("is-hidden")) activate(lots.find((li) => !li.classList.contains("is-hidden")));
   }));
 
-  let touchedAt = 0;
-  lots.forEach((li) => li.addEventListener("pointerenter", () => { touchedAt = performance.now(); }));
+  // gli annunci scorrono da soli, piano, finché l'elenco è in vista e nessuno lo sta usando
   const lotsSec = $(".lots");
-  function autoLots() {
-    if (!lotsSec || !fine || innerWidth < 900 || reduce || performance.now() - touchedAt < 2500) return;
-    const r = lotsSec.getBoundingClientRect(), span = r.height - innerHeight;
-    if (span < innerHeight * 0.5 || r.top > 0 || r.bottom < innerHeight) return;
-    const vis = lots.filter((li) => !li.classList.contains("is-hidden"));
-    const i = Math.min(vis.length - 1, Math.floor(clampN(-r.top / span, 0, 0.999) * vis.length));
-    activate(vis[i]);
+  let hold = false, inView = false;
+  if (lotsSec) {
+    lotsSec.addEventListener("pointerenter", () => { hold = true; });
+    lotsSec.addEventListener("pointerleave", () => { hold = false; });
+    lotsSec.addEventListener("focusin", () => { hold = true; });
+    lotsSec.addEventListener("focusout", () => { hold = false; });
+    new IntersectionObserver(([e]) => { inView = e.isIntersecting; }, { threshold: 0.35 }).observe(lotsSec);
+    if (!reduce) setInterval(() => {
+      if (!inView || hold || document.hidden) return;
+      const vis = lots.filter((li) => !li.classList.contains("is-hidden"));
+      if (vis.length > 1) activate(vis[(vis.indexOf(active) + 1) % vis.length]);
+    }, 4600);
   }
-  function clampN(v, a, b) { return Math.min(b, Math.max(a, v)); }
 
   /* ═════ MODULO ═════ */
   const picks = { mode: "buy", zone: "centro" };
@@ -245,6 +247,7 @@
     if (track && view && sstage) sstage.style.setProperty("--tx", Math.max(0, track.scrollWidth - view.clientWidth) + "px");
   };
   addEventListener("load", measure); addEventListener("resize", measure); measure();
+  $$(".srv__track img").forEach((im) => { if (!im.complete) im.addEventListener("load", measure, { once: true }); });
 
   /* ═════ SCORRIMENTO MORBIDO: solo computer con mouse ═════ */
   let lenis = null;

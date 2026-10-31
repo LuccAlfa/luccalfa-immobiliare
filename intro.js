@@ -29,8 +29,8 @@
   const measure = () => { W = innerWidth; H = innerHeight; k = peg.getBoundingClientRect().width / 120 || 0.6; };
   addEventListener("resize", measure);
 
-  // offset nel disegno: testa (30,13) e piedi (30,108); il viewBox parte da (-30,-8)
-  const headX = () => 60 * k, headY = () => 21 * k, feetToHead = () => 95 * k;
+  // offset nel disegno: testa (30,14) e piedi (30,96); il viewBox parte da (-30,-8)
+  const headX = () => 60 * k, headY = () => 22 * k, feetToHead = () => 82 * k;
 
   const target = (u) => {
     // dove dovrebbe stare la TESTA a questo punto del percorso
@@ -83,11 +83,11 @@
     const aL = th * 0.7 + swing + clamp(-vy * 0.02, -25, 25) * air + Math.sin(clock * 2) * 1.5;
     const aR = th * 0.7 - swing - clamp(-vy * 0.02, -25, 25) * air - Math.sin(clock * 2) * 1.5;
     const lL = -th * 0.45 + swing2, lR = -th * 0.45 - swing2 * 0.8;
-    body.setAttribute("transform", `rotate(${th.toFixed(2)} 30 13) translate(30 108) scale(${(1 + squash).toFixed(3)} ${(1 - squash).toFixed(3)}) translate(-30 -108)`);
-    armL.setAttribute("transform", `rotate(${aL.toFixed(2)} 12.5 32)`);
-    armR.setAttribute("transform", `rotate(${aR.toFixed(2)} 47.5 32)`);
-    legL.setAttribute("transform", `rotate(${lL.toFixed(2)} 24 66)`);
-    legR.setAttribute("transform", `rotate(${lR.toFixed(2)} 36 66)`);
+    body.setAttribute("transform", `rotate(${th.toFixed(2)} 30 14) translate(30 96) scale(${(1 + squash).toFixed(3)} ${(1 - squash).toFixed(3)}) translate(-30 -96)`);
+    armL.setAttribute("transform", `rotate(${aL.toFixed(2)} 9.5 32)`);
+    armR.setAttribute("transform", `rotate(${aR.toFixed(2)} 50.5 32)`);
+    legL.setAttribute("transform", `rotate(${lL.toFixed(2)} 22.5 58)`);
+    legR.setAttribute("transform", `rotate(${lR.toFixed(2)} 37.5 58)`);
 
     // ombra a terra: più piccola e chiara quanto più l'omino è in alto
     const feetY = py + feetToHead(), ground = T[1] * H;
@@ -102,7 +102,7 @@
     if (p > DIVE) { const d = clamp((p - DIVE) / (GONE - DIVE), 0, 1); sc = 1 + d * 2.6; op *= 1 - ease(d); }
     peg.style.opacity = op.toFixed(3);
     peg.style.transform = `translate(${(px - headX()).toFixed(1)}px, ${(py - headY()).toFixed(1)}px) scale(${sc.toFixed(3)})`;
-    peg.style.transformOrigin = `${headX()}px ${116 * k}px`;
+    peg.style.transformOrigin = `${headX()}px ${104 * k}px`;
 
     if (running) requestAnimationFrame(frame);
   };

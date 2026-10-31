@@ -117,6 +117,7 @@ window.I18N_EN = {
   "zon.cap": "Eleven towns: Lucca, Capannori, Porcari, Montecarlo, Altopascio, Pisa, San Giuliano Terme, Cascina, Viareggio, Camaiore and Pietrasanta.",
 
   "faq.title": "Got questions? Good.",
+  "faq.lead": "Buying, selling or renting a home raises questions. These are the ones we hear most often.",
   "faq.cta": "Ask your question",
   "faq.call": "Or give us a call",
   "q1": "What is my home in Lucca worth? Do you offer free valuations?",
