@@ -22,8 +22,7 @@ window.I18N_EN = {
   "hero.cta": "See the properties",
 
   "door.title": "Every home begins<br>with a door.",
-  "door.alt": "The façade of a historic palazzo with a carved stone portal and an arched wooden front door",
-  "door.alt2": "A bright, spacious room with bookcases on the walls, a chandelier and a large window in the middle",
+  "door.alt": "A large arched wooden front door in a brick façade, with a white marble threshold",
   "door.big": "We walk you<br>to the other side.",
   "door.p": "We walk you to the other side, with clear timelines, costs explained upfront and no surprises.",
 
@@ -31,6 +30,7 @@ window.I18N_EN = {
   "about.cap1": "The Guinigi Tower, Lucca",
   "about.title": "We know Lucca,<br>street by street.",
   "about.lead": "We know where the morning sun lands and which alley stays cool in summer.",
+  "about.cta": "Tell us what you are looking for",
   "about.text": "We don't sell square metres: we tell the story of places. We are LuccAlfa and we guide families, investors and people coming from far away, from the first phone call to signing at the notary. We work in English and Italian, inside the Walls and in eleven towns across the Plain, Pisa and Versilia.",
   "about.alt2": "The Fosso canal in Lucca, running between colourful houses",
   "about.cap2": "The Fosso, Via del Fosso",
@@ -143,6 +143,7 @@ window.I18N_EN = {
   "q10": "What's the difference between living inside Lucca's Walls and outside?",
   "a10": "Inside the Walls, the historic centre offers pedestrian life, everything within walking distance and period buildings, with building restrictions and little parking. Outside, across the Plain and hills, you'll find more space, gardens and garages, with generally different prices per square metre.",
 
+  "con.alt": "Piazza dell'Anfiteatro in Lucca seen from under one of its arches",
   "con.title": "Let's talk",
   "con.lead": "Tell us what you're looking for or which home you'd like valued. We usually reply within one working day.",
   "con.phone": "Phone",
@@ -175,7 +176,7 @@ window.I18N_EN = {
   "ft.privacy": "Privacy",
   "ft.cookie": "Cookies",
   "ft.top": "Back to top",
-  "ft.credits": "Photos: Unsplash and Pexels; Lecciona dunes by DimiTalen (CC0), front door by Ayşenur Yavuz and room by Lawrence Chismorie (Unsplash).",
+  "ft.credits": "Photos: Unsplash and Pexels; Lecciona dunes by DimiTalen (CC0), front door by Balint Miko and courtyard by Lucas Chizzali (Unsplash).",
   "wa": "Message us on WhatsApp"
 };
 

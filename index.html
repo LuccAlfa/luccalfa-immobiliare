@@ -26,7 +26,7 @@
   <link rel="preload" href="assets/fonts/switzer-400.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" as="image" href="assets/img/tetti-lucca-p-720.avif" type="image/avif" media="(max-width: 699px)" />
   <link rel="preload" as="image" imagesrcset="assets/img/tetti-lucca-1280.avif 1280w, assets/img/tetti-lucca-1920.avif 1920w, assets/img/tetti-lucca-2560.avif 2560w" imagesizes="100vw" type="image/avif" media="(min-width: 700px)" />
-  <link rel="stylesheet" href="styles.css?v=19" />
+  <link rel="stylesheet" href="styles.css?v=20" />
 
   <!-- ═════ SCHEMA.ORG: RealEstateAgent + LocalBusiness ═════
        Entità autonoma: nessun collegamento all'entità di luccalfa.it (giardinaggio e pulizie),
@@ -111,26 +111,28 @@
   <!-- NAV: logo e nome; a destra lingua, valutazione e Menu (menu a tutto schermo) -->
   <header class="nav" id="nav">
     <a href="#top" class="nav__logo" aria-label="LuccAlfa Immobiliare – Home">
-      <span class="nav__word">LuccAlfa <span>Immobiliare</span></span>
+      <span class="nav__word">LuccAlfa</span>
     </a>
     <div class="nav__right">
       <div class="lang" role="group" aria-label="Lingua / Language">
         <button type="button" data-lang="it" aria-pressed="true" lang="it" aria-label="Italiano"><svg viewBox="0 0 3 2" aria-hidden="true"><rect width="1" height="2" fill="#009246"/><rect x="1" width="1" height="2" fill="#fff"/><rect x="2" width="1" height="2" fill="#ce2b37"/></svg></button>
         <button type="button" data-lang="en" aria-pressed="false" lang="en" aria-label="English"><svg viewBox="0 0 60 40" aria-hidden="true"><rect width="60" height="40" fill="#012169"/><path d="M0 0L60 40M60 0L0 40" stroke="#fff" stroke-width="8"/><path d="M0 0L60 40M60 0L0 40" stroke="#c8102e" stroke-width="3"/><path d="M30 0V40M0 20H60" stroke="#fff" stroke-width="12"/><path d="M30 0V40M0 20H60" stroke="#c8102e" stroke-width="7"/></svg></button>
       </div>
-      <a class="nav__cta roll" href="#contatti"><span data-i18n="nav.cta">Valutazione gratuita</span></a>
-      <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="menu" aria-label="Apri il menu" data-i18n-aria="nav.menu"><i class="burger__icon" aria-hidden="true"></i></button>
+      <a class="btn btn--accent nav__cta roll" href="#contatti"><span data-i18n="nav.cta">Valutazione gratuita</span></a>
+      <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="menu" aria-label="Apri il menu" data-i18n-aria="nav.menu"><i></i><i></i><i></i></button>
     </div>
   </header>
+  <!-- MENU: una tendina verde che cala dall'alto; le voci salgono dalla loro riga -->
   <div class="menu" id="menu">
-    <nav class="menu__links" aria-label="Menu principale" data-i18n-aria="nav.aria">
-      <a href="#immobili" data-i18n="m.list">Immobili</a>
-      <a href="#servizi" data-i18n="m.srv">Servizi</a>
-      <a href="#zone" data-i18n="m.zon">Zone</a>
-      <a href="#faq" data-i18n="m.faq">Domande</a>
-      <a href="#contatti" data-i18n="m.con">Contatti</a>
+    <nav aria-label="Menu principale" data-i18n-aria="nav.aria">
+      <ul class="menu__links">
+        <li><a href="#immobili"><span class="menu__text" data-i18n="m.list">Immobili</span><svg class="menu__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M17 7H7M17 7v10"/></svg></a></li>
+        <li><a href="#servizi"><span class="menu__text" data-i18n="m.srv">Servizi</span><svg class="menu__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M17 7H7M17 7v10"/></svg></a></li>
+        <li><a href="#zone"><span class="menu__text" data-i18n="m.zon">Zone</span><svg class="menu__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M17 7H7M17 7v10"/></svg></a></li>
+        <li><a href="#faq"><span class="menu__text" data-i18n="m.faq">Domande</span><svg class="menu__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M17 7H7M17 7v10"/></svg></a></li>
+        <li><a href="#contatti"><span class="menu__text" data-i18n="m.con">Contatti</span><svg class="menu__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M17 7H7M17 7v10"/></svg></a></li>
+      </ul>
     </nav>
-    <figure class="menu__pic" aria-hidden="true"><picture><source type="image/avif" srcset="assets/img/loggia-anfiteatro-480.avif 480w, assets/img/loggia-anfiteatro-800.avif 800w, assets/img/loggia-anfiteatro-1280.avif 1280w, assets/img/loggia-anfiteatro-1537.avif 1537w" sizes="40vw" /><img src="assets/img/loggia-anfiteatro-1280.webp" srcset="assets/img/loggia-anfiteatro-480.webp 480w, assets/img/loggia-anfiteatro-800.webp 800w, assets/img/loggia-anfiteatro-1280.webp 1280w, assets/img/loggia-anfiteatro-1537.webp 1537w" sizes="40vw" width="1537" height="1023" alt="" loading="lazy" decoding="async" /></picture></figure>
     <div class="menu__foot">
       <a href="mailto:immobiliare@luccalfa.it">immobiliare@luccalfa.it</a>
       <a href="tel:+39000000000">+39 000 000 0000</a>
@@ -145,16 +147,20 @@
       <div class="intro__stage">
         <div class="intro__street">
           <div class="intro__dolly">
-          <div class="intro__room">
-            <picture><source type="image/avif" srcset="assets/img/sala-1280.avif 1280w, assets/img/sala-1920.avif 1920w, assets/img/sala-2880.avif 2880w, assets/img/sala-3840.avif 3840w" sizes="(min-width: 900px) 200vw, 300vw" /><img src="assets/img/sala-1280.webp" srcset="assets/img/sala-1280.webp 1280w, assets/img/sala-1920.webp 1920w, assets/img/sala-2880.webp 2880w, assets/img/sala-3840.webp 3840w" sizes="(min-width: 900px) 200vw, 300vw" width="3840" height="2560" alt="Una sala luminosa e ampia, con librerie alle pareti, un lampadario e una grande finestra al centro" data-i18n-alt="door.alt2" loading="lazy" decoding="async" /></picture>
-          </div>
           <div class="intro__scene">
-            <div class="door__leaves" aria-hidden="true">
-              <span class="door__leaf door__leaf--l"><picture><source type="image/avif" srcset="assets/img/portone-anta-sx-260.avif 260w, assets/img/portone-anta-sx-520.avif 520w" sizes="(min-width: 900px) 16vw, 40vw" /><img src="assets/img/portone-anta-sx-520.webp" srcset="assets/img/portone-anta-sx-260.webp 260w, assets/img/portone-anta-sx-520.webp 520w" sizes="(min-width: 900px) 16vw, 40vw" width="437" height="1385" alt="" loading="lazy" decoding="async" /></picture></span>
-              <span class="door__leaf door__leaf--r"><picture><source type="image/avif" srcset="assets/img/portone-anta-dx-260.avif 260w, assets/img/portone-anta-dx-520.avif 520w" sizes="(min-width: 900px) 16vw, 40vw" /><img src="assets/img/portone-anta-dx-520.webp" srcset="assets/img/portone-anta-dx-260.webp 260w, assets/img/portone-anta-dx-520.webp 520w" sizes="(min-width: 900px) 16vw, 40vw" width="473" height="1385" alt="" loading="lazy" decoding="async" /></picture></span>
+            <!-- l'androne dietro il portone: pavimento, pareti e volta sono piani 3D veri, il cortile è in fondo -->
+            <div class="androne" aria-hidden="true">
+              <span class="androne__court"><picture><source type="image/avif" srcset="assets/img/cortile-800.avif 800w, assets/img/cortile-1400.avif 1400w, assets/img/cortile-2000.avif 2000w" sizes="(min-width: 900px) 40vw, 80vw" /><img src="assets/img/cortile-1400.webp" srcset="assets/img/cortile-800.webp 800w, assets/img/cortile-1400.webp 1400w, assets/img/cortile-2000.webp 2000w" sizes="(min-width: 900px) 40vw, 80vw" width="3283" height="3648" alt="" loading="lazy" decoding="async" /></picture></span>
+              <span class="androne__floor"></span>
+              <span class="androne__wall androne__wall--l"></span>
+              <span class="androne__wall androne__wall--r"></span>
+              <span class="androne__vault"><i style="--a:173.57deg"></i><i style="--a:160.71deg"></i><i style="--a:147.86deg"></i><i style="--a:135deg"></i><i style="--a:122.14deg"></i><i style="--a:109.29deg"></i><i style="--a:96.43deg"></i><i style="--a:83.57deg"></i><i style="--a:70.71deg"></i><i style="--a:57.86deg"></i><i style="--a:45deg"></i><i style="--a:32.14deg"></i><i style="--a:19.29deg"></i><i style="--a:6.43deg"></i></span>
             </div>
-            <span class="door__jamb" aria-hidden="true"></span>
-            <picture><source type="image/avif" srcset="assets/img/portone-1600.avif 1600w, assets/img/portone-2400.avif 2400w" sizes="(min-width: 900px) 150vw, 300vw" /><img src="assets/img/portone-2400.webp" srcset="assets/img/portone-1600.webp 1600w, assets/img/portone-2400.webp 2400w" sizes="(min-width: 900px) 150vw, 300vw" width="4200" height="2800" alt="La facciata di un palazzo storico con un portale in pietra scolpita e un portone in legno ad arco" data-i18n-alt="door.alt" class="door__facade" loading="lazy" decoding="async" /></picture>
+            <div class="door__leaves" aria-hidden="true">
+              <span class="door__leaf door__leaf--l"><picture><source type="image/avif" srcset="assets/img/anta-sx-300.avif 300w, assets/img/anta-sx-600.avif 600w, assets/img/anta-sx-1000.avif 1000w" sizes="(min-width: 900px) 26vw, 52vw" /><img src="assets/img/anta-sx-600.webp" srcset="assets/img/anta-sx-300.webp 300w, assets/img/anta-sx-600.webp 600w, assets/img/anta-sx-1000.webp 1000w" sizes="(min-width: 900px) 26vw, 52vw" width="1031" height="2526" alt="" loading="lazy" decoding="async" /></picture></span>
+              <span class="door__leaf door__leaf--r"><picture><source type="image/avif" srcset="assets/img/anta-dx-300.avif 300w, assets/img/anta-dx-600.avif 600w, assets/img/anta-dx-1000.avif 1000w" sizes="(min-width: 900px) 26vw, 52vw" /><img src="assets/img/anta-dx-600.webp" srcset="assets/img/anta-dx-300.webp 300w, assets/img/anta-dx-600.webp 600w, assets/img/anta-dx-1000.webp 1000w" sizes="(min-width: 900px) 26vw, 52vw" width="1031" height="2526" alt="" loading="lazy" decoding="async" /></picture></span>
+            </div>
+            <picture class="door__front"><source type="image/avif" srcset="assets/img/portone-cotto-1600.avif 1600w, assets/img/portone-cotto-2400.avif 2400w, assets/img/portone-cotto-3200.avif 3200w" sizes="(min-width: 900px) 150vw, 300vw" /><img src="assets/img/portone-cotto-2400.webp" srcset="assets/img/portone-cotto-1600.webp 1600w, assets/img/portone-cotto-2400.webp 2400w, assets/img/portone-cotto-3200.webp 3200w" sizes="(min-width: 900px) 150vw, 300vw" width="5976" height="3984" alt="Un grande portone in legno ad arco in una facciata di mattoni, con la soglia in marmo bianco" data-i18n-alt="door.alt" class="door__facade" loading="lazy" decoding="async" /></picture>
           </div>
           </div>
         </div>
@@ -167,19 +173,18 @@
           </picture>
         </div>
         <div class="peg" id="peg" aria-hidden="true">
-          <svg viewBox="-30 -8 120 110" overflow="visible">
-            <defs>
-              <linearGradient id="pegSkin" x1="0" x2="1"><stop offset="0" stop-color="#ffb35e"/><stop offset=".55" stop-color="#f68622"/><stop offset="1" stop-color="#c8661a"/></linearGradient>
-              <radialGradient id="pegHead" cx=".38" cy=".32" r=".75"><stop offset="0" stop-color="#ffc483"/><stop offset=".6" stop-color="#f68622"/><stop offset="1" stop-color="#c8661a"/></radialGradient>
-            </defs>
-            <ellipse class="peg__ring" cx="30" cy="92" rx="22" ry="6" fill="none" stroke="#f68622" stroke-width="2.5"/>
-            <g class="peg__body">
-              <g class="peg__leg peg__leg--l"><rect x="21" y="50" width="8.5" height="40" rx="4.25" fill="url(#pegSkin)"/></g>
-              <g class="peg__leg peg__leg--r"><rect x="30.5" y="50" width="8.5" height="40" rx="4.25" fill="url(#pegSkin)"/></g>
-              <g class="peg__arm peg__arm--l"><rect x="12" y="24" width="7" height="28" rx="3.5" fill="url(#pegSkin)"/></g>
-              <g class="peg__arm peg__arm--r"><rect x="41" y="24" width="7" height="28" rx="3.5" fill="url(#pegSkin)"/></g>
-              <path d="M17 27 Q17 21.5 22.5 21.5 L37.5 21.5 Q43 21.5 43 27 L40.5 52 Q40 56 36 56 L24 56 Q20 56 19.5 52 Z" fill="url(#pegSkin)"/>
-              <circle cx="30" cy="11" r="10.5" fill="url(#pegHead)"/>
+          <svg viewBox="-20 -10 100 120" overflow="visible">
+            <ellipse class="peg__shadow" cx="30" cy="95" rx="15" ry="3.6" fill="#2a1a0e"/>
+            <ellipse class="peg__ring" cx="30" cy="95" rx="22" ry="6" fill="none" stroke="#f68622" stroke-width="2.5"/>
+            <!-- una sola sagoma piena: i giunti di braccia e gambe stanno dentro il busto -->
+            <g class="peg__body" fill="#f68622">
+              <g class="peg__leg peg__leg--l"><rect x="20" y="52" width="10.5" height="43" rx="5.25"/></g>
+              <g class="peg__leg peg__leg--r"><rect x="29.5" y="52" width="10.5" height="43" rx="5.25"/></g>
+              <g class="peg__arm peg__arm--l"><rect x="12.5" y="24.5" width="9" height="31" rx="4.5"/></g>
+              <g class="peg__arm peg__arm--r"><rect x="38.5" y="24.5" width="9" height="31" rx="4.5"/></g>
+              <path d="M16.5 32 Q16.5 23 25.5 23 H34.5 Q43.5 23 43.5 32 L41.5 58 Q41 64 35 64 H25 Q19 64 18.5 58 Z"/>
+              <rect x="25" y="17" width="10" height="9" rx="3"/>
+              <circle cx="30" cy="11.5" r="11.5"/>
             </g>
           </svg>
         </div>
@@ -195,13 +200,14 @@
       </div>
     </section>
 
-    <!-- ═══ CHI SIAMO: scena con l'arco che si apre sulla Torre Guinigi ═══ -->
+    <!-- ═══ CHI SIAMO: testo a sinistra, l'arco sulla Torre Guinigi a destra, il Fosso appoggiato sopra ═══ -->
     <section class="about" id="chi-siamo" aria-labelledby="about-title">
       <div class="about__stage">
-        <h2 class="about__title" id="about-title" data-words data-i18n-html="about.title">Conosciamo Lucca<br>strada per strada.</h2>
         <div class="about__body">
-          <p class="about__lead" data-scrub data-i18n="about.lead">Sappiamo dove batte il sole la mattina e quale vicolo resta fresco d'estate.</p>
-          <p class="about__text" data-i18n="about.text">Non vendiamo metri quadri: raccontiamo luoghi. Siamo LuccAlfa e accompagniamo famiglie, investitori e chi arriva da lontano, dalla prima telefonata alla firma dal notaio. Lavoriamo in italiano e in inglese, dentro le Mura e in undici comuni tra la Piana, Pisa e la Versilia.</p>
+          <h2 class="about__title" id="about-title" data-words data-i18n-html="about.title">Conosciamo Lucca<br>strada per strada.</h2>
+          <p class="about__lead" data-reveal data-i18n="about.lead">Sappiamo dove batte il sole la mattina e quale vicolo resta fresco d'estate.</p>
+          <p class="about__text" data-reveal data-i18n="about.text">Non vendiamo metri quadri: raccontiamo luoghi. Siamo LuccAlfa e accompagniamo famiglie, investitori e chi arriva da lontano, dalla prima telefonata alla firma dal notaio. Lavoriamo in italiano e in inglese, dentro le Mura e in undici comuni tra la Piana, Pisa e la Versilia.</p>
+          <a class="link about__link" href="#contatti" data-reveal data-i18n="about.cta">Raccontaci cosa cerchi</a>
         </div>
         <figure class="about__big">
           <div class="about__frame"><picture><source type="image/avif" srcset="assets/img/torre-guinigi-480.avif 480w, assets/img/torre-guinigi-800.avif 800w, assets/img/torre-guinigi-1280.avif 1280w, assets/img/torre-guinigi-1920.avif 1920w" sizes="(min-width: 900px) 36vw, 100vw" /><img src="assets/img/torre-guinigi-1280.webp" srcset="assets/img/torre-guinigi-480.webp 480w, assets/img/torre-guinigi-800.webp 800w, assets/img/torre-guinigi-1280.webp 1280w, assets/img/torre-guinigi-1920.webp 1920w" sizes="(min-width: 900px) 36vw, 100vw" width="3979" height="5969" alt="Una via del centro di Lucca con la Torre Guinigi e i suoi lecci in cima" data-i18n-alt="about.alt1" loading="lazy" decoding="async" /></picture></div>
@@ -367,11 +373,6 @@
       <div class="faq__head">
         <h2 class="faq__title" id="faq-title" data-words data-i18n="faq.title">Hai dei dubbi? Bene.</h2>
         <p class="faq__lead" data-i18n="faq.lead">Comprare, vendere o affittare casa solleva domande. Queste sono quelle che sentiamo più spesso.</p>
-        <ul class="faq__facts">
-          <li><b data-i18n="con.office">Sede</b> <span data-i18n="con.officeV">Lucca, su appuntamento</span></li>
-          <li><b data-i18n="con.hours">Orari</b> <span data-i18n="con.hoursV">Lunedì–sabato, 9:00–19:00</span></li>
-          <li><b data-i18n="con.langs">Lingue</b> <span data-i18n="con.langsV">Italiano e inglese</span></li>
-        </ul>
         <div class="faq__actions">
           <a class="btn btn--accent" href="#contatti" data-i18n="faq.cta">Non trovi la risposta? Scrivici</a>
           <a class="link" href="tel:+39000000000" data-i18n="faq.call">Oppure chiamaci</a>
@@ -391,19 +392,22 @@
         </div>
     </section>
 
-    <!-- ═══ CONTATTI: la scheda sulla foto ═══ -->
+    <!-- ═══ CONTATTI: stesso campo e stessa griglia delle domande; a sinistra chi siamo e dove, a destra il modulo ═══ -->
     <section class="contact" id="contatti" aria-labelledby="contact-title">
-      <picture><source type="image/avif" srcset="assets/img/loggia-anfiteatro-480.avif 480w, assets/img/loggia-anfiteatro-800.avif 800w, assets/img/loggia-anfiteatro-1280.avif 1280w, assets/img/loggia-anfiteatro-1537.avif 1537w" sizes="100vw" /><img src="assets/img/loggia-anfiteatro-1280.webp" srcset="assets/img/loggia-anfiteatro-480.webp 480w, assets/img/loggia-anfiteatro-800.webp 800w, assets/img/loggia-anfiteatro-1280.webp 1280w, assets/img/loggia-anfiteatro-1537.webp 1537w" sizes="100vw" width="1537" height="1023" alt="" class="contact__bg" loading="lazy" decoding="async" /></picture>
-      <div class="card">
-        <h2 class="card__title" id="contact-title" data-i18n="con.title">Parliamone</h2>
-        <p class="card__lead" data-i18n="con.lead">Raccontaci cosa cerchi o quale casa vuoi valutare. Rispondiamo di norma entro un giorno lavorativo.</p>
-        <ul class="card__info">
+      <div class="contact__head">
+        <h2 class="contact__title" id="contact-title" data-words data-i18n="con.title">Parliamone</h2>
+        <p class="contact__lead" data-i18n="con.lead">Raccontaci cosa cerchi o quale casa vuoi valutare. Rispondiamo di norma entro un giorno lavorativo.</p>
+        <ul class="contact__info">
           <!-- TODO: sostituire con il numero reale -->
           <li><span data-i18n="con.phone">Telefono</span><a href="tel:+39000000000">+39 000 000 0000</a></li>
           <li><span>Email</span><a href="mailto:immobiliare@luccalfa.it">immobiliare@luccalfa.it</a></li>
           <li><span data-i18n="con.hours">Orari</span><span data-i18n="con.hoursS">Lun–sab, 9–19</span></li>
+          <li><span data-i18n="con.office">Sede</span><span data-i18n="con.officeV">Lucca, su appuntamento</span></li>
+          <li><span data-i18n="con.langs">Lingue</span><span data-i18n="con.langsV">Italiano e inglese</span></li>
         </ul>
-
+        <figure class="contact__pic"><picture><source type="image/avif" srcset="assets/img/loggia-anfiteatro-480.avif 480w, assets/img/loggia-anfiteatro-800.avif 800w, assets/img/loggia-anfiteatro-1280.avif 1280w" sizes="(min-width: 900px) 30vw, 90vw" /><img src="assets/img/loggia-anfiteatro-800.webp" srcset="assets/img/loggia-anfiteatro-480.webp 480w, assets/img/loggia-anfiteatro-800.webp 800w, assets/img/loggia-anfiteatro-1280.webp 1280w" sizes="(min-width: 900px) 30vw, 90vw" width="1537" height="1023" alt="Piazza dell'Anfiteatro a Lucca vista da sotto uno dei suoi archi" data-i18n-alt="con.alt" loading="lazy" decoding="async" /></picture></figure>
+      </div>
+      <div class="contact__body">
         <form id="contact-form" class="form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" data-endpoint="https://formspree.io/f/YOUR_FORM_ID">
           <fieldset class="pick">
             <legend data-i18n="f.want">Cosa cerchi?</legend>
@@ -461,7 +465,7 @@
           <li>Via di Villa Altieri, 55100 Lucca</li>
         </ul>
       </div>
-      <p class="postcard__imprint">© <span id="year">2026</span> LuccAlfa Srls · P.IVA 07079510488 · <span data-i18n="ft.credits">Foto: Unsplash e Pexels; dune della Lecciona di DimiTalen (CC0), portone di Ayşenur Yavuz e sala di Lawrence Chismorie (Unsplash).</span></p>
+      <p class="postcard__imprint">© <span id="year">2026</span> LuccAlfa Srls · P.IVA 07079510488 · <span data-i18n="ft.credits">Foto: Unsplash e Pexels; dune della Lecciona di DimiTalen (CC0), portone di Balint Miko e cortile di Lucas Chizzali (Unsplash).</span></p>
     </div>
     <p class="footer__word" aria-hidden="true">LuccAlfa</p>
   </footer>
@@ -470,8 +474,8 @@
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 01-11.8 7L4 20l1.1-4A8 8 0 1120 12z"/></svg>
   </a>
 
-  <script src="i18n.js?v=19" defer></script>
-  <script src="script.js?v=19" defer></script>
-  <script src="intro.js?v=19" defer></script>
+  <script src="i18n.js?v=20" defer></script>
+  <script src="script.js?v=20" defer></script>
+  <script src="intro.js?v=20" defer></script>
 </body>
 </html>

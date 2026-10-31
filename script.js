@@ -252,18 +252,8 @@
   syncRoll();
 
   /* ═════ MISURE DELLE SCENE ═════
-     Porta: scala finale perché il vano copra tutto lo schermo.
      Servizi: di quanto scorre la galleria orizzontale. */
   const measure = () => {
-    const stage = $(".intro__stage"), leaves = $(".door__leaves"), scene = $(".intro__scene");
-    if (stage && leaves && scene && getComputedStyle(stage).position === "sticky") {
-      const W = stage.clientWidth, H = stage.clientHeight;
-      const sw = scene.offsetWidth, sh = scene.offsetHeight;
-      const hw = sw * 0.105238, hh = sh * 0.244821;
-      const cx = scene.offsetLeft + sw * 0.511905, cy = scene.offsetTop + sh * 0.570179;
-      const s = Math.max(cx / hw, (W - cx) / hw, cy / hh, (H - cy) / hh) * 1.1;
-      stage.style.setProperty("--s-end", s.toFixed(3));
-    }
     const track = $(".srv__track"), view = $(".srv__viewport"), sstage = $(".srv__stage");
     if (track && view && sstage) sstage.style.setProperty("--tx", Math.max(0, track.scrollWidth - view.clientWidth) + "px");
   };
