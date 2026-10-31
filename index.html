@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <title>Agenzia Immobiliare a Lucca e Pisa | Vendita e Affitto Case – LuccAlfa Immobiliare</title>
   <meta name="description" content="LuccAlfa Immobiliare: compravendita e affitto di case, ville, rustici e appartamenti a Lucca, Pisa, Versilia e dintorni. Valutazione gratuita, assistenza completa in italiano e inglese." />
-  <meta name="theme-color" content="#0e0c0a" />
+  <meta name="theme-color" content="#eeebe6" />
   <link rel="canonical" href="https://immobiliare.luccalfa.it/" />
 
   <meta property="og:type" content="website" />
@@ -13,6 +13,8 @@
   <meta property="og:description" content="Compravendita e affitto a Lucca, Pisa e Versilia. Un solo referente, dalla prima visita al rogito." />
   <meta property="og:url" content="https://immobiliare.luccalfa.it/" />
   <meta property="og:image" content="https://immobiliare.luccalfa.it/assets/img/og.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
   <meta property="og:locale" content="it_IT" />
   <meta property="og:locale:alternate" content="en_GB" />
   <meta property="og:site_name" content="LuccAlfa Immobiliare" />
@@ -20,10 +22,11 @@
 
   <script>document.documentElement.classList.add("js");</script>
   <link rel="icon" type="image/svg+xml" href="assets/logo.svg" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="preload" href="assets/fonts/boska-400.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/fonts/switzer-400.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" as="image" href="assets/img/tetti-lucca-p-720.avif" type="image/avif" media="(max-width: 699px)" />
+  <link rel="preload" as="image" imagesrcset="assets/img/tetti-lucca-1280.avif 1280w, assets/img/tetti-lucca-1920.avif 1920w, assets/img/tetti-lucca-2560.avif 2560w" imagesizes="100vw" type="image/avif" media="(min-width: 700px)" />
+  <link rel="stylesheet" href="styles.css?v=8" />
 
   <!-- ═════ SCHEMA.ORG: RealEstateAgent + LocalBusiness ═════
        Entità autonoma: nessun collegamento all'entità di luccalfa.it (giardinaggio e pulizie),
@@ -97,384 +100,343 @@
   </script>
 </head>
 
-<body data-theme="dark">
+<body>
   <a class="skip" href="#main" data-i18n="skip">Vai al contenuto</a>
 
-  <!-- PRELOADER: l'arco del logo si disegna, il contatore sale -->
-  <div class="loader" id="loader" aria-hidden="true">
-    <svg class="loader__arch" viewBox="0 0 120 150"><path d="M12 148V62a48 48 0 0 1 96 0v86" /></svg>
-    <div class="loader__row mono">
-      <span>LuccAlfa — Immobiliare</span>
-      <span class="loader__count" id="loaderCount">000</span>
-    </div>
-    <p class="loader__line mono" data-i18n="loader">Apriamo la porta…</p>
-  </div>
-
-  <!-- tenda per il cambio lingua -->
-  <div class="curtain" id="curtain" aria-hidden="true"><span class="curtain__label" id="curtainLabel">EN</span></div>
-
-  <div class="cursor" aria-hidden="true"><span class="cursor__ring"><span class="cursor__label"></span></span><span class="cursor__dot"></span></div>
-  <div class="grain" aria-hidden="true"></div>
-  <div class="progress" aria-hidden="true"><span id="progress"></span></div>
-
-  <!-- NAV -->
+  <!-- NAV: logo, quattro voci, lingua, un'azione -->
   <header class="nav" id="nav">
-    <a href="#top" class="nav__logo" aria-label="LuccAlfa Immobiliare – Home" data-cursor="Home">
-      <img class="logo-on-dark" src="assets/logo-light.svg" alt="LuccAlfa" width="58" height="53" />
-      <img class="logo-on-light" src="assets/logo.svg" alt="" width="58" height="53" />
+    <a href="#top" class="nav__logo" aria-label="LuccAlfa Immobiliare – Home">
+      <img src="assets/logo.svg" alt="LuccAlfa" width="58" height="53" />
     </a>
-    <div class="nav__mid mono" aria-hidden="true">
-      <span>43.843°N — 10.508°E</span>
-      <span><i class="dot-live"></i>Lucca <time id="clock">--:--</time></span>
-    </div>
+    <nav class="nav__links" id="menu" aria-label="Menu principale" data-i18n-aria="nav.aria">
+      <a href="#immobili" data-i18n="m.list">Immobili</a>
+      <a href="#servizi" data-i18n="m.srv">Servizi</a>
+      <a href="#zone" data-i18n="m.zon">Zone</a>
+      <a href="#faq" data-i18n="m.faq">Domande</a>
+      <a href="#contatti" class="nav__menu-only" data-i18n="m.con">Contatti</a>
+    </nav>
     <div class="nav__right">
       <div class="lang" role="group" aria-label="Lingua / Language">
-        <span class="lang__thumb" aria-hidden="true"></span>
         <button type="button" data-lang="it" aria-pressed="true" lang="it">IT</button>
         <button type="button" data-lang="en" aria-pressed="false" lang="en">EN</button>
       </div>
-      <a class="nav__cta magnetic" href="#contatti" data-i18n="nav.cta">Valutazione gratuita</a>
-      <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="menu">
-        <span class="burger__lines" aria-hidden="true"><i></i><i></i></span>
-        <span class="burger__txt" data-i18n="nav.menu">Menu</span>
-      </button>
+      <a class="btn btn--accent nav__cta" href="#contatti" data-i18n="nav.cta">Valutazione gratuita</a>
+      <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="menu"><span data-i18n="nav.menu">Menu</span></button>
     </div>
   </header>
 
-  <!-- MENU FULLSCREEN -->
-  <div class="menu" id="menu" aria-hidden="true">
-    <div class="menu__bg"></div>
-    <nav class="menu__nav" aria-label="Menu principale" data-i18n-aria="nav.aria">
-      <a href="#soglia"><span class="mono">01</span><b data-i18n="m.1">La soglia</b></a>
-      <a href="#immobili"><span class="mono">02</span><b data-i18n="m.2">Immobili</b></a>
-      <a href="#servizi"><span class="mono">03</span><b data-i18n="m.3">Servizi</b></a>
-      <a href="#zone"><span class="mono">04</span><b data-i18n="m.4">Territorio</b></a>
-      <a href="#faq"><span class="mono">05</span><b data-i18n="m.5">Domande</b></a>
-      <a href="#contatti"><span class="mono">06</span><b data-i18n="m.6">Parliamone</b></a>
-    </nav>
-    <div class="menu__foot mono">
-      <a href="tel:+39000000000">+39 000 000 0000</a>
-      <a href="mailto:immobiliare@luccalfa.it">immobiliare@luccalfa.it</a>
-      <span data-i18n="menu.hours">Lun–Sab · 9:00–19:00</span>
-    </div>
-  </div>
-
   <main id="main">
-    <!-- ═══ HERO ═══ -->
+    <!-- ═══ HERO: i tetti di Lucca, il titolo nel cielo ═══ -->
     <section class="hero" id="top" aria-labelledby="hero-title">
-      <canvas class="hero__gl" id="gl" aria-hidden="true"></canvas>
-      <div class="hero__vignette" aria-hidden="true"></div>
-
-      <div class="hero__content wrap">
-        <p class="kicker mono hero__kicker"><span>(00)</span> <span data-i18n="hero.kicker">Agenzia immobiliare — Lucca · Pisa · Versilia</span></p>
-        <h1 class="hero__title" id="hero-title" data-split data-i18n-html="hero.title">Dentro le <em>Mura</em>.<br>Oltre le <em>Mura</em>.</h1>
-        <div class="hero__bottom">
-          <p class="hero__sub" data-i18n="hero.sub">Compriamo, vendiamo e affittiamo case tra Lucca, Pisa e la Versilia. Un solo referente, dalla prima visita al rogito, in italiano e in inglese.</p>
-          <div class="hero__actions">
-            <a href="#immobili" class="btn btn--accent magnetic" data-cursor="→"><span data-i18n="hero.cta1">Esplora gli immobili</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-            <a href="#contatti" class="btn btn--line magnetic" data-i18n="hero.cta2">Valuta la tua casa</a>
-          </div>
-        </div>
+      <picture class="hero__pic">
+        <source type="image/avif" media="(max-width: 699px)" srcset="assets/img/tetti-lucca-p-720.avif 720w, assets/img/tetti-lucca-p-1080.avif 1080w" sizes="100vw" />
+        <source type="image/webp" media="(max-width: 699px)" srcset="assets/img/tetti-lucca-p-720.webp 720w, assets/img/tetti-lucca-p-1080.webp 1080w" sizes="100vw" />
+        <source type="image/avif" srcset="assets/img/tetti-lucca-800.avif 800w, assets/img/tetti-lucca-1280.avif 1280w, assets/img/tetti-lucca-1920.avif 1920w, assets/img/tetti-lucca-2560.avif 2560w" sizes="100vw" />
+        <img src="assets/img/tetti-lucca-1920.webp" srcset="assets/img/tetti-lucca-800.webp 800w, assets/img/tetti-lucca-1280.webp 1280w, assets/img/tetti-lucca-1920.webp 1920w, assets/img/tetti-lucca-2560.webp 2560w" sizes="100vw" width="6000" height="4000" fetchpriority="high" decoding="async" alt="I tetti di Lucca nella luce del mattino, con le torri e le colline sullo sfondo" data-i18n-alt="hero.alt" />
+      </picture>
+      <div class="hero__copy">
+        <h1 class="hero__title" id="hero-title" data-i18n-html="hero.title">Dentro le Mura,<br>oltre le Mura.</h1>
+        <p class="hero__sub" data-i18n="hero.sub">Agenzia immobiliare a Lucca: case in vendita e in affitto, dal centro storico a Pisa e alla Versilia.</p>
       </div>
-
-      <div class="hero__meta wrap mono" aria-hidden="true">
-        <span>Est. 2021</span>
-        <span data-i18n="hero.meta">Vendita · Acquisto · Affitto</span>
-        <span class="hero__scroll"><span data-i18n="hero.scroll">Scorri</span><i></i></span>
-      </div>
+      <a class="btn btn--accent hero__cta" href="#immobili" data-i18n="hero.cta">Guarda gli immobili</a>
     </section>
 
-    <!-- ═══ LA SOGLIA: l'arco si apre sulla porta di Lucca ═══ -->
+    <!-- ═══ LA SOGLIA: l'arco si apre (scena di scroll su desktop) ═══ -->
     <section class="door" id="soglia" aria-labelledby="door-title">
       <div class="door__stage">
+        <h2 class="door__title" id="door-title" data-i18n-html="door.title">Ogni casa comincia<br>da una porta.</h2>
         <div class="door__frame">
-          <img src="assets/img/LOGGIA.webp" alt="Piazza dell'Anfiteatro a Lucca vista da sotto un arco, con biciclette appoggiate al muro" data-i18n-alt="door.alt" width="1537" height="1023" loading="lazy" />
-        </div>
-        <div class="door__head">
-          <p class="kicker mono"><span>(01)</span> <span data-i18n="door.kicker">La soglia</span></p>
-          <h2 class="door__title" id="door-title" data-split data-i18n-html="door.title">Ogni casa comincia<br>da una <em>porta</em>.</h2>
+          <picture><source type="image/avif" srcset="assets/img/loggia-anfiteatro-480.avif 480w, assets/img/loggia-anfiteatro-800.avif 800w, assets/img/loggia-anfiteatro-1280.avif 1280w, assets/img/loggia-anfiteatro-1537.avif 1537w" sizes="100vw" /><img src="assets/img/loggia-anfiteatro-1280.webp" srcset="assets/img/loggia-anfiteatro-480.webp 480w, assets/img/loggia-anfiteatro-800.webp 800w, assets/img/loggia-anfiteatro-1280.webp 1280w, assets/img/loggia-anfiteatro-1537.webp 1537w" sizes="100vw" width="1537" height="1023" alt="Piazza dell'Anfiteatro a Lucca vista da sotto un arco, con biciclette appoggiate al muro" data-i18n-alt="door.alt" loading="lazy" decoding="async" /></picture>
         </div>
         <div class="door__after">
-          <p class="door__big" data-i18n-html="door.big">Noi ti accompagniamo <em>dall'altra parte</em>.</p>
+          <p class="door__big" data-i18n-html="door.big">Noi ti accompagniamo<br>dall'altra parte.</p>
           <p class="door__p" data-i18n="door.p">Varcare una soglia è sempre un passaggio importante. Per questo ti seguiamo in ogni fase, con tempi chiari, costi spiegati prima e nessuna sorpresa.</p>
         </div>
       </div>
     </section>
 
-    <!-- ═══ CHI SIAMO ═══ -->
+    <!-- ═══ CHI SIAMO: il titolo entra nella foto ad arco ═══ -->
     <section class="about" id="chi-siamo" aria-labelledby="about-title">
-      <div class="wrap about__grid">
-        <div class="about__media" aria-hidden="true">
-          <div class="about__img"><img src="assets/img/SCORCIO1.webp" alt="" width="660" height="880" loading="lazy" /></div>
-          <span class="about__tag mono" data-i18n="about.tag">Lucca, vista dalle Mura</span>
+      <h2 class="about__title" id="about-title" data-i18n-html="about.title">Conosciamo Lucca<br>strada per strada.</h2>
+      <figure class="about__big">
+        <div class="about__frame">
+          <picture><source type="image/avif" srcset="assets/img/torre-guinigi-480.avif 480w, assets/img/torre-guinigi-800.avif 800w, assets/img/torre-guinigi-1280.avif 1280w, assets/img/torre-guinigi-1920.avif 1920w" sizes="(min-width: 900px) 46vw, 75vw" /><img src="assets/img/torre-guinigi-1280.webp" srcset="assets/img/torre-guinigi-480.webp 480w, assets/img/torre-guinigi-800.webp 800w, assets/img/torre-guinigi-1280.webp 1280w, assets/img/torre-guinigi-1920.webp 1920w" sizes="(min-width: 900px) 46vw, 75vw" width="3979" height="5969" alt="Una via del centro di Lucca con la Torre Guinigi e i suoi lecci in cima" data-i18n-alt="about.alt1" loading="lazy" decoding="async" /></picture>
         </div>
-        <div class="about__body">
-          <p class="kicker mono"><span>(02)</span> <span id="about-title" data-i18n="about.kicker">Chi siamo</span></p>
-          <p class="about__text" data-scrub data-i18n="about.text">Siamo LuccAlfa. Non vendiamo metri quadri: raccontiamo luoghi. Conosciamo Lucca strada per strada, sappiamo dove batte il sole la mattina e quale vicolo resta fresco d'estate. Accompagniamo famiglie, investitori e chi arriva da lontano, dalla prima telefonata alla firma dal notaio.</p>
-        </div>
+        <figcaption data-i18n="about.cap1">La Torre Guinigi, Lucca</figcaption>
+      </figure>
+      <div class="about__body">
+        <p class="about__lead" data-reveal data-i18n="about.lead">Sappiamo dove batte il sole la mattina e quale vicolo resta fresco d'estate.</p>
+        <p data-reveal data-i18n="about.text">Non vendiamo metri quadri: raccontiamo luoghi. Siamo LuccAlfa e accompagniamo famiglie, investitori e chi arriva da lontano, dalla prima telefonata alla firma dal notaio. Lavoriamo in italiano e in inglese, dentro le Mura e in undici comuni tra la Piana, Pisa e la Versilia.</p>
+      </div>
+      <figure class="about__small" data-reveal>
+        <picture><source type="image/avif" srcset="assets/img/fosso-lucca-480.avif 480w, assets/img/fosso-lucca-800.avif 800w, assets/img/fosso-lucca-1280.avif 1280w, assets/img/fosso-lucca-1920.avif 1920w" sizes="(min-width: 900px) 25vw, 50vw" /><img src="assets/img/fosso-lucca-1280.webp" srcset="assets/img/fosso-lucca-480.webp 480w, assets/img/fosso-lucca-800.webp 800w, assets/img/fosso-lucca-1280.webp 1280w, assets/img/fosso-lucca-1920.webp 1920w" sizes="(min-width: 900px) 25vw, 50vw" width="3456" height="4608" alt="Il Fosso di Lucca, il canale lungo via del Fosso tra case colorate" data-i18n-alt="about.alt2" loading="lazy" decoding="async" /></picture>
+        <figcaption data-i18n="about.cap2">Il Fosso, via del Fosso</figcaption>
+      </figure>
+    </section>
+
+    <!-- ═══ IMMOBILI: foto ferma, elenco attivo ═══ -->
+    <section class="lots" id="immobili" aria-labelledby="lots-title">
+      <div class="lots__media" aria-hidden="true">
+        <figure class="lots__fig is-on" data-lot="1"><picture><source type="image/avif" srcset="assets/img/duomo-san-martino-480.avif 480w, assets/img/duomo-san-martino-800.avif 800w, assets/img/duomo-san-martino-1280.avif 1280w, assets/img/duomo-san-martino-1920.avif 1920w" sizes="(min-width: 900px) 34vw, 100vw" /><img src="assets/img/duomo-san-martino-1280.webp" srcset="assets/img/duomo-san-martino-480.webp 480w, assets/img/duomo-san-martino-800.webp 800w, assets/img/duomo-san-martino-1280.webp 1280w, assets/img/duomo-san-martino-1920.webp 1920w" sizes="(min-width: 900px) 34vw, 100vw" width="3456" height="4608" alt="" loading="lazy" decoding="async" /></picture><figcaption data-i18n="lot1.cap">Lucca, il Duomo di San Martino</figcaption></figure>
+        <figure class="lots__fig" data-lot="2"><picture><source type="image/avif" srcset="assets/img/villa-vigna-480.avif 480w, assets/img/villa-vigna-800.avif 800w, assets/img/villa-vigna-1280.avif 1280w, assets/img/villa-vigna-1920.avif 1920w" sizes="(min-width: 900px) 34vw, 100vw" /><img src="assets/img/villa-vigna-1280.webp" srcset="assets/img/villa-vigna-480.webp 480w, assets/img/villa-vigna-800.webp 800w, assets/img/villa-vigna-1280.webp 1280w, assets/img/villa-vigna-1920.webp 1920w" sizes="(min-width: 900px) 34vw, 100vw" width="4160" height="6240" alt="" loading="lazy" decoding="async" /></picture><figcaption data-i18n="lot2.cap">Colline lucchesi, tra vigne e cipressi</figcaption></figure>
+        <figure class="lots__fig" data-lot="3"><picture><source type="image/avif" srcset="assets/img/acquedotto-apuane-480.avif 480w, assets/img/acquedotto-apuane-800.avif 800w, assets/img/acquedotto-apuane-1280.avif 1280w, assets/img/acquedotto-apuane-1920.avif 1920w" sizes="(min-width: 900px) 34vw, 100vw" /><img src="assets/img/acquedotto-apuane-1280.webp" srcset="assets/img/acquedotto-apuane-480.webp 480w, assets/img/acquedotto-apuane-800.webp 800w, assets/img/acquedotto-apuane-1280.webp 1280w, assets/img/acquedotto-apuane-1920.webp 1920w" sizes="(min-width: 900px) 34vw, 100vw" width="5716" height="3810" alt="" loading="lazy" decoding="async" /></picture><figcaption data-i18n="lot3.cap">L'acquedotto del Nottolini, verso Pisa</figcaption></figure>
+        <figure class="lots__fig" data-lot="4"><picture><source type="image/avif" srcset="assets/img/muro-casale-480.avif 480w, assets/img/muro-casale-800.avif 800w, assets/img/muro-casale-1280.avif 1280w, assets/img/muro-casale-1920.avif 1920w" sizes="(min-width: 900px) 34vw, 100vw" /><img src="assets/img/muro-casale-1280.webp" srcset="assets/img/muro-casale-480.webp 480w, assets/img/muro-casale-800.webp 800w, assets/img/muro-casale-1280.webp 1280w, assets/img/muro-casale-1920.webp 1920w" sizes="(min-width: 900px) 34vw, 100vw" width="3934" height="5901" alt="" loading="lazy" decoding="async" /></picture><figcaption data-i18n="lot4.cap">Pietra e coppi nella Piana di Lucca</figcaption></figure>
+        <figure class="lots__fig" data-lot="5"><picture><source type="image/avif" srcset="assets/img/dune-lecciona-480.avif 480w, assets/img/dune-lecciona-800.avif 800w, assets/img/dune-lecciona-1280.avif 1280w, assets/img/dune-lecciona-1920.avif 1920w" sizes="(min-width: 900px) 34vw, 100vw" /><img src="assets/img/dune-lecciona-1280.webp" srcset="assets/img/dune-lecciona-480.webp 480w, assets/img/dune-lecciona-800.webp 800w, assets/img/dune-lecciona-1280.webp 1280w, assets/img/dune-lecciona-1920.webp 1920w" sizes="(min-width: 900px) 34vw, 100vw" width="1920" height="1276" alt="" loading="lazy" decoding="async" /></picture><figcaption data-i18n="lot5.cap">Le dune della Lecciona, Viareggio</figcaption></figure>
+        <figure class="lots__fig" data-lot="6"><picture><source type="image/avif" srcset="assets/img/villa-torre-480.avif 480w, assets/img/villa-torre-800.avif 800w, assets/img/villa-torre-1280.avif 1280w, assets/img/villa-torre-1920.avif 1920w" sizes="(min-width: 900px) 34vw, 100vw" /><img src="assets/img/villa-torre-1280.webp" srcset="assets/img/villa-torre-480.webp 480w, assets/img/villa-torre-800.webp 800w, assets/img/villa-torre-1280.webp 1280w, assets/img/villa-torre-1920.webp 1920w" sizes="(min-width: 900px) 34vw, 100vw" width="4020" height="6024" alt="" loading="lazy" decoding="async" /></picture><figcaption data-i18n="lot6.cap">Tetti e giardini alle porte di Lucca</figcaption></figure>
       </div>
 
-      <ul class="wrap stats" aria-label="LuccAlfa in numeri" data-i18n-aria="stats.aria">
-        <li><b class="stat__n" data-count="4223" data-sep="true">4.223</b><span class="stat__u">m</span><p data-i18n="stats.1">di Mura che conosciamo a memoria</p></li>
-        <li><b class="stat__n" data-count="11">11</b><p data-i18n="stats.2">comuni tra Piana, Pisa e Versilia</p></li>
-        <li><b class="stat__n" data-count="2">2</b><p data-i18n="stats.3">lingue, italiano e inglese</p></li>
-        <li><b class="stat__n" data-count="1">1</b><p data-i18n="stats.4">referente, dall'inizio alla fine</p></li>
+      <div class="lots__col">
+        <h2 class="lots__title" id="lots-title" data-i18n="lots.title">Case con carattere</h2>
+        <p class="lots__note" data-i18n="lots.note">Annunci di esempio: presto pubblicheremo quelli reali.</p>
+        <div class="filters" role="group" aria-label="Filtra immobili" data-i18n-aria="lots.filter">
+          <button type="button" class="filter" data-filter="all" aria-pressed="true" data-i18n="lots.all">Tutti</button>
+          <button type="button" class="filter" data-filter="vendita" aria-pressed="false" data-i18n="lots.sale">Vendita</button>
+          <button type="button" class="filter" data-filter="affitto" aria-pressed="false" data-i18n="lots.rent">Affitto</button>
+        </div>
+        <ul class="lots__list" id="lots">
+          <li class="lot is-on" data-lot="1" data-type="vendita" data-mode="buy" data-zone="centro">
+            <button type="button" class="lot__head" aria-expanded="true" aria-controls="lot-1"><span class="lot__name" data-i18n="lot1.t">Appartamento nel centro storico</span><span class="lot__price" data-i18n="price.sale">Su richiesta</span></button>
+            <div class="lot__more" id="lot-1"><div class="lot__inner">
+              <p class="lot__meta"><span data-i18n="lot1.l">Lucca, dentro le Mura</span> · 110 m² · 4 <span data-i18n="rooms">locali</span> · <span data-i18n="sample">Esempio</span></p>
+              <p data-i18n="lot1.d">Piano nobile in un palazzo d'epoca, con soffitti alti e affaccio su una piazza pedonale.</p>
+              <a class="lot__ask" href="#contatti" data-i18n="lot.ask">Chiedi informazioni</a></div>
+            </div>
+          </li>
+          <li class="lot" data-lot="2" data-type="vendita" data-mode="buy" data-zone="piana">
+            <button type="button" class="lot__head" aria-expanded="false" aria-controls="lot-2"><span class="lot__name" data-i18n="lot2.t">Villa con giardino e uliveto</span><span class="lot__price" data-i18n="price.sale">Su richiesta</span></button>
+            <div class="lot__more" id="lot-2"><div class="lot__inner">
+              <p class="lot__meta"><span data-i18n="lot2.l">Colline di Lucca</span> · 260 m² · 7 <span data-i18n="rooms">locali</span> · <span data-i18n="sample">Esempio</span></p>
+              <p data-i18n="lot2.d">Villa su due piani tra ulivi e cipressi, a dieci minuti dalle Mura.</p>
+              <a class="lot__ask" href="#contatti" data-i18n="lot.ask">Chiedi informazioni</a></div>
+            </div>
+          </li>
+          <li class="lot" data-lot="3" data-type="affitto" data-mode="rent" data-zone="pisa">
+            <button type="button" class="lot__head" aria-expanded="false" aria-controls="lot-3"><span class="lot__name" data-i18n="lot3.t">Trilocale ristrutturato</span><span class="lot__price" data-i18n="price.rent">Canone su richiesta</span></button>
+            <div class="lot__more" id="lot-3"><div class="lot__inner">
+              <p class="lot__meta"><span data-i18n="lot3.l">Pisa, centro</span> · 85 m² · 3 <span data-i18n="rooms">locali</span> · <span data-i18n="sample">Esempio</span></p>
+              <p data-i18n="lot3.d">Luminoso e appena ristrutturato, a due passi dall'università e dalla stazione.</p>
+              <a class="lot__ask" href="#contatti" data-i18n="lot.ask">Chiedi informazioni</a></div>
+            </div>
+          </li>
+          <li class="lot" data-lot="4" data-type="vendita" data-mode="buy" data-zone="piana">
+            <button type="button" class="lot__head" aria-expanded="false" aria-controls="lot-4"><span class="lot__name" data-i18n="lot4.t">Casale in pietra da ristrutturare</span><span class="lot__price" data-i18n="price.sale">Su richiesta</span></button>
+            <div class="lot__more" id="lot-4"><div class="lot__inner">
+              <p class="lot__meta"><span data-i18n="lot4.l">Capannori</span> · 320 m² · 9 <span data-i18n="rooms">locali</span> · <span data-i18n="sample">Esempio</span></p>
+              <p data-i18n="lot4.d">Muri in pietra, travi a vista e un ettaro di terreno nella Piana.</p>
+              <a class="lot__ask" href="#contatti" data-i18n="lot.ask">Chiedi informazioni</a></div>
+            </div>
+          </li>
+          <li class="lot" data-lot="5" data-type="affitto" data-mode="rent" data-zone="versilia">
+            <button type="button" class="lot__head" aria-expanded="false" aria-controls="lot-5"><span class="lot__name" data-i18n="lot5.t">Bilocale vicino al mare</span><span class="lot__price" data-i18n="price.rent">Canone su richiesta</span></button>
+            <div class="lot__more" id="lot-5"><div class="lot__inner">
+              <p class="lot__meta"><span data-i18n="lot5.l">Viareggio</span> · 55 m² · 2 <span data-i18n="rooms">locali</span> · <span data-i18n="sample">Esempio</span></p>
+              <p data-i18n="lot5.d">A cinque minuti a piedi dalla spiaggia, con posto auto privato.</p>
+              <a class="lot__ask" href="#contatti" data-i18n="lot.ask">Chiedi informazioni</a></div>
+            </div>
+          </li>
+          <li class="lot" data-lot="6" data-type="vendita" data-mode="buy" data-zone="piana">
+            <button type="button" class="lot__head" aria-expanded="false" aria-controls="lot-6"><span class="lot__name" data-i18n="lot6.t">Villetta a schiera con box</span><span class="lot__price" data-i18n="price.sale">Su richiesta</span></button>
+            <div class="lot__more" id="lot-6"><div class="lot__inner">
+              <p class="lot__meta"><span data-i18n="lot6.l">Porcari</span> · 140 m² · 5 <span data-i18n="rooms">locali</span> · <span data-i18n="sample">Esempio</span></p>
+              <p data-i18n="lot6.d">Su tre livelli, con giardino privato e box doppio.</p>
+              <a class="lot__ask" href="#contatti" data-i18n="lot.ask">Chiedi informazioni</a></div>
+            </div>
+          </li>
+        </ul>
+        <p class="lots__more" data-i18n-html="lots.more">Il catalogo completo è sui principali portali, da Immobiliare.it a Gate-away. Non trovi quello che cerchi? <a href="#contatti">Raccontacelo, cerchiamo noi per te.</a></p>
+      </div>
+    </section>
+
+    <!-- ═══ SERVIZI: righe sull'asse, foto a margine (campo verde persiana) ═══ -->
+    <section class="srv" id="servizi" aria-labelledby="srv-title">
+      <h2 class="srv__title" id="srv-title" data-i18n-html="srv.title">Un solo referente,<br>ogni passaggio.</h2>
+      <ul class="srv__rows">
+        <li class="srv__row" data-reveal>
+          <div class="srv__txt"><h3 data-i18n="srv.1t">Vendita</h3><p data-i18n="srv.1d">Valutazione, servizio fotografico, promozione sui portali, selezione degli acquirenti e assistenza fino al rogito.</p></div>
+          <picture><source type="image/avif" srcset="assets/img/borgo-colline-480.avif 480w, assets/img/borgo-colline-800.avif 800w, assets/img/borgo-colline-1280.avif 1280w, assets/img/borgo-colline-1920.avif 1920w" sizes="(min-width: 900px) 240px, 100vw" /><img src="assets/img/borgo-colline-1280.webp" srcset="assets/img/borgo-colline-480.webp 480w, assets/img/borgo-colline-800.webp 800w, assets/img/borgo-colline-1280.webp 1280w, assets/img/borgo-colline-1920.webp 1920w" sizes="(min-width: 900px) 240px, 100vw" width="4020" height="6024" alt="Un borgo di case in pietra tra i boschi delle colline lucchesi" data-i18n-alt="srv.alt1" class="srv__img srv__img--a" loading="lazy" decoding="async" /></picture>
+        </li>
+        <li class="srv__row" data-reveal>
+          <div class="srv__txt"><h3 data-i18n="srv.2t">Acquisto</h3><p data-i18n="srv.2d">Ricerca su misura, visite organizzate, verifiche documentali e trattativa al tuo fianco.</p></div>
+          <picture><source type="image/avif" srcset="assets/img/villa-torre-480.avif 480w, assets/img/villa-torre-800.avif 800w, assets/img/villa-torre-1280.avif 1280w, assets/img/villa-torre-1920.avif 1920w" sizes="(min-width: 900px) 320px, 70vw" /><img src="assets/img/villa-torre-1280.webp" srcset="assets/img/villa-torre-480.webp 480w, assets/img/villa-torre-800.webp 800w, assets/img/villa-torre-1280.webp 1280w, assets/img/villa-torre-1920.webp 1920w" sizes="(min-width: 900px) 320px, 70vw" width="4020" height="6024" alt="Una casa con persiane verdi tra i pini, con una torre di Lucca dietro" data-i18n-alt="srv.alt2" class="srv__img srv__img--b" loading="lazy" decoding="async" /></picture>
+        </li>
+        <li class="srv__row" data-reveal>
+          <div class="srv__txt"><h3 data-i18n="srv.3t">Affitti</h3><p data-i18n="srv.3d">Locazioni a lungo termine, transitorie e turistiche, con selezione degli inquilini, contratto e registrazione.</p></div>
+          <picture><source type="image/avif" srcset="assets/img/duomo-san-martino-480.avif 480w, assets/img/duomo-san-martino-800.avif 800w, assets/img/duomo-san-martino-1280.avif 1280w, assets/img/duomo-san-martino-1920.avif 1920w" sizes="(min-width: 900px) 180px, 55vw" /><img src="assets/img/duomo-san-martino-1280.webp" srcset="assets/img/duomo-san-martino-480.webp 480w, assets/img/duomo-san-martino-800.webp 800w, assets/img/duomo-san-martino-1280.webp 1280w, assets/img/duomo-san-martino-1920.webp 1920w" sizes="(min-width: 900px) 180px, 55vw" width="3456" height="4608" alt="Il Duomo di San Martino a Lucca visto da un vicolo" data-i18n-alt="srv.alt3" class="srv__img srv__img--c" loading="lazy" decoding="async" /></picture>
+        </li>
+        <li class="srv__row" data-reveal>
+          <div class="srv__txt"><h3 data-i18n="srv.4t">Valutazione gratuita</h3><p data-i18n="srv.4d">Una stima onesta, basata su sopralluogo e vendite comparabili. Senza impegno.</p></div>
+          <picture><source type="image/avif" srcset="assets/img/muro-casale-480.avif 480w, assets/img/muro-casale-800.avif 800w, assets/img/muro-casale-1280.avif 1280w, assets/img/muro-casale-1920.avif 1920w" sizes="(min-width: 900px) 280px, 100vw" /><img src="assets/img/muro-casale-1280.webp" srcset="assets/img/muro-casale-480.webp 480w, assets/img/muro-casale-800.webp 800w, assets/img/muro-casale-1280.webp 1280w, assets/img/muro-casale-1920.webp 1920w" sizes="(min-width: 900px) 280px, 100vw" width="3934" height="5901" alt="Il muro in pietra di un casale toscano con una finestra verde e il tetto in coppi" data-i18n-alt="srv.alt4" class="srv__img srv__img--a" loading="lazy" decoding="async" /></picture>
+        </li>
+        <li class="srv__row" data-reveal>
+          <div class="srv__txt"><h3 data-i18n="srv.5t">Dall'estero</h3><p data-i18n="srv.5d">Per chi compra da lontano: video tour, codice fiscale, notaio, traduzioni e firma tramite procura.</p></div>
+          <picture><source type="image/avif" srcset="assets/img/finestra-lucca-480.avif 480w, assets/img/finestra-lucca-800.avif 800w, assets/img/finestra-lucca-1280.avif 1280w, assets/img/finestra-lucca-1920.avif 1920w" sizes="(min-width: 900px) 360px, 70vw" /><img src="assets/img/finestra-lucca-1280.webp" srcset="assets/img/finestra-lucca-480.webp 480w, assets/img/finestra-lucca-800.webp 800w, assets/img/finestra-lucca-1280.webp 1280w, assets/img/finestra-lucca-1920.webp 1920w" sizes="(min-width: 900px) 360px, 70vw" width="6024" height="4020" alt="Lucca vista attraverso le sbarre di una finestra, con le torri e le Apuane" data-i18n-alt="srv.alt5" class="srv__img srv__img--b" loading="lazy" decoding="async" /></picture>
+        </li>
       </ul>
     </section>
 
-    <!-- ═══ IMMOBILI: galleria orizzontale ═══ -->
-    <section class="estates" id="immobili" aria-labelledby="estates-title">
-      <div class="estates__pin">
-        <div class="estates__head wrap">
-          <div>
-            <p class="kicker mono"><span>(03)</span> <span data-i18n="est.kicker">Selezione</span></p>
-            <h2 id="estates-title" class="h2" data-split data-i18n-html="est.title">Case con <em>carattere</em>.</h2>
-          </div>
-          <div class="estates__tools">
-            <div class="filters" role="group" aria-label="Filtra immobili" data-i18n-aria="est.filter">
-              <button type="button" class="filter is-on" data-filter="all" aria-pressed="true" data-i18n="est.all">Tutti</button>
-              <button type="button" class="filter" data-filter="vendita" aria-pressed="false" data-i18n="est.sale">Vendita</button>
-              <button type="button" class="filter" data-filter="affitto" aria-pressed="false" data-i18n="est.rent">Affitto</button>
-            </div>
-            <p class="mono estates__hint" data-i18n="est.hint">Esempi dimostrativi · foto in arrivo</p>
-          </div>
-        </div>
-        <!-- Le card sono generate da script.js (array LISTINGS) -->
-        <div class="estates__track" id="listings" aria-live="polite"></div>
-      </div>
+    <!-- ═══ METODO: una parola alla volta ═══ -->
+    <section class="steps" id="metodo" aria-labelledby="steps-title">
+      <h2 class="steps__title" id="steps-title" data-i18n="met.title">Il metodo: quattro passi, zero sorprese.</h2>
+      <ol class="steps__list">
+        <li class="step">
+          <picture><source type="image/avif" srcset="assets/img/vicolo-480.avif 480w, assets/img/vicolo-800.avif 800w, assets/img/vicolo-1280.avif 1280w, assets/img/vicolo-1920.avif 1920w" sizes="100vw" /><img src="assets/img/vicolo-1280.webp" srcset="assets/img/vicolo-480.webp 480w, assets/img/vicolo-800.webp 800w, assets/img/vicolo-1280.webp 1280w, assets/img/vicolo-1920.webp 1920w" sizes="100vw" width="4020" height="6024" alt="" class="step__img" loading="lazy" decoding="async" /></picture>
+          <div class="step__word"><h3 data-i18n="met.1t">Ascolto</h3></div>
+          <p class="step__p" data-i18n="met.1d">Capiamo obiettivi, budget e tempi con una prima conversazione: di persona, al telefono o in video.</p>
+        </li>
+        <li class="step">
+          <picture><source type="image/avif" srcset="assets/img/villa-vigna-480.avif 480w, assets/img/villa-vigna-800.avif 800w, assets/img/villa-vigna-1280.avif 1280w, assets/img/villa-vigna-1920.avif 1920w" sizes="100vw" /><img src="assets/img/villa-vigna-1280.webp" srcset="assets/img/villa-vigna-480.webp 480w, assets/img/villa-vigna-800.webp 800w, assets/img/villa-vigna-1280.webp 1280w, assets/img/villa-vigna-1920.webp 1920w" sizes="100vw" width="4160" height="6240" alt="" class="step__img" loading="lazy" decoding="async" /></picture>
+          <div class="step__word"><h3 data-i18n="met.2t">Selezione</h3></div>
+          <p class="step__p" data-i18n="met.2d">Valutiamo l'immobile o selezioniamo le proposte più adatte, verificando subito la documentazione.</p>
+        </li>
+        <li class="step">
+          <picture><source type="image/avif" srcset="assets/img/archi-acquedotto-480.avif 480w, assets/img/archi-acquedotto-800.avif 800w, assets/img/archi-acquedotto-1280.avif 1280w, assets/img/archi-acquedotto-1920.avif 1920w" sizes="100vw" /><img src="assets/img/archi-acquedotto-1280.webp" srcset="assets/img/archi-acquedotto-480.webp 480w, assets/img/archi-acquedotto-800.webp 800w, assets/img/archi-acquedotto-1280.webp 1280w, assets/img/archi-acquedotto-1920.webp 1920w" sizes="100vw" width="4208" height="6312" alt="" class="step__img" loading="lazy" decoding="async" /></picture>
+          <div class="step__word"><h3 data-i18n="met.3t">Trattativa</h3></div>
+          <p class="step__p" data-i18n="met.3d">Gestiamo visite, proposta e negoziazione, tutelando le due parti con chiarezza.</p>
+        </li>
+        <li class="step">
+          <picture><source type="image/avif" srcset="assets/img/ponte-del-diavolo-480.avif 480w, assets/img/ponte-del-diavolo-800.avif 800w, assets/img/ponte-del-diavolo-1280.avif 1280w, assets/img/ponte-del-diavolo-1920.avif 1920w" sizes="100vw" /><img src="assets/img/ponte-del-diavolo-1280.webp" srcset="assets/img/ponte-del-diavolo-480.webp 480w, assets/img/ponte-del-diavolo-800.webp 800w, assets/img/ponte-del-diavolo-1280.webp 1280w, assets/img/ponte-del-diavolo-1920.webp 1920w" sizes="100vw" width="4000" height="5333" alt="" class="step__img" loading="lazy" decoding="async" /></picture>
+          <div class="step__word"><h3 data-i18n="met.4t">Rogito</h3></div>
+          <p class="step__p" data-i18n="met.4d">Coordiniamo notaio, banca e consegna delle chiavi. E restiamo a disposizione anche dopo la firma.</p>
+        </li>
+      </ol>
     </section>
 
-    <!-- ═══ SERVIZI (tema chiaro) ═══ -->
-    <section class="services" id="servizi" data-theme="light" aria-labelledby="services-title">
-      <div class="wrap">
-        <header class="sec-head">
-          <p class="kicker mono"><span>(04)</span> <span data-i18n="srv.kicker">Cosa facciamo</span></p>
-          <h2 id="services-title" class="h2" data-split data-i18n-html="srv.title">Un solo referente,<br><em>ogni</em> passaggio.</h2>
-        </header>
-        <ol class="srv-list">
-          <li class="srv" data-cursor="+">
-            <span class="srv__n mono">01</span>
-            <h3 class="srv__t" data-i18n="srv.1t">Vendita</h3>
-            <p class="srv__d" data-i18n="srv.1d">Valutazione, servizio fotografico, promozione sui portali, selezione degli acquirenti e assistenza fino al rogito.</p>
-            <span class="srv__arr" aria-hidden="true">↗</span>
-          </li>
-          <li class="srv" data-cursor="+">
-            <span class="srv__n mono">02</span>
-            <h3 class="srv__t" data-i18n="srv.2t">Acquisto</h3>
-            <p class="srv__d" data-i18n="srv.2d">Ricerca su misura, visite organizzate, verifiche documentali e trattativa al tuo fianco.</p>
-            <span class="srv__arr" aria-hidden="true">↗</span>
-          </li>
-          <li class="srv" data-cursor="+">
-            <span class="srv__n mono">03</span>
-            <h3 class="srv__t" data-i18n="srv.3t">Affitti</h3>
-            <p class="srv__d" data-i18n="srv.3d">Locazioni a lungo termine, transitorie e turistiche, con selezione degli inquilini, contratto e registrazione.</p>
-            <span class="srv__arr" aria-hidden="true">↗</span>
-          </li>
-          <li class="srv" data-cursor="+">
-            <span class="srv__n mono">04</span>
-            <h3 class="srv__t" data-i18n="srv.4t">Valutazione gratuita</h3>
-            <p class="srv__d" data-i18n="srv.4d">Una stima onesta, basata su sopralluogo e vendite comparabili. Senza impegno.</p>
-            <span class="srv__arr" aria-hidden="true">↗</span>
-          </li>
-          <li class="srv" data-cursor="+">
-            <span class="srv__n mono">05</span>
-            <h3 class="srv__t" data-i18n="srv.5t">Dall'estero</h3>
-            <p class="srv__d" data-i18n="srv.5d">Per chi compra da lontano: video tour, codice fiscale, notaio, traduzioni e firma tramite procura.</p>
-            <span class="srv__arr" aria-hidden="true">↗</span>
-          </li>
-        </ol>
-      </div>
-    </section>
-
-    <!-- ═══ METODO (tema chiaro) ═══ -->
-    <section class="method" id="metodo" data-theme="light" aria-labelledby="method-title">
-      <div class="wrap method__grid">
-        <header class="method__head">
-          <p class="kicker mono"><span>(05)</span> <span data-i18n="met.kicker">Il metodo</span></p>
-          <h2 id="method-title" class="h2" data-split data-i18n-html="met.title">Quattro passi.<br><em>Zero</em> sorprese.</h2>
-        </header>
-        <div class="method__steps">
-          <span class="method__rail" aria-hidden="true"><span class="method__fill"></span></span>
-          <article class="step">
-            <span class="step__n">I</span>
-            <div><h3 data-i18n="met.1t">Ascolto</h3><p data-i18n="met.1d">Capiamo obiettivi, budget e tempi con una prima conversazione: di persona, al telefono o in video.</p></div>
-          </article>
-          <article class="step">
-            <span class="step__n">II</span>
-            <div><h3 data-i18n="met.2t">Selezione</h3><p data-i18n="met.2d">Valutiamo l'immobile o selezioniamo le proposte più adatte, verificando subito la documentazione.</p></div>
-          </article>
-          <article class="step">
-            <span class="step__n">III</span>
-            <div><h3 data-i18n="met.3t">Trattativa</h3><p data-i18n="met.3d">Gestiamo visite, proposta e negoziazione, tutelando le due parti con chiarezza.</p></div>
-          </article>
-          <article class="step">
-            <span class="step__n">IV</span>
-            <div><h3 data-i18n="met.4t">Rogito</h3><p data-i18n="met.4d">Coordiniamo notaio, banca e consegna delle chiavi. E restiamo a disposizione anche dopo la firma.</p></div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══ TERRITORIO: mappa a costellazione ═══ -->
+    <!-- ═══ ZONE: banda di pannelli diseguali ═══ -->
     <section class="zones" id="zone" aria-labelledby="zones-title">
-      <div class="wrap">
-        <header class="sec-head">
-          <p class="kicker mono"><span>(06)</span> <span data-i18n="zon.kicker">Territorio</span></p>
-          <h2 id="zones-title" class="h2" data-split data-i18n-html="zon.title">Dalle Apuane<br>al <em>mare</em>.</h2>
-        </header>
-        <div class="zones__grid">
-          <figure class="map" aria-hidden="true">
-            <svg viewBox="0 0 620 500" id="map">
-              <defs>
-                <radialGradient id="glow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#f68622" stop-opacity=".55"/><stop offset="1" stop-color="#f68622" stop-opacity="0"/></radialGradient>
-                <linearGradient id="sea" x1="0" x2="1"><stop offset="0" stop-color="#f68622" stop-opacity=".10"/><stop offset="1" stop-color="#f68622" stop-opacity="0"/></linearGradient>
-              </defs>
-              <path class="map__coast" d="M38 0 C55 70 75 150 88 200 C100 260 112 360 126 500 L0 500 L0 0 Z" fill="url(#sea)"/>
-              <path class="map__coast-line" d="M38 0 C55 70 75 150 88 200 C100 260 112 360 126 500"/>
-              <text class="map__sea" x="34" y="420" transform="rotate(-78 34 420)">MAR TIRRENO</text>
-              <g id="mapLinks"></g>
-              <circle cx="358" cy="217" r="70" fill="url(#glow)"/>
-              <circle class="map__walls" cx="358" cy="217" r="16"/>
-              <g id="mapDots"></g>
-            </svg>
-            <figcaption class="mono" data-i18n="zon.cap">Distanze reali, scala libera</figcaption>
-          </figure>
-          <ul class="areas">
-            <li class="area" tabindex="0" data-area="centro"><span class="mono">A</span><div><h3 data-i18n="zon.1t">Lucca, centro storico</h3><p data-i18n="zon.1d">Palazzi, appartamenti d'epoca e una vita che si fa a piedi, dentro le Mura.</p></div></li>
-            <li class="area" tabindex="0" data-area="piana"><span class="mono">B</span><div><h3 data-i18n="zon.2t">Colline e Piana</h3><p data-i18n="zon.2d">Ville, casali e giardini tra Capannori, Porcari, Altopascio e Montecarlo.</p></div></li>
-            <li class="area" tabindex="0" data-area="pisa"><span class="mono">C</span><div><h3 data-i18n="zon.3t">Pisa e dintorni</h3><p data-i18n="zon.3d">Città universitaria e comuni vicini, come San Giuliano Terme e Cascina.</p></div></li>
-            <li class="area" tabindex="0" data-area="versilia"><span class="mono">D</span><div><h3 data-i18n="zon.4t">Versilia</h3><p data-i18n="zon.4d">Viareggio, Camaiore e Pietrasanta, tra il mare e le Apuane.</p></div></li>
-          </ul>
-        </div>
-      </div>
-      <div class="marquee" aria-hidden="true">
-        <div class="marquee__row" data-dir="-1"><span>Lucca</span><span>Capannori</span><span>Pisa</span><span>Viareggio</span><span>Camaiore</span><span>Porcari</span><span>Lucca</span><span>Capannori</span><span>Pisa</span><span>Viareggio</span><span>Camaiore</span><span>Porcari</span></div>
-        <div class="marquee__row marquee__row--alt" data-dir="1"><span>Altopascio</span><span>Montecarlo</span><span>Cascina</span><span>Pietrasanta</span><span>San Giuliano</span><span>Altopascio</span><span>Montecarlo</span><span>Cascina</span><span>Pietrasanta</span><span>San Giuliano</span></div>
-      </div>
+      <h2 class="zones__title" id="zones-title" data-reveal data-i18n="zon.title">Dalle Apuane al mare.</h2>
+      <ul class="band">
+        <li class="band__panel" tabindex="0">
+          <picture><source type="image/avif" srcset="assets/img/porta-borghi-480.avif 480w, assets/img/porta-borghi-800.avif 800w, assets/img/porta-borghi-1280.avif 1280w, assets/img/porta-borghi-1920.avif 1920w" sizes="(min-width: 900px) 50vw, 64vw" /><img src="assets/img/porta-borghi-1280.webp" srcset="assets/img/porta-borghi-480.webp 480w, assets/img/porta-borghi-800.webp 800w, assets/img/porta-borghi-1280.webp 1280w, assets/img/porta-borghi-1920.webp 1920w" sizes="(min-width: 900px) 50vw, 64vw" width="4020" height="6024" alt="Porta dei Borghi, una delle porte medievali di Lucca" data-i18n-alt="zon.alt1" loading="lazy" decoding="async" /></picture>
+          <div class="band__txt"><h3 data-i18n="zon.1t">Lucca, centro storico</h3><p data-i18n="zon.1d">Palazzi, appartamenti d'epoca e una vita che si fa a piedi, dentro le Mura.</p></div>
+        </li>
+        <li class="band__panel" tabindex="0">
+          <picture><source type="image/avif" srcset="assets/img/villa-vigna-480.avif 480w, assets/img/villa-vigna-800.avif 800w, assets/img/villa-vigna-1280.avif 1280w, assets/img/villa-vigna-1920.avif 1920w" sizes="(min-width: 900px) 50vw, 36vw" /><img src="assets/img/villa-vigna-1280.webp" srcset="assets/img/villa-vigna-480.webp 480w, assets/img/villa-vigna-800.webp 800w, assets/img/villa-vigna-1280.webp 1280w, assets/img/villa-vigna-1920.webp 1920w" sizes="(min-width: 900px) 50vw, 36vw" width="4160" height="6240" alt="Villa con cipressi e vigna sulle colline di Lucca" data-i18n-alt="zon.alt2" loading="lazy" decoding="async" /></picture>
+          <div class="band__txt"><h3 data-i18n="zon.2t">Colline e Piana</h3><p data-i18n="zon.2d">Ville, casali e giardini tra Capannori, Porcari, Altopascio e Montecarlo.</p></div>
+        </li>
+        <li class="band__panel" tabindex="0">
+          <picture><source type="image/avif" srcset="assets/img/acquedotto-apuane-480.avif 480w, assets/img/acquedotto-apuane-800.avif 800w, assets/img/acquedotto-apuane-1280.avif 1280w, assets/img/acquedotto-apuane-1920.avif 1920w" sizes="(min-width: 900px) 50vw, 36vw" /><img src="assets/img/acquedotto-apuane-1280.webp" srcset="assets/img/acquedotto-apuane-480.webp 480w, assets/img/acquedotto-apuane-800.webp 800w, assets/img/acquedotto-apuane-1280.webp 1280w, assets/img/acquedotto-apuane-1920.webp 1920w" sizes="(min-width: 900px) 50vw, 36vw" width="5716" height="3810" alt="L'acquedotto del Nottolini nella pianura, con le Alpi Apuane sullo sfondo" data-i18n-alt="zon.alt3" loading="lazy" decoding="async" /></picture>
+          <div class="band__txt"><h3 data-i18n="zon.3t">Pisa e dintorni</h3><p data-i18n="zon.3d">Città universitaria e comuni vicini, come San Giuliano Terme e Cascina.</p></div>
+        </li>
+        <li class="band__panel" tabindex="0">
+          <picture><source type="image/avif" srcset="assets/img/dune-lecciona-480.avif 480w, assets/img/dune-lecciona-800.avif 800w, assets/img/dune-lecciona-1280.avif 1280w, assets/img/dune-lecciona-1920.avif 1920w" sizes="(min-width: 900px) 50vw, 64vw" /><img src="assets/img/dune-lecciona-1280.webp" srcset="assets/img/dune-lecciona-480.webp 480w, assets/img/dune-lecciona-800.webp 800w, assets/img/dune-lecciona-1280.webp 1280w, assets/img/dune-lecciona-1920.webp 1920w" sizes="(min-width: 900px) 50vw, 64vw" width="1920" height="1276" alt="Un sentiero tra le dune verso la spiaggia della Lecciona a Viareggio" data-i18n-alt="zon.alt4" loading="lazy" decoding="async" /></picture>
+          <div class="band__txt"><h3 data-i18n="zon.4t">Versilia</h3><p data-i18n="zon.4d">Viareggio, Camaiore e Pietrasanta, tra il mare e le Apuane.</p></div>
+        </li>
+      </ul>
+      <p class="zones__cap" data-reveal data-i18n="zon.cap">Undici comuni: Lucca, Capannori, Porcari, Montecarlo, Altopascio, Pisa, San Giuliano Terme, Cascina, Viareggio, Camaiore e Pietrasanta.</p>
     </section>
 
-    <!-- ═══ PORTALI ═══ -->
-    <section class="portals" id="portali" aria-labelledby="portals-title">
-      <div class="wrap">
-        <header class="sec-head sec-head--row">
-          <p class="kicker mono"><span>(07)</span> <span data-i18n="por.kicker">Visibilità</span></p>
-          <h2 id="portals-title" class="h3" data-i18n="por.title">I nostri annunci arrivano dove si cerca casa, in Italia e all'estero.</h2>
-        </header>
-        <!-- TODO: sostituire ogni href con l'URL del profilo agenzia reale -->
-        <ul class="portal-list">
-          <li><a href="https://www.immobiliare.it/" target="_blank" rel="noopener noreferrer" data-cursor="↗">Immobiliare.it</a></li>
-          <li><a href="https://www.idealista.it/" target="_blank" rel="noopener noreferrer" data-cursor="↗">Idealista</a></li>
-          <li><a href="https://www.casa.it/" target="_blank" rel="noopener noreferrer" data-cursor="↗">Casa.it</a></li>
-          <li><a href="https://www.gate-away.com/" target="_blank" rel="noopener noreferrer" data-cursor="↗">Gate-away</a></li>
-          <li><a href="https://www.rightmove.co.uk/overseas/" target="_blank" rel="noopener noreferrer" data-cursor="↗">Rightmove</a></li>
-          <li><a href="https://www.green-acres.com/" target="_blank" rel="noopener noreferrer" data-cursor="↗">Green-Acres</a></li>
-          <li><a href="https://www.properstar.com/" target="_blank" rel="noopener noreferrer" data-cursor="↗">Properstar</a></li>
-          <li><a href="https://www.subito.it/annunci-italia/vendita/immobili/" target="_blank" rel="noopener noreferrer" data-cursor="↗">Subito.it</a></li>
-          <li><a href="https://www.wikicasa.it/" target="_blank" rel="noopener noreferrer" data-cursor="↗">Wikicasa</a></li>
+    <!-- ═══ FAQ: domande accanto a una foto alta ═══ -->
+    <section class="faq" id="faq" aria-labelledby="faq-title">
+      <div class="faq__col">
+        <h2 class="faq__title" id="faq-title" data-i18n="faq.title">Hai dei dubbi? Bene.</h2>
+        <ul class="faq__facts">
+          <li><b data-i18n="con.office">Sede</b> <span data-i18n="con.officeV">Lucca, su appuntamento</span></li>
+          <li><b data-i18n="con.hours">Orari</b> <span data-i18n="con.hoursV">Lunedì–sabato, 9:00–19:00</span></li>
+          <li><b data-i18n="con.langs">Lingue</b> <span data-i18n="con.langsV">Italiano e inglese</span></li>
         </ul>
-      </div>
-    </section>
-
-    <!-- ═══ FAQ (tema chiaro) ═══ -->
-    <section class="faq" id="faq" data-theme="light" aria-labelledby="faq-title">
-      <div class="wrap faq__grid">
-        <header class="faq__head">
-          <p class="kicker mono"><span>(08)</span> <span data-i18n="faq.kicker">Domande frequenti</span></p>
-          <h2 id="faq-title" class="h2" data-split data-i18n-html="faq.title">Hai dei <em>dubbi</em>?<br>Bene.</h2>
-          <p class="lead" data-i18n="faq.lead">Comprare o vendere casa solleva domande. Ecco le risposte che diamo più spesso.</p>
-        </header>
-        <div class="acc" id="faqList">
-          <details><summary data-i18n="q1">Quanto vale la mia casa a Lucca? Fate valutazioni gratuite?</summary><div class="acc__body"><p data-i18n="a1">Sì. LuccAlfa Immobiliare effettua una valutazione gratuita e senza impegno con sopralluogo. Il valore dipende da zona, stato di manutenzione, superficie, classe energetica e confronto con le vendite recenti comparabili.</p></div></details>
-          <details><summary data-i18n="q2">Quali zone coprite oltre a Lucca?</summary><div class="acc__body"><p data-i18n="a2">Operiamo a Lucca (centro storico dentro le Mura e periferia), nella Piana di Lucca (Capannori, Porcari, Altopascio, Montecarlo), a Pisa e nei comuni vicini (San Giuliano Terme, Cascina) e in Versilia (Viareggio, Camaiore, Pietrasanta).</p></div></details>
-          <details><summary data-i18n="q3">Quali documenti servono per vendere casa?</summary><div class="acc__body"><p data-i18n="a3">In genere servono: atto di provenienza, visura e planimetria catastale, attestato di prestazione energetica (APE), documenti di identità, eventuali titoli edilizi e certificazioni degli impianti, oltre al regolamento e ai rendiconti se l'immobile è in condominio. Ti guidiamo nella raccolta.</p></div></details>
-          <details><summary data-i18n="q4">Come funziona l'acquisto di una casa in Italia?</summary><div class="acc__body"><p data-i18n="a4">I passaggi tipici sono: ricerca e visite, proposta d'acquisto con caparra, verifiche (urbanistica, catasto, ipoteche), contratto preliminare di compravendita, rogito davanti al notaio con pagamento del saldo e registrazione. Il notaio controlla la regolarità giuridica dell'atto.</p></div></details>
-          <details><summary data-i18n="q5">Quali imposte si pagano acquistando casa?</summary><div class="acc__body"><p data-i18n="a5">Dipendono da venditore (privato o impresa), uso (prima o seconda casa) e tipo di immobile: imposta di registro, ipotecaria e catastale se si acquista da privato, IVA se si acquista da impresa, oltre a onorari del notaio e dell'agenzia. Le aliquote cambiano nel tempo, quindi vanno verificate con notaio o commercialista prima dell'acquisto.</p></div></details>
-          <details><summary data-i18n="q6">Un cittadino straniero può comprare casa a Lucca?</summary><div class="acc__body"><p data-i18n="a6">Sì. I cittadini UE possono acquistare senza particolari limiti; per i cittadini extra-UE si applica in genere il principio di reciprocità. Serve un codice fiscale italiano, che si può ottenere anche dall'estero, e conviene farsi assistere da un notaio e, se necessario, da un traduttore.</p></div></details>
-          <details><summary data-i18n="q7">Mi seguite anche se vivo all'estero?</summary><div class="acc__body"><p data-i18n="a7">Sì. Lavoriamo in italiano e in inglese: ricerca su misura, video tour, aiuto per il codice fiscale, coordinamento con notaio e banca e assistenza dopo l'acquisto. Se non puoi essere presente, puoi firmare tramite procura.</p></div></details>
-          <details><summary data-i18n="q8">Seguite anche gli affitti?</summary><div class="acc__body"><p data-i18n="a8">Sì. Seguiamo locazioni abitative a lungo termine, contratti transitori e locazioni turistiche a Lucca e dintorni, dalla selezione degli inquilini alla stesura e registrazione del contratto.</p></div></details>
-          <details><summary data-i18n="q9">Dove pubblicate gli annunci?</summary><div class="acc__body"><p data-i18n="a9">Oltre che sul nostro sito, pubblichiamo gli immobili sui principali portali italiani e internazionali, come Immobiliare.it, Idealista, Casa.it e Gate-away.com, per raggiungere sia acquirenti italiani sia stranieri.</p></div></details>
-          <details><summary data-i18n="q10">Qual è la differenza tra vivere dentro le Mura di Lucca e fuori?</summary><div class="acc__body"><p data-i18n="a10">Dentro le Mura il centro storico offre vita pedonale, servizi a piedi e immobili d'epoca, con vincoli edilizi e poco parcheggio. Fuori, tra Piana e colline, si trovano più spazi, giardini e box auto, con prezzi al metro quadro generalmente diversi.</p></div></details>
+        <div class="acc">
+          <details><summary data-i18n="q1">Quanto vale la mia casa a Lucca? Fate valutazioni gratuite?</summary><p data-i18n="a1">Sì. LuccAlfa Immobiliare effettua una valutazione gratuita e senza impegno con sopralluogo. Il valore dipende da zona, stato di manutenzione, superficie, classe energetica e confronto con le vendite recenti comparabili.</p></details>
+          <details><summary data-i18n="q2">Quali zone coprite oltre a Lucca?</summary><p data-i18n="a2">Operiamo a Lucca (centro storico dentro le Mura e periferia), nella Piana di Lucca (Capannori, Porcari, Altopascio, Montecarlo), a Pisa e nei comuni vicini (San Giuliano Terme, Cascina) e in Versilia (Viareggio, Camaiore, Pietrasanta).</p></details>
+          <details><summary data-i18n="q3">Quali documenti servono per vendere casa?</summary><p data-i18n="a3">In genere servono: atto di provenienza, visura e planimetria catastale, attestato di prestazione energetica (APE), documenti di identità, eventuali titoli edilizi e certificazioni degli impianti, oltre al regolamento e ai rendiconti se l'immobile è in condominio. Ti guidiamo nella raccolta.</p></details>
+          <details><summary data-i18n="q4">Come funziona l'acquisto di una casa in Italia?</summary><p data-i18n="a4">I passaggi tipici sono: ricerca e visite, proposta d'acquisto con caparra, verifiche (urbanistica, catasto, ipoteche), contratto preliminare di compravendita, rogito davanti al notaio con pagamento del saldo e registrazione. Il notaio controlla la regolarità giuridica dell'atto.</p></details>
+          <details><summary data-i18n="q5">Quali imposte si pagano acquistando casa?</summary><p data-i18n="a5">Dipendono da venditore (privato o impresa), uso (prima o seconda casa) e tipo di immobile: imposta di registro, ipotecaria e catastale se si acquista da privato, IVA se si acquista da impresa, oltre a onorari del notaio e dell'agenzia. Le aliquote cambiano nel tempo, quindi vanno verificate con notaio o commercialista prima dell'acquisto.</p></details>
+          <details><summary data-i18n="q6">Un cittadino straniero può comprare casa a Lucca?</summary><p data-i18n="a6">Sì. I cittadini UE possono acquistare senza particolari limiti; per i cittadini extra-UE si applica in genere il principio di reciprocità. Serve un codice fiscale italiano, che si può ottenere anche dall'estero, e conviene farsi assistere da un notaio e, se necessario, da un traduttore.</p></details>
+          <details><summary data-i18n="q7">Mi seguite anche se vivo all'estero?</summary><p data-i18n="a7">Sì. Lavoriamo in italiano e in inglese: ricerca su misura, video tour, aiuto per il codice fiscale, coordinamento con notaio e banca e assistenza dopo l'acquisto. Se non puoi essere presente, puoi firmare tramite procura.</p></details>
+          <details><summary data-i18n="q8">Seguite anche gli affitti?</summary><p data-i18n="a8">Sì. Seguiamo locazioni abitative a lungo termine, contratti transitori e locazioni turistiche a Lucca e dintorni, dalla selezione degli inquilini alla stesura e registrazione del contratto.</p></details>
+          <details><summary data-i18n="q9">Dove pubblicate gli annunci?</summary><p data-i18n="a9">Oltre che sul nostro sito, pubblichiamo gli immobili sui principali portali italiani e internazionali, come Immobiliare.it, Idealista, Casa.it e Gate-away.com, per raggiungere sia acquirenti italiani sia stranieri.</p></details>
+          <details><summary data-i18n="q10">Qual è la differenza tra vivere dentro le Mura di Lucca e fuori?</summary><p data-i18n="a10">Dentro le Mura il centro storico offre vita pedonale, servizi a piedi e immobili d'epoca, con vincoli edilizi e poco parcheggio. Fuori, tra Piana e colline, si trovano più spazi, giardini e box auto, con prezzi al metro quadro generalmente diversi.</p></details>
+        </div>
+        <div class="faq__actions">
+          <a class="btn btn--accent" href="#contatti" data-i18n="faq.cta">Fai la tua domanda</a>
+          <a class="link" href="tel:+39000000000" data-i18n="faq.call">Oppure chiamaci</a>
         </div>
       </div>
+      <div class="faq__media" aria-hidden="true">
+        <picture><source type="image/avif" srcset="assets/img/porta-borghi-480.avif 480w, assets/img/porta-borghi-800.avif 800w, assets/img/porta-borghi-1280.avif 1280w, assets/img/porta-borghi-1920.avif 1920w" sizes="(min-width: 900px) 44vw, 100vw" /><img src="assets/img/porta-borghi-1280.webp" srcset="assets/img/porta-borghi-480.webp 480w, assets/img/porta-borghi-800.webp 800w, assets/img/porta-borghi-1280.webp 1280w, assets/img/porta-borghi-1920.webp 1920w" sizes="(min-width: 900px) 44vw, 100vw" width="4020" height="6024" alt="" class="faq__tall" loading="lazy" decoding="async" /></picture>
+        <picture><source type="image/avif" srcset="assets/img/fosso-lucca-480.avif 480w, assets/img/fosso-lucca-800.avif 800w, assets/img/fosso-lucca-1280.avif 1280w, assets/img/fosso-lucca-1920.avif 1920w" sizes="(min-width: 900px) 15vw, 38vw" /><img src="assets/img/fosso-lucca-1280.webp" srcset="assets/img/fosso-lucca-480.webp 480w, assets/img/fosso-lucca-800.webp 800w, assets/img/fosso-lucca-1280.webp 1280w, assets/img/fosso-lucca-1920.webp 1920w" sizes="(min-width: 900px) 15vw, 38vw" width="3456" height="4608" alt="" class="faq__sq" loading="lazy" decoding="async" /></picture>
+      </div>
     </section>
 
-    <!-- ═══ CONTATTI ═══ -->
+    <!-- ═══ CONTATTI: la scheda sulla foto ═══ -->
     <section class="contact" id="contatti" aria-labelledby="contact-title">
-      <div class="wrap">
-        <p class="kicker mono"><span>(09)</span> <span data-i18n="con.kicker">Contatti</span></p>
-        <h2 id="contact-title" class="contact__title" data-split data-i18n-html="con.title">Parliamone<em>.</em></h2>
+      <picture><source type="image/avif" srcset="assets/img/loggia-anfiteatro-480.avif 480w, assets/img/loggia-anfiteatro-800.avif 800w, assets/img/loggia-anfiteatro-1280.avif 1280w, assets/img/loggia-anfiteatro-1537.avif 1537w" sizes="100vw" /><img src="assets/img/loggia-anfiteatro-1280.webp" srcset="assets/img/loggia-anfiteatro-480.webp 480w, assets/img/loggia-anfiteatro-800.webp 800w, assets/img/loggia-anfiteatro-1280.webp 1280w, assets/img/loggia-anfiteatro-1537.webp 1537w" sizes="100vw" width="1537" height="1023" alt="" class="contact__bg" loading="lazy" decoding="async" /></picture>
+      <div class="card">
+        <h2 class="card__title" id="contact-title" data-i18n="con.title">Parliamone</h2>
+        <p class="card__lead" data-i18n="con.lead">Raccontaci cosa cerchi o quale casa vuoi valutare. Rispondiamo di norma entro un giorno lavorativo.</p>
+        <ul class="card__info">
+          <!-- TODO: sostituire con il numero reale -->
+          <li><span data-i18n="con.phone">Telefono</span><a href="tel:+39000000000">+39 000 000 0000</a></li>
+          <li><span>Email</span><a href="mailto:immobiliare@luccalfa.it">immobiliare@luccalfa.it</a></li>
+          <li><span data-i18n="con.hours">Orari</span><span data-i18n="con.hoursS">Lun–sab, 9–19</span></li>
+        </ul>
 
-        <div class="contact__grid">
-          <div class="contact__info">
-            <p class="lead" data-i18n="con.lead">Raccontaci cosa cerchi o quale casa vuoi valutare. Rispondiamo di norma entro un giorno lavorativo.</p>
-            <ul class="contact__list">
-              <!-- TODO: sostituire con recapiti reali -->
-              <li><span class="mono" data-i18n="con.phone">Telefono</span><a href="tel:+39000000000" data-cursor="☎">+39 000 000 0000</a></li>
-              <li><span class="mono">Email</span><a href="mailto:immobiliare@luccalfa.it" data-cursor="@">immobiliare@luccalfa.it</a></li>
-              <li><span class="mono" data-i18n="con.office">Sede</span><span data-i18n="con.officeV">Lucca (LU) · su appuntamento</span></li>
-              <li><span class="mono" data-i18n="con.hours">Orari</span><span data-i18n="con.hoursV">Lun–Sab · 9:00–19:00</span></li>
-            </ul>
-          </div>
+        <form id="contact-form" class="form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" data-endpoint="https://formspree.io/f/YOUR_FORM_ID">
+          <fieldset class="pick">
+            <legend data-i18n="f.want">Cosa cerchi?</legend>
+            <div class="pick__row" data-group="mode">
+              <button type="button" class="pill" aria-pressed="true" data-v="buy" data-i18n="f.buy">Comprare</button>
+              <button type="button" class="pill" aria-pressed="false" data-v="sell" data-i18n="f.sell">Vendere</button>
+              <button type="button" class="pill" aria-pressed="false" data-v="rent" data-i18n="f.rent">Affittare</button>
+              <button type="button" class="pill" aria-pressed="false" data-v="eval" data-i18n="f.eval">Una valutazione</button>
+            </div>
+          </fieldset>
+          <fieldset class="pick">
+            <legend data-i18n="f.where">Dove?</legend>
+            <div class="pick__row" data-group="zone">
+              <button type="button" class="pill" aria-pressed="true" data-v="centro" data-i18n="f.z1">Centro storico</button>
+              <button type="button" class="pill" aria-pressed="false" data-v="piana" data-i18n="f.z2">Colline e Piana</button>
+              <button type="button" class="pill" aria-pressed="false" data-v="pisa" data-i18n="f.z3">Pisa</button>
+              <button type="button" class="pill" aria-pressed="false" data-v="versilia" data-i18n="f.z4">Versilia</button>
+            </div>
+          </fieldset>
+          <input type="hidden" name="interesse" id="f-interest" />
+          <input type="hidden" name="_language" id="f-lang" value="it" />
 
-          <form id="contact-form" class="form" action="#" method="POST" data-endpoint="https://formspree.io/f/YOUR_FORM_ID" novalidate>
-            <fieldset class="pick">
-              <legend class="mono" data-i18n="f.want">Cosa cerchi?</legend>
-              <div class="pick__row" data-group="mode">
-                <button type="button" class="pill is-on" data-v="buy" data-i18n="f.buy">Comprare</button>
-                <button type="button" class="pill" data-v="sell" data-i18n="f.sell">Vendere</button>
-                <button type="button" class="pill" data-v="rent" data-i18n="f.rent">Affittare</button>
-                <button type="button" class="pill" data-v="eval" data-i18n="f.eval">Una valutazione</button>
-              </div>
-            </fieldset>
-            <fieldset class="pick">
-              <legend class="mono" data-i18n="f.where">Dove?</legend>
-              <div class="pick__row" data-group="zone">
-                <button type="button" class="pill is-on" data-v="centro" data-i18n="f.z1">Centro storico</button>
-                <button type="button" class="pill" data-v="piana" data-i18n="f.z2">Colline e Piana</button>
-                <button type="button" class="pill" data-v="pisa" data-i18n="f.z3">Pisa</button>
-                <button type="button" class="pill" data-v="versilia" data-i18n="f.z4">Versilia</button>
-              </div>
-            </fieldset>
-            <input type="hidden" name="interesse" id="f-interest" />
-
-            <div class="field"><input id="name" name="name" type="text" autocomplete="name" placeholder=" " required /><label for="name" data-i18n="f.name">Nome</label></div>
-            <div class="field"><input id="email" name="_replyto" type="email" autocomplete="email" placeholder=" " required /><label for="email">Email</label></div>
-            <div class="field"><input id="phone" name="phone" type="tel" autocomplete="tel" placeholder=" " /><label for="phone" data-i18n="f.phone">Telefono (facoltativo)</label></div>
-            <div class="field"><textarea id="message" name="message" rows="3" placeholder=" " required></textarea><label for="message" data-i18n="f.msg">Raccontaci qualcosa in più</label></div>
-            <p class="form-note" data-i18n-html="f.privacy">Usiamo i tuoi dati solo per risponderti, come spiegato nell'<a href="privacy.html">informativa privacy</a>.</p>
-            <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
-            <input type="hidden" name="_subject" value="Richiesta dal sito LuccAlfa Immobiliare" />
-            <div id="form-status" class="form-status" role="status" aria-live="polite"></div>
-            <button class="btn btn--accent btn--block magnetic" type="submit"><span data-i18n="f.send">Invia richiesta</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
-          </form>
-        </div>
+          <div class="field"><label for="name" data-i18n="f.name">Nome</label><input id="name" name="name" type="text" autocomplete="name" required /></div>
+          <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" required /></div>
+          <div class="field"><label for="phone" data-i18n="f.phone">Telefono (facoltativo)</label><input id="phone" name="phone" type="tel" autocomplete="tel" /></div>
+          <div class="field"><label for="message" data-i18n="f.msg">Raccontaci qualcosa in più</label><textarea id="message" name="message" rows="3" required></textarea></div>
+          <p class="form-note" data-i18n-html="f.privacy">Usiamo i tuoi dati solo per risponderti, come spiegato nell'<a href="privacy.html">informativa privacy</a>.</p>
+          <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
+          <input type="hidden" name="_subject" value="Richiesta dal sito LuccAlfa Immobiliare" />
+          <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
+          <button class="btn btn--accent btn--block" type="submit" data-i18n="f.send">Invia richiesta</button>
+        </form>
       </div>
     </section>
   </main>
 
+  <!-- ═══ FOOTER: il retro della cartolina ═══ -->
   <footer class="footer">
-    <div class="wrap footer__top">
-      <p class="footer__claim" data-i18n-html="ft.claim">Fatto a Lucca,<br><em>con le chiavi in mano.</em></p>
-      <div class="footer__cols mono">
-        <div><span data-i18n="ft.nav">Naviga</span><a href="#immobili" data-i18n="m.2">Immobili</a><a href="#servizi" data-i18n="m.3">Servizi</a><a href="#zone" data-i18n="m.4">Territorio</a><a href="#faq" data-i18n="m.5">Domande</a></div>
-        <div><span data-i18n="ft.legal">Legale</span><a href="privacy.html">Privacy</a><a href="cookie-policy.html">Cookie</a><a href="#top" class="totop" data-i18n="ft.top">Torna su ↑</a></div>
+    <div class="postcard">
+      <div class="postcard__msg">
+        <p class="postcard__sign" data-i18n-html="ft.claim">Fatto a Lucca,<br>con le chiavi in mano.</p>
+        <p data-i18n="ft.msg">Che tu stia cercando casa, vendendo la tua o arrivando da lontano, cominciamo da un caffè e da una domanda: dove ti vedi?</p>
+        <nav class="postcard__nav" aria-label="Pagine legali" data-i18n-aria="ft.legal">
+          <a href="privacy.html" data-i18n="ft.privacy">Privacy</a>
+          <a href="cookie-policy.html" data-i18n="ft.cookie">Cookie</a>
+          <a href="#top" data-i18n="ft.top">Torna su</a>
+        </nav>
       </div>
+      <div class="postcard__addr">
+        <picture><source type="image/avif" srcset="assets/img/torre-guinigi-480.avif 480w, assets/img/torre-guinigi-800.avif 800w, assets/img/torre-guinigi-1280.avif 1280w, assets/img/torre-guinigi-1920.avif 1920w" sizes="96px" /><img src="assets/img/torre-guinigi-1280.webp" srcset="assets/img/torre-guinigi-480.webp 480w, assets/img/torre-guinigi-800.webp 800w, assets/img/torre-guinigi-1280.webp 1280w, assets/img/torre-guinigi-1920.webp 1920w" sizes="96px" width="3979" height="5969" alt="" class="postcard__stamp" loading="lazy" decoding="async" /></picture>
+        <ul>
+          <li><a href="mailto:immobiliare@luccalfa.it">immobiliare@luccalfa.it</a></li>
+          <li><a href="tel:+39000000000">+39 000 000 0000</a></li>
+          <li><a href="https://wa.me/39000000000" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+          <li>Via di Villa Altieri, 55100 Lucca</li>
+        </ul>
+      </div>
+      <p class="postcard__imprint">© <span id="year">2026</span> LuccAlfa Srls · P.IVA 07079510488 · <span data-i18n="ft.credits">Foto: Unsplash e Pexels; dune della Lecciona di DimiTalen, CC0, Wikimedia Commons.</span></p>
     </div>
-    <div class="footer__word" aria-hidden="true"><span>LuccAlfa</span></div>
-    <div class="wrap footer__bottom mono">
-      <span>© <span id="year"></span> LuccAlfa Srls · P.IVA 07079510488 · Lucca</span>
-      <span>43.843°N — 10.508°E</span>
-    </div>
+    <p class="footer__word" aria-hidden="true">LuccAlfa</p>
   </footer>
 
-  <a class="wa" href="https://wa.me/39000000000" target="_blank" rel="noopener noreferrer" aria-label="Scrivici su WhatsApp" data-i18n-aria="wa">
+  <a class="wa" id="wa" href="https://wa.me/39000000000" target="_blank" rel="noopener noreferrer" aria-label="Scrivici su WhatsApp" data-i18n-aria="wa">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 01-11.8 7L4 20l1.1-4A8 8 0 1120 12z"/></svg>
   </a>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
-  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js" defer></script>
-  <script src="i18n.js" defer></script>
-  <script src="script.js" defer></script>
+  <script src="i18n.js?v=8" defer></script>
+  <script src="script.js?v=8" defer></script>
 </body>
 </html>

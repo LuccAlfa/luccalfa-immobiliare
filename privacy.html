@@ -5,13 +5,12 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <title>Informativa privacy – LuccAlfa Immobiliare</title>
   <meta name="description" content="Come LuccAlfa Immobiliare tratta i dati personali di chi la contatta tramite il sito immobiliare.luccalfa.it." />
-  <meta name="theme-color" content="#0e0c0a" />
+  <meta name="theme-color" content="#eeebe6" />
   <link rel="canonical" href="https://immobiliare.luccalfa.it/privacy.html" />
   <link rel="icon" type="image/svg+xml" href="assets/logo.svg" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="preload" href="assets/fonts/boska-400.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/fonts/switzer-400.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="styles.css?v=8" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -26,22 +25,20 @@
   }
   </script>
 </head>
-<body data-theme="dark" class="legal-page">
-  <header class="legal-nav wrap">
-    <a href="./" class="legal-nav__logo" aria-label="LuccAlfa Immobiliare – home"><img src="assets/logo-light.svg" alt="LuccAlfa" width="120" height="40" /></a>
+<body>
+  <header class="simple-nav">
+    <a href="./" aria-label="LuccAlfa Immobiliare – home"><img src="assets/logo.svg" alt="LuccAlfa" width="58" height="53" /></a>
     <div class="lang" role="group" aria-label="Lingua / Language">
-      <span class="lang__thumb" aria-hidden="true"></span>
-      <button type="button" data-lang="it" aria-pressed="true">IT</button>
-      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      <button type="button" data-lang="it" aria-pressed="true" lang="it">IT</button>
+      <button type="button" data-lang="en" aria-pressed="false" lang="en">EN</button>
     </div>
   </header>
 
-  <main class="legal wrap">
+  <main class="legal">
     <!-- ═══ ITALIANO ═══ -->
     <article data-l="it">
-      <p class="kicker mono"><span>(—)</span> <span>Legale</span></p>
-      <h1 class="legal__title">Informativa <em>privacy</em></h1>
-      <p class="legal__meta mono">Ultimo aggiornamento: 31 ottobre 2026</p>
+      <h1 class="legal__title">Informativa privacy</h1>
+      <p class="legal__meta">Ultimo aggiornamento: 31 ottobre 2026</p>
 
       <p class="lead">Questa pagina spiega quali dati raccogliamo quando ci contatti dal sito immobiliare.luccalfa.it, perché li usiamo e quali diritti hai. È resa ai sensi dell'art. 13 del Regolamento UE 2016/679 (GDPR).</p>
 
@@ -71,7 +68,6 @@
       <ul>
         <li><b>GitHub Inc.</b> (USA) – ospita il sito (GitHub Pages);</li>
         <li><b>Formspree Inc.</b> (USA) – inoltra i messaggi del modulo contatti, quando attivo;</li>
-        <li><b>Google</b> (Google Fonts) e <b>Cloudflare</b> (cdnjs, unpkg) – forniscono caratteri e librerie del sito e ricevono il tuo indirizzo IP per consegnarli;</li>
         <li>il nostro <b>servizio email</b> e, se ci scrivi lì, <b>WhatsApp</b> (Meta).</li>
       </ul>
       <p>Alcuni di questi fornitori hanno sede negli Stati Uniti. Il trasferimento avviene sulla base dell'EU-US Data Privacy Framework o delle clausole contrattuali standard approvate dalla Commissione europea.</p>
@@ -84,14 +80,13 @@
       <h2>7. Cookie</h2>
       <p>Il sito non usa cookie di profilazione né di statistica. Trovi i dettagli nella <a href="cookie-policy.html">cookie policy</a>.</p>
 
-      <a class="btn btn--accent legal__back" href="./">Torna al sito<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a class="btn btn--accent legal__back" href="./">Torna al sito</a>
     </article>
 
     <!-- ═══ ENGLISH ═══ -->
     <article data-l="en" lang="en" hidden>
-      <p class="kicker mono"><span>(—)</span> <span>Legal</span></p>
-      <h1 class="legal__title">Privacy <em>policy</em></h1>
-      <p class="legal__meta mono">Last updated: 31 October 2026</p>
+      <h1 class="legal__title">Privacy policy</h1>
+      <p class="legal__meta">Last updated: 31 October 2026</p>
 
       <p class="lead">This page explains what data we collect when you contact us through immobiliare.luccalfa.it, why we use it and what rights you have. It is provided under Article 13 of EU Regulation 2016/679 (GDPR).</p>
 
@@ -121,7 +116,6 @@
       <ul>
         <li><b>GitHub Inc.</b> (USA) – hosts the site (GitHub Pages);</li>
         <li><b>Formspree Inc.</b> (USA) – forwards contact-form messages, when enabled;</li>
-        <li><b>Google</b> (Google Fonts) and <b>Cloudflare</b> (cdnjs, unpkg) – serve the site's fonts and libraries and receive your IP address to deliver them;</li>
         <li>our <b>email provider</b> and, if you message us there, <b>WhatsApp</b> (Meta).</li>
       </ul>
       <p>Some of these providers are based in the United States. Transfers rely on the EU-US Data Privacy Framework or on the European Commission's standard contractual clauses.</p>
@@ -134,15 +128,12 @@
       <h2>7. Cookies</h2>
       <p>The site uses no profiling or analytics cookies. See the <a href="cookie-policy.html">cookie policy</a> for details.</p>
 
-      <a class="btn btn--accent legal__back" href="./">Back to the site<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a class="btn btn--accent legal__back" href="./">Back to the site</a>
     </article>
   </main>
 
-  <footer class="wrap footer__bottom mono">
-    <span>© LuccAlfa Srls · P.IVA 07079510488 · Lucca</span>
-    <span><a href="privacy.html">Privacy</a> · <a href="cookie-policy.html">Cookie</a></span>
-  </footer>
+  <footer class="legal-foot">© LuccAlfa Srls · P.IVA 07079510488 · Lucca · <a href="privacy.html">Privacy</a> · <a href="cookie-policy.html">Cookie</a></footer>
 
-  <script src="legal.js"></script>
+  <script src="legal.js?v=8"></script>
 </body>
 </html>
