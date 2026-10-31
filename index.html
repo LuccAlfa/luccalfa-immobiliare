@@ -26,7 +26,7 @@
   <link rel="preload" href="assets/fonts/switzer-400.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" as="image" href="assets/img/tetti-lucca-p-720.avif" type="image/avif" media="(max-width: 699px)" />
   <link rel="preload" as="image" imagesrcset="assets/img/tetti-lucca-1280.avif 1280w, assets/img/tetti-lucca-1920.avif 1920w, assets/img/tetti-lucca-2560.avif 2560w" imagesizes="100vw" type="image/avif" media="(min-width: 700px)" />
-  <link rel="stylesheet" href="styles.css?v=20" />
+  <link rel="stylesheet" href="styles.css?v=21" />
 
   <!-- ═════ SCHEMA.ORG: RealEstateAgent + LocalBusiness ═════
        Entità autonoma: nessun collegamento all'entità di luccalfa.it (giardinaggio e pulizie),
@@ -102,7 +102,17 @@
 
 <body>
   <div class="loader" id="loader" aria-hidden="true">
-    <svg class="loader__arch" viewBox="0 0 120 150"><path d="M14 146V64a46 46 0 0 1 92 0v82" /></svg>
+    <!-- il simbolo LuccAlfa si disegna lungo il suo tratto: i due archi, poi il fondo che li lega -->
+    <svg class="loader__mark" viewBox="4150 2380 4130 3270">
+      <defs><mask id="loaderInk" maskUnits="userSpaceOnUse" x="4150" y="2380" width="4130" height="3270">
+        <path class="lm lm--1" pathLength="1" d="M4452 5440V3500C4452 3000 4800 2684 5250 2684C5750 2684 6050 2950 6300 3150C6750 3500 7104 3800 7104 4300V5000"/>
+        <path class="lm lm--2" pathLength="1" d="M7980 5440V3500C7980 3000 7640 2684 7190 2684C6690 2684 6390 2950 6140 3150C5690 3500 5340 3800 5340 4300V5000"/>
+        <path class="lm lm--3" pathLength="1" d="M5340 4950C5340 5250 5550 5300 5800 5300C6050 5300 6220 5250 6220 5000V3150"/>
+        <path class="lm lm--4" pathLength="1" d="M6220 5000C6220 5250 6390 5300 6640 5300C6890 5300 7104 5250 7104 4950"/>
+      </mask></defs>
+      <path class="loader__ink" mask="url(#loaderInk)" d="M5981.467,4205.883l-3.542,0c0,-230.163 0.6,-460.325 -0.417,-690.488c-0.254,-56.388 -22.038,-66.783 -69.258,-34.863c-65.392,44.167 -124.075,96.575 -179.675,152.454c-120,120.6 -147.037,278.888 -154.608,435.071c-13.217,273.567 -11.921,548.171 -1.067,822.037c3.842,97.058 41.992,180.092 153.379,209.908c88.308,23.633 187.037,-13.358 226.342,-94.792c21.042,-43.588 29.004,-88.471 28.958,-136.042c-0.254,-221.087 -0.117,-442.2 -0.117,-663.288m897.037,271.575l-0.254,0c0,-22.708 0.117,-45.442 -0.025,-68.171c-1.042,-188.775 9.142,-377.733 -47.988,-562.637c-45.442,-147.129 -130.208,-261.55 -258.333,-343.333c-93.704,-59.792 -101.067,-54.075 -104.862,58.217c-0.092,3.033 -0.254,6.067 -0.254,9.096c-0.442,439.35 -0.996,878.725 -0.996,1318.079c0,22.571 1.737,45.95 7.708,67.546c17.754,64.142 65.071,134.883 153.842,147.058c86.204,11.829 160.971,-13.1 201.621,-77.454c35.533,-56.25 50.254,-118.242 49.792,-184.767c-0.879,-121.204 -0.254,-242.408 -0.254,-363.633m1348.775,-80.092c0,318.308 1.067,636.642 -0.65,954.954c-0.508,95.208 -45.971,173.125 -130.879,212.683c-114.863,53.517 -267.292,17.154 -314.142,-128.425c-16.133,-50.183 -23.612,-98.725 -23.567,-150.65c0.487,-576.017 4.238,-1152.083 -2.038,-1728.033c-2.779,-254.929 -124.817,-445.162 -358.679,-559.283c-97.663,-47.637 -196.692,-83.171 -307.246,-78.821c-111.504,4.4 -211.992,44.142 -309.767,93.196c-33.379,16.738 -35.279,36.412 -4.817,60.092c50.117,38.958 104.767,71.204 153.262,112.987c116.804,100.671 217.846,213.15 293.262,348.658c72.683,130.554 116.829,270.533 121.133,418.358c10.071,343.933 12.754,688.379 -1.483,1032.013c-6.967,168.425 -89.629,312.592 -223.496,420.6c-144.05,116.204 -302.638,194.213 -495.071,178.008c-127.846,-10.762 -246.875,-46.204 -347.317,-128.217c-34.512,-28.171 -59.512,-28.658 -95.183,-3.333c-134.862,95.762 -284.467,144.558 -451.458,130.346c-228.196,-19.4 -400.392,-126.367 -520.696,-323.008c-83.725,-136.875 -115.279,-281.342 -111.088,-441.133c6.804,-257.5 2.108,-515.325 1.758,-773.008c-0.183,-153.196 24.975,-302.317 89.121,-441.112c86.712,-187.617 220.233,-339.075 385.625,-462.408c32.754,-24.421 66.875,-46.946 100.046,-70.788c25.233,-18.15 32.221,-35.554 -1.321,-53.567c-152.175,-81.642 -308.821,-121.342 -483.496,-79.558c-234.304,56.042 -372.221,214.35 -463.1,422.108c-25.346,57.942 -37.546,124.075 -37.475,190.508c0.488,591.179 0,1182.363 0.117,1773.542c0.025,75.95 -25.788,141.967 -74.492,199.096c-47.846,56.113 -153.613,82.012 -221.067,51.967c-30.046,-13.379 -61.804,-22.779 -89.629,-42.917c-52.779,-38.217 -83.633,-85.996 -83.567,-152.175c0.533,-641.204 -3.262,-1282.429 3.796,-1923.567c2.525,-229.908 102.2,-428.333 256.017,-599.654c101.042,-112.525 213.308,-211.667 345.533,-284.167c119.883,-65.742 250.117,-108.287 387.108,-119.237c168.542,-13.471 336.367,-4.142 497.012,54.817c128.913,47.317 244.792,118.633 348.079,209.258c46.575,40.879 93.079,82.429 134.7,128.171c29.7,32.663 47.8,25.279 72.475,-3.196c90.95,-105.025 196.529,-192.917 317.175,-261.992c134.629,-77.083 279.558,-121.458 434.675,-128.358c125.671,-5.579 251.133,-5.392 374.467,27.429c103.1,27.454 201.296,67.592 289.375,126.042c130.117,86.321 250.371,184.954 340.717,315.763c82.292,119.192 143.15,246.9 181.275,387.246c22.337,82.221 24.767,164.192 24.817,247.454c0.071,280.417 0.025,560.858 0.025,841.296l0.138,0l0.013,0.017Z"/>
+      <path class="loader__full" d="M5981.467,4205.883l-3.542,0c0,-230.163 0.6,-460.325 -0.417,-690.488c-0.254,-56.388 -22.038,-66.783 -69.258,-34.863c-65.392,44.167 -124.075,96.575 -179.675,152.454c-120,120.6 -147.037,278.888 -154.608,435.071c-13.217,273.567 -11.921,548.171 -1.067,822.037c3.842,97.058 41.992,180.092 153.379,209.908c88.308,23.633 187.037,-13.358 226.342,-94.792c21.042,-43.588 29.004,-88.471 28.958,-136.042c-0.254,-221.087 -0.117,-442.2 -0.117,-663.288m897.037,271.575l-0.254,0c0,-22.708 0.117,-45.442 -0.025,-68.171c-1.042,-188.775 9.142,-377.733 -47.988,-562.637c-45.442,-147.129 -130.208,-261.55 -258.333,-343.333c-93.704,-59.792 -101.067,-54.075 -104.862,58.217c-0.092,3.033 -0.254,6.067 -0.254,9.096c-0.442,439.35 -0.996,878.725 -0.996,1318.079c0,22.571 1.737,45.95 7.708,67.546c17.754,64.142 65.071,134.883 153.842,147.058c86.204,11.829 160.971,-13.1 201.621,-77.454c35.533,-56.25 50.254,-118.242 49.792,-184.767c-0.879,-121.204 -0.254,-242.408 -0.254,-363.633m1348.775,-80.092c0,318.308 1.067,636.642 -0.65,954.954c-0.508,95.208 -45.971,173.125 -130.879,212.683c-114.863,53.517 -267.292,17.154 -314.142,-128.425c-16.133,-50.183 -23.612,-98.725 -23.567,-150.65c0.487,-576.017 4.238,-1152.083 -2.038,-1728.033c-2.779,-254.929 -124.817,-445.162 -358.679,-559.283c-97.663,-47.637 -196.692,-83.171 -307.246,-78.821c-111.504,4.4 -211.992,44.142 -309.767,93.196c-33.379,16.738 -35.279,36.412 -4.817,60.092c50.117,38.958 104.767,71.204 153.262,112.987c116.804,100.671 217.846,213.15 293.262,348.658c72.683,130.554 116.829,270.533 121.133,418.358c10.071,343.933 12.754,688.379 -1.483,1032.013c-6.967,168.425 -89.629,312.592 -223.496,420.6c-144.05,116.204 -302.638,194.213 -495.071,178.008c-127.846,-10.762 -246.875,-46.204 -347.317,-128.217c-34.512,-28.171 -59.512,-28.658 -95.183,-3.333c-134.862,95.762 -284.467,144.558 -451.458,130.346c-228.196,-19.4 -400.392,-126.367 -520.696,-323.008c-83.725,-136.875 -115.279,-281.342 -111.088,-441.133c6.804,-257.5 2.108,-515.325 1.758,-773.008c-0.183,-153.196 24.975,-302.317 89.121,-441.112c86.712,-187.617 220.233,-339.075 385.625,-462.408c32.754,-24.421 66.875,-46.946 100.046,-70.788c25.233,-18.15 32.221,-35.554 -1.321,-53.567c-152.175,-81.642 -308.821,-121.342 -483.496,-79.558c-234.304,56.042 -372.221,214.35 -463.1,422.108c-25.346,57.942 -37.546,124.075 -37.475,190.508c0.488,591.179 0,1182.363 0.117,1773.542c0.025,75.95 -25.788,141.967 -74.492,199.096c-47.846,56.113 -153.613,82.012 -221.067,51.967c-30.046,-13.379 -61.804,-22.779 -89.629,-42.917c-52.779,-38.217 -83.633,-85.996 -83.567,-152.175c0.533,-641.204 -3.262,-1282.429 3.796,-1923.567c2.525,-229.908 102.2,-428.333 256.017,-599.654c101.042,-112.525 213.308,-211.667 345.533,-284.167c119.883,-65.742 250.117,-108.287 387.108,-119.237c168.542,-13.471 336.367,-4.142 497.012,54.817c128.913,47.317 244.792,118.633 348.079,209.258c46.575,40.879 93.079,82.429 134.7,128.171c29.7,32.663 47.8,25.279 72.475,-3.196c90.95,-105.025 196.529,-192.917 317.175,-261.992c134.629,-77.083 279.558,-121.458 434.675,-128.358c125.671,-5.579 251.133,-5.392 374.467,27.429c103.1,27.454 201.296,67.592 289.375,126.042c130.117,86.321 250.371,184.954 340.717,315.763c82.292,119.192 143.15,246.9 181.275,387.246c22.337,82.221 24.767,164.192 24.817,247.454c0.071,280.417 0.025,560.858 0.025,841.296l0.138,0l0.013,0.017Z"/>
+    </svg>
     <p class="loader__word"><span>LuccAlfa</span></p>
   </div>
   <div class="curtain" id="curtain" aria-hidden="true"><span class="curtain__label" id="curtainLabel">English</span></div>
@@ -118,7 +128,7 @@
         <button type="button" data-lang="it" aria-pressed="true" lang="it" aria-label="Italiano"><svg viewBox="0 0 3 2" aria-hidden="true"><rect width="1" height="2" fill="#009246"/><rect x="1" width="1" height="2" fill="#fff"/><rect x="2" width="1" height="2" fill="#ce2b37"/></svg></button>
         <button type="button" data-lang="en" aria-pressed="false" lang="en" aria-label="English"><svg viewBox="0 0 60 40" aria-hidden="true"><rect width="60" height="40" fill="#012169"/><path d="M0 0L60 40M60 0L0 40" stroke="#fff" stroke-width="8"/><path d="M0 0L60 40M60 0L0 40" stroke="#c8102e" stroke-width="3"/><path d="M30 0V40M0 20H60" stroke="#fff" stroke-width="12"/><path d="M30 0V40M0 20H60" stroke="#c8102e" stroke-width="7"/></svg></button>
       </div>
-      <a class="btn btn--accent nav__cta roll" href="#contatti"><span data-i18n="nav.cta">Valutazione gratuita</span></a>
+      <a class="nav__cta" href="#contatti"><span data-i18n="nav.cta">Valutazione gratuita</span></a>
       <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="menu" aria-label="Apri il menu" data-i18n-aria="nav.menu"><i></i><i></i><i></i></button>
     </div>
   </header>
@@ -141,30 +151,11 @@
   </div>
 
   <main id="main">
-    <!-- ═══ INTRO: un'unica scena. Il cielo, i tetti, l'omino portato e lasciato cadere,
-         la città che si inclina, la picchiata, il portone che si apre, la sala. ═══ -->
+    <!-- ═══ INTRO: i tetti di Lucca; scorrendo, la foto si ritira dentro il simbolo LuccAlfa
+         e la nebbia sale fino a diventare la pagina (come un'unica inquadratura). ═══ -->
     <section class="intro" id="top" aria-labelledby="hero-title">
       <div class="intro__stage">
-        <div class="intro__street">
-          <div class="intro__dolly">
-          <div class="intro__scene">
-            <!-- l'androne dietro il portone: pavimento, pareti e volta sono piani 3D veri, il cortile è in fondo -->
-            <div class="androne" aria-hidden="true">
-              <span class="androne__court"><picture><source type="image/avif" srcset="assets/img/cortile-800.avif 800w, assets/img/cortile-1400.avif 1400w, assets/img/cortile-2000.avif 2000w" sizes="(min-width: 900px) 40vw, 80vw" /><img src="assets/img/cortile-1400.webp" srcset="assets/img/cortile-800.webp 800w, assets/img/cortile-1400.webp 1400w, assets/img/cortile-2000.webp 2000w" sizes="(min-width: 900px) 40vw, 80vw" width="3283" height="3648" alt="" loading="lazy" decoding="async" /></picture></span>
-              <span class="androne__floor"></span>
-              <span class="androne__wall androne__wall--l"></span>
-              <span class="androne__wall androne__wall--r"></span>
-              <span class="androne__vault"><i style="--a:173.57deg"></i><i style="--a:160.71deg"></i><i style="--a:147.86deg"></i><i style="--a:135deg"></i><i style="--a:122.14deg"></i><i style="--a:109.29deg"></i><i style="--a:96.43deg"></i><i style="--a:83.57deg"></i><i style="--a:70.71deg"></i><i style="--a:57.86deg"></i><i style="--a:45deg"></i><i style="--a:32.14deg"></i><i style="--a:19.29deg"></i><i style="--a:6.43deg"></i></span>
-            </div>
-            <div class="door__leaves" aria-hidden="true">
-              <span class="door__leaf door__leaf--l"><picture><source type="image/avif" srcset="assets/img/anta-sx-300.avif 300w, assets/img/anta-sx-600.avif 600w, assets/img/anta-sx-1000.avif 1000w" sizes="(min-width: 900px) 26vw, 52vw" /><img src="assets/img/anta-sx-600.webp" srcset="assets/img/anta-sx-300.webp 300w, assets/img/anta-sx-600.webp 600w, assets/img/anta-sx-1000.webp 1000w" sizes="(min-width: 900px) 26vw, 52vw" width="1031" height="2526" alt="" loading="lazy" decoding="async" /></picture></span>
-              <span class="door__leaf door__leaf--r"><picture><source type="image/avif" srcset="assets/img/anta-dx-300.avif 300w, assets/img/anta-dx-600.avif 600w, assets/img/anta-dx-1000.avif 1000w" sizes="(min-width: 900px) 26vw, 52vw" /><img src="assets/img/anta-dx-600.webp" srcset="assets/img/anta-dx-300.webp 300w, assets/img/anta-dx-600.webp 600w, assets/img/anta-dx-1000.webp 1000w" sizes="(min-width: 900px) 26vw, 52vw" width="1031" height="2526" alt="" loading="lazy" decoding="async" /></picture></span>
-            </div>
-            <picture class="door__front"><source type="image/avif" srcset="assets/img/portone-cotto-1600.avif 1600w, assets/img/portone-cotto-2400.avif 2400w, assets/img/portone-cotto-3200.avif 3200w" sizes="(min-width: 900px) 150vw, 300vw" /><img src="assets/img/portone-cotto-2400.webp" srcset="assets/img/portone-cotto-1600.webp 1600w, assets/img/portone-cotto-2400.webp 2400w, assets/img/portone-cotto-3200.webp 3200w" sizes="(min-width: 900px) 150vw, 300vw" width="5976" height="3984" alt="Un grande portone in legno ad arco in una facciata di mattoni, con la soglia in marmo bianco" data-i18n-alt="door.alt" class="door__facade" loading="lazy" decoding="async" /></picture>
-          </div>
-          </div>
-        </div>
-        <div class="intro__aerial">
+        <div class="intro__photo">
           <picture class="hero__pic">
             <source type="image/avif" media="(max-width: 699px)" srcset="assets/img/tetti-lucca-p-720.avif 720w, assets/img/tetti-lucca-p-1080.avif 1080w" sizes="100vw" />
             <source type="image/webp" media="(max-width: 699px)" srcset="assets/img/tetti-lucca-p-720.webp 720w, assets/img/tetti-lucca-p-1080.webp 1080w" sizes="100vw" />
@@ -172,30 +163,16 @@
             <img src="assets/img/tetti-lucca-1920.webp" srcset="assets/img/tetti-lucca-1280.webp 1280w, assets/img/tetti-lucca-1920.webp 1920w, assets/img/tetti-lucca-2560.webp 2560w" sizes="150vw" width="6000" height="4000" fetchpriority="high" decoding="async" alt="I tetti di Lucca nella luce del mattino, con le torri e le colline sullo sfondo" data-i18n-alt="hero.alt" />
           </picture>
         </div>
-        <div class="peg" id="peg" aria-hidden="true">
-          <svg viewBox="-20 -10 100 120" overflow="visible">
-            <ellipse class="peg__shadow" cx="30" cy="95" rx="15" ry="3.6" fill="#2a1a0e"/>
-            <ellipse class="peg__ring" cx="30" cy="95" rx="22" ry="6" fill="none" stroke="#f68622" stroke-width="2.5"/>
-            <!-- una sola sagoma piena: i giunti di braccia e gambe stanno dentro il busto -->
-            <g class="peg__body" fill="#f68622">
-              <g class="peg__leg peg__leg--l"><rect x="20" y="52" width="10.5" height="43" rx="5.25"/></g>
-              <g class="peg__leg peg__leg--r"><rect x="29.5" y="52" width="10.5" height="43" rx="5.25"/></g>
-              <g class="peg__arm peg__arm--l"><rect x="12.5" y="24.5" width="9" height="31" rx="4.5"/></g>
-              <g class="peg__arm peg__arm--r"><rect x="38.5" y="24.5" width="9" height="31" rx="4.5"/></g>
-              <path d="M16.5 32 Q16.5 23 25.5 23 H34.5 Q43.5 23 43.5 32 L41.5 58 Q41 64 35 64 H25 Q19 64 18.5 58 Z"/>
-              <rect x="25" y="17" width="10" height="9" rx="3"/>
-              <circle cx="30" cy="11.5" r="11.5"/>
-            </g>
-          </svg>
-        </div>
+        <div class="intro__mark" aria-hidden="true"><picture><source type="image/avif" srcset="assets/img/tetti-lucca-1280.avif 1280w, assets/img/tetti-lucca-1920.avif 1920w, assets/img/tetti-lucca-2560.avif 2560w" sizes="100vw" /><img src="assets/img/tetti-lucca-1920.webp" srcset="assets/img/tetti-lucca-1280.webp 1280w, assets/img/tetti-lucca-1920.webp 1920w, assets/img/tetti-lucca-2560.webp 2560w" sizes="100vw" width="6000" height="4000" alt="" decoding="async" /></picture></div>
+        <p class="intro__name" aria-hidden="true">LuccAlfa <span>Immobiliare</span></p>
         <div class="hero__copy">
           <h1 class="hero__title" id="hero-title" data-i18n-html="hero.title">Dentro le Mura,<br>oltre le Mura.</h1>
           <p class="hero__sub" data-i18n="hero.sub">Agenzia immobiliare a Lucca: case in vendita e in affitto, dal centro storico a Pisa e alla Versilia.</p>
         </div>
         <a class="btn btn--accent hero__cta" href="#immobili" data-i18n="hero.cta">Guarda gli immobili</a>
-        <div class="intro__after" id="soglia">
-          <h2 class="door__title" data-i18n-html="door.title">Ogni casa comincia<br>da una porta.</h2>
-          <p class="door__p" data-i18n="door.p">Noi ti accompagniamo dall'altra parte, con tempi chiari, costi spiegati prima e nessuna sorpresa.</p>
+        <div class="intro__mist" aria-hidden="true">
+          <img class="intro__mist-b" src="assets/img/nebbia-b-2400.webp" srcset="assets/img/nebbia-b-1200.webp 1200w, assets/img/nebbia-b-2400.webp 2400w" sizes="140vw" width="2400" height="1040" alt="" decoding="async" />
+          <img class="intro__mist-a" src="assets/img/nebbia-a-2400.webp" srcset="assets/img/nebbia-a-1200.webp 1200w, assets/img/nebbia-a-2400.webp 2400w" sizes="140vw" width="2400" height="1040" alt="" decoding="async" />
         </div>
       </div>
     </section>
@@ -474,8 +451,7 @@
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 01-11.8 7L4 20l1.1-4A8 8 0 1120 12z"/></svg>
   </a>
 
-  <script src="i18n.js?v=20" defer></script>
-  <script src="script.js?v=20" defer></script>
-  <script src="intro.js?v=20" defer></script>
+  <script src="i18n.js?v=21" defer></script>
+  <script src="script.js?v=21" defer></script>
 </body>
 </html>

@@ -40,7 +40,6 @@
     if (burger) burger.setAttribute("aria-label", menuOpen ? t("menuClose") : t("menuOpen"));
     try { localStorage.setItem("luccalfa-lang", lang); } catch (e) { /* storage non disponibile */ }
     splitText();
-    if (typeof syncRoll === "function") syncRoll();
   };
 
   /* titoli: ogni parola sale dalla sua riga; paragrafo [data-scrub]: le parole si accendono scorrendo */
@@ -94,6 +93,8 @@
   const setMenu = (open) => {
     menuOpen = open;
     document.body.classList.toggle("menu-open", open);
+    // lo scorrimento si blocca sulla radice: bloccarlo sul body farebbe ripartire le scene da capo
+    document.documentElement.classList.toggle("menu-open", open);
     burger.setAttribute("aria-expanded", String(open));
     burger.setAttribute("aria-label", open ? t("menuClose") : t("menuOpen"));
     menu.inert = !open;
@@ -109,7 +110,8 @@
   let lastY = scrollY, ticking = false;
   const onScroll = () => {
     const y = scrollY, d = y - lastY, past = y > (hero ? hero.offsetHeight - 80 : 40);
-    nav.classList.toggle("is-solid", y > 40);
+    // finché si è nell'intro la barra resta senza fondo (sopra la foto e poi sopra la nebbia)
+    nav.classList.toggle("is-solid", y > (hero ? hero.offsetHeight - nav.offsetHeight : 40));
     if (y < 120 || menuOpen) nav.classList.remove("is-away");
     else if (d > 6) nav.classList.add("is-away");
     else if (d < -6) nav.classList.remove("is-away");
@@ -242,14 +244,11 @@
       try { sessionStorage.setItem("la-loaded", "1"); } catch (e) { /* storage non disponibile */ }
     };
     const start = performance.now();
-    const ready = () => setTimeout(done, Math.max(0, 1500 - (performance.now() - start)));
+    const ready = () => setTimeout(done, Math.max(0, 2050 - (performance.now() - start)));
     const hero = $(".hero__pic img");
     if (hero && !hero.complete) { hero.addEventListener("load", ready, { once: true }); setTimeout(done, 3500); } else ready();
   }
 
-  /* testo che ruota al passaggio: la copia sotto è la stessa parola */
-  const syncRoll = () => $$(".roll > span").forEach((s) => s.setAttribute("data-roll", s.textContent.trim()));
-  syncRoll();
 
   /* ═════ MISURE DELLE SCENE ═════
      Servizi: di quanto scorre la galleria orizzontale. */

@@ -21,10 +21,6 @@ window.I18N_EN = {
   "hero.sub": "An estate agency in Lucca: homes for sale and rent, from the old town to Pisa and the Versilia coast.",
   "hero.cta": "See the properties",
 
-  "door.title": "Every home begins<br>with a door.",
-  "door.alt": "A large arched wooden front door in a brick façade, with a white marble threshold",
-  "door.big": "We walk you<br>to the other side.",
-  "door.p": "We walk you to the other side, with clear timelines, costs explained upfront and no surprises.",
 
   "about.alt1": "A street in central Lucca with the Guinigi Tower and the oak trees on its top",
   "about.cap1": "The Guinigi Tower, Lucca",

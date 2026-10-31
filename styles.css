@@ -18,6 +18,7 @@
   --accent-deep: #bd5815; /* arancio profondo: testo bianco leggibile (4.6:1) */
   --field: #2f4a3a;     /* verde persiana */
   --paper: #eeebe6;
+  --white: #fbfaf7;     /* carta: il fondo di domande e contatti */
   --scrim: rgba(16, 19, 15, 0.42);
 
   --display: "Boska", "Times New Roman", serif;
@@ -71,7 +72,7 @@ figcaption { font-size: var(--step-small); color: var(--muted); margin-top: 10px
 }
 .btn--accent { background: var(--accent); color: var(--accent-ink); }
 .btn:active { transform: scale(0.97); }
-.btn--block { width: 100%; }
+.btn--block { width: 100%; min-height: 56px; font-size: 1.0625rem; }
 .link { font-weight: 500; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; transition: text-underline-offset .2s var(--ease); }
 @media (hover: hover) {
   .btn--accent:hover { background: var(--ink); color: var(--paper); }
@@ -100,17 +101,16 @@ figcaption { font-size: var(--step-small); color: var(--muted); margin-top: 10px
 .lang button svg { width: 24px; height: 16px; border-radius: 3px; box-shadow: 0 0 0 1.5px rgba(22,19,15,.18); } /* taste-skill-ignore */
 .lang button[aria-pressed="true"] { opacity: 1; }
 @media (hover: hover) { .lang button:hover { opacity: 1; transform: translateY(-2px); } }
-.nav__cta { min-height: 44px; padding: 0 18px; }
-/* testo che ruota verso l'alto al passaggio: la copia sotto è la stessa parola */
-.roll { overflow: hidden; }
-.roll > span { position: relative; display: inline-block; line-height: 44px; transition: transform .55s cubic-bezier(0.16, 1, 0.3, 1); }
-.roll > span::after { content: attr(data-roll); position: absolute; left: 0; top: 100%; }
-@media (hover: hover) { .roll:hover > span { transform: translateY(-100%); } }
+/* invito nella barra: testo inchiostro; al passaggio sale e lascia il posto alla sua copia arancio, come le voci del menu */
+.nav__cta { display: inline-flex; align-items: center; min-height: 44px; overflow: hidden; color: inherit; text-decoration: none; font-weight: 500; }
+.nav__cta > span { display: block; line-height: 1.3; text-shadow: 0 1.3em 0 var(--accent); transition: transform .6s cubic-bezier(0.16, 1, 0.3, 1); } /* taste-skill-ignore: la copia della parola, non un'ombra */
+@media (hover: hover) { .nav__cta:hover > span { transform: translateY(-100%); } }
+.nav__cta:focus-visible > span { transform: translateY(-100%); }
 
 /* icona menu (come su RIO): tre linee lunghe 1, ¾ e ½; al passaggio si allineano, aperta diventa una X */
 .burger { position: relative; width: 48px; height: 48px; display: grid; place-items: center; font-size: 16px; }
 .burger i { position: absolute; left: 8px; width: 32px; height: 2px; background: currentColor; top: 23px;
-  transition: transform .5s cubic-bezier(0.7, 0, 0.3, 1), background-color .5s; }
+  transition: transform .32s cubic-bezier(0.65, 0, 0.35, 1), opacity .18s ease-out; }
 .burger i:nth-child(1) { transform: translateY(-.45em) scaleX(1); }
 .burger i:nth-child(2) { transform: scaleX(.75); }
 .burger i:nth-child(3) { transform: translateY(.45em) scaleX(.5); }
@@ -118,34 +118,33 @@ figcaption { font-size: var(--step-small); color: var(--muted); margin-top: 10px
   .burger:hover i:nth-child(2) { transform: scaleX(1); }
   .burger:hover i:nth-child(3) { transform: translateY(.45em) scaleX(1); }
 }
-body.menu-open .burger i:nth-child(1) { transform: rotate(45deg); }
-body.menu-open .burger i:nth-child(2) { transform: translateX(-150%) scaleX(1); opacity: 0; transition: transform .5s cubic-bezier(0.7, 0, 0.3, 1), opacity .2s .2s; }
-body.menu-open .burger i:nth-child(3) { transform: rotate(-45deg); }
+/* aperta: le linee esterne ruotano nella X, quella centrale si stringe verso il centro e svanisce insieme */
+html.menu-open .burger i:nth-child(1) { transform: rotate(45deg); }
+html.menu-open .burger i:nth-child(2) { transform: scaleX(0); opacity: 0; }
+html.menu-open .burger i:nth-child(3) { transform: rotate(-45deg); }
 @media (hover: hover) {
-  body.menu-open .burger:hover i:nth-child(1) { transform: rotate(45deg) scaleX(.7); }
-  body.menu-open .burger:hover i:nth-child(3) { transform: rotate(-45deg) scaleX(.7); }
+  html.menu-open .burger:hover i:nth-child(1) { transform: rotate(45deg) scaleX(.72); }
+  html.menu-open .burger:hover i:nth-child(3) { transform: rotate(-45deg) scaleX(.72); }
 }
-body.menu-open .nav { background: transparent; transform: none; color: var(--paper); }
-body.menu-open .nav .lang button svg { box-shadow: 0 0 0 1.5px rgba(238,235,230,.5); } /* taste-skill-ignore */
-body.menu-open { overflow: hidden; }
+html.menu-open .nav { background: transparent; transform: none; color: var(--paper); transition: color .3s .15s, transform .3s; }
+html.menu-open .nav .lang button svg { box-shadow: 0 0 0 1.5px rgba(238,235,230,.5); } /* taste-skill-ignore */
+html.menu-open { overflow: hidden; }
 
-/* il menu: una tendina verde persiana che cala dall'alto, voci grandi in basso a sinistra */
+/* il menu: una tendina verde persiana che scende dall'alto (solo traslazione, fluida), voci grandi in basso a sinistra */
 .menu { position: fixed; inset: 0; z-index: 49; background: var(--field); color: var(--paper);
   display: flex; flex-direction: column; justify-content: flex-end; gap: 6svh; padding: calc(var(--nav-h) + 4svh) var(--m) 5svh;
-  clip-path: polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%); visibility: hidden;
-  transition: clip-path 1s cubic-bezier(0.9, 0, 0.1, 1), visibility 0s 1s; }
-body.menu-open .menu { clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%); visibility: visible; transition-delay: 0s; }
+  transform: translateY(-101%); visibility: hidden; will-change: transform;
+  transition: transform .62s cubic-bezier(0.76, 0, 0.24, 1), visibility 0s .62s; }
+html.menu-open .menu { transform: none; visibility: visible; transition: transform .72s cubic-bezier(0.76, 0, 0.24, 1), visibility 0s; }
 .menu__links li { overflow: clip; }
 .menu__links a { display: flex; align-items: center; gap: .1em; width: max-content; padding: .1em 0; color: var(--paper); text-decoration: none;
   font-family: var(--text); font-weight: 500; text-transform: uppercase; letter-spacing: -0.015em; line-height: 1;
   font-size: clamp(2.5rem, .6rem + 4.2vw, 4.75rem);
-  transform: translateY(100%) rotate(5deg); transform-origin: 0 0; transition: transform .75s cubic-bezier(0.7, 0, 0.3, 1); }
-.menu__links li:nth-child(1) a { transition-delay: .2s; } .menu__links li:nth-child(2) a { transition-delay: .15s; }
-.menu__links li:nth-child(3) a { transition-delay: .1s; } .menu__links li:nth-child(4) a { transition-delay: .05s; }
-body.menu-open .menu__links a { transform: none; transition: transform 1s cubic-bezier(0.381, 0, 0.03, 1.003); }
-body.menu-open .menu__links li:nth-child(1) a { transition-delay: .25s; } body.menu-open .menu__links li:nth-child(2) a { transition-delay: .3s; }
-body.menu-open .menu__links li:nth-child(3) a { transition-delay: .35s; } body.menu-open .menu__links li:nth-child(4) a { transition-delay: .4s; }
-body.menu-open .menu__links li:nth-child(5) a { transition-delay: .45s; }
+  transform: translateY(100%) rotate(5deg); transform-origin: 0 0; transition: transform .4s cubic-bezier(0.7, 0, 0.84, 0); }
+html.menu-open .menu__links a { transform: none; transition: transform .9s cubic-bezier(0.22, 1, 0.36, 1); }
+html.menu-open .menu__links li:nth-child(1) a { transition-delay: .26s; } html.menu-open .menu__links li:nth-child(2) a { transition-delay: .31s; }
+html.menu-open .menu__links li:nth-child(3) a { transition-delay: .36s; } html.menu-open .menu__links li:nth-child(4) a { transition-delay: .41s; }
+html.menu-open .menu__links li:nth-child(5) a { transition-delay: .46s; }
 /* al passaggio la parola sale e lascia il posto alla sua copia arancio; arriva la freccia; le altre voci si spengono */
 .menu__text { display: block; text-shadow: 0 1.15em 0 var(--accent); transition: transform .75s cubic-bezier(0.16, 1, 0.3, 1); } /* taste-skill-ignore: la copia della parola, non un'ombra */
 .menu__arrow { flex: none; width: .82em; height: .82em; overflow: hidden; }
@@ -161,39 +160,23 @@ body.menu-open .menu__links li:nth-child(5) a { transition-delay: .45s; }
 .menu__links a:focus-visible .menu__text { transform: translateY(-115%); }
 .menu__links a:focus-visible .menu__arrow path { transform: translateX(0) rotate(45deg); }
 .menu__foot { display: flex; flex-wrap: wrap; gap: 8px 28px; color: rgba(238,235,230,.75); opacity: 0; transition: opacity .3s; }
-body.menu-open .menu__foot { opacity: 1; transition: opacity .6s .7s; }
+html.menu-open .menu__foot { opacity: 1; transition: opacity .5s .6s; }
 .menu__foot a { color: var(--paper); font-weight: 500; text-decoration: none; }
 
-/* ═════ INTRO: un'unica scena dal cielo fino dentro casa ═════
-   Statica (senza animazioni legate allo scorrimento): hero, poi portone, poi sala.
-   Animata: cielo → tetti → l'omino viene portato e cade → la città si inclina come un
-   modellino → picchiata → la strada si apre dal punto dove è atterrato → portone → sala. */
-@property --reveal { syntax: "<length>"; inherits: false; initial-value: 0px; }
-
+/* ═════ INTRO: i tetti di Lucca si ritirano dentro il simbolo, poi la nebbia diventa la pagina ═════
+   Statica (senza animazioni legate allo scorrimento o con movimento ridotto): una sola foto con il titolo.
+   Animata (come su FIND): il titolo si dissolve, la nebbia sale dal basso, la foto si chiude dentro il
+   simbolo LuccAlfa con il nome sotto, poi la nebbia copre tutto ed è già lo sfondo della sezione dopo. */
 .intro { position: relative; z-index: 0; }
 .intro__stage { position: relative; display: grid; }
-.intro__aerial { grid-area: 1 / 1; position: relative; height: 100vh; height: 100svh; min-height: 560px; overflow: hidden; background: var(--surface); } /* taste-skill-ignore */
+.intro__photo { grid-area: 1 / 1; position: relative; height: 100vh; height: 100svh; min-height: 560px; overflow: hidden; background: var(--surface); } /* taste-skill-ignore */
 .hero__pic { position: absolute; inset: 0; }
 .hero__pic img { position: absolute; left: 0; top: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 70%; }
 .hero__copy { grid-area: 1 / 1; position: relative; z-index: 5; align-self: start; padding: calc(var(--nav-h) + 3vh) var(--m) 0; text-align: center; }
 .hero__title { font-size: var(--step-display); line-height: 0.9; letter-spacing: -0.03em; }
 .hero__sub { margin: 32px auto 0; max-width: 40ch; font-size: var(--step-body); font-weight: 500; }
 .hero__cta { display: none; }
-.peg { display: none; }
-.intro__street { padding: var(--sec) 0 0; display: grid; }
-.intro__scene { position: relative; width: 100%; aspect-ratio: 3 / 2; }
-.door__front { position: absolute; inset: 0; z-index: 3; }
-.door__facade { width: 100%; height: 100%; object-fit: cover; }
-/* il vano del portone, in frazioni della facciata 5976 × 3984 */
-.door__leaves { position: absolute; inset: 0; z-index: 1; perspective: 1400px; }
-.door__leaf { position: absolute; top: 17.871%; height: 63.404%; width: 17.2525%; }
-.door__leaf picture, .door__leaf img { width: 100%; height: 100%; }
-.door__leaf--l { left: 33.016%; transform-origin: 0 50%; }
-.door__leaf--r { left: 50.2685%; transform-origin: 100% 50%; }
-.androne { display: none; }
-.intro__after { padding: 48px var(--m) var(--sec); max-width: 760px; }
-.door__title { font-size: var(--step-head); }
-.door__p { margin-top: 20px; max-width: 44ch; font-size: var(--step-lead); line-height: 1.3; }
+.intro__mark, .intro__name, .intro__mist { display: none; }
 
 @media (prefers-reduced-motion: no-preference) {
   html:not(.is-loading) .hero__copy { animation: rise .9s var(--ease) .1s both; }
@@ -203,95 +186,48 @@ body.menu-open .menu__foot { opacity: 1; transition: opacity .6s .7s; }
 
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {
-    .intro { height: 900vh; view-timeline-name: --intro; }
-    .intro__stage {
-      /* la facciata (3:2) copre lo schermo con il portone al centro; l'occhio sta all'altezza di una persona */
-      --sw: max(100cqw, 150cqh); --sh: calc(var(--sw) / 1.5);
-      --sl: clamp(calc(100cqw - var(--sw)), calc(50cqw - var(--sw) * 0.5), 0px);
-      --st: clamp(calc(100cqh - var(--sh)), calc(50cqh - var(--sh) * 0.49573), 0px);
-      --cx: calc(var(--sl) + var(--sw) * 0.5); --cy: calc(var(--st) + var(--sh) * 0.59718);
-      --aw: calc(var(--sw) * 0.34505); --r: calc(var(--aw) / 2); --D: calc(var(--aw) * 2.2);
-      position: sticky; top: 0; height: 100vh; height: 100svh; display: block; overflow: hidden; /* taste-skill-ignore */
-      container-type: size; perspective: 1500px; background: #e8dcc6; }
-    .intro__stage::after { content: ""; position: absolute; inset: 0; z-index: 8; background: var(--ink); pointer-events: none;
-      animation: dim linear both; animation-timeline: --intro; animation-range: contain 0% contain 100%; }
+    .intro { height: 400vh; view-timeline-name: --intro; }
+    .intro__stage { position: sticky; top: 0; height: 100vh; height: 100svh; display: block; overflow: hidden; background: var(--bg); } /* taste-skill-ignore */
+    .intro__stage > * { animation-timeline: --intro; animation-range: contain 0% contain 100%; animation-fill-mode: both; animation-timing-function: linear; }
 
-    /* 1 · cielo e tetti, poi la città si inclina come un plastico e ci si tuffa */
-    .intro__aerial { position: absolute; inset: 0; z-index: 3; height: auto; min-height: 0; transform-origin: 66% 31%;
-      animation: aerial linear both; animation-timeline: --intro; animation-range: contain 0% contain 100%; }
-    .hero__pic img { height: 150%; object-position: 50% 0; transform-origin: 50% 100%;
-      animation: hero-pan linear both; animation-timeline: --intro; animation-range: contain 0% contain 100%; }
+    /* 1 · la foto piena: un lento avvicinamento, poi si spegne mentre il simbolo la prende */
+    .intro__photo { position: absolute; inset: 0; z-index: 1; height: auto; min-height: 0; animation-name: photo-out; }
+    .hero__pic img { animation: photo-zoom linear both; animation-timeline: --intro; animation-range: contain 0% contain 100%; }
+    /* 2 · la stessa foto vista attraverso il simbolo: la maschera si stringe da enorme a logo */
+    .intro__mark { display: block; position: absolute; inset: 0; z-index: 2; animation-name: mark-in;
+      -webkit-mask: url("assets/simbolo.svg") center / 360vmax auto no-repeat; mask: url("assets/simbolo.svg") center / 360vmax auto no-repeat; }
+    .intro__mark picture, .intro__mark img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 92%; }
+    .intro__mark img { filter: saturate(1.2) contrast(1.12); animation: photo-zoom linear both; animation-timeline: --intro; animation-range: contain 0% contain 100%; }
+    .intro__name { display: block; position: absolute; z-index: 3; left: 0; right: 0; top: calc(50% + min(19vmin, 150px)); text-align: center;
+      font-family: var(--display); font-weight: 700; font-size: clamp(2rem, 1rem + 3vw, 3.75rem); letter-spacing: -0.03em; line-height: 1; animation-name: name-in; }
+    .intro__name span { display: block; margin-top: 10px; font-family: var(--text); font-weight: 500; font-size: var(--step-body); letter-spacing: 0; color: var(--muted); }
+    /* 3 · il titolo si dissolve salendo */
     .hero__copy { position: absolute; inset: 0 0 auto; }
-    .hero__title { animation: hero-out linear both; animation-timeline: --intro; animation-range: contain 1.5% contain 11%; }
-    .hero__sub { animation: hero-out linear both; animation-timeline: --intro; animation-range: contain 2.5% contain 10%; }
-    .hero__cta { animation: hero-out linear both; animation-timeline: --intro; animation-range: contain 1% contain 7%; }
-
-    /* 2 · l'omino (mosso da intro.js) */
-    .peg { display: block; position: absolute; z-index: 6; left: 0; top: 0; width: clamp(42px, 5.8vh, 64px); pointer-events: none; opacity: 0; will-change: transform, opacity; }
-
-    /* 3 · la strada si apre dal punto d'atterraggio, la vista si raddrizza */
-    .intro__street { position: absolute; inset: 0; z-index: 2; padding: 0; display: block; transform-origin: 66% 31%;
-      perspective: 1000px; perspective-origin: var(--cx) var(--cy);
-      -webkit-mask-image: radial-gradient(circle at 66% 31%, #000 var(--reveal), transparent calc(var(--reveal) + 14vmax)); /* taste-skill-ignore */
-      mask-image: radial-gradient(circle at 66% 31%, #000 var(--reveal), transparent calc(var(--reveal) + 14vmax)); /* taste-skill-ignore */
-      animation: street-in linear both; animation-timeline: --intro; animation-range: contain 0% contain 100%; }
-    .intro__dolly { position: absolute; inset: 0; transform-style: preserve-3d; will-change: transform;
-      animation: dolly linear both; animation-timeline: --intro; animation-range: contain 0% contain 100%; }
-    .intro__scene { position: absolute; z-index: 2; left: var(--sl); top: var(--st); width: var(--sw); height: var(--sh); aspect-ratio: auto; transform-style: preserve-3d; }
-    .intro__scene .door__leaves { transform-style: preserve-3d; perspective: none; }
-    .door__leaf--l { animation: leaf-l linear both; animation-timeline: --intro; animation-range: contain 0% contain 100%; }
-    .door__leaf--r { animation: leaf-r linear both; animation-timeline: --intro; animation-range: contain 0% contain 100%; }
-
-    .door__front { animation: front-out linear both; animation-timeline: --intro; animation-range: contain 0% contain 100%; }
-
-    /* 4 · l'androne: un tunnel voltato largo quanto il vano, profondo 2,2 volte; la camera ci cammina dentro */
-    .androne { display: block; position: absolute; left: 33.016%; top: 17.871%; width: 34.505%; height: 63.404%; transform-style: preserve-3d; pointer-events: none; }
-    .androne > span { position: absolute; display: block; transform-style: preserve-3d; }
-    .androne__floor { left: 0; top: 100%; width: 100%; height: var(--D); transform-origin: 50% 0; transform: rotateX(-90deg);
-      background: linear-gradient(rgba(36,22,14,.3), rgba(36,22,14,.66) 45%, rgba(36,22,14,.2) 88%, rgba(255,236,206,.14) 100%), url("assets/img/cotto-1024.webp") 0 0 / calc(var(--aw) / 3.2) auto; } /* taste-skill-ignore */
-    .androne__wall { top: var(--r); width: var(--D); height: calc(100% - var(--r)); transform-origin: 0 0; transform: rotateY(90deg);
-      background: linear-gradient(transparent 84%, rgba(58,40,26,.55) 84%), linear-gradient(90deg, rgba(40,26,16,.42), rgba(40,26,16,.66) 45%, rgba(40,26,16,.3) 85%, rgba(255,238,210,.08)), url("assets/img/intonaco-512.webp") 0 0 / 360px auto; } /* taste-skill-ignore */
-    .androne__wall--l { left: 0; }
-    .androne__wall--r { left: 100%; }
-    .androne__vault { inset: 0; }
-    /* 14 spicchi tangenti all'arco; un po' più larghi della corda così le giunture non si vedono */
-    .androne__vault i { position: absolute; left: 50%; top: var(--r); width: calc(var(--aw) * 0.128); height: var(--D); transform-origin: 50% 0;
-      transform: translate(calc(cos(var(--a)) * var(--r) - 50%), calc(sin(var(--a)) * var(--r) * -1)) rotateZ(calc(90deg - var(--a))) rotateX(-90deg);
-      background: linear-gradient(rgba(40,26,16,.55), rgba(40,26,16,.74) 45%, rgba(40,26,16,.42) 85%, rgba(255,238,210,.04)), url("assets/img/intonaco-512.webp") 0 0 / 360px auto; } /* taste-skill-ignore */
-    .androne__court { inset: 0; overflow: hidden; border-radius: var(--r) var(--r) 0 0 / var(--r) var(--r) 0 0; transform: translateZ(calc(var(--D) * -1)); }
-    .androne__court picture, .androne__court img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 62%; }
-    .intro__after { position: absolute; z-index: 9; left: 0; bottom: 0; max-width: none; width: min(860px, 66vw);
-      padding: 26svh var(--m) 9svh; color: var(--paper);
-      background: radial-gradient(120% 100% at 0% 100%, rgba(16,19,15,.78), rgba(16,19,15,.38) 55%, rgba(16,19,15,0) 80%); /* taste-skill-ignore */
-      animation: door-after linear both; animation-timeline: --intro; animation-range: contain 0% contain 100%; }
+    .hero__title { animation: hero-out linear both; animation-timeline: --intro; animation-range: contain 2% contain 16%; }
+    .hero__sub { animation: hero-out linear both; animation-timeline: --intro; animation-range: contain 1% contain 12%; }
+    .hero__cta { z-index: 6; animation: hero-out linear both; animation-timeline: --intro; animation-range: contain 0% contain 8%; }
+    /* 4 · due strati di nebbia: in basso fin dall'inizio, poi salgono a velocità diverse e coprono tutto */
+    .intro__mist { display: block; position: absolute; inset: 0; z-index: 4; pointer-events: none; }
+    .intro__mist img { position: absolute; left: -20vw; bottom: 0; width: 140vw; max-width: none; height: auto; min-height: 60vh; object-fit: cover; object-position: 50% 100%; }
+    .intro__mist::after { content: ""; position: absolute; left: 0; right: 0; top: 100%; height: 120vh; background: var(--bg); }
+    .intro__mist { animation-name: mist-up; }
+    .intro__mist-b { animation: mist-b linear both; animation-timeline: --intro; animation-range: contain 0% contain 100%; }
+    .intro__mist-a { animation: mist-a linear both; animation-timeline: --intro; animation-range: contain 0% contain 100%; }
   }
 }
-@keyframes hero-pan { 0%, 2% { transform: translateY(0) scale(1.06); } 24%, 100% { transform: translateY(-33.4%) scale(1.32); } }
-@keyframes hero-out { to { opacity: 0; transform: translateY(-14vh); } }
-@keyframes aerial {
-  0%, 38% { transform: none; filter: blur(0); opacity: 1; }
-  48% { transform: scale(1.18); filter: blur(0); opacity: 1; }
-  55% { transform: scale(1.4); filter: blur(3px); opacity: 1; }
-  58%, 100% { transform: scale(1.5); filter: blur(6px); opacity: 0; }
+@keyframes photo-zoom { from { transform: scale(1.04); } to { transform: scale(1.22); } }
+@keyframes photo-out { 0%, 30% { opacity: 1; } 44%, 100% { opacity: 0; } }
+@keyframes mark-in {
+  0%, 26% { opacity: 0; -webkit-mask-size: 360vmax auto; mask-size: 360vmax auto; }
+  34% { opacity: 1; }
+  58%, 100% { opacity: 1; -webkit-mask-size: min(40vmin, 340px) auto; mask-size: min(40vmin, 340px) auto; }
 }
-/* la camera (prospettiva 1000px) avanza: oltre 1000px la facciata è alle spalle, a 1000 + 0,35·D si è dentro l'androne */
-@keyframes dolly {
-  0%, 62% { transform: translateZ(0); }
-  70% { transform: translateZ(60px); }
-  76% { transform: translateZ(200px); }
-  90%, 100% { transform: translateZ(calc(1000px + var(--D) * 0.35)); }
-}
-@keyframes front-out { 0%, 81% { opacity: 1; } 83%, 100% { opacity: 0; } }
-@keyframes street-in {
-  0%, 47% { --reveal: 0px; transform: scale(1.1); }
-  57%, 100% { --reveal: 150vmax; transform: none; }
-}
-/* zoom nel vano e ritaglio ad arco della sala seguono la stessa scala */
-/* le ante si aprono verso l'interno e restano contro le pareti dell'androne */
-@keyframes leaf-l { 0%, 62% { transform: rotateY(0); opacity: 1; filter: brightness(1); } 75%, 81% { transform: rotateY(78deg); opacity: 1; filter: brightness(.62); } 83%, 100% { transform: rotateY(80deg); opacity: 0; filter: brightness(.6); } }
-@keyframes leaf-r { 0%, 62% { transform: rotateY(0); opacity: 1; filter: brightness(1); } 75%, 81% { transform: rotateY(-78deg); opacity: 1; filter: brightness(.62); } 83%, 100% { transform: rotateY(-80deg); opacity: 0; filter: brightness(.6); } }
-@keyframes door-after { 0%, 87% { opacity: 0; transform: translateY(6vh); } 90%, 94% { opacity: 1; transform: none; } 97%, 100% { opacity: 0; transform: translateY(-4vh); } }
-@keyframes dim { 0%, 96% { opacity: 0; } 100% { opacity: .45; } }
+@keyframes name-in { 0%, 57% { opacity: 0; transform: translateY(24px); } 65%, 100% { opacity: 1; transform: none; } }
+@keyframes hero-out { to { opacity: 0; transform: translateY(-10vh); filter: blur(10px); } }
+/* la nebbia: ferma in basso (si vede solo il bordo), poi sale e diventa il fondo della sezione dopo */
+@keyframes mist-up { 0%, 64% { transform: translateY(42%); } 100% { transform: translateY(-112%); } }
+@keyframes mist-b { from { transform: translateX(-4vw); } to { transform: translateX(6vw); } }
+@keyframes mist-a { from { transform: translate(5vw, 6%); } to { transform: translate(-7vw, 0); } }
 @keyframes sheet { from { border-radius: 28px 28px 0 0; } to { border-radius: 0; } }
 
 /* ═════ CHI SIAMO: testo a sinistra, l'arco sulla Torre Guinigi a destra, il Fosso appoggiato sopra ═════ */
@@ -318,13 +254,13 @@ body.menu-open .menu__foot { opacity: 1; transition: opacity .6s .7s; }
 
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {
-    .about { margin-top: -40vh; border-radius: 28px 28px 0 0; animation: sheet linear both; animation-timeline: view(); animation-range: cover 0px cover 40vh; }
     /* l'arco si apre mentre la sezione entra; le foto si assestano con una scala leggera, uguale per tutte e due */
     .about__big .about__frame { animation: arch-open linear both; animation-timeline: view(); animation-range: entry 10% cover 50%; }
     .about__big img, .about__small img { animation: settle-in linear both; animation-timeline: view(); animation-range: entry 0% cover 55%; }
     .about__small { animation: slide-in linear both; animation-timeline: view(); animation-range: entry 0% cover 45%; }
   }
 }
+@keyframes pic-open { from { clip-path: inset(18% 0 0 0); } to { clip-path: inset(0 0 0 0); } }
 @keyframes arch-open { from { clip-path: inset(30% 22% 0 22% round 40vw 40vw 0 0); } to { clip-path: inset(0 0 0 0 round 50vw 50vw 0 0); } }
 @keyframes arch-open-big { from { clip-path: inset(42% 24% 0 24% round 20vw 20vw 0 0); } to { clip-path: inset(0 0 0 0 round 20vw 20vw 0 0); } }
 @keyframes settle-in { from { transform: scale(1.14); } to { transform: none; } }
@@ -356,7 +292,7 @@ body.menu-open .menu__foot { opacity: 1; transition: opacity .6s .7s; }
 .lots__media { padding: 4% 10% 8% 4%; }
 .lots__fig { grid-area: 1 / 1; z-index: 1; background: #fbfaf6; padding: 3.4% 3.4% 0;
   box-shadow: 0 22px 40px -22px rgba(16,19,15,.55), 0 2px 6px rgba(16,19,15,.12); /* taste-skill-ignore */
-  transform: translate(var(--dx, 0), var(--dy, 0)) rotate(var(--r, 0deg)) scale(.96); transition: transform .9s var(--ease); }
+  transform: translate(var(--dx, 0), var(--dy, 0)) rotate(var(--r, 0deg)) scale(.96); transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1) .12s; }
 .lots__fig:nth-child(1) { --r: -5deg; --dx: -4%; --dy: 2%; }
 .lots__fig:nth-child(2) { --r: 4deg; --dx: 5%; --dy: -2%; }
 .lots__fig:nth-child(3) { --r: -2deg; --dx: -1%; --dy: 5%; }
@@ -364,14 +300,16 @@ body.menu-open .menu__foot { opacity: 1; transition: opacity .6s .7s; }
 .lots__fig:nth-child(5) { --r: -7deg; --dx: -6%; --dy: -3%; }
 .lots__fig:nth-child(6) { --r: 2deg; --dx: 2%; --dy: 6%; }
 .lots__fig.is-on { z-index: 20; transform: rotate(-1.5deg); }
-.lots__fig.was-on { z-index: 21; animation: toss 1s var(--ease) both; }
+.lots__fig.was-on { z-index: 21; animation: toss 1.25s linear both; }
 .lots__fig img { width: 100%; aspect-ratio: 1 / 1; max-height: none; object-fit: cover; }
 .lots__fig figcaption { margin: 0; padding: 4% 4% 6%; background: none; text-align: center; font-family: "Marker", var(--text); font-size: clamp(1.05rem, .7rem + .9vw, 1.6rem); line-height: 1.2; color: #2a241d; transform: rotate(-1.2deg); }
+/* la foto di sopra scivola di lato e svanisce; quando è invisibile passa in fondo al mazzo e lì riappare */
 @keyframes toss {
-  0% { z-index: 21; transform: rotate(-1.5deg); }
-  45% { z-index: 21; transform: translate(58%, -8%) rotate(16deg); }
-  55% { z-index: 1; transform: translate(52%, -6%) rotate(14deg); }
-  100% { z-index: 1; transform: translate(var(--dx, 0), var(--dy, 0)) rotate(var(--r, 0deg)) scale(.96); }
+  0% { z-index: 21; opacity: 1; transform: rotate(-1.5deg); animation-timing-function: cubic-bezier(0.45, 0, 0.2, 1); }
+  30% { opacity: 1; }
+  48% { z-index: 21; opacity: 0; transform: translate(56%, -9%) rotate(15deg) scale(.97); animation-timing-function: step-end; }
+  49% { z-index: 1; opacity: 0; transform: translate(var(--dx, 0), calc(var(--dy, 0) + 4%)) rotate(var(--r, 0deg)) scale(.92); animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); }
+  100% { z-index: 1; opacity: 1; transform: translate(var(--dx, 0), var(--dy, 0)) rotate(var(--r, 0deg)) scale(.96); }
 }
 @keyframes settle { from { transform: scale(1.1); } to { transform: none; } }
 .lots__title { font-size: var(--step-head); }
@@ -380,7 +318,7 @@ body.menu-open .menu__foot { opacity: 1; transition: opacity .6s .7s; }
 .filter { min-height: 40px; padding: 8px 16px; background: var(--surface); font-weight: 500; }
 .filter[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); }
 .filter:active, .lang button:active, .burger:active, .lot__head:active { transform: scale(0.97); }
-.filter, .lang button, .burger { transition: background-color .2s, color .2s, transform .12s var(--ease); }
+.filter, .lang button { transition: background-color .2s, color .2s, transform .12s var(--ease); }
 @media (hover: hover) { .filter:not([aria-pressed="true"]):hover { background: #d8d1c5; } }
 .lot.is-hidden { display: none; }
 .lot__head { width: 100%; min-height: 64px; display: flex; align-items: baseline; justify-content: space-between; gap: 20px; padding: 14px 0; text-align: left; color: var(--muted); transition: color .25s var(--ease), transform .12s var(--ease); }
@@ -507,7 +445,7 @@ main { timeline-scope: --c2, --c3, --c4, --c5; }
 .zones__cap { padding: 20px var(--m) 0; max-width: 90ch; color: var(--muted); }
 
 /* ═════ FAQ: titolo fermo a sinistra, domande grandi a destra, su campo travertino ═════ */
-.faq { position: relative; z-index: 1; background: var(--surface); display: grid; grid-template-columns: repeat(12, 1fr); column-gap: var(--gap); padding: var(--sec) var(--m); align-items: start; }
+.faq { position: relative; z-index: 1; background: var(--white); display: grid; grid-template-columns: repeat(12, 1fr); column-gap: var(--gap); padding: var(--sec) var(--m); align-items: start; }
 .faq__head { grid-column: 1 / 6; position: sticky; top: calc(var(--nav-h) + 6svh); display: grid; gap: 28px; }
 .faq__title { font-size: var(--step-head); }
 .faq__lead { font-size: var(--step-lead); line-height: 1.3; max-width: 34ch; }
@@ -531,7 +469,7 @@ main { timeline-scope: --c2, --c3, --c4, --c5; }
 @media (hover: hover) { .acc details:not([open]):hover { background: rgba(238,235,230,.55); } }
 
 /* ═════ CONTATTI: lo stesso campo travertino e la stessa griglia delle domande, un solo capitolo ═════ */
-.contact { position: relative; z-index: 1; background: var(--surface); display: grid; grid-template-columns: repeat(12, 1fr); column-gap: var(--gap);
+.contact { position: relative; z-index: 1; background: var(--white); display: grid; grid-template-columns: repeat(12, 1fr); column-gap: var(--gap);
   padding: 0 var(--m) calc(var(--sec) + 28px); align-items: start; }
 .contact__head { grid-column: 1 / 6; position: sticky; top: calc(var(--nav-h) + 6svh); display: grid; gap: 24px; }
 .contact__title { font-size: var(--step-head); }
@@ -541,25 +479,27 @@ main { timeline-scope: --c2, --c3, --c4, --c5; }
 .contact__info li > span:first-child { color: var(--muted); }
 .contact__info a { font-weight: 500; text-decoration: none; }
 @media (hover: hover) { .contact__info a:hover { text-decoration: underline; text-underline-offset: 4px; } }
-.contact__pic { margin-top: 12px; width: min(100%, 420px); overflow: hidden; border-radius: 50vw 50vw 0 0; }
-.contact__pic img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; object-position: 30% 50%; }
+/* la foto ha già il suo arco: ritaglio verticale centrato su quello, senza un'altra maschera sopra */
+.contact__pic { margin-top: 12px; width: min(100%, 360px); overflow: hidden; }
+.contact__pic img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 7% 50%; }
 .contact__body { grid-column: 7 / 13; padding-top: 8px; }
 .form { display: grid; gap: 22px; }
 .pick { border: 0; padding: 0; margin: 0; }
-.pick legend { padding: 0; margin-bottom: 10px; font-weight: 500; }
+/* il modulo parla come il resto del sito: domande nel carattere dei titoli, etichette piene, campi pietra sul bianco */
+.pick legend { padding: 0; margin-bottom: 14px; font-family: var(--display); font-weight: 700; font-size: var(--step-lead); line-height: 1.15; letter-spacing: -0.01em; }
 .pick__row { display: flex; flex-wrap: wrap; gap: 8px; }
-.pill { min-height: 44px; padding: 8px 16px; background: var(--bg); font-size: var(--step-small); font-weight: 500; transition: background-color .2s, color .2s, transform .15s; }
+.pill { min-height: 44px; padding: 8px 18px; background: var(--bg); font-size: 1rem; font-weight: 500; transition: background-color .2s, color .2s, transform .15s; }
 .pill[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
 .pill:active { transform: scale(0.96); }
 @media (hover: hover) { .pill:not([aria-pressed="true"]):hover { background: #d8d1c5; } }
 .field { display: grid; gap: 6px; }
-.field label { font-size: var(--step-small); color: var(--muted); }
+.field label { font-size: 1rem; font-weight: 500; color: var(--ink); }
 .field input, .field textarea {
-  width: 100%; min-height: 48px; padding: 12px 14px; font-size: 16px;
+  width: 100%; min-height: 52px; padding: 14px 16px; font-size: 1.0625rem;
   background: var(--bg); border: 0; border-bottom: 2px solid transparent; border-radius: 0; outline: none;
   transition: border-color .2s, background-color .2s; resize: vertical;
 }
-.field input:focus, .field textarea:focus { border-bottom-color: var(--ink); background: #f6f4f0; }
+.field input:focus, .field textarea:focus { border-bottom-color: var(--ink); background: var(--surface); }
 .form-note { font-size: var(--step-small); color: var(--muted); }
 .form-note a { color: var(--ink); }
 .form-status { font-size: var(--step-small); font-weight: 500; min-height: 0; }
@@ -623,7 +563,7 @@ main { timeline-scope: --c2, --c3, --c4, --c5; }
   @media (prefers-reduced-motion: no-preference) {
     /* domande e contatti entrano allo stesso modo: righe che salgono, l'arco che si apre */
     .acc details, .faq__actions, .contact__info li, .form .pick, .form .field { animation: slide-right linear both; animation-timeline: view(); animation-range: entry 0% entry 100%; }
-    .contact__pic { animation: arch-open linear both; animation-timeline: view(); animation-range: entry 0% cover 40%; }
+    .contact__pic { animation: pic-open linear both; animation-timeline: view(); animation-range: entry 0% cover 40%; }
     .contact__pic img { animation: settle-in linear both; animation-timeline: view(); animation-range: entry 0% cover 55%; }
     .postcard { animation: postcard-in linear both; animation-timeline: view(); animation-range: entry 0% entry 70%; }
     .postcard__addr picture { animation: stamp-in linear both; animation-timeline: view(); animation-range: entry 40% entry 100%; }
@@ -637,10 +577,6 @@ main { timeline-scope: --c2, --c3, --c4, --c5; }
 @keyframes postcard-in { from { transform: translateY(18vh) rotate(-3deg) scale(.94); } to { transform: none; } }
 @keyframes stamp-in { from { opacity: 0; transform: translate(30px, -40px) rotate(18deg) scale(1.4); } to { opacity: 1; transform: none; } }
 @keyframes word-rise { from { transform: translateY(45%); } to { transform: none; } }
-.peg__ring { opacity: 0; }
-.peg__ring.is-on { animation: ring 1.1s cubic-bezier(0.23, 1, 0.32, 1) both; transform-box: fill-box; transform-origin: center; }
-.peg__shadow { opacity: 0; }
-@keyframes ring { 0% { opacity: .95; transform: scale(.2); } 100% { opacity: 0; transform: scale(1.9); } }
 
 /* ═════ TENDA PER IL CAMBIO LINGUA ═════ */
 .curtain { position: fixed; inset: 0; z-index: 200; background: var(--accent); color: var(--accent-ink); display: grid; place-items: center;
@@ -654,22 +590,28 @@ html.lenis, html.lenis body { height: auto; }
 
 
 
-/* ═════ CARICAMENTO: pannello arancio, l'arco del logo si disegna, il nome sale, il pannello si alza ═════ */
+/* ═════ CARICAMENTO: fondo pietra, il simbolo si disegna, il nome sale, il pannello si alza ═════ */
 .loader { display: none; }
-html.is-loading .loader { display: grid; position: fixed; inset: 0; z-index: 300; place-content: center; justify-items: center; gap: 18px;
-  background: var(--accent-deep); color: #fff; }
+html.is-loading .loader { display: grid; position: fixed; inset: 0; z-index: 300; place-content: center; justify-items: center; gap: 22px;
+  background: var(--bg); color: var(--ink); will-change: transform; }
 html.is-loading body { overflow: hidden; }
-.loader__arch { width: 74px; overflow: visible; }
-.loader__arch path { fill: none; stroke: #fff; stroke-width: 7; stroke-linecap: round; stroke-dasharray: 440; stroke-dashoffset: 440; animation: draw 1s cubic-bezier(.65,0,.35,1) .1s forwards; }
-.loader__word { overflow: hidden; font-family: var(--display); font-weight: 700; font-size: clamp(2.4rem, 1.5rem + 3vw, 4rem); line-height: 1.1; letter-spacing: -0.02em; }
-.loader__word span { display: inline-block; transform: translateY(105%); animation: word-up-in .8s var(--ease) .55s forwards; }
-.loader.is-out { animation: loader-out .9s cubic-bezier(0.77, 0, 0.175, 1) forwards; }
-.loader.is-out > * { animation: loader-fade .3s ease-out forwards; }
-html.is-leaving .intro__aerial { animation: hero-in 1.5s var(--ease) both; }
+.loader__mark { width: clamp(96px, 12vw, 150px); height: auto; overflow: visible; }
+.loader__ink, .loader__full { fill: var(--ink); }
+.loader__full { opacity: 0; animation: loader-full .3s ease-out 1.15s forwards; }
+.lm { fill: none; stroke: #fff; stroke-width: 600; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1 1; stroke-dashoffset: 1; }
+.lm--1 { animation: draw .78s cubic-bezier(0.65, 0, 0.35, 1) .1s forwards; }
+.lm--2 { animation: draw .78s cubic-bezier(0.65, 0, 0.35, 1) .24s forwards; }
+.lm--3, .lm--4 { animation: draw .42s cubic-bezier(0.33, 1, 0.68, 1) .82s forwards; }
+.loader__word { overflow: hidden; font-family: var(--display); font-weight: 700; font-size: clamp(2.2rem, 1.4rem + 2.6vw, 3.6rem); line-height: 1.1; letter-spacing: -0.03em; }
+.loader__word span { display: inline-block; transform: translateY(105%); animation: word-up-in .8s cubic-bezier(0.22, 1, 0.36, 1) 1.05s forwards; }
+.loader.is-out { animation: loader-out .9s cubic-bezier(0.76, 0, 0.24, 1) forwards; }
+.loader.is-out > * { animation: loader-fade .35s ease-out forwards; }
+html.is-leaving .intro__photo { animation: hero-in 1.5s var(--ease) both; }
 @keyframes draw { to { stroke-dashoffset: 0; } }
+@keyframes loader-full { to { opacity: 1; } }
 @keyframes word-up-in { to { transform: none; } }
-@keyframes loader-out { to { clip-path: inset(0 0 100% 0); } }
-@keyframes loader-fade { to { opacity: 0; transform: translateY(-20px); } }
+@keyframes loader-out { to { transform: translateY(-100%); } }
+@keyframes loader-fade { to { opacity: 0; transform: translateY(-24px); } }
 @keyframes hero-in { from { transform: scale(1.12); } to { transform: none; } }
 
 
@@ -703,7 +645,7 @@ html.is-leaving .intro__aerial { animation: hero-in 1.5s var(--ease) both; }
   .nav__right { margin-left: auto; gap: 8px; }
 
   .hero__sub { margin-top: 20px; max-width: 30ch; }
-  .intro__aerial::before { content: ""; position: absolute; z-index: 2; inset: auto 0 0; height: 120px; background: linear-gradient(to top, rgba(16,19,15,.35), rgba(16,19,15,0)); } /* taste-skill-ignore */
+  .intro__photo::before { content: ""; position: absolute; z-index: 2; inset: auto 0 0; height: 120px; background: linear-gradient(to top, rgba(16,19,15,.35), rgba(16,19,15,0)); } /* taste-skill-ignore */
 
 
 
@@ -713,8 +655,6 @@ html.is-leaving .intro__aerial { animation: hero-in 1.5s var(--ease) both; }
 
   .hero__copy { padding-top: calc(var(--nav-h) + 40px); }
   .hero__cta { display: flex; position: absolute; z-index: 3; left: var(--m); right: var(--m); bottom: calc(24px + env(safe-area-inset-bottom)); min-height: 56px; }
-  .door__p { font-size: var(--step-body); }
-  .intro__after { width: 100%; padding-bottom: 14svh; }
   .lots { display: flex; flex-direction: column; }
   .lots__col { display: contents; }
   .lots__title { order: 1; } .lots__note { order: 2; } .filters { order: 3; }
