@@ -23,9 +23,9 @@ window.I18N_EN = {
 
   "door.title": "Every home begins<br>with a door.",
   "door.alt": "Piazza dell'Anfiteatro in Lucca seen from beneath an archway, bicycles leaning on the wall",
-  "door.alt2": "A room in Villa Torrigiani at Camigliano, with paintings, antique chairs and an open door onto the next room",
+  "door.alt2": "A bright, spacious room with bookcases on the walls, a chandelier and a large window in the middle",
   "door.big": "We walk you<br>to the other side.",
-  "door.p": "Crossing a threshold is always a big step. That's why we stay with you at every stage: clear timelines, costs explained upfront and no surprises.",
+  "door.p": "We walk you to the other side, with clear timelines, costs explained upfront and no surprises.",
 
   "about.alt1": "A street in central Lucca with the Guinigi Tower and the oak trees on its top",
   "about.cap1": "The Guinigi Tower, Lucca",
@@ -90,7 +90,8 @@ window.I18N_EN = {
   "srv.alt4": "The stone wall of a Tuscan farmhouse with a green window and a tiled roof",
   "srv.alt5": "Lucca seen through the bars of a window, with its towers and the Apuan Alps",
 
-  "met.title": "Our method: four steps, zero surprises.",
+  "met.title": "Four steps,<br>zero surprises.",
+  "met.lead": "Our method, from the first conversation to handing over the keys.",
   "met.1t": "Listening",
   "met.1d": "We understand your goals, budget and timing in a first conversation: in person, by phone or on video.",
   "met.2t": "Selection",
@@ -171,7 +172,7 @@ window.I18N_EN = {
   "ft.privacy": "Privacy",
   "ft.cookie": "Cookies",
   "ft.top": "Back to top",
-  "ft.credits": "Photos: Unsplash and Pexels; Lecciona dunes by DimiTalen (CC0), front door by Thomas Quine (CC BY 2.0), Villa Torrigiani by Sailko (CC BY 2.5), via Wikimedia Commons.",
+  "ft.credits": "Photos: Unsplash and Pexels; Lecciona dunes by DimiTalen (CC0), front door by Thomas Quine (CC BY 2.0, Wikimedia Commons); room by Lawrence Chismorie (Unsplash).",
   "wa": "Message us on WhatsApp"
 };
 

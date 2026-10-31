@@ -104,7 +104,7 @@
   addEventListener("keydown", (e) => { if (e.key === "Escape" && menuOpen) { setMenu(false); burger.focus(); } });
 
   /* ═════ NAV: fondo pieno dopo l'hero, si nasconde scendendo ═════ */
-  const nav = $("#nav"), hero = $(".hero"), wa = $("#wa");
+  const nav = $("#nav"), hero = $(".intro"), wa = $("#wa");
   let lastY = scrollY, ticking = false;
   const onScroll = () => {
     const y = scrollY, past = y > (hero ? hero.offsetHeight - 80 : 40);
@@ -216,7 +216,7 @@
      Porta: scala finale perché il vano copra tutto lo schermo.
      Servizi: di quanto scorre la galleria orizzontale. */
   const measure = () => {
-    const stage = $(".door__stage"), leaves = $(".door__leaves"), scene = $(".door__scene");
+    const stage = $(".intro__stage"), leaves = $(".door__leaves"), scene = $(".intro__scene");
     if (stage && leaves && scene && getComputedStyle(stage).position === "sticky") {
       const W = stage.clientWidth, H = stage.clientHeight;
       const sw = scene.offsetWidth, sh = scene.offsetHeight;

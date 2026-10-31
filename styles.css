@@ -102,15 +102,32 @@ figcaption { font-size: var(--step-small); color: var(--muted); margin-top: 10px
 .lang button[aria-pressed="true"] { color: var(--ink); }
 .burger { display: none; min-height: 44px; padding: 0 4px; font-weight: 500; }
 
-/* ═════ HERO: si parte dal cielo e si scende sui tetti ═════ */
-.hero { position: relative; z-index: 0; }
-.hero__stage { position: relative; height: 100vh; height: 100svh; min-height: 560px; overflow: hidden; background: var(--surface); } /* taste-skill-ignore */
+/* ═════ INTRO: un'unica scena dal cielo fino dentro casa ═════
+   Versione statica (senza animazioni legate allo scorrimento): hero, portone ad arco, sala. */
+.intro { position: relative; z-index: 0; }
+.intro__stage { position: relative; display: grid; }
+.intro__aerial { grid-area: 1 / 1; position: relative; height: 100vh; height: 100svh; min-height: 560px; overflow: hidden; background: var(--surface); } /* taste-skill-ignore */
 .hero__pic { position: absolute; inset: 0; }
 .hero__pic img { position: absolute; left: 0; top: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 70%; }
-.hero__copy { position: relative; z-index: 2; padding: calc(var(--nav-h) + 3vh) var(--m) 0; text-align: center; }
+.hero__copy { grid-area: 1 / 1; position: relative; z-index: 5; align-self: start; padding: calc(var(--nav-h) + 3vh) var(--m) 0; text-align: center; }
 .hero__title { font-size: var(--step-display); line-height: 0.9; letter-spacing: -0.03em; }
 .hero__sub { margin: 32px auto 0; max-width: 40ch; font-size: var(--step-body); font-weight: 500; }
 .hero__cta { display: none; }
+.intro__pin, .intro__wall { display: none; }
+.intro__street { padding: var(--sec) var(--m) 48px; display: grid; justify-items: center; }
+.intro__scene { position: relative; width: min(100%, calc(70svh * 0.66946)); aspect-ratio: 1920 / 2868; overflow: hidden; border-radius: 50vw 50vw 0 0; }
+.door__facade { position: relative; z-index: 2; width: 100%; height: 100%; object-fit: cover; }
+.intro__scene > picture { position: absolute; inset: 0; z-index: 2; }
+.door__leaves { position: absolute; inset: 0; z-index: 1; perspective: 1100px; }
+.door__leaf { position: absolute; top: 32.566%; height: 56.904%; overflow: hidden; backface-visibility: hidden; }
+.door__leaf picture, .door__leaf img { width: 100%; height: 100%; object-fit: cover; }
+.door__leaf--l { z-index: 2; left: 26.042%; width: 24.323%; transform-origin: 0 50%; }
+.door__leaf--r { z-index: 1; left: 49.844%; width: 23.177%; transform-origin: 100% 50%; }
+.intro__room { padding: 0 var(--m); }
+.intro__room img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; }
+.intro__after { padding: 48px var(--m) var(--sec); max-width: 760px; }
+.door__title { font-size: var(--step-head); }
+.door__p { margin-top: 20px; max-width: 44ch; font-size: var(--step-lead); line-height: 1.3; }
 
 @media (prefers-reduced-motion: no-preference) {
   .hero__pic { animation: shutter 1.2s var(--ease-io) both; }
@@ -119,113 +136,149 @@ figcaption { font-size: var(--step-small); color: var(--muted); margin-top: 10px
 @keyframes shutter { from { clip-path: inset(22% 30% 0 30% round 20vw 20vw 0 0); } to { clip-path: inset(0 0 0 0 round 0 0 0 0); } }
 @keyframes rise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
 
-/* lo scorrimento abbassa lo sguardo dal cielo ai tetti e avvicina la città */
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {
-    .hero { height: 230vh; view-timeline-name: --hero; }
-    .hero__stage { position: sticky; top: 0; }
-    .hero__pic img { height: 150%; object-position: 50% 0; transform-origin: 50% 100%;
-      animation: hero-pan linear both; animation-timeline: --hero; animation-range: contain 0% contain 75%; }
-    .hero__title { animation: hero-out linear both; animation-timeline: --hero; animation-range: contain 0% contain 34%; }
-    .hero__sub { animation: hero-out linear both; animation-timeline: --hero; animation-range: contain 4% contain 30%; }
-    .hero__stage::after { content: ""; position: absolute; inset: 0; z-index: 1; background: var(--ink); pointer-events: none;
-      animation: hero-dim linear both; animation-timeline: --hero; animation-range: contain 50% contain 100%; }
-  }
-}
-@keyframes hero-pan { from { transform: translateY(0) scale(1.06); } to { transform: translateY(-33.4%) scale(1.32); } }
-@keyframes hero-out { to { opacity: 0; transform: translateY(-14vh); } }
-@keyframes hero-dim { from { opacity: 0; } to { opacity: 0.35; } }
-
-/* ═════ LA SOGLIA: la porta si apre e si entra in casa ═════ */
-.door {
-  --sh: min(74svh, 128vw);              /* altezza della facciata */
-  --sw: calc(var(--sh) * 0.66946);       /* larghezza (foto 1920×2868) */
-  position: relative; z-index: 1; background: var(--bg); padding: var(--sec) var(--m);
-}
-.door__stage { position: relative; display: grid; justify-items: center; gap: 40px; }
-.door__title { order: 1; font-size: var(--step-head); text-align: center; }
-.door__scene { order: 2; position: relative; width: var(--sw); height: var(--sh); max-width: 100%; }
-.door__facade { position: relative; z-index: 2; width: 100%; height: 100%; object-fit: cover; }
-.door__scene > picture { position: absolute; inset: 0; z-index: 2; }
-.door__leaves { position: absolute; inset: 0; z-index: 1; perspective: calc(var(--sh) * 1.6); }
-.door__leaf { position: absolute; top: 32.566%; height: 56.904%; overflow: hidden; backface-visibility: hidden; }
-.door__leaf picture, .door__leaf img { width: 100%; height: 100%; object-fit: cover; }
-.door__leaf--l { left: 26.042%; width: 23.802%; transform-origin: 0 50%; }
-.door__leaf--r { left: 49.844%; width: 23.177%; transform-origin: 100% 50%; }
-.door__inside { order: 3; width: min(100%, 960px); }
-.door__inside img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
-.door__after { order: 4; max-width: 46ch; justify-self: start; }
-.door__big { font-family: var(--display); font-weight: 700; font-size: var(--step-head); line-height: 1; }
-.door__p { margin-top: 20px; }
-
-@supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) {
-    .door { height: 340vh; padding: 0; margin-top: -60vh; border-radius: 28px 28px 0 0; view-timeline-name: --door;
-      animation: sheet linear both; animation-timeline: view(); animation-range: cover 0px cover 60vh; }
-    .door__stage {
-      --top: calc(var(--nav-h) + 5svh + var(--step-head) * 2);
-      --sh: min(calc(100cqh - var(--top) - 4cqh), 128cqw);
-      --sw: calc(var(--sh) * 0.66946);
-      --cx: calc(50cqw - var(--sw) * 0.00469); --cy: calc(var(--top) + var(--sh) * 0.61018);
+    .intro { height: 820vh; view-timeline-name: --intro; }
+    .intro__stage {
+      --sh: 100cqh; --sw: calc(var(--sh) * 0.66946);
+      --cx: calc(50cqw - var(--sw) * 0.00469); --cy: calc(var(--sh) * 0.61018);
       --hw: calc(var(--sw) * 0.22865); --hh: calc(var(--sh) * 0.28103);
-      position: sticky; top: 0; height: 100vh; height: 100svh; display: block; overflow: hidden; container-type: size; border-radius: inherit; } /* taste-skill-ignore */
-    .door__title { position: absolute; z-index: 3; left: var(--m); right: var(--m); top: calc(var(--nav-h) + 1svh);
-      animation: fade-up-out linear both; animation-timeline: --door; animation-range: contain 4% contain 16%; }
-    .door__scene { position: absolute; z-index: 2; left: calc(50cqw - var(--sw) / 2); top: var(--top); max-width: none;
+      position: sticky; top: 0; height: 100vh; height: 100svh; display: block; overflow: hidden; /* taste-skill-ignore */
+      container-type: size; perspective: 1400px; background: var(--surface); }
+    .intro__stage::after { content: ""; position: absolute; inset: 0; z-index: 6; background: var(--ink); pointer-events: none;
+      animation: dim linear both; animation-timeline: --intro; animation-range: contain 0% contain 100%; }
+
+    /* 1 · il cielo e i tetti */
+    .intro__aerial { position: absolute; inset: 0; z-index: 3; height: auto; min-height: 0; transform-origin: 50% 58%;
+      animation: aerial-dive linear both; animation-timeline: --intro; animation-range: contain 0% contain 100%; }
+    .hero__pic img { height: 150%; object-position: 50% 0; transform-origin: 50% 100%;
+      animation: hero-pan linear both; animation-timeline: --intro; animation-range: contain 0% contain 100%; }
+    .hero__copy { position: absolute; inset: 0 0 auto; }
+    .hero__title { animation: hero-out linear both; animation-timeline: --intro; animation-range: contain 2% contain 13%; }
+    .hero__sub { animation: hero-out linear both; animation-timeline: --intro; animation-range: contain 3% contain 12%; }
+    .hero__cta { animation: hero-out linear both; animation-timeline: --intro; animation-range: contain 1% contain 8%; }
+
+    /* 2 · il segnaposto cade sulla città */
+    .intro__pin { display: block; position: absolute; z-index: 4; left: 50%; top: 58%; width: 72px; height: 95px; margin: -95px 0 0 -36px;
+      animation: pin-drop linear both; animation-timeline: --intro; animation-range: contain 0% contain 100%; }
+    .intro__marker { position: relative; z-index: 2; width: 100%; height: 100%; overflow: visible; }
+    .intro__marker path:first-child { fill: var(--accent); }
+    .intro__arch { fill: none; stroke: var(--paper); stroke-width: 5; stroke-linecap: round; }
+    .intro__shadow { position: absolute; left: 50%; bottom: -6px; width: 34px; height: 10px; margin-left: -17px; border-radius: 50%; background: rgba(16,19,15,.35);
+      animation: pin-shadow linear both; animation-timeline: --intro; animation-range: contain 0% contain 100%; }
+    .intro__pulse { position: absolute; left: 50%; bottom: -14px; width: 64px; height: 26px; margin-left: -32px; border-radius: 50%; border: 2px solid var(--accent);
+      animation: pulse 1.6s var(--ease) infinite; }
+
+    /* 3 · la strada: la vista si raddrizza davanti al portone */
+    .intro__street { position: absolute; inset: 0; z-index: 2; padding: 0; display: block; transform-origin: 50% 58%;
+      animation: street-in linear both; animation-timeline: --intro; animation-range: contain 0% contain 100%; }
+    .intro__wall { display: block; position: absolute; inset: 0; z-index: 0; transform-origin: var(--cx) var(--cy);
+      animation: door-zoom linear both; animation-timeline: --intro; animation-range: contain 0% contain 100%; }
+    .intro__wall picture, .intro__wall img { width: 100%; height: 100%; object-fit: cover; }
+    .intro__scene { position: absolute; z-index: 2; top: 0; left: calc(50cqw - var(--sw) / 2); width: var(--sw); height: var(--sh); aspect-ratio: auto; border-radius: 0; overflow: visible;
       transform-origin: 49.531% 61.018%; will-change: transform;
-      animation: door-zoom linear both; animation-timeline: --door; animation-range: contain 0% contain 100%; }
-    .door__leaf--l { animation: leaf-l linear both; animation-timeline: --door; animation-range: contain 0% contain 100%; }
-    .door__leaf--r { animation: leaf-r linear both; animation-timeline: --door; animation-range: contain 0% contain 100%; }
-    .door__inside { position: absolute; z-index: 1; inset: 0; width: auto; overflow: hidden;
-      animation: door-hole linear both; animation-timeline: --door; animation-range: contain 0% contain 100%; }
-    .door__inside picture, .door__inside img { width: 100%; height: 100%; aspect-ratio: auto; }
-    .door__inside img { animation: door-room linear both; animation-timeline: --door; animation-range: contain 0% contain 100%; }
-    .door__after { position: absolute; z-index: 3; left: 0; bottom: 0; max-width: none; width: min(820px, 64vw);
-      padding: 24svh var(--m) 64px; color: var(--paper);
-      background: radial-gradient(120% 100% at 0% 100%, rgba(16,19,15,.8), rgba(16,19,15,.4) 55%, rgba(16,19,15,0) 80%); /* taste-skill-ignore */
-      animation: door-after linear both; animation-timeline: --door; animation-range: contain 0% contain 100%; }
-    .door__p { max-width: 44ch; }
+      -webkit-mask-image: linear-gradient(to right, transparent, #000 13%, #000 87%, transparent); mask-image: linear-gradient(to right, transparent, #000 13%, #000 87%, transparent); /* taste-skill-ignore */
+      animation: door-zoom linear both; animation-timeline: --intro; animation-range: contain 0% contain 100%; }
+    .door__leaf--l { animation: leaf-l linear both; animation-timeline: --intro; animation-range: contain 0% contain 100%; }
+    .door__leaf--r { animation: leaf-r linear both; animation-timeline: --intro; animation-range: contain 0% contain 100%; }
+
+    /* 4 · dentro casa */
+    .intro__room { position: absolute; inset: 0; z-index: 1; padding: 0; overflow: hidden; pointer-events: none;
+      animation: door-hole linear both; animation-timeline: --intro; animation-range: contain 0% contain 100%; }
+    .intro__room picture, .intro__room img { width: 100%; height: 100%; aspect-ratio: auto; }
+    .intro__room img { animation: door-room linear both; animation-timeline: --intro; animation-range: contain 0% contain 100%; }
+    .intro__after { position: absolute; z-index: 7; left: 0; bottom: 0; max-width: none; width: min(860px, 66vw);
+      padding: 26svh var(--m) 9svh; color: var(--paper);
+      background: radial-gradient(120% 100% at 0% 100%, rgba(16,19,15,.78), rgba(16,19,15,.38) 55%, rgba(16,19,15,0) 80%); /* taste-skill-ignore */
+      animation: door-after linear both; animation-timeline: --intro; animation-range: contain 0% contain 100%; }
   }
 }
-/* l'ingrandimento e il ritaglio dell'interno seguono la stessa scala --s */
+@keyframes hero-pan { 0%, 2% { transform: translateY(0) scale(1.06); } 30%, 100% { transform: translateY(-33.4%) scale(1.32); } }
+@keyframes hero-out { to { opacity: 0; transform: translateY(-14vh); } }
+@keyframes aerial-dive {
+  0%, 33% { transform: none; filter: blur(0); opacity: 1; }
+  44% { transform: scale(3.4); filter: blur(5px); opacity: 1; }
+  47%, 100% { transform: scale(3.8); filter: blur(8px); opacity: 0; }
+}
+@keyframes pin-drop {
+  0%, 21% { transform: translateY(-75svh); opacity: 0; }
+  22% { opacity: 1; }
+  27% { transform: translateY(0) scale(1.08, .86); }
+  29% { transform: translateY(-14%) scale(.96, 1.05); }
+  31%, 36% { transform: none; opacity: 1; }
+  40%, 100% { transform: scale(.3); opacity: 0; }
+}
+@keyframes pin-shadow { 0%, 22% { transform: scale(.2); opacity: 0; } 27%, 36% { transform: none; opacity: 1; } 40%, 100% { opacity: 0; } }
+@keyframes pulse { from { transform: scale(.4); opacity: .9; } to { transform: scale(1.6); opacity: 0; } }
+@keyframes street-in {
+  0%, 34% { clip-path: circle(0% at 50% 58%); transform: translateY(12%) rotateX(56deg) scale(.6); }
+  46%, 100% { clip-path: circle(150% at 50% 58%); transform: none; }
+}
+/* lo zoom nel vano e il ritaglio della sala seguono la stessa scala */
 @keyframes door-zoom {
-  0%, 10% { transform: scale(1); }
-  40% { transform: scale(1.12); }
-  84%, 100% { transform: scale(var(--s-end, 7)); }
+  0%, 52% { transform: scale(1); }
+  66% { transform: scale(1.08); }
+  80%, 100% { transform: scale(var(--s-end, 7)); }
 }
 @keyframes door-hole {
-  0%, 10% { clip-path: inset(calc(var(--cy) - var(--hh)) calc(100cqw - var(--cx) - var(--hw)) calc(100cqh - var(--cy) - var(--hh)) calc(var(--cx) - var(--hw))); }
-  40% { clip-path: inset(calc(var(--cy) - var(--hh) * 1.12) calc(100cqw - var(--cx) - var(--hw) * 1.12) calc(100cqh - var(--cy) - var(--hh) * 1.12) calc(var(--cx) - var(--hw) * 1.12)); }
-  84%, 100% { clip-path: inset(calc(var(--cy) - var(--hh) * var(--s-end, 7)) calc(100cqw - var(--cx) - var(--hw) * var(--s-end, 7)) calc(100cqh - var(--cy) - var(--hh) * var(--s-end, 7)) calc(var(--cx) - var(--hw) * var(--s-end, 7))); }
+  0%, 47% { opacity: 0; clip-path: inset(calc(var(--cy) - var(--hh)) calc(100cqw - var(--cx) - var(--hw)) calc(100cqh - var(--cy) - var(--hh)) calc(var(--cx) - var(--hw))); }
+  48%, 52% { opacity: 1; clip-path: inset(calc(var(--cy) - var(--hh)) calc(100cqw - var(--cx) - var(--hw)) calc(100cqh - var(--cy) - var(--hh)) calc(var(--cx) - var(--hw))); }
+  66% { opacity: 1; clip-path: inset(calc(var(--cy) - var(--hh) * 1.08) calc(100cqw - var(--cx) - var(--hw) * 1.08) calc(100cqh - var(--cy) - var(--hh) * 1.08) calc(var(--cx) - var(--hw) * 1.08)); }
+  80%, 100% { opacity: 1; clip-path: inset(calc(var(--cy) - var(--hh) * var(--s-end, 7)) calc(100cqw - var(--cx) - var(--hw) * var(--s-end, 7)) calc(100cqh - var(--cy) - var(--hh) * var(--s-end, 7)) calc(var(--cx) - var(--hw) * var(--s-end, 7))); }
 }
-@keyframes leaf-l { 0%, 12% { transform: rotateY(0); filter: brightness(1); opacity: 1; } 40%, 58% { transform: rotateY(84deg); filter: brightness(.55); opacity: 1; } 72%, 100% { transform: rotateY(88deg); filter: brightness(.4); opacity: 0; } }
-@keyframes leaf-r { 0%, 12% { transform: rotateY(0); filter: brightness(1); opacity: 1; } 40%, 58% { transform: rotateY(-84deg); filter: brightness(.55); opacity: 1; } 72%, 100% { transform: rotateY(-88deg); filter: brightness(.4); opacity: 0; } }
-@keyframes door-room { 0%, 40% { transform: scale(1.32); } 90%, 100% { transform: scale(1); } }
-@keyframes door-after { 0%, 82% { opacity: 0; transform: translateY(6vh); } 94%, 100% { opacity: 1; transform: none; } }
-@keyframes fade-up-out { to { opacity: 0; transform: translateY(-6vh); } }
+@keyframes gap-off { 0%, 52% { opacity: 1; } 55%, 100% { opacity: 0; } }
+@keyframes leaf-l { 0%, 53% { transform: rotateY(0); opacity: 1; } 66%, 70% { transform: rotateY(84deg); opacity: 1; } 76%, 100% { transform: rotateY(88deg); opacity: 0; } }
+@keyframes leaf-r { 0%, 53% { transform: rotateY(0); opacity: 1; } 66%, 70% { transform: rotateY(-84deg); opacity: 1; } 76%, 100% { transform: rotateY(-88deg); opacity: 0; } }
+@keyframes door-room { 0%, 66% { transform: scale(1.28); } 86%, 100% { transform: scale(1); } }
+@keyframes door-after { 0%, 76% { opacity: 0; transform: translateY(6vh); } 82%, 90% { opacity: 1; transform: none; } 94%, 100% { opacity: 0; transform: translateY(-4vh); } }
+@keyframes dim { 0%, 95% { opacity: 0; } 100% { opacity: .45; } }
 @keyframes sheet { from { border-radius: 28px 28px 0 0; } to { border-radius: 0; } }
 
-/* ═════ CHI SIAMO: collage in parallasse ═════ */
-.about { display: grid; grid-template-columns: repeat(12, 1fr); column-gap: var(--gap); padding: var(--sec) var(--m); align-items: start; }
-.about__title { grid-column: 1 / -1; font-size: var(--step-display); line-height: 0.94; letter-spacing: -0.03em; margin-bottom: 72px; }
-.about__big { grid-column: 1 / 6; }
-.about__frame { overflow: hidden; }
-.about__big .about__frame img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
-.about__body { grid-column: 7 / 13; display: grid; gap: 28px; padding-top: 12vh; }
-.about__lead { font-family: var(--display); font-weight: 700; font-size: var(--step-lead); line-height: 1.25; letter-spacing: -0.01em; max-width: 26ch; }
+/* ═════ CHI SIAMO: l'arco si apre sulla Torre Guinigi ═════ */
+.about { position: relative; z-index: 1; background: var(--bg); padding: var(--sec) var(--m); }
+.about__stage { display: grid; gap: 40px; }
+.about__title { font-size: var(--step-display); line-height: 0.94; letter-spacing: -0.03em; }
+.about__body { display: grid; gap: 24px; }
+.about__lead { font-family: var(--display); font-weight: 700; font-size: var(--step-lead); line-height: 1.3; letter-spacing: -0.01em; max-width: 26ch; }
 .about__text { max-width: 52ch; }
-.about__small { width: 72%; justify-self: end; margin-top: 56px; }
-.about__small .about__frame img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; }
+.about__frame { overflow: hidden; }
+.about__big .about__frame { border-radius: 50vw 50vw 0 0; }
+.about__big img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+.about__small { width: 72%; justify-self: end; }
+.about__small img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; }
 
-/* parallasse: la foto scorre dentro la sua cornice */
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {
-    [data-par] img { transform-origin: 50% 50%; animation: par linear both; animation-timeline: view(); animation-range: cover 0% cover 100%; }
-    .about__small [data-par] img { animation-name: par-fast; }
+    .about { margin-top: -40vh; border-radius: 28px 28px 0 0; animation: sheet linear both; animation-timeline: view(); animation-range: cover 0px cover 40vh; }
+    .about__big .about__frame { animation: arch-open linear both; animation-timeline: view(); animation-range: entry 0% cover 45%; }
+    .about__big img, .about__small img { animation: settle-in linear both; animation-timeline: view(); animation-range: entry 0% cover 60%; }
+    .about__small { animation: slide-in linear both; animation-timeline: view(); animation-range: entry 0% cover 40%; }
+  }
+  /* su computer la sezione si ferma e diventa una scena */
+  @media (min-width: 900px) and (prefers-reduced-motion: no-preference) {
+    .about { height: 300vh; padding: 0; view-timeline-name: --about; }
+    .about__stage { position: sticky; top: 0; height: 100vh; height: 100svh; /* taste-skill-ignore */
+      grid-template-columns: repeat(12, 1fr); grid-template-rows: auto 1fr; column-gap: var(--gap); row-gap: 0;
+      padding: calc(var(--nav-h) + 4svh) var(--m) 7svh; }
+    .about__title { grid-column: 1 / 8; grid-row: 1; z-index: 2; font-size: var(--step-head); line-height: 0.98; animation: rise-in linear both; animation-timeline: --about; animation-range: contain 0% contain 14%; }
+    .about__body { grid-column: 1 / 6; grid-row: 2; align-self: end; z-index: 2; }
+    .about__big { grid-column: 8 / 13; grid-row: 1 / 3; align-self: stretch; position: relative; }
+    .about__big .about__frame { position: absolute; inset: 0; animation: arch-open-big linear both; animation-timeline: --about; animation-range: contain 0% contain 46%; }
+    .about__big picture, .about__big img { height: 100%; aspect-ratio: auto; }
+    .about__big img { animation: settle-in linear both; animation-timeline: --about; animation-range: contain 0% contain 60%; }
+    .about__small { grid-column: 6 / 9; grid-row: 2; align-self: end; width: auto; z-index: 3; margin-bottom: -1svh;
+      animation: slide-in-big linear both; animation-timeline: --about; animation-range: contain 40% contain 78%; }
+    .about__small img { animation: none; }
+    .about__text { animation: rise-in linear both; animation-timeline: --about; animation-range: contain 50% contain 62%; }
+    [data-scrub].is-split .sw { animation-timeline: --about; animation-range: contain calc(16% + var(--f) * 34%) contain calc(20% + var(--f) * 34%); }
   }
 }
-@keyframes par { from { transform: translateY(-7%) scale(1.16); } to { transform: translateY(7%) scale(1.16); } }
-@keyframes par-fast { from { transform: translateY(-12%) scale(1.26); } to { transform: translateY(12%) scale(1.26); } }
+@keyframes arch-open { from { clip-path: inset(30% 22% 0 22% round 40vw 40vw 0 0); } to { clip-path: inset(0 0 0 0 round 50vw 50vw 0 0); } }
+@keyframes arch-open-big { from { clip-path: inset(42% 24% 0 24% round 20vw 20vw 0 0); } to { clip-path: inset(0 0 0 0 round 20vw 20vw 0 0); } }
+@keyframes settle-in { from { transform: scale(1.3); } to { transform: none; } }
+@keyframes slide-in { from { transform: translateY(18vh); } to { transform: none; } }
+@keyframes slide-in-big { from { transform: translateY(70svh) rotate(-3deg); } to { transform: none; } }
+@keyframes rise-in { from { opacity: 0; transform: translateY(8vh); } to { opacity: 1; transform: none; } }
 
 /* parole che salgono (titoli) e testo che si accende (stile FIND) */
 .w { display: inline-block; overflow: clip; vertical-align: top; padding-bottom: 0.08em; margin-bottom: -0.08em; }
@@ -318,25 +371,49 @@ figcaption { font-size: var(--step-small); color: var(--muted); margin-top: 10px
 }
 @keyframes srv-slide { 0%, 6% { transform: translateX(0); } 94%, 100% { transform: translateX(calc(-1 * var(--tx, 200vw))); } }
 
-/* ═════ METODO: una parola alla volta ═════ */
-
-.steps__title { font-size: var(--step-lead); line-height: 1.2; padding: 72px var(--m) 40px; max-width: 28ch; }
-.step { position: relative; height: 100vh; height: 100svh; color: var(--paper); overflow: clip; } /* taste-skill-ignore */
+/* ═════ METODO: carte che si impilano ═════ */
+.steps { position: relative; z-index: 1; }
+.steps__list { timeline-scope: --c2, --c3, --c4, --c5; }
+.step { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; color: var(--paper); transform-origin: 50% 0; } /* taste-skill-ignore */
+.step + .step { border-radius: 28px 28px 0 0; }
+.step::after { content: ""; position: absolute; inset: 0; z-index: 3; background: #000; opacity: 0; pointer-events: none; }
+.step--intro { background: var(--surface); color: var(--ink); display: grid; place-content: center; justify-items: center; gap: 28px; padding: var(--nav-h) var(--m) 0; text-align: center; }
+.steps__title { font-size: var(--step-display); line-height: 0.92; letter-spacing: -0.03em; }
+.steps__lead { max-width: 36ch; font-size: var(--step-lead); line-height: 1.3; }
 .step picture, .step__img { position: absolute; inset: 0; width: 100%; height: 100%; }
-.step__img { object-fit: cover; filter: brightness(0.66); }
-.step__word { position: sticky; z-index: 2; top: 50%; height: 0; display: flex; justify-content: center; }
-.step__word h3 { font-size: var(--step-display); line-height: 0.85; transform: translateY(-50%); letter-spacing: -0.03em; }
-.step__p { position: absolute; z-index: 2; left: var(--m); bottom: 40px; max-width: 40ch; font-weight: 500; }
+.step__img { object-fit: cover; filter: brightness(0.7); }
+.step__word { position: absolute; inset: 0; z-index: 2; display: grid; place-items: center; }
+.step__word h3 { font-size: var(--step-display); line-height: 0.85; letter-spacing: -0.03em; }
+.step__p { position: absolute; z-index: 2; left: var(--m); bottom: 48px; max-width: 40ch; font-weight: 500; }
+
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {
-    .step { view-timeline-name: --step; }
-    .step__word h3 { animation: word-hold linear both; animation-timeline: --step; animation-range: entry 0% exit 100%; }
+    .step:nth-child(2) { view-timeline-name: --c2; }
+    .step:nth-child(3) { view-timeline-name: --c3; }
+    .step:nth-child(4) { view-timeline-name: --c4; }
+    .step:nth-child(5) { view-timeline-name: --c5; }
+    /* la carta sotto arretra e si scurisce mentre arriva la successiva */
+    .step:nth-child(1) { animation: card-back linear both; animation-timeline: --c2; animation-range: entry 0% entry 100%; }
+    .step:nth-child(2) { animation: card-back linear both; animation-timeline: --c3; animation-range: entry 0% entry 100%; }
+    .step:nth-child(3) { animation: card-back linear both; animation-timeline: --c4; animation-range: entry 0% entry 100%; }
+    .step:nth-child(4) { animation: card-back linear both; animation-timeline: --c5; animation-range: entry 0% entry 100%; }
+    .step:nth-child(1)::after { animation: card-dim linear both; animation-timeline: --c2; animation-range: entry 0% entry 100%; }
+    .step:nth-child(2)::after { animation: card-dim linear both; animation-timeline: --c3; animation-range: entry 0% entry 100%; }
+    .step:nth-child(3)::after { animation: card-dim linear both; animation-timeline: --c4; animation-range: entry 0% entry 100%; }
+    .step:nth-child(4)::after { animation: card-dim linear both; animation-timeline: --c5; animation-range: entry 0% entry 100%; }
+    /* la parola sale mentre la sua carta arriva */
+    .step:nth-child(2) .step__word h3 { animation: word-up linear both; animation-timeline: --c2; animation-range: entry 30% entry 100%; }
+    .step:nth-child(3) .step__word h3 { animation: word-up linear both; animation-timeline: --c3; animation-range: entry 30% entry 100%; }
+    .step:nth-child(4) .step__word h3 { animation: word-up linear both; animation-timeline: --c4; animation-range: entry 30% entry 100%; }
+    .step:nth-child(5) .step__word h3 { animation: word-up linear both; animation-timeline: --c5; animation-range: entry 30% entry 100%; }
   }
 }
-@keyframes word-hold { 0%, 27% { opacity: 0; } 37%, 63% { opacity: 1; } 73%, 100% { opacity: 0; } }
+@keyframes card-back { to { transform: scale(0.92); border-radius: 28px; } }
+@keyframes card-dim { to { opacity: 0.5; } }
+@keyframes word-up { from { opacity: 0; transform: translateY(14vh); } to { opacity: 1; transform: none; } }
 
 /* ═════ ZONE: banda di pannelli diseguali ═════ */
-.zones { padding: var(--sec) 0 0; }
+.zones { padding: calc(var(--sec) * 1.1) 0 calc(var(--sec) * 0.9); }
 .zones__title { font-size: var(--step-head); padding-left: calc(var(--m) + 16.66%); margin-bottom: 64px; }
 .band { display: flex; height: 68vh; height: 68svh; min-height: 460px; }
 .band__panel { position: relative; overflow: hidden; flex: 2 1 0; color: var(--paper); transition: flex-grow .5s var(--ease); outline-offset: -4px; }
@@ -360,7 +437,7 @@ figcaption { font-size: var(--step-small); color: var(--muted); margin-top: 10px
 .zones__cap { padding: 20px var(--m) 0; max-width: 90ch; color: var(--muted); }
 
 /* ═════ FAQ ═════ */
-.faq { display: grid; grid-template-columns: repeat(12, 1fr); column-gap: var(--gap); padding: var(--sec) var(--m); align-items: start; }
+.faq { position: relative; z-index: 1; background: var(--bg); display: grid; grid-template-columns: repeat(12, 1fr); column-gap: var(--gap); padding: var(--sec) var(--m) calc(var(--sec) * 1.2); align-items: start; border-top: 0; }
 .faq__col { grid-column: 1 / 6; }
 .faq__title { font-size: var(--step-head); }
 .faq__facts { margin-top: 32px; display: grid; gap: 6px; font-size: var(--step-body); }
@@ -378,13 +455,13 @@ figcaption { font-size: var(--step-small); color: var(--muted); margin-top: 10px
 }
 @media (hover: hover) { .acc summary:hover { color: var(--muted); } }
 .faq__actions { margin-top: 48px; display: flex; align-items: center; gap: 28px; flex-wrap: wrap; }
-.faq__media { grid-column: 7 / 13; position: relative; margin-top: calc(-1 * var(--sec)); padding-bottom: 80px; }
+.faq__media { grid-column: 7 / 13; position: relative; padding-bottom: 80px; position: sticky; top: calc(var(--nav-h) + 4svh); }
 .faq__tall { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; }
 .faq__media picture + picture { position: absolute; left: -40px; bottom: 40px; width: 33%; }
 .faq__sq { width: 100%; aspect-ratio: 1; object-fit: cover; border: 8px solid var(--bg); }
 
 /* ═════ CONTATTI ═════ */
-.contact { position: relative; min-height: 100vh; min-height: 100svh; padding: 64px var(--m); display: flex; justify-content: flex-end; align-items: flex-start; } /* taste-skill-ignore */
+.contact { position: relative; min-height: 100vh; min-height: 100svh; padding: 12svh var(--m); display: flex; justify-content: flex-end; align-items: center; overflow: hidden; border-radius: 28px 28px 0 0; } /* taste-skill-ignore */
 .contact > picture { position: absolute; inset: 0; }
 .contact__bg { width: 100%; height: 100%; object-fit: cover; object-position: 30% 50%; }
 .card { position: relative; z-index: 2; width: min(480px, 100%); background: var(--bg); padding: 36px 32px 32px; }
@@ -447,6 +524,22 @@ figcaption { font-size: var(--step-small); color: var(--muted); margin-top: 10px
 .wa svg { width: 26px; height: 26px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linejoin: round; }
 .wa:active { transform: scale(0.94); }
 
+/* ═════ ENTRATE MORBIDE: zone, domande, contatti ═════ */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .band__panel { animation: panel-up linear both; animation-timeline: view(); animation-range: entry 0% entry 70%; }
+    .band__panel:nth-child(2) { animation-range: entry 6% entry 76%; }
+    .band__panel:nth-child(3) { animation-range: entry 12% entry 82%; }
+    .band__panel:nth-child(4) { animation-range: entry 18% entry 88%; }
+    .faq__tall { animation: settle-in linear both; animation-timeline: view(); animation-range: entry 0% cover 50%; }
+    .faq__media > picture:first-child { overflow: hidden; display: block; }
+    .contact__bg { animation: par linear both; animation-timeline: view(); animation-range: cover 0% cover 100%; }
+    .card { animation: rise-in linear both; animation-timeline: view(); animation-range: entry 10% entry 60%; }
+    .contact { animation: sheet linear both; animation-timeline: view(); animation-range: cover 0px cover 50vh; }
+  }
+}
+@keyframes panel-up { from { transform: translateY(10vh); } to { transform: none; } }
+
 /* ═════ TENDA PER IL CAMBIO LINGUA ═════ */
 .curtain { position: fixed; inset: 0; z-index: 200; background: var(--accent); color: var(--accent-ink); display: grid; place-items: center;
   transform: scaleY(0); transform-origin: 50% 100%; pointer-events: none; }
@@ -456,6 +549,11 @@ figcaption { font-size: var(--step-small); color: var(--muted); margin-top: 10px
 html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto !important; }
 .lenis.lenis-stopped { overflow: hidden; }
+
+@media (max-width: 899px) {
+  @keyframes aerial-dive { 0%, 33% { transform: none; opacity: 1; } 44% { transform: scale(3.4); opacity: 1; } 47%, 100% { transform: scale(3.8); opacity: 0; } }
+}
+@supports (animation-timeline: view()) { @media (max-width: 899px) and (prefers-reduced-motion: no-preference) { .intro { height: 720vh; } } }
 
 /* ═════ TABLET ═════ */
 @media (max-width: 1100px) {
@@ -484,24 +582,18 @@ html.lenis, html.lenis body { height: auto; }
   body.menu-open .nav__links { visibility: visible; opacity: 1; transform: none; transition-duration: .28s; transition-delay: 0s; }
 
   .hero__sub { margin-top: 20px; max-width: 30ch; }
-  .hero__stage::before { content: ""; position: absolute; z-index: 2; inset: auto 0 0; height: 120px; background: linear-gradient(to top, rgba(16,19,15,.35), rgba(16,19,15,0)); } /* taste-skill-ignore */
+  .intro__aerial::before { content: ""; position: absolute; z-index: 2; inset: auto 0 0; height: 120px; background: linear-gradient(to top, rgba(16,19,15,.35), rgba(16,19,15,0)); } /* taste-skill-ignore */
 
 
 
 
 
-  .steps__title { padding-top: 56px; }
-  .step { height: 86svh; }
   .step__p { right: var(--m); bottom: 28px; }
 
   .hero__copy { padding-top: calc(var(--nav-h) + 40px); }
   .hero__cta { display: flex; position: absolute; z-index: 3; left: var(--m); right: var(--m); bottom: calc(24px + env(safe-area-inset-bottom)); min-height: 56px; }
-  .about { display: block; }
-  .about__title { margin-bottom: 40px; }
-  .about__big figcaption { display: none; }
-  .door__big { font-size: var(--step-lead); line-height: 1.1; }
-  .about__body { padding-top: 40px; }
-  .about__small { width: 72%; margin-left: auto; }
+  .door__p { font-size: var(--step-body); }
+  .intro__after { width: 100%; padding-bottom: 14svh; }
   .lots { display: flex; flex-direction: column; }
   .lots__col { display: contents; }
   .lots__title { order: 1; } .lots__note { order: 2; } .filters { order: 3; }
@@ -510,7 +602,6 @@ html.lenis, html.lenis body { height: auto; }
   .lots__fig img { aspect-ratio: 4 / 3; max-height: none; }
   .lots__fig figcaption { padding: 10px var(--m) 0; }
   .lot__head { min-height: 56px; }
-  .door { padding-top: calc(var(--sec) * .7); }
   .zones__title { padding-left: var(--m); margin-bottom: 32px; }
   .band { flex-wrap: wrap; height: 84svh; min-height: 0; }
   .band__panel { flex: none !important; height: 50%; }
@@ -521,7 +612,7 @@ html.lenis, html.lenis body { height: auto; }
   .band__panel:focus .band__txt p, .band__panel:focus-within .band__txt p { opacity: 1; transform: none; }
 
   .faq { display: flex; flex-direction: column; }
-  .faq__media { order: -1; margin: 0 0 48px; padding-bottom: 0; width: 100%; }
+  .faq__media { order: -1; position: relative; top: auto; margin: 0 0 48px; padding-bottom: 0; width: 100%; }
   .faq__tall { aspect-ratio: 4 / 5; }
   .faq__media picture + picture { left: auto; right: -8px; bottom: -32px; width: 38%; }
   .faq__actions .btn { width: 100%; }
