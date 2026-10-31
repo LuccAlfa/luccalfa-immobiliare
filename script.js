@@ -154,11 +154,12 @@
     if (fig) fig.classList.add("is-on");
   };
   const fine = matchMedia("(hover: hover) and (pointer: fine)").matches;
+  // chi sceglie un annuncio lo sta guardando: lo scorrimento automatico si ferma 21 secondi e poi riparte
   lots.forEach((li) => {
     const head = $(".lot__head", li);
-    head.addEventListener("click", () => activate(li));
-    head.addEventListener("focus", () => activate(li));
-    if (fine) li.addEventListener("pointerenter", () => activate(li));
+    head.addEventListener("click", () => { activate(li); pauseLots(); });
+    head.addEventListener("focus", () => { activate(li); pauseLots(); });
+    if (fine) li.addEventListener("pointerenter", () => { activate(li); pauseLots(); });
   });
   $$(".filter").forEach((b) => b.addEventListener("click", () => {
     const f = b.dataset.filter;
@@ -167,20 +168,22 @@
     if (active && active.classList.contains("is-hidden")) activate(lots.find((li) => !li.classList.contains("is-hidden")));
   }));
 
-  // gli annunci scorrono da soli, piano, finché l'elenco è in vista e nessuno lo sta usando
+  // gli annunci scorrono da soli, piano, finché l'elenco è in vista; un clic li ferma per 21 secondi
   const lotsSec = $(".lots");
-  let hold = false, inView = false;
-  if (lotsSec) {
-    lotsSec.addEventListener("pointerenter", () => { hold = true; });
-    lotsSec.addEventListener("pointerleave", () => { hold = false; });
-    lotsSec.addEventListener("focusin", () => { hold = true; });
-    lotsSec.addEventListener("focusout", () => { hold = false; });
-    new IntersectionObserver(([e]) => { inView = e.isIntersecting; }, { threshold: 0.35 }).observe(lotsSec);
-    if (!reduce) setInterval(() => {
-      if (!inView || hold || document.hidden) return;
+  const LOT_STEP = 4600, LOT_PAUSE = 21000;
+  let inView = false, lotTimer = 0;
+  function scheduleLots(ms) { clearTimeout(lotTimer); if (!reduce) lotTimer = setTimeout(nextLot, ms); }
+  function nextLot() {
+    if (inView && !document.hidden) {
       const vis = lots.filter((li) => !li.classList.contains("is-hidden"));
       if (vis.length > 1) activate(vis[(vis.indexOf(active) + 1) % vis.length]);
-    }, 4600);
+    }
+    scheduleLots(LOT_STEP);
+  }
+  function pauseLots() { scheduleLots(LOT_PAUSE); }
+  if (lotsSec) {
+    new IntersectionObserver(([e]) => { inView = e.isIntersecting; }, { threshold: 0.35 }).observe(lotsSec);
+    scheduleLots(LOT_STEP);
   }
 
   /* ═════ MODULO ═════ */

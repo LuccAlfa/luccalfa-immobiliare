@@ -176,7 +176,7 @@ window.I18N_EN = {
   "ft.privacy": "Privacy",
   "ft.cookie": "Cookies",
   "ft.top": "Back to top",
-  "ft.credits": "Photos: Unsplash and Pexels; Lecciona dunes by DimiTalen (CC0), clouds by engin akyurt and Ankur Verma, rocking chair by engin akyurt (Unsplash).",
+  "ft.credits": "Photos: Unsplash and Pexels; Lecciona dunes by DimiTalen (CC0), clouds by engin akyurt and Ankur Verma (Unsplash).",
   "wa": "Message us on WhatsApp"
 };
 
