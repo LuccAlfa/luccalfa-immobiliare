@@ -1,6 +1,7 @@
 /* LuccAlfa Immobiliare — script.js
-   Nessuna libreria esterna: il sito si legge tutto anche senza JavaScript.
-   Qui: lingua, menu, comparse, elenco immobili, modulo contatti. */
+   Il sito si legge tutto anche senza JavaScript. Le scene di scorrimento sono CSS
+   (animation-timeline); qui: lingua, menu, comparse, misure delle scene, elenco
+   immobili, modulo contatti e, solo su computer, lo scorrimento morbido di Lenis. */
 (() => {
   "use strict";
   const $ = (s, c = document) => c.querySelector(s);
@@ -38,18 +39,52 @@
     const fl = $("#f-lang"); if (fl) fl.value = lang;
     if (burger) burger.firstElementChild.textContent = menuOpen ? t("menuClose") : t("menuOpen");
     try { localStorage.setItem("luccalfa-lang", lang); } catch (e) { /* storage non disponibile */ }
+    splitText();
   };
+
+  /* titoli: ogni parola sale dalla sua riga; paragrafo [data-scrub]: le parole si accendono scorrendo */
+  function splitText() {
+    $$("[data-words]").forEach((el) => {
+      let i = 0;
+      const walk = (node) => [...node.childNodes].forEach((n) => {
+        if (n.nodeType === 3) {
+          const frag = document.createDocumentFragment();
+          n.textContent.split(/(\s+)/).forEach((p) => {
+            if (!p) return;
+            if (/^\s+$/.test(p)) { frag.append(" "); return; }
+            const o = document.createElement("span"); o.className = "w";
+            const inner = document.createElement("span"); inner.textContent = p; inner.style.setProperty("--wi", String(i++));
+            o.append(inner); frag.append(o);
+          });
+          n.replaceWith(frag);
+        } else if (n.nodeType === 1 && n.tagName !== "BR") walk(n);
+      });
+      walk(el); el.classList.add("is-split");
+    });
+    $$("[data-scrub]").forEach((el) => {
+      const words = el.textContent.trim().split(/\s+/);
+      el.innerHTML = words.map((w, i) => `<span class="sw" style="--f:${(i / Math.max(1, words.length - 1)).toFixed(3)}">${w.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]))}</span>`).join(" ");
+      el.classList.add("is-split");
+    });
+  }
 
   $$(".lang button").forEach((b) => b.addEventListener("click", () => {
     if (b.dataset.lang === lang) return;
-    const main = $("#main");
-    if (reduce || !main.animate) { applyLang(b.dataset.lang); return; }
-    // breve dissolvenza, così il testo non "salta" sotto gli occhi
-    main.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 160, easing: "ease-out", fill: "forwards" }).finished.then(() => {
-      applyLang(b.dataset.lang);
-      main.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 260, easing: "ease-out", fill: "forwards" });
-    });
+    const next = b.dataset.lang, curtain = $("#curtain"), label = $("#curtainLabel");
+    if (reduce || !curtain || !curtain.animate || switching) { applyLang(next); return; }
+    // tenda arancio: sale, mostra la lingua, cambia i testi, si ritira verso l'alto
+    switching = true;
+    label.textContent = next === "en" ? "English" : "Italiano";
+    const io = "cubic-bezier(0.77, 0, 0.175, 1)", out = "cubic-bezier(0.23, 1, 0.32, 1)";
+    curtain.style.transformOrigin = "50% 100%";
+    curtain.animate([{ transform: "scaleY(0)" }, { transform: "scaleY(1)" }], { duration: 520, easing: io, fill: "forwards" }).finished
+      .then(() => label.animate([{ opacity: 0, transform: "translateY(30%)" }, { opacity: 1, transform: "none" }], { duration: 360, easing: out, fill: "forwards" }).finished)
+      .then(() => { applyLang(next); curtain.style.transformOrigin = "50% 0%"; })
+      .then(() => label.animate([{ opacity: 1 }, { opacity: 0, transform: "translateY(-30%)" }], { duration: 240, delay: 120, easing: out, fill: "forwards" }).finished)
+      .then(() => curtain.animate([{ transform: "scaleY(1)" }, { transform: "scaleY(0)" }], { duration: 560, easing: io, fill: "forwards" }).finished)
+      .then(() => { switching = false; });
   }));
+  let switching = false;
 
   /* ═════ MENU (telefono) ═════ */
   const burger = $("#burger"), menu = $("#menu");
@@ -83,7 +118,8 @@
   onScroll();
 
   /* ═════ COMPARSE: una volta sola, a cascata dentro ogni gruppo ═════ */
-  const revealables = $$("[data-reveal], .door__frame");
+  splitText();
+  const revealables = $$("[data-reveal], [data-words]");
   const groups = new Map();
   $$("[data-reveal]").forEach((el) => {
     const p = el.parentElement; const n = groups.get(p) || 0;
@@ -104,7 +140,13 @@
     if (active) { active.classList.remove("is-on"); $(".lot__head", active).setAttribute("aria-expanded", "false"); }
     active = li;
     li.classList.add("is-on"); $(".lot__head", li).setAttribute("aria-expanded", "true");
-    figs.forEach((f) => f.classList.toggle("is-on", f.dataset.lot === li.dataset.lot));
+    figs.forEach((f) => {
+      const on = f.dataset.lot === li.dataset.lot;
+      f.classList.toggle("was-on", f.classList.contains("is-on") && !on);
+      if (!on) f.classList.remove("is-on", "is-anim");
+    });
+    const fig = figs.find((f) => f.dataset.lot === li.dataset.lot);
+    if (fig) { fig.classList.remove("is-anim"); void fig.offsetWidth; fig.classList.add("is-on", "is-anim"); }
   };
   const fine = matchMedia("(hover: hover) and (pointer: fine)").matches;
   lots.forEach((li) => {
@@ -169,6 +211,45 @@
   faqs.forEach((d) => d.addEventListener("toggle", () => { if (d.open) faqs.forEach((o) => { if (o !== d) o.open = false; }); }));
 
   const yr = $("#year"); if (yr) yr.textContent = new Date().getFullYear();
+
+  /* ═════ MISURE DELLE SCENE ═════
+     Porta: scala finale perché il vano copra tutto lo schermo.
+     Servizi: di quanto scorre la galleria orizzontale. */
+  const measure = () => {
+    const stage = $(".door__stage"), leaves = $(".door__leaves"), scene = $(".door__scene");
+    if (stage && leaves && scene && getComputedStyle(stage).position === "sticky") {
+      const W = stage.clientWidth, H = stage.clientHeight;
+      const sw = scene.offsetWidth, sh = scene.offsetHeight;
+      const hw = sw * 0.22865, hh = sh * 0.28103;
+      const cx = scene.offsetLeft + sw * 0.49531, cy = scene.offsetTop + sh * 0.61018;
+      const s = Math.max(cx / hw, (W - cx) / hw, cy / hh, (H - cy) / hh) * 1.1;
+      stage.style.setProperty("--s-end", s.toFixed(3));
+    }
+    const track = $(".srv__track"), view = $(".srv__viewport"), sstage = $(".srv__stage");
+    if (track && view && sstage) sstage.style.setProperty("--tx", Math.max(0, track.scrollWidth - view.clientWidth) + "px");
+  };
+  addEventListener("load", measure); addEventListener("resize", measure); measure();
+
+  /* ═════ SCORRIMENTO MORBIDO: solo computer con mouse ═════ */
+  let lenis = null;
+  if (!reduce && matchMedia("(min-width: 1024px) and (hover: hover) and (pointer: fine)").matches) {
+    const tag = document.createElement("script");
+    tag.src = "assets/vendor/lenis.min.js"; tag.async = true;
+    tag.onload = () => {
+      if (!window.Lenis) return;
+      lenis = new window.Lenis({ lerp: 0.085, wheelMultiplier: 0.9, smoothWheel: true });
+      const raf = (time) => { lenis.raf(time); requestAnimationFrame(raf); };
+      requestAnimationFrame(raf);
+    };
+    document.head.append(tag);
+  }
+  document.addEventListener("click", (e) => {
+    const a = e.target.closest('a[href^="#"]'); if (!a || !lenis) return;
+    const id = a.getAttribute("href"); const target = id === "#top" ? 0 : $(id);
+    if (target == null) return;
+    e.preventDefault();
+    lenis.scrollTo(target, { offset: id === "#top" ? 0 : -60, duration: 1.4 });
+  });
 
   /* lingua iniziale: ?lang= › scelta salvata › lingua del browser */
   let initial = "it";

@@ -23,6 +23,7 @@ window.I18N_EN = {
 
   "door.title": "Every home begins<br>with a door.",
   "door.alt": "Piazza dell'Anfiteatro in Lucca seen from beneath an archway, bicycles leaning on the wall",
+  "door.alt2": "A room in Villa Torrigiani at Camigliano, with paintings, antique chairs and an open door onto the next room",
   "door.big": "We walk you<br>to the other side.",
   "door.p": "Crossing a threshold is always a big step. That's why we stay with you at every stage: clear timelines, costs explained upfront and no surprises.",
 
@@ -72,6 +73,7 @@ window.I18N_EN = {
   "lot6.d": "On three levels, with a private garden and a double garage.",
 
   "srv.title": "One point of contact,<br>every step.",
+  "srv.hint": "From the first viewing to the deed, and after you sign.",
   "srv.1t": "Selling",
   "srv.1d": "Valuation, photography, promotion on property portals, buyer screening and support all the way to the deed.",
   "srv.2t": "Buying",
@@ -169,7 +171,7 @@ window.I18N_EN = {
   "ft.privacy": "Privacy",
   "ft.cookie": "Cookies",
   "ft.top": "Back to top",
-  "ft.credits": "Photos: Unsplash and Pexels; Lecciona dunes by DimiTalen, CC0, Wikimedia Commons.",
+  "ft.credits": "Photos: Unsplash and Pexels; Lecciona dunes by DimiTalen (CC0), front door by Thomas Quine (CC BY 2.0), Villa Torrigiani by Sailko (CC BY 2.5), via Wikimedia Commons.",
   "wa": "Message us on WhatsApp"
 };
 

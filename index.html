@@ -22,11 +22,11 @@
 
   <script>document.documentElement.classList.add("js");</script>
   <link rel="icon" type="image/svg+xml" href="assets/logo.svg" />
-  <link rel="preload" href="assets/fonts/boska-400.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/fonts/boska-700.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="assets/fonts/switzer-400.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" as="image" href="assets/img/tetti-lucca-p-720.avif" type="image/avif" media="(max-width: 699px)" />
   <link rel="preload" as="image" imagesrcset="assets/img/tetti-lucca-1280.avif 1280w, assets/img/tetti-lucca-1920.avif 1920w, assets/img/tetti-lucca-2560.avif 2560w" imagesizes="100vw" type="image/avif" media="(min-width: 700px)" />
-  <link rel="stylesheet" href="styles.css?v=8" />
+  <link rel="stylesheet" href="styles.css?v=10" />
 
   <!-- ═════ SCHEMA.ORG: RealEstateAgent + LocalBusiness ═════
        Entità autonoma: nessun collegamento all'entità di luccalfa.it (giardinaggio e pulizie),
@@ -101,6 +101,7 @@
 </head>
 
 <body>
+  <div class="curtain" id="curtain" aria-hidden="true"><span class="curtain__label" id="curtainLabel">English</span></div>
   <a class="skip" href="#main" data-i18n="skip">Vai al contenuto</a>
 
   <!-- NAV: logo, quattro voci, lingua, un'azione -->
@@ -126,28 +127,37 @@
   </header>
 
   <main id="main">
-    <!-- ═══ HERO: i tetti di Lucca, il titolo nel cielo ═══ -->
+    <!-- ═══ HERO: si parte dal cielo e si scende sui tetti ═══ -->
     <section class="hero" id="top" aria-labelledby="hero-title">
-      <picture class="hero__pic">
-        <source type="image/avif" media="(max-width: 699px)" srcset="assets/img/tetti-lucca-p-720.avif 720w, assets/img/tetti-lucca-p-1080.avif 1080w" sizes="100vw" />
-        <source type="image/webp" media="(max-width: 699px)" srcset="assets/img/tetti-lucca-p-720.webp 720w, assets/img/tetti-lucca-p-1080.webp 1080w" sizes="100vw" />
-        <source type="image/avif" srcset="assets/img/tetti-lucca-800.avif 800w, assets/img/tetti-lucca-1280.avif 1280w, assets/img/tetti-lucca-1920.avif 1920w, assets/img/tetti-lucca-2560.avif 2560w" sizes="100vw" />
-        <img src="assets/img/tetti-lucca-1920.webp" srcset="assets/img/tetti-lucca-800.webp 800w, assets/img/tetti-lucca-1280.webp 1280w, assets/img/tetti-lucca-1920.webp 1920w, assets/img/tetti-lucca-2560.webp 2560w" sizes="100vw" width="6000" height="4000" fetchpriority="high" decoding="async" alt="I tetti di Lucca nella luce del mattino, con le torri e le colline sullo sfondo" data-i18n-alt="hero.alt" />
-      </picture>
-      <div class="hero__copy">
-        <h1 class="hero__title" id="hero-title" data-i18n-html="hero.title">Dentro le Mura,<br>oltre le Mura.</h1>
-        <p class="hero__sub" data-i18n="hero.sub">Agenzia immobiliare a Lucca: case in vendita e in affitto, dal centro storico a Pisa e alla Versilia.</p>
+      <div class="hero__stage">
+        <picture class="hero__pic">
+          <source type="image/avif" media="(max-width: 699px)" srcset="assets/img/tetti-lucca-p-720.avif 720w, assets/img/tetti-lucca-p-1080.avif 1080w" sizes="100vw" />
+          <source type="image/webp" media="(max-width: 699px)" srcset="assets/img/tetti-lucca-p-720.webp 720w, assets/img/tetti-lucca-p-1080.webp 1080w" sizes="100vw" />
+          <source type="image/avif" srcset="assets/img/tetti-lucca-1280.avif 1280w, assets/img/tetti-lucca-1920.avif 1920w, assets/img/tetti-lucca-2560.avif 2560w" sizes="150vw" />
+          <img src="assets/img/tetti-lucca-1920.webp" srcset="assets/img/tetti-lucca-1280.webp 1280w, assets/img/tetti-lucca-1920.webp 1920w, assets/img/tetti-lucca-2560.webp 2560w" sizes="150vw" width="6000" height="4000" fetchpriority="high" decoding="async" alt="I tetti di Lucca nella luce del mattino, con le torri e le colline sullo sfondo" data-i18n-alt="hero.alt" />
+        </picture>
+        <div class="hero__copy">
+          <h1 class="hero__title" id="hero-title" data-i18n-html="hero.title">Dentro le Mura,<br>oltre le Mura.</h1>
+          <p class="hero__sub" data-i18n="hero.sub">Agenzia immobiliare a Lucca: case in vendita e in affitto, dal centro storico a Pisa e alla Versilia.</p>
+        </div>
+        <a class="btn btn--accent hero__cta" href="#immobili" data-i18n="hero.cta">Guarda gli immobili</a>
       </div>
-      <a class="btn btn--accent hero__cta" href="#immobili" data-i18n="hero.cta">Guarda gli immobili</a>
     </section>
 
-    <!-- ═══ LA SOGLIA: l'arco si apre (scena di scroll su desktop) ═══ -->
+    <!-- ═══ LA SOGLIA: la porta si apre e si entra in casa ═══ -->
     <section class="door" id="soglia" aria-labelledby="door-title">
       <div class="door__stage">
-        <h2 class="door__title" id="door-title" data-i18n-html="door.title">Ogni casa comincia<br>da una porta.</h2>
-        <div class="door__frame">
-          <picture><source type="image/avif" srcset="assets/img/loggia-anfiteatro-480.avif 480w, assets/img/loggia-anfiteatro-800.avif 800w, assets/img/loggia-anfiteatro-1280.avif 1280w, assets/img/loggia-anfiteatro-1537.avif 1537w" sizes="100vw" /><img src="assets/img/loggia-anfiteatro-1280.webp" srcset="assets/img/loggia-anfiteatro-480.webp 480w, assets/img/loggia-anfiteatro-800.webp 800w, assets/img/loggia-anfiteatro-1280.webp 1280w, assets/img/loggia-anfiteatro-1537.webp 1537w" sizes="100vw" width="1537" height="1023" alt="Piazza dell'Anfiteatro a Lucca vista da sotto un arco, con biciclette appoggiate al muro" data-i18n-alt="door.alt" loading="lazy" decoding="async" /></picture>
+        <div class="door__inside">
+          <picture><source type="image/avif" srcset="assets/img/interno-villa-800.avif 800w, assets/img/interno-villa-1280.avif 1280w, assets/img/interno-villa-1600.avif 1600w" sizes="100vw" /><img src="assets/img/interno-villa-1280.webp" srcset="assets/img/interno-villa-800.webp 800w, assets/img/interno-villa-1280.webp 1280w, assets/img/interno-villa-1600.webp 1600w" sizes="100vw" width="1600" height="1200" alt="Una sala di Villa Torrigiani a Camigliano, con quadri, sedie antiche e una porta aperta sulla stanza accanto" data-i18n-alt="door.alt2" loading="lazy" decoding="async" /></picture>
         </div>
+        <div class="door__scene">
+          <div class="door__leaves" aria-hidden="true">
+            <span class="door__leaf door__leaf--l"><picture><source type="image/avif" srcset="assets/img/porta-anta-sx-240.avif 240w, assets/img/porta-anta-sx-460.avif 460w" sizes="(min-width: 900px) 15svh, 22vw" /><img src="assets/img/porta-anta-sx-460.webp" srcset="assets/img/porta-anta-sx-240.webp 240w, assets/img/porta-anta-sx-460.webp 460w" sizes="(min-width: 900px) 15svh, 22vw" width="457" height="1632" alt="" loading="lazy" decoding="async" /></picture></span>
+            <span class="door__leaf door__leaf--r"><picture><source type="image/avif" srcset="assets/img/porta-anta-dx-240.avif 240w, assets/img/porta-anta-dx-460.avif 460w" sizes="(min-width: 900px) 15svh, 22vw" /><img src="assets/img/porta-anta-dx-460.webp" srcset="assets/img/porta-anta-dx-240.webp 240w, assets/img/porta-anta-dx-460.webp 460w" sizes="(min-width: 900px) 15svh, 22vw" width="445" height="1632" alt="" loading="lazy" decoding="async" /></picture></span>
+          </div>
+          <picture><source type="image/avif" srcset="assets/img/porta-facciata-900.avif 900w, assets/img/porta-facciata-1400.avif 1400w, assets/img/porta-facciata-1920.avif 1920w" sizes="(min-width: 900px) 60svh, 92vw" /><img src="assets/img/porta-facciata-1920.webp" srcset="assets/img/porta-facciata-900.webp 900w, assets/img/porta-facciata-1400.webp 1400w, assets/img/porta-facciata-1920.webp 1920w" sizes="(min-width: 900px) 60svh, 92vw" width="1920" height="2868" alt="Un portone in legno a due ante sotto un arco in mattoni, in un muro di pietra" data-i18n-alt="door.alt" class="door__facade" loading="lazy" decoding="async" /></picture>
+        </div>
+        <h2 class="door__title" id="door-title" data-i18n-html="door.title">Ogni casa comincia<br>da una porta.</h2>
         <div class="door__after">
           <p class="door__big" data-i18n-html="door.big">Noi ti accompagniamo<br>dall'altra parte.</p>
           <p class="door__p" data-i18n="door.p">Varcare una soglia è sempre un passaggio importante. Per questo ti seguiamo in ogni fase, con tempi chiari, costi spiegati prima e nessuna sorpresa.</p>
@@ -155,38 +165,27 @@
       </div>
     </section>
 
-    <!-- ═══ CHI SIAMO: il titolo entra nella foto ad arco ═══ -->
+    <!-- ═══ CHI SIAMO: collage in parallasse, testo che si accende ═══ -->
     <section class="about" id="chi-siamo" aria-labelledby="about-title">
-      <h2 class="about__title" id="about-title" data-i18n-html="about.title">Conosciamo Lucca<br>strada per strada.</h2>
+      <h2 class="about__title" id="about-title" data-words data-i18n-html="about.title">Conosciamo Lucca<br>strada per strada.</h2>
       <figure class="about__big">
-        <div class="about__frame">
-          <picture><source type="image/avif" srcset="assets/img/torre-guinigi-480.avif 480w, assets/img/torre-guinigi-800.avif 800w, assets/img/torre-guinigi-1280.avif 1280w, assets/img/torre-guinigi-1920.avif 1920w" sizes="(min-width: 900px) 46vw, 75vw" /><img src="assets/img/torre-guinigi-1280.webp" srcset="assets/img/torre-guinigi-480.webp 480w, assets/img/torre-guinigi-800.webp 800w, assets/img/torre-guinigi-1280.webp 1280w, assets/img/torre-guinigi-1920.webp 1920w" sizes="(min-width: 900px) 46vw, 75vw" width="3979" height="5969" alt="Una via del centro di Lucca con la Torre Guinigi e i suoi lecci in cima" data-i18n-alt="about.alt1" loading="lazy" decoding="async" /></picture>
-        </div>
+        <div class="about__frame" data-par><picture><source type="image/avif" srcset="assets/img/torre-guinigi-480.avif 480w, assets/img/torre-guinigi-800.avif 800w, assets/img/torre-guinigi-1280.avif 1280w, assets/img/torre-guinigi-1920.avif 1920w" sizes="(min-width: 900px) 40vw, 100vw" /><img src="assets/img/torre-guinigi-1280.webp" srcset="assets/img/torre-guinigi-480.webp 480w, assets/img/torre-guinigi-800.webp 800w, assets/img/torre-guinigi-1280.webp 1280w, assets/img/torre-guinigi-1920.webp 1920w" sizes="(min-width: 900px) 40vw, 100vw" width="3979" height="5969" alt="Una via del centro di Lucca con la Torre Guinigi e i suoi lecci in cima" data-i18n-alt="about.alt1" loading="lazy" decoding="async" /></picture></div>
         <figcaption data-i18n="about.cap1">La Torre Guinigi, Lucca</figcaption>
       </figure>
       <div class="about__body">
-        <p class="about__lead" data-reveal data-i18n="about.lead">Sappiamo dove batte il sole la mattina e quale vicolo resta fresco d'estate.</p>
-        <p data-reveal data-i18n="about.text">Non vendiamo metri quadri: raccontiamo luoghi. Siamo LuccAlfa e accompagniamo famiglie, investitori e chi arriva da lontano, dalla prima telefonata alla firma dal notaio. Lavoriamo in italiano e in inglese, dentro le Mura e in undici comuni tra la Piana, Pisa e la Versilia.</p>
+        <p class="about__lead" data-scrub data-i18n="about.lead">Sappiamo dove batte il sole la mattina e quale vicolo resta fresco d'estate.</p>
+        <p class="about__text" data-reveal data-i18n="about.text">Non vendiamo metri quadri: raccontiamo luoghi. Siamo LuccAlfa e accompagniamo famiglie, investitori e chi arriva da lontano, dalla prima telefonata alla firma dal notaio. Lavoriamo in italiano e in inglese, dentro le Mura e in undici comuni tra la Piana, Pisa e la Versilia.</p>
+        <figure class="about__small">
+          <div class="about__frame" data-par><picture><source type="image/avif" srcset="assets/img/fosso-lucca-480.avif 480w, assets/img/fosso-lucca-800.avif 800w, assets/img/fosso-lucca-1280.avif 1280w, assets/img/fosso-lucca-1920.avif 1920w" sizes="(min-width: 900px) 30vw, 70vw" /><img src="assets/img/fosso-lucca-1280.webp" srcset="assets/img/fosso-lucca-480.webp 480w, assets/img/fosso-lucca-800.webp 800w, assets/img/fosso-lucca-1280.webp 1280w, assets/img/fosso-lucca-1920.webp 1920w" sizes="(min-width: 900px) 30vw, 70vw" width="3456" height="4608" alt="Il Fosso di Lucca, il canale lungo via del Fosso tra case colorate" data-i18n-alt="about.alt2" loading="lazy" decoding="async" /></picture></div>
+          <figcaption data-i18n="about.cap2">Il Fosso, via del Fosso</figcaption>
+        </figure>
       </div>
-      <figure class="about__small" data-reveal>
-        <picture><source type="image/avif" srcset="assets/img/fosso-lucca-480.avif 480w, assets/img/fosso-lucca-800.avif 800w, assets/img/fosso-lucca-1280.avif 1280w, assets/img/fosso-lucca-1920.avif 1920w" sizes="(min-width: 900px) 25vw, 50vw" /><img src="assets/img/fosso-lucca-1280.webp" srcset="assets/img/fosso-lucca-480.webp 480w, assets/img/fosso-lucca-800.webp 800w, assets/img/fosso-lucca-1280.webp 1280w, assets/img/fosso-lucca-1920.webp 1920w" sizes="(min-width: 900px) 25vw, 50vw" width="3456" height="4608" alt="Il Fosso di Lucca, il canale lungo via del Fosso tra case colorate" data-i18n-alt="about.alt2" loading="lazy" decoding="async" /></picture>
-        <figcaption data-i18n="about.cap2">Il Fosso, via del Fosso</figcaption>
-      </figure>
     </section>
 
-    <!-- ═══ IMMOBILI: foto ferma, elenco attivo ═══ -->
+    <!-- ═══ IMMOBILI: elenco a sinistra, foto grande che cambia a tendina ═══ -->
     <section class="lots" id="immobili" aria-labelledby="lots-title">
-      <div class="lots__media" aria-hidden="true">
-        <figure class="lots__fig is-on" data-lot="1"><picture><source type="image/avif" srcset="assets/img/duomo-san-martino-480.avif 480w, assets/img/duomo-san-martino-800.avif 800w, assets/img/duomo-san-martino-1280.avif 1280w, assets/img/duomo-san-martino-1920.avif 1920w" sizes="(min-width: 900px) 34vw, 100vw" /><img src="assets/img/duomo-san-martino-1280.webp" srcset="assets/img/duomo-san-martino-480.webp 480w, assets/img/duomo-san-martino-800.webp 800w, assets/img/duomo-san-martino-1280.webp 1280w, assets/img/duomo-san-martino-1920.webp 1920w" sizes="(min-width: 900px) 34vw, 100vw" width="3456" height="4608" alt="" loading="lazy" decoding="async" /></picture><figcaption data-i18n="lot1.cap">Lucca, il Duomo di San Martino</figcaption></figure>
-        <figure class="lots__fig" data-lot="2"><picture><source type="image/avif" srcset="assets/img/villa-vigna-480.avif 480w, assets/img/villa-vigna-800.avif 800w, assets/img/villa-vigna-1280.avif 1280w, assets/img/villa-vigna-1920.avif 1920w" sizes="(min-width: 900px) 34vw, 100vw" /><img src="assets/img/villa-vigna-1280.webp" srcset="assets/img/villa-vigna-480.webp 480w, assets/img/villa-vigna-800.webp 800w, assets/img/villa-vigna-1280.webp 1280w, assets/img/villa-vigna-1920.webp 1920w" sizes="(min-width: 900px) 34vw, 100vw" width="4160" height="6240" alt="" loading="lazy" decoding="async" /></picture><figcaption data-i18n="lot2.cap">Colline lucchesi, tra vigne e cipressi</figcaption></figure>
-        <figure class="lots__fig" data-lot="3"><picture><source type="image/avif" srcset="assets/img/acquedotto-apuane-480.avif 480w, assets/img/acquedotto-apuane-800.avif 800w, assets/img/acquedotto-apuane-1280.avif 1280w, assets/img/acquedotto-apuane-1920.avif 1920w" sizes="(min-width: 900px) 34vw, 100vw" /><img src="assets/img/acquedotto-apuane-1280.webp" srcset="assets/img/acquedotto-apuane-480.webp 480w, assets/img/acquedotto-apuane-800.webp 800w, assets/img/acquedotto-apuane-1280.webp 1280w, assets/img/acquedotto-apuane-1920.webp 1920w" sizes="(min-width: 900px) 34vw, 100vw" width="5716" height="3810" alt="" loading="lazy" decoding="async" /></picture><figcaption data-i18n="lot3.cap">L'acquedotto del Nottolini, verso Pisa</figcaption></figure>
-        <figure class="lots__fig" data-lot="4"><picture><source type="image/avif" srcset="assets/img/muro-casale-480.avif 480w, assets/img/muro-casale-800.avif 800w, assets/img/muro-casale-1280.avif 1280w, assets/img/muro-casale-1920.avif 1920w" sizes="(min-width: 900px) 34vw, 100vw" /><img src="assets/img/muro-casale-1280.webp" srcset="assets/img/muro-casale-480.webp 480w, assets/img/muro-casale-800.webp 800w, assets/img/muro-casale-1280.webp 1280w, assets/img/muro-casale-1920.webp 1920w" sizes="(min-width: 900px) 34vw, 100vw" width="3934" height="5901" alt="" loading="lazy" decoding="async" /></picture><figcaption data-i18n="lot4.cap">Pietra e coppi nella Piana di Lucca</figcaption></figure>
-        <figure class="lots__fig" data-lot="5"><picture><source type="image/avif" srcset="assets/img/dune-lecciona-480.avif 480w, assets/img/dune-lecciona-800.avif 800w, assets/img/dune-lecciona-1280.avif 1280w, assets/img/dune-lecciona-1920.avif 1920w" sizes="(min-width: 900px) 34vw, 100vw" /><img src="assets/img/dune-lecciona-1280.webp" srcset="assets/img/dune-lecciona-480.webp 480w, assets/img/dune-lecciona-800.webp 800w, assets/img/dune-lecciona-1280.webp 1280w, assets/img/dune-lecciona-1920.webp 1920w" sizes="(min-width: 900px) 34vw, 100vw" width="1920" height="1276" alt="" loading="lazy" decoding="async" /></picture><figcaption data-i18n="lot5.cap">Le dune della Lecciona, Viareggio</figcaption></figure>
-        <figure class="lots__fig" data-lot="6"><picture><source type="image/avif" srcset="assets/img/villa-torre-480.avif 480w, assets/img/villa-torre-800.avif 800w, assets/img/villa-torre-1280.avif 1280w, assets/img/villa-torre-1920.avif 1920w" sizes="(min-width: 900px) 34vw, 100vw" /><img src="assets/img/villa-torre-1280.webp" srcset="assets/img/villa-torre-480.webp 480w, assets/img/villa-torre-800.webp 800w, assets/img/villa-torre-1280.webp 1280w, assets/img/villa-torre-1920.webp 1920w" sizes="(min-width: 900px) 34vw, 100vw" width="4020" height="6024" alt="" loading="lazy" decoding="async" /></picture><figcaption data-i18n="lot6.cap">Tetti e giardini alle porte di Lucca</figcaption></figure>
-      </div>
-
       <div class="lots__col">
-        <h2 class="lots__title" id="lots-title" data-i18n="lots.title">Case con carattere</h2>
+        <h2 class="lots__title" id="lots-title" data-words data-i18n="lots.title">Case con carattere</h2>
         <p class="lots__note" data-i18n="lots.note">Annunci di esempio: presto pubblicheremo quelli reali.</p>
         <div class="filters" role="group" aria-label="Filtra immobili" data-i18n-aria="lots.filter">
           <button type="button" class="filter" data-filter="all" aria-pressed="true" data-i18n="lots.all">Tutti</button>
@@ -245,33 +244,33 @@
         </ul>
         <p class="lots__more" data-i18n-html="lots.more">Il catalogo completo è sui principali portali, da Immobiliare.it a Gate-away. Non trovi quello che cerchi? <a href="#contatti">Raccontacelo, cerchiamo noi per te.</a></p>
       </div>
+      <div class="lots__media" aria-hidden="true">
+        <figure class="lots__fig is-on" data-lot="1"><picture><source type="image/avif" srcset="assets/img/duomo-san-martino-480.avif 480w, assets/img/duomo-san-martino-800.avif 800w, assets/img/duomo-san-martino-1280.avif 1280w, assets/img/duomo-san-martino-1920.avif 1920w" sizes="(min-width: 900px) 46vw, 100vw" /><img src="assets/img/duomo-san-martino-1280.webp" srcset="assets/img/duomo-san-martino-480.webp 480w, assets/img/duomo-san-martino-800.webp 800w, assets/img/duomo-san-martino-1280.webp 1280w, assets/img/duomo-san-martino-1920.webp 1920w" sizes="(min-width: 900px) 46vw, 100vw" width="3456" height="4608" alt="" loading="lazy" decoding="async" /></picture><figcaption data-i18n="lot1.cap">Lucca, il Duomo di San Martino</figcaption></figure>
+        <figure class="lots__fig" data-lot="2"><picture><source type="image/avif" srcset="assets/img/villa-vigna-480.avif 480w, assets/img/villa-vigna-800.avif 800w, assets/img/villa-vigna-1280.avif 1280w, assets/img/villa-vigna-1920.avif 1920w" sizes="(min-width: 900px) 46vw, 100vw" /><img src="assets/img/villa-vigna-1280.webp" srcset="assets/img/villa-vigna-480.webp 480w, assets/img/villa-vigna-800.webp 800w, assets/img/villa-vigna-1280.webp 1280w, assets/img/villa-vigna-1920.webp 1920w" sizes="(min-width: 900px) 46vw, 100vw" width="4160" height="6240" alt="" loading="lazy" decoding="async" /></picture><figcaption data-i18n="lot2.cap">Colline lucchesi, tra vigne e cipressi</figcaption></figure>
+        <figure class="lots__fig" data-lot="3"><picture><source type="image/avif" srcset="assets/img/acquedotto-apuane-480.avif 480w, assets/img/acquedotto-apuane-800.avif 800w, assets/img/acquedotto-apuane-1280.avif 1280w, assets/img/acquedotto-apuane-1920.avif 1920w" sizes="(min-width: 900px) 46vw, 100vw" /><img src="assets/img/acquedotto-apuane-1280.webp" srcset="assets/img/acquedotto-apuane-480.webp 480w, assets/img/acquedotto-apuane-800.webp 800w, assets/img/acquedotto-apuane-1280.webp 1280w, assets/img/acquedotto-apuane-1920.webp 1920w" sizes="(min-width: 900px) 46vw, 100vw" width="5716" height="3810" alt="" loading="lazy" decoding="async" /></picture><figcaption data-i18n="lot3.cap">L'acquedotto del Nottolini, verso Pisa</figcaption></figure>
+        <figure class="lots__fig" data-lot="4"><picture><source type="image/avif" srcset="assets/img/muro-casale-480.avif 480w, assets/img/muro-casale-800.avif 800w, assets/img/muro-casale-1280.avif 1280w, assets/img/muro-casale-1920.avif 1920w" sizes="(min-width: 900px) 46vw, 100vw" /><img src="assets/img/muro-casale-1280.webp" srcset="assets/img/muro-casale-480.webp 480w, assets/img/muro-casale-800.webp 800w, assets/img/muro-casale-1280.webp 1280w, assets/img/muro-casale-1920.webp 1920w" sizes="(min-width: 900px) 46vw, 100vw" width="3934" height="5901" alt="" loading="lazy" decoding="async" /></picture><figcaption data-i18n="lot4.cap">Pietra e coppi nella Piana di Lucca</figcaption></figure>
+        <figure class="lots__fig" data-lot="5"><picture><source type="image/avif" srcset="assets/img/dune-lecciona-480.avif 480w, assets/img/dune-lecciona-800.avif 800w, assets/img/dune-lecciona-1280.avif 1280w, assets/img/dune-lecciona-1920.avif 1920w" sizes="(min-width: 900px) 46vw, 100vw" /><img src="assets/img/dune-lecciona-1280.webp" srcset="assets/img/dune-lecciona-480.webp 480w, assets/img/dune-lecciona-800.webp 800w, assets/img/dune-lecciona-1280.webp 1280w, assets/img/dune-lecciona-1920.webp 1920w" sizes="(min-width: 900px) 46vw, 100vw" width="1920" height="1276" alt="" loading="lazy" decoding="async" /></picture><figcaption data-i18n="lot5.cap">Le dune della Lecciona, Viareggio</figcaption></figure>
+        <figure class="lots__fig" data-lot="6"><picture><source type="image/avif" srcset="assets/img/villa-torre-480.avif 480w, assets/img/villa-torre-800.avif 800w, assets/img/villa-torre-1280.avif 1280w, assets/img/villa-torre-1920.avif 1920w" sizes="(min-width: 900px) 46vw, 100vw" /><img src="assets/img/villa-torre-1280.webp" srcset="assets/img/villa-torre-480.webp 480w, assets/img/villa-torre-800.webp 800w, assets/img/villa-torre-1280.webp 1280w, assets/img/villa-torre-1920.webp 1920w" sizes="(min-width: 900px) 46vw, 100vw" width="4020" height="6024" alt="" loading="lazy" decoding="async" /></picture><figcaption data-i18n="lot6.cap">Tetti e giardini alle porte di Lucca</figcaption></figure>
+      </div>
     </section>
 
-    <!-- ═══ SERVIZI: righe sull'asse, foto a margine (campo verde persiana) ═══ -->
+    <!-- ═══ SERVIZI: galleria orizzontale sul campo verde ═══ -->
     <section class="srv" id="servizi" aria-labelledby="srv-title">
-      <h2 class="srv__title" id="srv-title" data-i18n-html="srv.title">Un solo referente,<br>ogni passaggio.</h2>
-      <ul class="srv__rows">
-        <li class="srv__row" data-reveal>
-          <div class="srv__txt"><h3 data-i18n="srv.1t">Vendita</h3><p data-i18n="srv.1d">Valutazione, servizio fotografico, promozione sui portali, selezione degli acquirenti e assistenza fino al rogito.</p></div>
-          <picture><source type="image/avif" srcset="assets/img/borgo-colline-480.avif 480w, assets/img/borgo-colline-800.avif 800w, assets/img/borgo-colline-1280.avif 1280w, assets/img/borgo-colline-1920.avif 1920w" sizes="(min-width: 900px) 240px, 100vw" /><img src="assets/img/borgo-colline-1280.webp" srcset="assets/img/borgo-colline-480.webp 480w, assets/img/borgo-colline-800.webp 800w, assets/img/borgo-colline-1280.webp 1280w, assets/img/borgo-colline-1920.webp 1920w" sizes="(min-width: 900px) 240px, 100vw" width="4020" height="6024" alt="Un borgo di case in pietra tra i boschi delle colline lucchesi" data-i18n-alt="srv.alt1" class="srv__img srv__img--a" loading="lazy" decoding="async" /></picture>
-        </li>
-        <li class="srv__row" data-reveal>
-          <div class="srv__txt"><h3 data-i18n="srv.2t">Acquisto</h3><p data-i18n="srv.2d">Ricerca su misura, visite organizzate, verifiche documentali e trattativa al tuo fianco.</p></div>
-          <picture><source type="image/avif" srcset="assets/img/villa-torre-480.avif 480w, assets/img/villa-torre-800.avif 800w, assets/img/villa-torre-1280.avif 1280w, assets/img/villa-torre-1920.avif 1920w" sizes="(min-width: 900px) 320px, 70vw" /><img src="assets/img/villa-torre-1280.webp" srcset="assets/img/villa-torre-480.webp 480w, assets/img/villa-torre-800.webp 800w, assets/img/villa-torre-1280.webp 1280w, assets/img/villa-torre-1920.webp 1920w" sizes="(min-width: 900px) 320px, 70vw" width="4020" height="6024" alt="Una casa con persiane verdi tra i pini, con una torre di Lucca dietro" data-i18n-alt="srv.alt2" class="srv__img srv__img--b" loading="lazy" decoding="async" /></picture>
-        </li>
-        <li class="srv__row" data-reveal>
-          <div class="srv__txt"><h3 data-i18n="srv.3t">Affitti</h3><p data-i18n="srv.3d">Locazioni a lungo termine, transitorie e turistiche, con selezione degli inquilini, contratto e registrazione.</p></div>
-          <picture><source type="image/avif" srcset="assets/img/duomo-san-martino-480.avif 480w, assets/img/duomo-san-martino-800.avif 800w, assets/img/duomo-san-martino-1280.avif 1280w, assets/img/duomo-san-martino-1920.avif 1920w" sizes="(min-width: 900px) 180px, 55vw" /><img src="assets/img/duomo-san-martino-1280.webp" srcset="assets/img/duomo-san-martino-480.webp 480w, assets/img/duomo-san-martino-800.webp 800w, assets/img/duomo-san-martino-1280.webp 1280w, assets/img/duomo-san-martino-1920.webp 1920w" sizes="(min-width: 900px) 180px, 55vw" width="3456" height="4608" alt="Il Duomo di San Martino a Lucca visto da un vicolo" data-i18n-alt="srv.alt3" class="srv__img srv__img--c" loading="lazy" decoding="async" /></picture>
-        </li>
-        <li class="srv__row" data-reveal>
-          <div class="srv__txt"><h3 data-i18n="srv.4t">Valutazione gratuita</h3><p data-i18n="srv.4d">Una stima onesta, basata su sopralluogo e vendite comparabili. Senza impegno.</p></div>
-          <picture><source type="image/avif" srcset="assets/img/muro-casale-480.avif 480w, assets/img/muro-casale-800.avif 800w, assets/img/muro-casale-1280.avif 1280w, assets/img/muro-casale-1920.avif 1920w" sizes="(min-width: 900px) 280px, 100vw" /><img src="assets/img/muro-casale-1280.webp" srcset="assets/img/muro-casale-480.webp 480w, assets/img/muro-casale-800.webp 800w, assets/img/muro-casale-1280.webp 1280w, assets/img/muro-casale-1920.webp 1920w" sizes="(min-width: 900px) 280px, 100vw" width="3934" height="5901" alt="Il muro in pietra di un casale toscano con una finestra verde e il tetto in coppi" data-i18n-alt="srv.alt4" class="srv__img srv__img--a" loading="lazy" decoding="async" /></picture>
-        </li>
-        <li class="srv__row" data-reveal>
-          <div class="srv__txt"><h3 data-i18n="srv.5t">Dall'estero</h3><p data-i18n="srv.5d">Per chi compra da lontano: video tour, codice fiscale, notaio, traduzioni e firma tramite procura.</p></div>
-          <picture><source type="image/avif" srcset="assets/img/finestra-lucca-480.avif 480w, assets/img/finestra-lucca-800.avif 800w, assets/img/finestra-lucca-1280.avif 1280w, assets/img/finestra-lucca-1920.avif 1920w" sizes="(min-width: 900px) 360px, 70vw" /><img src="assets/img/finestra-lucca-1280.webp" srcset="assets/img/finestra-lucca-480.webp 480w, assets/img/finestra-lucca-800.webp 800w, assets/img/finestra-lucca-1280.webp 1280w, assets/img/finestra-lucca-1920.webp 1920w" sizes="(min-width: 900px) 360px, 70vw" width="6024" height="4020" alt="Lucca vista attraverso le sbarre di una finestra, con le torri e le Apuane" data-i18n-alt="srv.alt5" class="srv__img srv__img--b" loading="lazy" decoding="async" /></picture>
-        </li>
-      </ul>
+      <div class="srv__stage">
+        <div class="srv__head">
+          <h2 class="srv__title" id="srv-title" data-words data-i18n-html="srv.title">Un solo referente,<br>ogni passaggio.</h2>
+          <p class="srv__hint" data-i18n="srv.hint">Dalla prima visita al rogito, e anche dopo la firma.</p>
+        </div>
+        <div class="srv__viewport">
+        <ul class="srv__track">
+          <li class="srv__item srv__item--a"><picture><source type="image/avif" srcset="assets/img/borgo-colline-480.avif 480w, assets/img/borgo-colline-800.avif 800w, assets/img/borgo-colline-1280.avif 1280w, assets/img/borgo-colline-1920.avif 1920w" sizes="(min-width: 900px) 30vw, 78vw" /><img src="assets/img/borgo-colline-1280.webp" srcset="assets/img/borgo-colline-480.webp 480w, assets/img/borgo-colline-800.webp 800w, assets/img/borgo-colline-1280.webp 1280w, assets/img/borgo-colline-1920.webp 1920w" sizes="(min-width: 900px) 30vw, 78vw" width="4020" height="6024" alt="Un borgo di case in pietra tra i boschi delle colline lucchesi" data-i18n-alt="srv.alt1" loading="lazy" decoding="async" /></picture><h3 data-i18n="srv.1t">Vendita</h3><p data-i18n="srv.1d">Valutazione, servizio fotografico, promozione sui portali, selezione degli acquirenti e assistenza fino al rogito.</p></li>
+          <li class="srv__item srv__item--b"><picture><source type="image/avif" srcset="assets/img/villa-torre-480.avif 480w, assets/img/villa-torre-800.avif 800w, assets/img/villa-torre-1280.avif 1280w, assets/img/villa-torre-1920.avif 1920w" sizes="(min-width: 900px) 40vw, 78vw" /><img src="assets/img/villa-torre-1280.webp" srcset="assets/img/villa-torre-480.webp 480w, assets/img/villa-torre-800.webp 800w, assets/img/villa-torre-1280.webp 1280w, assets/img/villa-torre-1920.webp 1920w" sizes="(min-width: 900px) 40vw, 78vw" width="4020" height="6024" alt="Una casa con persiane verdi tra i pini, con una torre di Lucca dietro" data-i18n-alt="srv.alt2" loading="lazy" decoding="async" /></picture><h3 data-i18n="srv.2t">Acquisto</h3><p data-i18n="srv.2d">Ricerca su misura, visite organizzate, verifiche documentali e trattativa al tuo fianco.</p></li>
+          <li class="srv__item srv__item--c"><picture><source type="image/avif" srcset="assets/img/duomo-san-martino-480.avif 480w, assets/img/duomo-san-martino-800.avif 800w, assets/img/duomo-san-martino-1280.avif 1280w, assets/img/duomo-san-martino-1920.avif 1920w" sizes="(min-width: 900px) 28vw, 78vw" /><img src="assets/img/duomo-san-martino-1280.webp" srcset="assets/img/duomo-san-martino-480.webp 480w, assets/img/duomo-san-martino-800.webp 800w, assets/img/duomo-san-martino-1280.webp 1280w, assets/img/duomo-san-martino-1920.webp 1920w" sizes="(min-width: 900px) 28vw, 78vw" width="3456" height="4608" alt="Il Duomo di San Martino a Lucca visto da un vicolo" data-i18n-alt="srv.alt3" loading="lazy" decoding="async" /></picture><h3 data-i18n="srv.3t">Affitti</h3><p data-i18n="srv.3d">Locazioni a lungo termine, transitorie e turistiche, con selezione degli inquilini, contratto e registrazione.</p></li>
+          <li class="srv__item srv__item--a"><picture><source type="image/avif" srcset="assets/img/muro-casale-480.avif 480w, assets/img/muro-casale-800.avif 800w, assets/img/muro-casale-1280.avif 1280w, assets/img/muro-casale-1920.avif 1920w" sizes="(min-width: 900px) 30vw, 78vw" /><img src="assets/img/muro-casale-1280.webp" srcset="assets/img/muro-casale-480.webp 480w, assets/img/muro-casale-800.webp 800w, assets/img/muro-casale-1280.webp 1280w, assets/img/muro-casale-1920.webp 1920w" sizes="(min-width: 900px) 30vw, 78vw" width="3934" height="5901" alt="Il muro in pietra di un casale toscano con una finestra verde e il tetto in coppi" data-i18n-alt="srv.alt4" loading="lazy" decoding="async" /></picture><h3 data-i18n="srv.4t">Valutazione gratuita</h3><p data-i18n="srv.4d">Una stima onesta, basata su sopralluogo e vendite comparabili. Senza impegno.</p></li>
+          <li class="srv__item srv__item--b"><picture><source type="image/avif" srcset="assets/img/finestra-lucca-480.avif 480w, assets/img/finestra-lucca-800.avif 800w, assets/img/finestra-lucca-1280.avif 1280w, assets/img/finestra-lucca-1920.avif 1920w" sizes="(min-width: 900px) 40vw, 78vw" /><img src="assets/img/finestra-lucca-1280.webp" srcset="assets/img/finestra-lucca-480.webp 480w, assets/img/finestra-lucca-800.webp 800w, assets/img/finestra-lucca-1280.webp 1280w, assets/img/finestra-lucca-1920.webp 1920w" sizes="(min-width: 900px) 40vw, 78vw" width="6024" height="4020" alt="Lucca vista attraverso le sbarre di una finestra, con le torri e le Apuane" data-i18n-alt="srv.alt5" loading="lazy" decoding="async" /></picture><h3 data-i18n="srv.5t">Dall'estero</h3><p data-i18n="srv.5d">Per chi compra da lontano: video tour, codice fiscale, notaio, traduzioni e firma tramite procura.</p></li>
+        </ul>
+        </div>
+      </div>
     </section>
 
     <!-- ═══ METODO: una parola alla volta ═══ -->
@@ -427,7 +426,7 @@
           <li>Via di Villa Altieri, 55100 Lucca</li>
         </ul>
       </div>
-      <p class="postcard__imprint">© <span id="year">2026</span> LuccAlfa Srls · P.IVA 07079510488 · <span data-i18n="ft.credits">Foto: Unsplash e Pexels; dune della Lecciona di DimiTalen, CC0, Wikimedia Commons.</span></p>
+      <p class="postcard__imprint">© <span id="year">2026</span> LuccAlfa Srls · P.IVA 07079510488 · <span data-i18n="ft.credits">Foto: Unsplash e Pexels; dune della Lecciona di DimiTalen (CC0), portone di Thomas Quine (CC BY 2.0), Villa Torrigiani di Sailko (CC BY 2.5), via Wikimedia Commons.</span></p>
     </div>
     <p class="footer__word" aria-hidden="true">LuccAlfa</p>
   </footer>
@@ -436,7 +435,7 @@
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 01-11.8 7L4 20l1.1-4A8 8 0 1120 12z"/></svg>
   </a>
 
-  <script src="i18n.js?v=8" defer></script>
-  <script src="script.js?v=8" defer></script>
+  <script src="i18n.js?v=10" defer></script>
+  <script src="script.js?v=10" defer></script>
 </body>
 </html>
