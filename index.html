@@ -24,9 +24,10 @@
   <link rel="icon" type="image/svg+xml" href="assets/logo.svg" />
   <link rel="preload" href="assets/fonts/boska-700.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="assets/fonts/switzer-400.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/fonts/windsong-400.woff2" as="font" type="font/woff2" crossorigin fetchpriority="low" />
   <link rel="preload" as="image" href="assets/img/tetti-lucca-p-720.avif" type="image/avif" media="(max-width: 699px)" />
   <link rel="preload" as="image" imagesrcset="assets/img/tetti-lucca-1280.avif 1280w, assets/img/tetti-lucca-1920.avif 1920w, assets/img/tetti-lucca-2560.avif 2560w" imagesizes="100vw" type="image/avif" media="(min-width: 700px)" />
-  <link rel="stylesheet" href="styles.css?v=22" />
+  <link rel="stylesheet" href="styles.css?v=23" />
 
   <!-- ═════ SCHEMA.ORG: RealEstateAgent + LocalBusiness ═════
        Entità autonoma: nessun collegamento all'entità di luccalfa.it (giardinaggio e pulizie),
@@ -102,12 +103,10 @@
 
 <body>
   <div class="loader" id="loader" aria-hidden="true">
-    <!-- il simbolo LuccAlfa si disegna in un solo tratto, da sinistra a destra, come lo farebbe una penna -->
-    <svg class="loader__mark" viewBox="4150 2380 4130 3270">
-      <defs><mask id="loaderInk" maskUnits="userSpaceOnUse" x="4150" y="2380" width="4130" height="3270">
-        <path class="lm" pathLength="1" d="M4452 5440V3500C4452 3000 4800 2684 5250 2684C5750 2684 6050 2950 6300 3150C6750 3500 7104 3800 7104 4300V5000C7104 5250 6890 5300 6640 5300C6390 5300 6220 5250 6220 5000V3300V5000C6220 5250 6050 5300 5800 5300C5550 5300 5340 5250 5340 4950V4300C5340 3800 5690 3500 6140 3150C6390 2950 6690 2684 7190 2684C7640 2684 7980 3000 7980 3500V5440"/>
-      </mask></defs>
-      <path class="loader__ink" mask="url(#loaderInk)" d="M5981.467,4205.883l-3.542,0c0,-230.163 0.6,-460.325 -0.417,-690.488c-0.254,-56.388 -22.038,-66.783 -69.258,-34.863c-65.392,44.167 -124.075,96.575 -179.675,152.454c-120,120.6 -147.037,278.888 -154.608,435.071c-13.217,273.567 -11.921,548.171 -1.067,822.037c3.842,97.058 41.992,180.092 153.379,209.908c88.308,23.633 187.037,-13.358 226.342,-94.792c21.042,-43.588 29.004,-88.471 28.958,-136.042c-0.254,-221.087 -0.117,-442.2 -0.117,-663.288m897.037,271.575l-0.254,0c0,-22.708 0.117,-45.442 -0.025,-68.171c-1.042,-188.775 9.142,-377.733 -47.988,-562.637c-45.442,-147.129 -130.208,-261.55 -258.333,-343.333c-93.704,-59.792 -101.067,-54.075 -104.862,58.217c-0.092,3.033 -0.254,6.067 -0.254,9.096c-0.442,439.35 -0.996,878.725 -0.996,1318.079c0,22.571 1.737,45.95 7.708,67.546c17.754,64.142 65.071,134.883 153.842,147.058c86.204,11.829 160.971,-13.1 201.621,-77.454c35.533,-56.25 50.254,-118.242 49.792,-184.767c-0.879,-121.204 -0.254,-242.408 -0.254,-363.633m1348.775,-80.092c0,318.308 1.067,636.642 -0.65,954.954c-0.508,95.208 -45.971,173.125 -130.879,212.683c-114.863,53.517 -267.292,17.154 -314.142,-128.425c-16.133,-50.183 -23.612,-98.725 -23.567,-150.65c0.487,-576.017 4.238,-1152.083 -2.038,-1728.033c-2.779,-254.929 -124.817,-445.162 -358.679,-559.283c-97.663,-47.637 -196.692,-83.171 -307.246,-78.821c-111.504,4.4 -211.992,44.142 -309.767,93.196c-33.379,16.738 -35.279,36.412 -4.817,60.092c50.117,38.958 104.767,71.204 153.262,112.987c116.804,100.671 217.846,213.15 293.262,348.658c72.683,130.554 116.829,270.533 121.133,418.358c10.071,343.933 12.754,688.379 -1.483,1032.013c-6.967,168.425 -89.629,312.592 -223.496,420.6c-144.05,116.204 -302.638,194.213 -495.071,178.008c-127.846,-10.762 -246.875,-46.204 -347.317,-128.217c-34.512,-28.171 -59.512,-28.658 -95.183,-3.333c-134.862,95.762 -284.467,144.558 -451.458,130.346c-228.196,-19.4 -400.392,-126.367 -520.696,-323.008c-83.725,-136.875 -115.279,-281.342 -111.088,-441.133c6.804,-257.5 2.108,-515.325 1.758,-773.008c-0.183,-153.196 24.975,-302.317 89.121,-441.112c86.712,-187.617 220.233,-339.075 385.625,-462.408c32.754,-24.421 66.875,-46.946 100.046,-70.788c25.233,-18.15 32.221,-35.554 -1.321,-53.567c-152.175,-81.642 -308.821,-121.342 -483.496,-79.558c-234.304,56.042 -372.221,214.35 -463.1,422.108c-25.346,57.942 -37.546,124.075 -37.475,190.508c0.488,591.179 0,1182.363 0.117,1773.542c0.025,75.95 -25.788,141.967 -74.492,199.096c-47.846,56.113 -153.613,82.012 -221.067,51.967c-30.046,-13.379 -61.804,-22.779 -89.629,-42.917c-52.779,-38.217 -83.633,-85.996 -83.567,-152.175c0.533,-641.204 -3.262,-1282.429 3.796,-1923.567c2.525,-229.908 102.2,-428.333 256.017,-599.654c101.042,-112.525 213.308,-211.667 345.533,-284.167c119.883,-65.742 250.117,-108.287 387.108,-119.237c168.542,-13.471 336.367,-4.142 497.012,54.817c128.913,47.317 244.792,118.633 348.079,209.258c46.575,40.879 93.079,82.429 134.7,128.171c29.7,32.663 47.8,25.279 72.475,-3.196c90.95,-105.025 196.529,-192.917 317.175,-261.992c134.629,-77.083 279.558,-121.458 434.675,-128.358c125.671,-5.579 251.133,-5.392 374.467,27.429c103.1,27.454 201.296,67.592 289.375,126.042c130.117,86.321 250.371,184.954 340.717,315.763c82.292,119.192 143.15,246.9 181.275,387.246c22.337,82.221 24.767,164.192 24.817,247.454c0.071,280.417 0.025,560.858 0.025,841.296l0.138,0l0.013,0.017Z"/>
+    <!-- il simbolo LuccAlfa si disegna come con una penna: un tratto da sinistra (archi e fiocco), poi la barretta centrale; alla fine resta il logo esatto -->
+    <svg class="loader__mark" viewBox="4150 2380 4130 3270" aria-hidden="true">
+      <path class="lm lm--1" pathLength="1" d="M4452 5440V3480C4452 3000 4780 2684 5200 2684C5620 2684 5980 2900 6220 3100C6500 3330 7104 3400 7104 3760V4980C7104 5230 6880 5290 6662 5290C6440 5290 6220 5230 6220 4980C6220 5230 6000 5290 5780 5290C5560 5290 5340 5230 5340 4980V3760C5340 3400 5940 3330 6220 3100C6460 2900 6820 2684 7240 2684C7660 2684 7980 3000 7980 3480V5440"/>
+      <path class="lm lm--2" pathLength="1" d="M6220 3100V5000"/>
       <path class="loader__full" d="M5981.467,4205.883l-3.542,0c0,-230.163 0.6,-460.325 -0.417,-690.488c-0.254,-56.388 -22.038,-66.783 -69.258,-34.863c-65.392,44.167 -124.075,96.575 -179.675,152.454c-120,120.6 -147.037,278.888 -154.608,435.071c-13.217,273.567 -11.921,548.171 -1.067,822.037c3.842,97.058 41.992,180.092 153.379,209.908c88.308,23.633 187.037,-13.358 226.342,-94.792c21.042,-43.588 29.004,-88.471 28.958,-136.042c-0.254,-221.087 -0.117,-442.2 -0.117,-663.288m897.037,271.575l-0.254,0c0,-22.708 0.117,-45.442 -0.025,-68.171c-1.042,-188.775 9.142,-377.733 -47.988,-562.637c-45.442,-147.129 -130.208,-261.55 -258.333,-343.333c-93.704,-59.792 -101.067,-54.075 -104.862,58.217c-0.092,3.033 -0.254,6.067 -0.254,9.096c-0.442,439.35 -0.996,878.725 -0.996,1318.079c0,22.571 1.737,45.95 7.708,67.546c17.754,64.142 65.071,134.883 153.842,147.058c86.204,11.829 160.971,-13.1 201.621,-77.454c35.533,-56.25 50.254,-118.242 49.792,-184.767c-0.879,-121.204 -0.254,-242.408 -0.254,-363.633m1348.775,-80.092c0,318.308 1.067,636.642 -0.65,954.954c-0.508,95.208 -45.971,173.125 -130.879,212.683c-114.863,53.517 -267.292,17.154 -314.142,-128.425c-16.133,-50.183 -23.612,-98.725 -23.567,-150.65c0.487,-576.017 4.238,-1152.083 -2.038,-1728.033c-2.779,-254.929 -124.817,-445.162 -358.679,-559.283c-97.663,-47.637 -196.692,-83.171 -307.246,-78.821c-111.504,4.4 -211.992,44.142 -309.767,93.196c-33.379,16.738 -35.279,36.412 -4.817,60.092c50.117,38.958 104.767,71.204 153.262,112.987c116.804,100.671 217.846,213.15 293.262,348.658c72.683,130.554 116.829,270.533 121.133,418.358c10.071,343.933 12.754,688.379 -1.483,1032.013c-6.967,168.425 -89.629,312.592 -223.496,420.6c-144.05,116.204 -302.638,194.213 -495.071,178.008c-127.846,-10.762 -246.875,-46.204 -347.317,-128.217c-34.512,-28.171 -59.512,-28.658 -95.183,-3.333c-134.862,95.762 -284.467,144.558 -451.458,130.346c-228.196,-19.4 -400.392,-126.367 -520.696,-323.008c-83.725,-136.875 -115.279,-281.342 -111.088,-441.133c6.804,-257.5 2.108,-515.325 1.758,-773.008c-0.183,-153.196 24.975,-302.317 89.121,-441.112c86.712,-187.617 220.233,-339.075 385.625,-462.408c32.754,-24.421 66.875,-46.946 100.046,-70.788c25.233,-18.15 32.221,-35.554 -1.321,-53.567c-152.175,-81.642 -308.821,-121.342 -483.496,-79.558c-234.304,56.042 -372.221,214.35 -463.1,422.108c-25.346,57.942 -37.546,124.075 -37.475,190.508c0.488,591.179 0,1182.363 0.117,1773.542c0.025,75.95 -25.788,141.967 -74.492,199.096c-47.846,56.113 -153.613,82.012 -221.067,51.967c-30.046,-13.379 -61.804,-22.779 -89.629,-42.917c-52.779,-38.217 -83.633,-85.996 -83.567,-152.175c0.533,-641.204 -3.262,-1282.429 3.796,-1923.567c2.525,-229.908 102.2,-428.333 256.017,-599.654c101.042,-112.525 213.308,-211.667 345.533,-284.167c119.883,-65.742 250.117,-108.287 387.108,-119.237c168.542,-13.471 336.367,-4.142 497.012,54.817c128.913,47.317 244.792,118.633 348.079,209.258c46.575,40.879 93.079,82.429 134.7,128.171c29.7,32.663 47.8,25.279 72.475,-3.196c90.95,-105.025 196.529,-192.917 317.175,-261.992c134.629,-77.083 279.558,-121.458 434.675,-128.358c125.671,-5.579 251.133,-5.392 374.467,27.429c103.1,27.454 201.296,67.592 289.375,126.042c130.117,86.321 250.371,184.954 340.717,315.763c82.292,119.192 143.15,246.9 181.275,387.246c22.337,82.221 24.767,164.192 24.817,247.454c0.071,280.417 0.025,560.858 0.025,841.296l0.138,0l0.013,0.017Z"/>
     </svg>
     <p class="loader__word"><span>LuccAlfa</span></p>
@@ -131,6 +130,8 @@
   </header>
   <!-- MENU: una tendina verde che cala dall'alto; le voci salgono dalla loro riga -->
   <div class="menu" id="menu">
+    <!-- sullo sfondo, a mano: il nome e il motto, scritti mentre la tendina cala -->
+    <p class="menu__script" aria-hidden="true"><span>LuccAlfa</span><span>estate and beyond</span></p>
     <nav aria-label="Menu principale" data-i18n-aria="nav.aria">
       <ul class="menu__links">
         <li><a href="#immobili"><span class="menu__text" data-i18n="m.list">Immobili</span><svg class="menu__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M17 7H7M17 7v10"/></svg></a></li>
@@ -160,6 +161,11 @@
             <img src="assets/img/tetti-lucca-1920.webp" srcset="assets/img/tetti-lucca-1280.webp 1280w, assets/img/tetti-lucca-1920.webp 1920w, assets/img/tetti-lucca-2560.webp 2560w" sizes="150vw" width="6000" height="4000" fetchpriority="high" decoding="async" alt="I tetti di Lucca nella luce del mattino, con le torri e le colline sullo sfondo" data-i18n-alt="hero.alt" />
           </picture>
         </div>
+        <!-- il cielo: dietro il logo, nuvole vere che scendono mentre si sale -->
+        <div class="intro__sky" aria-hidden="true">
+          <img class="sky__cloud sky__cloud--1" src="assets/img/nuvola-a-1200.webp" srcset="assets/img/nuvola-a-1200.webp 1200w, assets/img/nuvola-a-2000.webp 2000w" sizes="50vw" width="1200" height="804" alt="" loading="lazy" decoding="async" />
+          <img class="sky__cloud sky__cloud--2" src="assets/img/nuvola-c-1200.webp" srcset="assets/img/nuvola-c-1200.webp 1200w, assets/img/nuvola-c-2000.webp 2000w" sizes="75vw" width="1200" height="675" alt="" loading="lazy" decoding="async" />
+        </div>
         <div class="intro__mark" aria-hidden="true"><picture><source type="image/avif" srcset="assets/img/tetti-lucca-1280.avif 1280w, assets/img/tetti-lucca-1920.avif 1920w, assets/img/tetti-lucca-2560.avif 2560w" sizes="100vw" /><img src="assets/img/tetti-lucca-1920.webp" srcset="assets/img/tetti-lucca-1280.webp 1280w, assets/img/tetti-lucca-1920.webp 1920w, assets/img/tetti-lucca-2560.webp 2560w" sizes="100vw" width="6000" height="4000" alt="" decoding="async" /></picture></div>
         <p class="intro__name" aria-hidden="true">LuccAlfa <span>Immobiliare</span></p>
         <div class="hero__copy">
@@ -167,6 +173,7 @@
           <p class="hero__sub" data-i18n="hero.sub">Agenzia immobiliare a Lucca: case in vendita e in affitto, dal centro storico a Pisa e alla Versilia.</p>
         </div>
         <a class="btn btn--accent hero__cta" href="#immobili" data-i18n="hero.cta">Guarda gli immobili</a>
+        <img class="sky__front" src="assets/img/nuvola-b-2000.webp" srcset="assets/img/nuvola-b-1200.webp 1200w, assets/img/nuvola-b-2000.webp 2000w" sizes="130vw" width="2000" height="1333" alt="" loading="lazy" decoding="async" aria-hidden="true" />
         <div class="intro__mist" aria-hidden="true">
           <img class="intro__mist-b" src="assets/img/nebbia-b-2400.webp" srcset="assets/img/nebbia-b-1200.webp 1200w, assets/img/nebbia-b-2400.webp 2400w" sizes="140vw" width="2400" height="1040" alt="" decoding="async" />
           <img class="intro__mist-a" src="assets/img/nebbia-a-2400.webp" srcset="assets/img/nebbia-a-1200.webp 1200w, assets/img/nebbia-a-2400.webp 2400w" sizes="140vw" width="2400" height="1040" alt="" decoding="async" />
@@ -270,6 +277,7 @@
         <div class="srv__head">
           <h2 class="srv__title" id="srv-title" data-words data-i18n-html="srv.title">Un solo referente,<br>ogni passaggio.</h2>
           <p class="srv__hint" data-i18n="srv.hint">Dalla prima visita al rogito, e anche dopo la firma.</p>
+          <img class="srv__chair" src="assets/img/dondolo-500.webp" srcset="assets/img/dondolo-500.webp 500w, assets/img/dondolo-900.webp 900w" sizes="(min-width: 900px) 22vh, 40vw" width="500" height="715" alt="" aria-hidden="true" loading="lazy" decoding="async" />
         </div>
         <div class="srv__viewport">
         <ul class="srv__track">
@@ -347,10 +355,6 @@
       <div class="faq__head">
         <h2 class="faq__title" id="faq-title" data-words data-i18n="faq.title">Hai dei dubbi? Bene.</h2>
         <p class="faq__lead" data-i18n="faq.lead">Comprare, vendere o affittare casa solleva domande. Queste sono quelle che sentiamo più spesso.</p>
-        <div class="faq__actions">
-          <a class="btn btn--accent" href="#contatti" data-i18n="faq.cta">Non trovi la risposta? Scrivici</a>
-          <a class="link" href="tel:+39000000000" data-i18n="faq.call">Oppure chiamaci</a>
-        </div>
       </div>
         <div class="acc">
           <details><summary data-i18n="q1">Quanto vale la mia casa a Lucca? Fate valutazioni gratuite?</summary><p data-i18n="a1">Sì. LuccAlfa Immobiliare effettua una valutazione gratuita e senza impegno con sopralluogo. Il valore dipende da zona, stato di manutenzione, superficie, classe energetica e confronto con le vendite recenti comparabili.</p></details>
@@ -364,6 +368,10 @@
           <details><summary data-i18n="q9">Dove pubblicate gli annunci?</summary><p data-i18n="a9">Oltre che sul nostro sito, pubblichiamo gli immobili sui principali portali italiani e internazionali, come Immobiliare.it, Idealista, Casa.it e Gate-away.com, per raggiungere sia acquirenti italiani sia stranieri.</p></details>
           <details><summary data-i18n="q10">Qual è la differenza tra vivere dentro le Mura di Lucca e fuori?</summary><p data-i18n="a10">Dentro le Mura il centro storico offre vita pedonale, servizi a piedi e immobili d'epoca, con vincoli edilizi e poco parcheggio. Fuori, tra Piana e colline, si trovano più spazi, giardini e box auto, con prezzi al metro quadro generalmente diversi.</p></details>
         </div>
+      <div class="faq__actions">
+        <a class="link" href="#contatti" data-i18n="faq.cta">Non trovi la risposta? Scrivici</a>
+        <a class="link" href="tel:+39000000000" data-i18n="faq.call">Oppure chiamaci</a>
+      </div>
     </section>
 
     <!-- ═══ CONTATTI: stesso campo e stessa griglia delle domande; a sinistra chi siamo e dove, a destra il modulo ═══ -->
@@ -379,7 +387,6 @@
           <li><span data-i18n="con.office">Sede</span><span data-i18n="con.officeV">Lucca, su appuntamento</span></li>
           <li><span data-i18n="con.langs">Lingue</span><span data-i18n="con.langsV">Italiano e inglese</span></li>
         </ul>
-        <figure class="contact__pic"><picture><source type="image/avif" srcset="assets/img/loggia-anfiteatro-480.avif 480w, assets/img/loggia-anfiteatro-800.avif 800w, assets/img/loggia-anfiteatro-1280.avif 1280w" sizes="(min-width: 900px) 30vw, 90vw" /><img src="assets/img/loggia-anfiteatro-800.webp" srcset="assets/img/loggia-anfiteatro-480.webp 480w, assets/img/loggia-anfiteatro-800.webp 800w, assets/img/loggia-anfiteatro-1280.webp 1280w" sizes="(min-width: 900px) 30vw, 90vw" width="1537" height="1023" alt="Piazza dell'Anfiteatro a Lucca vista da sotto uno dei suoi archi" data-i18n-alt="con.alt" loading="lazy" decoding="async" /></picture></figure>
       </div>
       <div class="contact__body">
         <form id="contact-form" class="form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" data-endpoint="https://formspree.io/f/YOUR_FORM_ID">
@@ -404,9 +411,11 @@
           <input type="hidden" name="interesse" id="f-interest" />
           <input type="hidden" name="_language" id="f-lang" value="it" />
 
-          <div class="field"><label for="name" data-i18n="f.name">Nome</label><input id="name" name="name" type="text" autocomplete="name" required /></div>
-          <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" required /></div>
-          <div class="field"><label for="phone" data-i18n="f.phone">Telefono (facoltativo)</label><input id="phone" name="phone" type="tel" autocomplete="tel" /></div>
+          <div class="form__grid">
+            <div class="field"><label for="name" data-i18n="f.name">Nome</label><input id="name" name="name" type="text" autocomplete="name" required /></div>
+            <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" required /></div>
+            <div class="field"><label for="phone" data-i18n="f.phone">Telefono (facoltativo)</label><input id="phone" name="phone" type="tel" autocomplete="tel" /></div>
+          </div>
           <div class="field"><label for="message" data-i18n="f.msg">Raccontaci qualcosa in più</label><textarea id="message" name="message" rows="3" required></textarea></div>
           <p class="form-note" data-i18n-html="f.privacy">Usiamo i tuoi dati solo per risponderti, come spiegato nell'<a href="privacy.html">informativa privacy</a>.</p>
           <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
@@ -418,20 +427,15 @@
     </section>
   </main>
 
-  <!-- ═══ FOOTER: il retro della cartolina ═══ -->
+  <!-- ═══ FOOTER: una chiusura ordinata sul verde: la frase, tre colonne, il nome a tutta larghezza, la riga legale ═══ -->
   <footer class="footer">
-    <div class="postcard">
-      <div class="postcard__msg">
-        <p class="postcard__sign" data-i18n-html="ft.claim">Fatto a Lucca,<br>con le chiavi in mano.</p>
-        <p data-i18n="ft.msg">Che tu stia cercando casa, vendendo la tua o arrivando da lontano, cominciamo da un caffè e da una domanda: dove ti vedi?</p>
-        <nav class="postcard__nav" aria-label="Pagine legali" data-i18n-aria="ft.legal">
-          <a href="privacy.html" data-i18n="ft.privacy">Privacy</a>
-          <a href="cookie-policy.html" data-i18n="ft.cookie">Cookie</a>
-          <a href="#top" data-i18n="ft.top">Torna su</a>
-        </nav>
-      </div>
-      <div class="postcard__addr">
-        <picture><source type="image/avif" srcset="assets/img/torre-guinigi-480.avif 480w, assets/img/torre-guinigi-800.avif 800w, assets/img/torre-guinigi-1280.avif 1280w, assets/img/torre-guinigi-1920.avif 1920w" sizes="96px" /><img src="assets/img/torre-guinigi-1280.webp" srcset="assets/img/torre-guinigi-480.webp 480w, assets/img/torre-guinigi-800.webp 800w, assets/img/torre-guinigi-1280.webp 1280w, assets/img/torre-guinigi-1920.webp 1920w" sizes="96px" width="3979" height="5969" alt="" class="postcard__stamp" loading="lazy" decoding="async" /></picture>
+    <div class="footer__top">
+      <p class="footer__claim" data-i18n-html="ft.claim">Fatto a Lucca,<br>con le chiavi in mano.</p>
+      <p class="footer__msg" data-i18n="ft.msg">Che tu stia cercando casa, vendendo la tua o arrivando da lontano, cominciamo da un caffè e da una domanda: dove ti vedi?</p>
+    </div>
+    <div class="footer__cols">
+      <div>
+        <p class="footer__h" data-i18n="ft.contact">Contatti</p>
         <ul>
           <li><a href="mailto:immobiliare@luccalfa.it">immobiliare@luccalfa.it</a></li>
           <li><a href="tel:+39000000000">+39 000 000 0000</a></li>
@@ -439,16 +443,33 @@
           <li>Via di Villa Altieri, 55100 Lucca</li>
         </ul>
       </div>
-      <p class="postcard__imprint">© <span id="year">2026</span> LuccAlfa Srls · P.IVA 07079510488 · <span data-i18n="ft.credits">Foto: Unsplash e Pexels; dune della Lecciona di DimiTalen (CC0), portone di Balint Miko e cortile di Lucas Chizzali (Unsplash).</span></p>
+      <nav aria-label="Sezioni" data-i18n-aria="ft.nav">
+        <p class="footer__h" data-i18n="ft.sections">Sezioni</p>
+        <ul>
+          <li><a href="#immobili" data-i18n="m.list">Immobili</a></li>
+          <li><a href="#servizi" data-i18n="m.srv">Servizi</a></li>
+          <li><a href="#zone" data-i18n="m.zon">Zone</a></li>
+          <li><a href="#faq" data-i18n="m.faq">Domande</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Pagine legali" data-i18n-aria="ft.legal">
+        <p class="footer__h" data-i18n="ft.info">Informazioni</p>
+        <ul>
+          <li><a href="privacy.html" data-i18n="ft.privacy">Privacy</a></li>
+          <li><a href="cookie-policy.html" data-i18n="ft.cookie">Cookie</a></li>
+          <li><a href="#top" data-i18n="ft.top">Torna su</a></li>
+        </ul>
+      </nav>
     </div>
     <p class="footer__word" aria-hidden="true">LuccAlfa</p>
+    <p class="footer__imprint">© <span id="year">2026</span> LuccAlfa Srls · P.IVA 07079510488 · <span data-i18n="ft.credits">Foto: Unsplash e Pexels; dune della Lecciona di DimiTalen (CC0), nuvole di engin akyurt e Ankur Verma, sedia a dondolo di engin akyurt (Unsplash).</span></p>
   </footer>
 
   <a class="wa" id="wa" href="https://wa.me/39000000000" target="_blank" rel="noopener noreferrer" aria-label="Scrivici su WhatsApp" data-i18n-aria="wa">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 01-11.8 7L4 20l1.1-4A8 8 0 1120 12z"/></svg>
   </a>
 
-  <script src="i18n.js?v=22" defer></script>
-  <script src="script.js?v=22" defer></script>
+  <script src="i18n.js?v=23" defer></script>
+  <script src="script.js?v=23" defer></script>
 </body>
 </html>

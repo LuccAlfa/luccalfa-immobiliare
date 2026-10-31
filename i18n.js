@@ -169,10 +169,14 @@ window.I18N_EN = {
   "ft.claim": "Made in Lucca,<br>keys in hand.",
   "ft.msg": "Whether you're looking for a home, selling yours or coming from far away, we start with a coffee and one question: where do you see yourself?",
   "ft.legal": "Legal pages",
+  "ft.contact": "Contact",
+  "ft.sections": "Sections",
+  "ft.info": "Information",
+  "ft.nav": "Sections",
   "ft.privacy": "Privacy",
   "ft.cookie": "Cookies",
   "ft.top": "Back to top",
-  "ft.credits": "Photos: Unsplash and Pexels; Lecciona dunes by DimiTalen (CC0), front door by Balint Miko and courtyard by Lucas Chizzali (Unsplash).",
+  "ft.credits": "Photos: Unsplash and Pexels; Lecciona dunes by DimiTalen (CC0), clouds by engin akyurt and Ankur Verma, rocking chair by engin akyurt (Unsplash).",
   "wa": "Message us on WhatsApp"
 };
 

@@ -244,7 +244,7 @@
       try { sessionStorage.setItem("la-loaded", "1"); } catch (e) { /* storage non disponibile */ }
     };
     const start = performance.now();
-    const ready = () => setTimeout(done, Math.max(0, 2050 - (performance.now() - start)));
+    const ready = () => setTimeout(done, Math.max(0, 2500 - (performance.now() - start)));
     const hero = $(".hero__pic img");
     if (hero && !hero.complete) { hero.addEventListener("load", ready, { once: true }); setTimeout(done, 3500); } else ready();
   }
