@@ -37,9 +37,10 @@
     if (metaDesc && src["meta.desc"]) metaDesc.content = src["meta.desc"];
     $$(".lang button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.lang === lang)));
     const fl = $("#f-lang"); if (fl) fl.value = lang;
-    if (burger) burger.firstElementChild.textContent = menuOpen ? t("menuClose") : t("menuOpen");
+    if (burger) burger.setAttribute("aria-label", menuOpen ? t("menuClose") : t("menuOpen"));
     try { localStorage.setItem("luccalfa-lang", lang); } catch (e) { /* storage non disponibile */ }
     splitText();
+    if (typeof syncRoll === "function") syncRoll();
   };
 
   /* titoli: ogni parola sale dalla sua riga; paragrafo [data-scrub]: le parole si accendono scorrendo */
@@ -94,7 +95,7 @@
     menuOpen = open;
     document.body.classList.toggle("menu-open", open);
     burger.setAttribute("aria-expanded", String(open));
-    burger.firstElementChild.textContent = open ? t("menuClose") : t("menuOpen");
+    burger.setAttribute("aria-label", open ? t("menuClose") : t("menuOpen"));
     menu.inert = !open;
     if (lenis) open ? lenis.stop() : lenis.start();
   };
@@ -229,6 +230,26 @@
   faqs.forEach((d) => d.addEventListener("toggle", () => { if (d.open) faqs.forEach((o) => { if (o !== d) o.open = false; }); }));
 
   const yr = $("#year"); if (yr) yr.textContent = new Date().getFullYear();
+
+  /* ═════ CARICAMENTO: solo alla prima visita della sessione ═════ */
+  const loader = $("#loader");
+  if (loader && document.documentElement.classList.contains("is-loading")) {
+    const done = () => {
+      loader.classList.add("is-out");
+      document.documentElement.classList.add("is-leaving");
+      setTimeout(() => { document.documentElement.classList.remove("is-loading"); }, 900);
+      setTimeout(() => { document.documentElement.classList.remove("is-leaving"); }, 2400);
+      try { sessionStorage.setItem("la-loaded", "1"); } catch (e) { /* storage non disponibile */ }
+    };
+    const start = performance.now();
+    const ready = () => setTimeout(done, Math.max(0, 1500 - (performance.now() - start)));
+    const hero = $(".hero__pic img");
+    if (hero && !hero.complete) { hero.addEventListener("load", ready, { once: true }); setTimeout(done, 3500); } else ready();
+  }
+
+  /* testo che ruota al passaggio: la copia sotto è la stessa parola */
+  const syncRoll = () => $$(".roll > span").forEach((s) => s.setAttribute("data-roll", s.textContent.trim()));
+  syncRoll();
 
   /* ═════ MISURE DELLE SCENE ═════
      Porta: scala finale perché il vano copra tutto lo schermo.

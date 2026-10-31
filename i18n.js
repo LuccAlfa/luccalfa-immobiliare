@@ -9,7 +9,7 @@ window.I18N_EN = {
   "skip": "Skip to content",
   "nav.aria": "Main menu",
   "nav.cta": "Free valuation",
-  "nav.menu": "Menu",
+  "nav.menu": "Open the menu",
   "m.list": "Properties",
   "m.srv": "Services",
   "m.zon": "Areas",
@@ -114,11 +114,13 @@ window.I18N_EN = {
   "zon.alt4": "A path through the dunes to Lecciona beach in Viareggio",
   "zon.4t": "Versilia",
   "zon.4d": "Viareggio, Camaiore and Pietrasanta, between the sea and the Apuan Alps.",
+  "zon.lead": "Four landscapes, eleven towns, one agency that knows them up close.",
+  "zon.towns": "Towns where we work",
   "zon.cap": "Eleven towns: Lucca, Capannori, Porcari, Montecarlo, Altopascio, Pisa, San Giuliano Terme, Cascina, Viareggio, Camaiore and Pietrasanta.",
 
   "faq.title": "Got questions? Good.",
   "faq.lead": "Buying, selling or renting a home raises questions. These are the ones we hear most often.",
-  "faq.cta": "Ask your question",
+  "faq.cta": "Can't find the answer? Write to us",
   "faq.call": "Or give us a call",
   "q1": "What is my home in Lucca worth? Do you offer free valuations?",
   "a1": "Yes. LuccAlfa Real Estate offers a free, no-obligation valuation with an on-site visit. Value depends on location, condition, size, energy rating and comparison with recent similar sales.",
@@ -183,12 +185,12 @@ window.I18N_UI = {
     sending: "Invio in corso…", err: "Si è verificato un errore. Riprova o chiamaci.", net: "Errore di connessione. Riprova più tardi.",
     mode: { buy: "acquisto", sell: "vendita", rent: "affitto", eval: "valutazione" },
     zone: { centro: "Lucca centro storico", piana: "Colline e Piana di Lucca", pisa: "Pisa e dintorni", versilia: "Versilia" },
-    menuOpen: "Menu", menuClose: "Chiudi", subject: "Richiesta dal sito", about: "Vorrei informazioni su: "
+    menuOpen: "Apri il menu", menuClose: "Chiudi il menu", subject: "Richiesta dal sito", about: "Vorrei informazioni su: "
   },
   en: {
     sending: "Sending…", err: "Something went wrong. Please try again or call us.", net: "Connection error. Please try again later.",
     mode: { buy: "buying", sell: "selling", rent: "renting", eval: "valuation" },
     zone: { centro: "Lucca historic centre", piana: "Lucca hills and Plain", pisa: "Pisa area", versilia: "Versilia" },
-    menuOpen: "Menu", menuClose: "Close", subject: "Website enquiry", about: "I'd like information about: "
+    menuOpen: "Open the menu", menuClose: "Close the menu", subject: "Website enquiry", about: "I'd like information about: "
   }
 };

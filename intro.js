@@ -14,12 +14,12 @@
   const body = peg.querySelector(".peg__body");
   const armL = peg.querySelector(".peg__arm--l"), armR = peg.querySelector(".peg__arm--r");
   const legL = peg.querySelector(".peg__leg--l"), legR = peg.querySelector(".peg__leg--r");
-  const shadow = peg.querySelector(".peg__shadow"), ring = peg.querySelector(".peg__ring"); // taste-skill-ignore
+  const ring = peg.querySelector(".peg__ring");
 
   // tappe della scena (frazioni dello scorrimento dell'intro, come nel CSS)
   const P0 = 0.24, LAND = 0.37, DIVE = 0.48, GONE = 0.53;
   // percorso, in frazioni dello schermo; T = dove poggiano i piedi (la strada tra i palazzi)
-  const A = [-0.06, 0.10], B = [0.30, 0.15], C = [0.50, 0.00], D = [0.66, 0.12], T = [0.66, 0.31];
+  const A = [-0.06, 0.20], B = [0.18, 0.10], C = [0.44, -0.04], D = [0.66, 0.13], T = [0.66, 0.31];
 
   const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
   const lerp = (a, b, t) => a + (b - a) * t;
@@ -30,7 +30,7 @@
   addEventListener("resize", measure);
 
   // offset nel disegno: testa (30,14) e piedi (30,96); il viewBox parte da (-30,-8)
-  const headX = () => 60 * k, headY = () => 22 * k, feetToHead = () => 82 * k;
+  const headX = () => 60 * k, headY = () => 19 * k, feetToHead = () => 79 * k;
 
   const target = (u) => {
     // dove dovrebbe stare la TESTA a questo punto del percorso
@@ -64,12 +64,12 @@
     const onGround = u >= 1;
 
     // molla sulla posizione: un po' sotto-smorzata, così l'omino arriva in ritardo e oscilla
-    const K = onGround ? 260 : 85, Cd = onGround ? 30 : 15;
+    const K = onGround ? 220 : 60, Cd = onGround ? 30 : 15.5;
     vx += (K * (tx - px) - Cd * vx) * dt; vy += (K * (ty - py) - Cd * vy) * dt;
     px += vx * dt; py += vy * dt;
 
     // corpo appeso per la testa: si inclina contro il movimento, come un pendolo
-    const thT = onGround ? 0 : clamp(-vx * 0.05, -42, 42);
+    const thT = onGround ? 0 : clamp(-vx * 0.035, -26, 26);
     tv += (60 * (thT - th) - 7 * tv) * dt; th += tv * dt;
 
     // atterraggio: schiacciamento rapido + anello arancione
@@ -79,30 +79,25 @@
 
     // arti: in volo ciondolano (fase diversa per destra e sinistra), a terra respirano
     const air = onGround ? 0 : 1;
-    const swing = Math.sin(clock * 6.2) * 7 * air, swing2 = Math.sin(clock * 5.1 + 1.3) * 9 * air;
+    const swing = Math.sin(clock * 4.6) * 5 * air, swing2 = Math.sin(clock * 3.9 + 1.3) * 7 * air;
     const aL = th * 0.7 + swing + clamp(-vy * 0.02, -25, 25) * air + Math.sin(clock * 2) * 1.5;
     const aR = th * 0.7 - swing - clamp(-vy * 0.02, -25, 25) * air - Math.sin(clock * 2) * 1.5;
     const lL = -th * 0.45 + swing2, lR = -th * 0.45 - swing2 * 0.8;
-    body.setAttribute("transform", `rotate(${th.toFixed(2)} 30 14) translate(30 96) scale(${(1 + squash).toFixed(3)} ${(1 - squash).toFixed(3)}) translate(-30 -96)`);
-    armL.setAttribute("transform", `rotate(${aL.toFixed(2)} 9.5 32)`);
-    armR.setAttribute("transform", `rotate(${aR.toFixed(2)} 50.5 32)`);
-    legL.setAttribute("transform", `rotate(${lL.toFixed(2)} 22.5 58)`);
-    legR.setAttribute("transform", `rotate(${lR.toFixed(2)} 37.5 58)`);
+    body.setAttribute("transform", `rotate(${th.toFixed(2)} 30 11) translate(30 90) scale(${(1 + squash).toFixed(3)} ${(1 - squash).toFixed(3)}) translate(-30 -90)`);
+    armL.setAttribute("transform", `rotate(${aL.toFixed(2)} 15.5 26)`);
+    armR.setAttribute("transform", `rotate(${aR.toFixed(2)} 44.5 26)`);
+    legL.setAttribute("transform", `rotate(${lL.toFixed(2)} 25 52)`);
+    legR.setAttribute("transform", `rotate(${lR.toFixed(2)} 35 52)`);
 
-    // ombra a terra: più piccola e chiara quanto più l'omino è in alto
-    const feetY = py + feetToHead(), ground = T[1] * H;
-    const height = clamp((ground - feetY) / (H * 0.25), 0, 1);
-    shadow.setAttribute("cy", ((ground - (py - headY())) / k - 8).toFixed(1));
-    shadow.setAttribute("rx", (16 * (1 - height * 0.6)).toFixed(1));
-    shadow.setAttribute("opacity", (u > 0.6 ? 1 - height * 0.8 : 0).toFixed(2));
+    const ground = T[1] * H;
     ring.setAttribute("cy", ((ground - (py - headY())) / k - 8).toFixed(1));
 
     // comparsa, e poi la camera si avvicina all'omino durante la picchiata
     let op = clamp((p - P0) / 0.012, 0, 1), sc = 1;
-    if (p > DIVE) { const d = clamp((p - DIVE) / (GONE - DIVE), 0, 1); sc = 1 + d * 2.6; op *= 1 - ease(d); }
+    if (p > DIVE) { const d = clamp((p - DIVE) / (GONE - DIVE), 0, 1); sc = 1 + d * 1.2; op *= 1 - ease(d); }
     peg.style.opacity = op.toFixed(3);
     peg.style.transform = `translate(${(px - headX()).toFixed(1)}px, ${(py - headY()).toFixed(1)}px) scale(${sc.toFixed(3)})`;
-    peg.style.transformOrigin = `${headX()}px ${104 * k}px`;
+    peg.style.transformOrigin = `${headX()}px ${98 * k}px`;
 
     if (running) requestAnimationFrame(frame);
   };
