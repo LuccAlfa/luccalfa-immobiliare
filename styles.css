@@ -617,8 +617,10 @@ main { timeline-scope: --c2, --c3, --c4, --c5; }
 @keyframes word-rise { from { transform: translateY(45%); } to { transform: none; } }
 
 /* ═════ TENDA PER IL CAMBIO LINGUA ═════ */
-.curtain { position: fixed; inset: 0; z-index: 200; background: var(--accent); color: var(--accent-ink); display: grid; place-items: center;
+/* fuori dalla pagina quando non serve: Safari sul telefono colora la barra in basso con gli elementi fissi che toccano il bordo */
+.curtain { position: fixed; inset: 0; z-index: 200; background: var(--accent); color: var(--accent-ink); display: none; place-items: center;
   transform: scaleY(0); transform-origin: 50% 100%; pointer-events: none; }
+.curtain.is-on { display: grid; }
 .curtain__label { font-family: var(--display); font-weight: 700; font-size: var(--step-display); letter-spacing: -0.03em; opacity: 0; }
 
 /* ═════ SCORRIMENTO MORBIDO (Lenis, solo computer) ═════ */

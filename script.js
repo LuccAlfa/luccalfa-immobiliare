@@ -77,12 +77,13 @@
     label.textContent = next === "en" ? "English" : "Italiano";
     const io = "cubic-bezier(0.77, 0, 0.175, 1)", out = "cubic-bezier(0.23, 1, 0.32, 1)";
     curtain.style.transformOrigin = "50% 100%";
+    curtain.classList.add("is-on");
     curtain.animate([{ transform: "scaleY(0)" }, { transform: "scaleY(1)" }], { duration: 520, easing: io, fill: "forwards" }).finished
       .then(() => label.animate([{ opacity: 0, transform: "translateY(30%)" }, { opacity: 1, transform: "none" }], { duration: 360, easing: out, fill: "forwards" }).finished)
       .then(() => { applyLang(next); curtain.style.transformOrigin = "50% 0%"; })
       .then(() => label.animate([{ opacity: 1 }, { opacity: 0, transform: "translateY(-30%)" }], { duration: 240, delay: 120, easing: out, fill: "forwards" }).finished)
       .then(() => curtain.animate([{ transform: "scaleY(1)" }, { transform: "scaleY(0)" }], { duration: 560, easing: io, fill: "forwards" }).finished)
-      .then(() => { switching = false; });
+      .then(() => { curtain.classList.remove("is-on"); curtain.getAnimations().concat(label.getAnimations()).forEach((a) => a.cancel()); switching = false; });
   }));
   let switching = false;
 
