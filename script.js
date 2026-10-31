@@ -236,14 +236,21 @@
 
   const yr = $("#year"); if (yr) yr.textContent = new Date().getFullYear();
 
-  /* ═════ CARICAMENTO: solo alla prima visita della sessione ═════ */
+  /* ═════ CARICAMENTO: solo alla prima visita della sessione ═════
+     Il simbolo si disegna; poi (come su RIO) il pannello sparisce in un fondo pietra identico che copre la foto,
+     le lettere del titolo compaiono in ordine sparso, il fondo scorre via a sinistra e scopre i tetti. */
+  const root = document.documentElement;
   const loader = $("#loader");
-  if (loader && document.documentElement.classList.contains("is-loading")) {
+  const firstVisit = !!(loader && root.classList.contains("is-loading"));
+  if (firstVisit) {
+    let finished = false;
     const done = () => {
-      loader.classList.add("is-out");
-      document.documentElement.classList.add("is-leaving");
-      setTimeout(() => { document.documentElement.classList.remove("is-loading"); }, 900);
-      setTimeout(() => { document.documentElement.classList.remove("is-leaving"); }, 2400);
+      if (finished) return; finished = true;
+      loader.classList.add("is-out");                     // il pannello svanisce nel fondo uguale dell'hero
+      root.classList.add("is-revealing");                 // le lettere del titolo arrivano
+      setTimeout(() => root.classList.add("is-unveiled", "is-leaving"), 1650);   // il fondo scorre via
+      setTimeout(() => { root.classList.remove("is-loading"); loader.hidden = true; }, 3000);
+      setTimeout(() => root.classList.remove("is-leaving", "is-revealing"), 4300);
       try { sessionStorage.setItem("la-loaded", "1"); } catch (e) { /* storage non disponibile */ }
     };
     const start = performance.now();
@@ -305,4 +312,38 @@
     initial = q || saved || ((navigator.language || "it").toLowerCase().startsWith("it") ? "it" : "en");
   } catch (e) { /* default it */ }
   if (initial !== "it") applyLang(initial);
+
+  /* ═════ TITOLO DELL'HERO: alla prima visita lettere in ordine sparso (RIO), poi parole che salgono (FIND) ═════ */
+  const heroTitle = $(".hero__title");
+  if (heroTitle && !reduce) {
+    const wrapText = (fn) => {
+      const walk = (node) => [...node.childNodes].forEach((n) => {
+        if (n.nodeType === 3) { const frag = document.createDocumentFragment(); fn(n.textContent, frag); n.replaceWith(frag); }
+        else if (n.nodeType === 1 && n.tagName !== "BR") walk(n);
+      });
+      walk(heroTitle);
+    };
+    if (firstVisit) {
+      const letters = [];
+      wrapText((text, frag) => text.split(/(\s+)/).forEach((w) => {
+        if (!w) return; if (/^\s+$/.test(w)) { frag.append(" "); return; }
+        const word = document.createElement("span"); word.className = "hl-word";
+        [...w].forEach((ch) => { const l = document.createElement("span"); l.className = "hl"; l.textContent = ch; word.append(l); letters.push(l); });
+        frag.append(word);
+      }));
+      // ordine sparso ma uniforme: ogni lettera ha un istante a caso dentro 0,8 secondi
+      letters.forEach((l) => l.style.setProperty("--hd", (Math.random() * 1.0).toFixed(3) + "s"));
+    } else {
+      let i = 0;
+      wrapText((text, frag) => text.split(/(\s+)/).forEach((w) => {
+        if (!w) return; if (/^\s+$/.test(w)) { frag.append(" "); return; }
+        const o = document.createElement("span"); o.className = "hw";
+        const inner = document.createElement("span"); inner.textContent = w; inner.style.setProperty("--wi", String(i++));
+        o.append(inner); frag.append(o);
+      }));
+      root.classList.add("hero-words");
+    }
+  }
+  // due fotogrammi dopo: la frase parte davvero chiusa e la sua apertura si vede
+  requestAnimationFrame(() => requestAnimationFrame(() => root.classList.remove("hero-wait")));
 })();
