@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- SCHERZO PROVVISORIO: tutta la cartella agenti/ va tolta prima di indicizzare -->
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Geom. Marco Modena — LuccAlfa Immobiliare</title>
+  <style>
+    @font-face { font-family: "Boska"; src: url("../assets/fonts/boska-700.woff2") format("woff2"); font-weight: 700; font-display: swap; }
+    @font-face { font-family: "Switzer"; src: url("../assets/fonts/switzer-400.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+    :root { --bg: #16130f; --ink: #eeebe6; --mute: #a49c90; --accent: #f68622; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--ink); font: 400 18px/1.7 "Switzer", system-ui, sans-serif; }
+    header { display: flex; justify-content: space-between; align-items: center; padding: 22px clamp(16px, 4vw, 56px); }
+    header a { color: var(--ink); text-decoration: none; }
+    header .brand { font: 700 26px "Boska", serif; }
+    header .back { font-size: 14px; border-bottom: 1px solid var(--accent); }
+    main { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(28px, 5vw, 80px); align-items: center;
+      padding: clamp(24px, 4vw, 56px) clamp(16px, 4vw, 56px) 80px; max-width: 1320px; margin: 0 auto; }
+    img { width: 100%; max-height: 86vh; object-fit: cover; border-radius: 4px; display: block; }
+    .eyebrow { text-transform: uppercase; letter-spacing: .18em; font-size: 12px; color: var(--mute); margin: 0 0 14px; }
+    h1 { font: 700 clamp(44px, 6.6vw, 96px)/.95 "Boska", serif; margin: 0 0 24px; letter-spacing: -.02em; }
+    p { margin: 0 0 1.1em; max-width: 52ch; }
+    .slogan { font: 700 clamp(30px, 4vw, 56px)/1.05 "Boska", serif; color: var(--accent); margin: 32px 0 0; }
+    @media (max-width: 800px) { main { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <header><a class="brand" href="../">LuccAlfa</a><a class="back" href="./">← I nostri agenti</a></header>
+  <main>
+    <img src="media/marco-berlusconi.jpg" alt="Geom. Marco Modena" />
+    <div>
+      <p class="eyebrow">Direttore sviluppo · Rapporti istituzionali</p>
+      <h1>Geom. Marco Modena</h1>
+      <p>Un mago del business. Dove gli altri vedono un rudere, lui vede un affare; dove gli altri vedono un affare, lui ha già firmato. Le sue strette di mano hanno attraversato decenni, palazzi e repubbliche.</p>
+      <p>Cardine fisso dell'agenzia, punto di riferimento immobile in un mercato che si muove: con lui non esistono imprevisti, solo certezze. Da solo dà più sicurezze di un rogito, di una fideiussione e di un mattone messo a regola d'arte.</p>
+      <p class="slogan">Contatti ovunque,<br />siamo ovunque.</p>
+    </div>
+  </main>
+</body>
+</html>
