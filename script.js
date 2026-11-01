@@ -261,15 +261,6 @@
   }
 
 
-  /* ═════ MISURE DELLE SCENE ═════
-     Servizi: di quanto scorre la galleria orizzontale. */
-  const measure = () => {
-    const track = $(".srv__track"), view = $(".srv__viewport"), sstage = $(".srv__stage");
-    if (track && view && sstage) sstage.style.setProperty("--tx", Math.max(0, track.scrollWidth - view.clientWidth) + "px");
-  };
-  addEventListener("load", measure); addEventListener("resize", measure); measure();
-  $$(".srv__track img").forEach((im) => { if (!im.complete) im.addEventListener("load", measure, { once: true }); });
-
   /* ═════ SCORRIMENTO MORBIDO: solo computer con mouse ═════ */
   let lenis = null;
   if (!reduce && matchMedia("(min-width: 1024px) and (hover: hover) and (pointer: fine)").matches) {

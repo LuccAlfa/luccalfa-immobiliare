@@ -401,7 +401,7 @@ html.menu-open .menu__foot { opacity: 1; transition: opacity .5s .75s; }
       animation: sheet linear both; animation-timeline: view(); animation-range: cover 0px cover 70vh; }
     .srv__stage { position: sticky; top: 0; height: 100vh; height: 100svh; display: flex; align-items: center; overflow: hidden; } /* taste-skill-ignore */
     .srv__head { flex: none; width: 44vw; max-width: none; padding: 0 0 0 var(--m); }
-    .srv__viewport { flex: 1; min-width: 0; overflow: hidden; margin-right: var(--m); }
+    .srv__viewport { flex: 1; min-width: 0; overflow: hidden; margin-right: var(--m); container-type: inline-size; }
     .srv__track { display: flex; margin: 0; padding: 0 var(--m) 0 4vw; gap: 4vw; overflow: visible; align-items: flex-end; width: max-content;
       animation: srv-slide linear both; animation-timeline: --srv; animation-range: contain 0% contain 100%; }
     .srv__item { width: auto; max-width: none; }
@@ -420,7 +420,8 @@ html.menu-open .menu__foot { opacity: 1; transition: opacity .5s .75s; }
 @keyframes city-drift { from { transform: translateX(0); } to { transform: translateX(-3.5%); } }
 @keyframes sway-l { 0% { transform: rotate(-2deg); } 50% { transform: rotate(1.5deg); } 100% { transform: rotate(-1deg); } }
 @keyframes sway-r { 0% { transform: scaleX(-1) rotate(-2deg); } 50% { transform: scaleX(-1) rotate(1.5deg); } 100% { transform: scaleX(-1) rotate(-1deg); } }
-@keyframes srv-slide { 0%, 6% { transform: translateX(0); } 94%, 100% { transform: translateX(calc(-1 * var(--tx, 200vw))); } }
+/* la galleria scorre esattamente della sua larghezza meno la finestra (100cqw): nessuna misura da JS che possa arrivare in ritardo */
+@keyframes srv-slide { 0%, 6% { transform: translateX(0); } 94%, 100% { transform: translateX(min(0px, calc(100cqw - 100%))); } }
 
 /* ═════ METODO: carte che si impilano ═════ */
 /* carte con margini, non a tutto schermo: ognuna si ferma un po' più in basso della precedente,
