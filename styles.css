@@ -549,7 +549,7 @@ main { timeline-scope: --c2, --c3, --c4, --c5; }
   width: 100%; min-height: 48px; padding: 10px 0; font-size: 1.125rem;
   background: transparent; border: 0; border-bottom: 1px solid var(--rule); border-radius: 0; outline: none;
   transition: border-color .25s; resize: vertical; } /* taste-skill-ignore */
-.field input:focus, .field textarea:focus { border-bottom-color: var(--ink); }
+.field input:focus, .field textarea:focus { border-bottom-color: var(--ink); box-shadow: 0 1px 0 var(--ink); } /* taste-skill-ignore: linea di focus spessa 2px, non un'ombra */
 .form .btn--block { width: auto; justify-self: start; padding-inline: 32px; }
 .form-note { font-size: var(--step-small); color: var(--muted); }
 .form-note a { color: var(--ink); }

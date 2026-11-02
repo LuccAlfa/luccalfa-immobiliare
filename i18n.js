@@ -163,7 +163,7 @@ window.I18N_EN = {
   "f.name": "Name",
   "f.phone": "Phone (optional)",
   "f.msg": "Tell us a bit more",
-  "f.privacy": "We use your details only to reply to you, as explained in our <a href=\"privacy.html\">privacy policy</a>.",
+  "f.privacy": "LuccAlfa Srls uses these details only to reply to your request, never for advertising. Your phone number is optional. Retention and your rights are in our <a href=\"privacy.html\">privacy policy</a>.",
   "f.send": "Send request",
 
   "ft.claim": "Made in Lucca,<br>keys in hand.",
