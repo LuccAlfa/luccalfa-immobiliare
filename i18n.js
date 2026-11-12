@@ -20,8 +20,6 @@ window.I18N_EN = {
   "hero.title": "Inside the Walls,<br>beyond the Walls.",
   "hero.sub": "An estate agency in Lucca: homes for sale and rent, from the old town to Pisa and the Versilia coast.",
   "hero.cta": "See the properties",
-  "h3d.cap1": "Lucca is best understood on foot.",
-  "h3d.cap2": "We walk it every day, to find you a home.",
 
 
   "about.alt1": "A street in central Lucca with the Guinigi Tower and the oak trees on its top",
