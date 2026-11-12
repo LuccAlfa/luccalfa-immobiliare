@@ -835,3 +835,55 @@ html.hero-words .hw > span { animation: word-rise-in 1.35s cubic-bezier(0.16, 1,
   .thanks__pic img { height: 52svh; }
 }
 .thanks__pic picture { width: 100%; }
+
+/* ═════ INTRO IN 3D (hero3d.js) ═════
+   La classe "h3d" c'è solo con WebGL e senza movimento ridotto: la scena è disegnata su una tela e guidata
+   dallo scorrimento via JavaScript, quindi qui si spengono le animazioni CSS dell'intro. Il finale riusa gli
+   stessi livelli di prima (cielo, nuvole, nome, nebbia), mossi dallo script; dentro il simbolo resta la piazza. */
+.h3d__canvas, .h3d__caps, .h3d__bank, .h3d__wisp { display: none; }
+html.h3d .intro { height: 730vh; }
+html.h3d .intro__stage { position: sticky; top: 0; height: 100vh; height: 100svh; display: block; overflow: hidden; background: var(--sky); } /* taste-skill-ignore */
+html.h3d .intro__stage > *, html.h3d .hero__title, html.h3d .hero__sub, html.h3d .hero__cta, html.h3d .intro__mist img, html.h3d .sky__cloud { animation: none; }
+html.h3d .intro__photo { position: absolute; inset: 0; z-index: 1; height: auto; min-height: 0; }
+html.h3d.h3d-on .intro__photo { visibility: hidden; } /* la tela mostra la stessa foto; nel finale diventa trasparente e sotto deve esserci il cielo */
+html.h3d .hero__pic img { height: 100%; object-position: 50% 70%; animation: none; }
+html.h3d .intro__mark { display: none; }
+html.h3d .h3d__canvas { display: block; position: absolute; inset: 0; z-index: 2; width: 100%; height: 100%; opacity: 0; pointer-events: none; }
+html.h3d.h3d-on .h3d__canvas { opacity: 1; }
+html.is-leaving .intro__photo, html.is-leaving .h3d__canvas { animation: hero-in 1.6s cubic-bezier(0.22, 1, 0.36, 1) both; }
+html.h3d .hero__copy { position: absolute; inset: 0 0 auto; z-index: 5; will-change: opacity, transform; }
+html.h3d .hero__cta { z-index: 6; }
+/* il banco di nuvole fra i tetti e la piazza: sale dal basso, copre tutto, esce in alto (lo muove lo script) */
+html.h3d .h3d__bank { display: block; position: absolute; z-index: 3; left: -20vw; top: 0; width: 140vw; height: calc(2 * max(60.67vw, 60vh) + 150vh); pointer-events: none; visibility: hidden; will-change: transform; }
+.h3d__bank img { position: absolute; left: 0; width: 100%; max-width: none; height: max(60.67vw, 60vh); object-fit: cover; object-position: 50% 100%; }
+.h3d__bank-top { top: 0; }
+.h3d__bank-body { position: absolute; left: 0; right: 0; top: calc(max(60.67vw, 60vh) - 2px); height: calc(150vh + 4px); background: var(--bg); }
+.h3d__bank-bot { bottom: 0; transform: scaleY(-1); }
+html.h3d .h3d__wisp { display: block; position: absolute; z-index: 3; top: 0; max-width: none; height: auto; pointer-events: none; visibility: hidden; filter: brightness(1.1) saturate(.9); will-change: transform; }
+.h3d__wisp--1 { left: -8vw; width: max(52vw, 70vmin); }
+.h3d__wisp--2 { right: -14vw; width: max(64vw, 86vmin); }
+.h3d__wisp--3 { left: 16vw; width: max(46vw, 62vmin); }
+/* queste due foto di nuvole hanno i bordi tagliati dritti: una sfumatura a ovale li scioglie nel cielo */
+.h3d__wisp--2, .h3d__wisp--3 { -webkit-mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000 38%, transparent 70%); mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000 38%, transparent 70%); }
+.h3d__wisp--4 { right: 2vw; width: max(38vw, 52vmin); }
+/* le due frasi in piazza: inchiostro sul selciato chiaro, ogni parola sale dalla sua riga */
+html.h3d .h3d__caps { display: block; position: absolute; z-index: 4; left: var(--m); right: var(--m); bottom: clamp(36px, 9vh, 96px); pointer-events: none; }
+.h3d__cap { position: absolute; left: 0; bottom: 0; max-width: 15ch; font-family: var(--display); font-weight: 700; font-size: var(--step-head); line-height: 0.98; letter-spacing: -0.02em; color: var(--ink); opacity: 0; visibility: hidden; }
+.h3d__w { display: inline-block; overflow: clip; vertical-align: top; padding-bottom: 0.14em; margin-bottom: -0.14em; }
+.h3d__w > span { display: inline-block; will-change: transform; }
+/* il finale: cielo e nuvole dietro la tela, il nome sotto il simbolo, un banco di cumuli davanti, la nebbia che chiude */
+html.h3d .intro__sky { display: block; position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+html.h3d .sky__cloud, html.h3d .sky__front { filter: brightness(1.1) saturate(.9); will-change: transform; }
+html.h3d .sky__cloud { position: absolute; max-width: none; height: auto; }
+html.h3d .sky__cloud--1 { width: max(44vw, 60vmin); left: 2vw; top: 4vh; }
+html.h3d .sky__cloud--2 { width: max(58vw, 80vmin); right: -12vw; top: 58vh; }
+html.h3d .sky__front { display: block; position: absolute; z-index: 4; left: -15vw; bottom: -6vh; width: 130vw; max-width: none; height: auto; pointer-events: none; transform-origin: 50% 100%; opacity: 0; }
+html.h3d .intro__name { display: block; position: absolute; z-index: 3; left: 0; right: 0; top: calc(50% + min(19vmin, 150px)); text-align: center;
+  font-family: var(--display); font-weight: 700; font-size: clamp(2rem, 1rem + 3vw, 3.75rem); letter-spacing: -0.03em; line-height: 1; opacity: 0; will-change: opacity, transform; }
+html.h3d .intro__name span { display: block; margin-top: 10px; font-family: var(--text); font-weight: 500; font-size: var(--step-body); letter-spacing: 0; color: var(--muted); }
+html.h3d .intro__mist { display: block; position: absolute; inset: 0; z-index: 5; pointer-events: none; transform: translateY(100%); will-change: transform; }
+html.h3d .intro__mist img { position: absolute; left: -20vw; bottom: 0; width: 140vw; max-width: none; height: auto; min-height: 60vh; object-fit: cover; object-position: 50% 100%; }
+html.h3d .intro__mist::after { content: ""; position: absolute; left: 0; right: 0; top: 100%; height: 120vh; background: var(--bg); }
+@media (max-width: 899px) { html.h3d .intro { height: 600vh; } .h3d__cap { max-width: 12ch; } }
+html.h3d .nav { transition: background-color .5s var(--ease), transform .8s cubic-bezier(0.16, 1, 0.3, 1), color .5s var(--ease); }
+html.h3d-dark:not(.menu-open) .nav:not(.is-solid) { color: #fff; }
